@@ -3,6 +3,8 @@
 open book-riscv-rev3.pdf and search for shell,
 see code onj github or reference/xv6-riscv
 
+testes:  
+https://docs.google.com/spreadsheets/u/0/d/1uJHQu0VPsjjBkR4hxOeCMEt3AOM1Hp_SmUzPFhAH-nA/htmlview?lsrp=1#gid=0
 
 # POSIX.1-2017
 defines a standard operating system interface and environment, including   
