@@ -31,6 +31,7 @@ int main(int argc, char *argv[], char *envp[])
 	if (!init_minishell(&s, argc, argv, envp))
 		exit_minishell(&s);
 	printf("printf do Carlos\n");
+	printf("minishell");
 	while (true)
 	{
 		// lexer
