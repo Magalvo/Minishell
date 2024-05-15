@@ -1,0 +1,45 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"C_Cpp.files.exclude": {
+			"**/.vscode": true,
+			"**/.vs": true,
+			"**/reference/**":true
+		},
+		"C_Cpp.codeAnalysis.exclude": {
+			"*/reference/**":true,
+		},
+		"typescript.validate.enable": false,
+		"javascript.validate.enable": false,
+		"files.associations": {
+			"cstdlib": "c",
+			"charconv": "c",
+			"chrono": "c",
+			"optional": "c",
+			"format": "c",
+			"ratio": "c",
+			"system_error": "c",
+			"array": "c",
+			"functional": "c",
+			"tuple": "c",
+			"type_traits": "c",
+			"utility": "c",
+			"libft.h": "c",
+			"mlx.h": "c",
+			"keysym.h": "c",
+			"x.h": "c",
+			"keysymdef.h": "c",
+			"mlx_int.h": "c",
+			"fractol.h": "c",
+			"cmath": "c",
+			"complex": "c",
+			"random": "c",
+			"limits": "c",
+			"math.h": "c"
+		}
+	}
+}

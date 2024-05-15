@@ -1,0 +1,106 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    pretty_colors_ANSI                                 :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/02/20 21:49:49 by cjoao-de          #+#    #+#              #
+#    Updated: 2024/02/20 21:50:07 by cjoao-de         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# https://linuxcommand.org/lc3_adv_tput.php
+# https://dev.to/ifenna__/adding-colors-to-bash-scripts-48g4
+
+# Color 		Foreground 	Background
+# Black 		30 	40
+# Red 			31 	41
+# Green 		32 	42
+# Yellow 		33 	43
+# Blue	 		34 	44
+# Magenta 		35 	45
+# Cya	 		36 	46
+# Light Gray 	37 	47
+# Gray 			90 	100
+# Light Red 	91 	101
+# Light Green 	92 	102
+# Light Yellow 	93 	103
+# Light Blue 	94 	104
+# Light Magenta 95 	105
+# Light Cyan 	96 	106
+# White 		97 	107
+
+RST				= \e[0m
+BLD				= \e[1m		# BOLD
+FNT				= \e[2m	 	# FAINT
+ITL				= \e[3m		# ITALIC
+UDL				= \e[4m		# UNDERLINE
+
+#colors
+BLACK			= \e[30m
+RED				= \e[31m
+GREEN			= \e[32m
+YELLOW			= \e[33m
+BLUE			= \e[34m
+MAGENTA			= \e[35m
+CYAN 			= \e[36m
+GRAY 			= \e[90m
+WHITE 			= \e[97m
+
+#colors bold
+BLACK_B			= \e[1;30m
+RED_B			= \e[1;31m
+GREEN_B			= \e[1;32m
+YELLOW_B		= \e[1;33m
+BLUE_B			= \e[1;34m
+MAGENTA_B		= \e[1;35m
+CYAN_B 			= \e[1;36m
+GRAY_B 			= \e[1;90m
+WHITE_B			= \e[1;97m
+
+#colors faint
+BLACK_F			= \e[2;30m
+RED_F			= \e[2;31m
+GREEN_F			= \e[2;32m
+YELLOW_F		= \e[2;33m
+BLUE_F			= \e[2;34m
+MAGENTA_F		= \e[2;35m
+CYAN_F 			= \e[2;36m
+GRAY_F 			= \e[2;90m
+WHITE_F			= \e[2;97m
+
+#colors italic
+BLACK_I			= \e[3;30m
+RED_I			= \e[3;31m
+GREEN_I			= \e[3;32m
+YELLOW_I		= \e[3;33m
+BLUE_I			= \e[3;34m
+MAGENTA_I		= \e[3;35m
+CYAN_I 			= \e[3;36m
+GRAY_I 			= \e[3;90m
+WHITE_I			= \e[3;97m
+
+#colors underline
+BLACK_U			= \e[4;30m
+RED_U			= \e[4;31m
+GREEN_U			= \e[4;32m
+YELLOW_U		= \e[4;33m
+BLUE_U			= \e[4;34m
+MAGENTA_U		= \e[4;35m
+CYAN_U 			= \e[4;36m
+GRAY_U 			= \e[4;90m
+WHITE_U			= \e[4;97m
+
+# colors:
+# 	@printf "\e[1;3;4mcolor tags YMMV${RST}\n"
+# 	@printf "Normal		${BOLD}BOLD${RST}${FNT}FAINT${RST}${ITL}ITALIC${RST}${UDL}UNDERLINE${RST}\n"
+# 	@printf "${BLACK}BLACK		${BLACK_B}BLACK_B${RST}		${BLACK_F}BLACK_F${RST}		${BLACK_I}BLACK_I	${RST}	${BLACK_U}BLACK_U${RST}\n"
+# 	@printf "${RED}RED		${RED_B}RED_B${RST}		${RED_F}RED_F${RST}		${RED_I}RED_I${RST}		${RED_U}RED_U${RST}\n"
+# 	@printf "${GREEN}GREEN		${GREEN_B}GREEN_B${RST}		${GREEN_F}GREEN_F${RST}		${GREEN_I}GREEN_I${RST}		${GREEN_U}GREEN_U${RST}\n"
+# 	@printf "${YELLOW}YELLOW		${YELLOW_B}YELLOW_B${RST}	${YELLOW_F}YELLOW_F${RST}	${YELLOW_I}YELLOW_I${RST}	${YELLOW_U}YELLOW_U${RST}\n"
+# 	@printf "${BLUE}BLUE		${BLUE_B}BLUE_B${RST}		${BLUE_F}BLUE_F${RST}		${BLUE_I}BLUE_I${RST}		${BLUE_U}BLUE_U${RST}\n"
+# 	@printf "${MAGENTA}MAGENTA		${MAGENTA_B}MAGENTA_B${RST}	${MAGENTA_F}MAGENTA_F${RST}	${MAGENTA_I}MAGENTA_I${RST}	${MAGENTA_U}MAGENTA_U${RST}\n"
+# 	@printf "${CYAN}CYAN		${CYAN_B}CYAN_B	${RST}	${CYAN_F}CYAN_F${RST}		${CYAN_I}CYAN_I${RST}		${CYAN_U}CYAN_U${RST}\n"
+# 	@printf "${GRAY}GRAY		${GRAY_B}GRAY_B	${RST}	${GRAY_F}GRAY_F${RST}		${GRAY_I}GRAY_I${RST}		${GRAY_U}GRAY_U${RST}\n"
+# 	@printf "${WHITE}WHITE		${WHITE_B}WHITE_B	${RST}	${WHITE_F}WHITE_F${RST}		${WHITE_I}WHITE_I		${RST}${WHITE_U}WHITE_U${RST}\n"
