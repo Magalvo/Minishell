@@ -21,17 +21,18 @@ typedef	enum s_signal
 typedef struct s_ms
 {
 	char	*prompt;
+	int		modal;
 }	t_ms;
 
 
 
 
 //	minishell.c
-int		init_minishell(t_ms *s, char **ep);
-void	exit_minishell(t_ms *s);
-void	minishell(char **envp);
-void	handle_signal();
-static void sig_usr(int signo);
+int			init_minishell(t_ms *s, char **ep);
+void		exit_minishell(t_ms *s);
+void		minishell(char **envp);
+void		check_signal();
+static void handle_signal(int sign, t_ms *s);
 
 
 

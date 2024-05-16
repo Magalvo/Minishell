@@ -40,7 +40,8 @@
 			"random": "c",
 			"limits": "c",
 			"math.h": "c",
-			"readline.h": "c"
+			"readline.h": "c",
+			"libft_define.h": "c"
 		}
 	}
 }
