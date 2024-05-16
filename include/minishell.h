@@ -6,6 +6,16 @@
 # include "../libs/libft/include/libft.h"
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <signal.h>
+
+typedef	enum s_signal
+{
+	MAIN,
+	CHILD,
+	HEREDOC,
+	IGNORE
+} t_signal;
+
 
 // minishell main struct
 typedef struct s_ms
@@ -14,9 +24,15 @@ typedef struct s_ms
 }	t_ms;
 
 
+
+
 //	minishell.c
-int		init_minishell(t_ms *s, int ac, char **av, char **ep);
+int		init_minishell(t_ms *s, char **ep);
 void	exit_minishell(t_ms *s);
+void	minishell(char **envp);
+void	handle_signal();
+static void sig_usr(int signo);
+
 
 
 #endif

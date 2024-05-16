@@ -39,7 +39,8 @@
 			"complex": "c",
 			"random": "c",
 			"limits": "c",
-			"math.h": "c"
+			"math.h": "c",
+			"readline.h": "c"
 		}
 	}
 }

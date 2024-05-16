@@ -32,7 +32,7 @@ LDFLAGS = -L$(LIBFT_DIR) -lft -lreadline
 # Project settings
 #
 NAME = minishell
-CFLAGS = -Wall -Wextra -Werror -I${LIBFT_DIR}  #-O3
+CFLAGS = -Wall -Wextra -Werror -I${LIBFT_DIR} #-O3
 debug: CFLAGS += -g3 #-fPIE #-fsanitize=address #-pg   #-fsanitize=address
 MAKEFLAGS += --no-print-directory #  --silent
 .SILENT: $(OBJ) $(NAME) clean fclean
