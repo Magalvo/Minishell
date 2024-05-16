@@ -1,30 +1,37 @@
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-// # include <sys/wait.h>
-// # include <sys/stat.h>
+# include <sys/wait.h>
+# include <sys/stat.h>
 # include "../libs/libft/include/libft.h"
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <signal.h>
+# include <errno.h>
+# include <readline/history.h>
+# include <signal.h>
+# include <readline/readline.h>
+# include <signal.h>
+# include <sys/stat.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <termios.h>
+# include <dirent.h>
 
-typedef	enum s_signal
+
+// minishell main struct
+typedef	enum s_signal t_signal;
+typedef struct s_ms t_ms;
+
+enum s_signal
 {
 	MAIN,
 	CHILD,
 	HEREDOC,
 	IGNORE
-} t_signal;
+};
 
-
-// minishell main struct
-typedef struct s_ms
+struct	s_ms
 {
 	char	*prompt;
-}	t_ms;
-
-
-
+};
 
 //	minishell.c
 int		init_minishell(t_ms *s, char **ep);

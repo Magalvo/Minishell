@@ -50,7 +50,7 @@ $(LIBFT):
 
 $(NAME): $(LIBFT) $(OBJ)
 	@printf "$(YELLOW)** compiling **		"$(NAME)"$(RST)\n"
-	$(CC) $(CFLAGS)  -o $(NAME) $(OBJ) $(LDFLAGS)
+	$(CC) -v $(CFLAGS)  -o $(NAME) $(OBJ) $(LDFLAGS) 
 	@printf "$(GREEN_B)$(NAME) created\n$(RST)"
 
 $(OBJ):

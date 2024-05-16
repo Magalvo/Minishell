@@ -39,13 +39,13 @@ OBJECTS = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 # Build settings
 #
 NAME = libft.a
-CFLAGS = -Wall -Wextra -Werror -O3
+CFLAGS = -Wall -Wextra -Werror #-O3
 debug: CFLAGS += -g3 -fPIE
 MAKEFLAGS += --no-print-directory #  --silent
 .SILENT:  clean fclean debug $(OBJECTS) $(NAME)
 ARFLAGS = rvs
 RM = rm -rf
-# CC = cc
+CC = cc
 # AR = ar
 
 all: $(NAME)
