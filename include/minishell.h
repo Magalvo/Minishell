@@ -1,17 +1,14 @@
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-# include <sys/wait.h>
-# include <sys/stat.h>
 # include "../libs/libft/include/libft.h"
-# include <errno.h>
-# include <readline/history.h>
-# include <signal.h>
-# include <readline/readline.h>
-# include <signal.h>
+# include <sys/wait.h>
 # include <sys/stat.h>
 # include <sys/types.h>
-# include <sys/wait.h>
+# include <readline/history.h>
+# include <readline/readline.h>
+# include <errno.h>
+# include <signal.h>
 # include <termios.h>
 # include <dirent.h>
 
