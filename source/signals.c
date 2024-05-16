@@ -25,6 +25,7 @@ void handle_signal(int sign)
 		write(1, "^C\n", 3);
 		rl_on_new_line();
 		rl_replace_line("", 0);
+		rl_redisplay();
 	}
 	else if (sign == SIGTERM )	/* CTRL + D */ //&& s->modal == MAIN
 		return (write(1, "exit\n", 5), exit(0));
