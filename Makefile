@@ -14,7 +14,8 @@
 include include/pretty_colors_ANSI
 
 # Project files
-SOURCE	= 	minishell.c
+SOURCE	= 	minishell.c	\
+			signals.c
 
 SRC		= $(addprefix source/,$(SOURCE))
 SRC_DIR = ./source/
@@ -50,7 +51,7 @@ $(LIBFT):
 
 $(NAME): $(LIBFT) $(OBJ)
 	@printf "$(YELLOW)** compiling **		"$(NAME)"$(RST)\n"
-	$(CC) -v $(CFLAGS)  -o $(NAME) $(OBJ) $(LDFLAGS) 
+	$(CC) $(CFLAGS)  -o $(NAME) $(OBJ) $(LDFLAGS)
 	@printf "$(GREEN_B)$(NAME) created\n$(RST)"
 
 $(OBJ):
