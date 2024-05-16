@@ -13,6 +13,7 @@ int	init_minishell(t_ms *s, char **ep)
 {
 	(void)ep;
 
+	s->modal = MAIN;
 	s->prompt = "write here ->";	// v zero
 	// s->prompt = "nanoshell ->";	// v alpha
 	// s->prompt = "microshell";	// v beta
@@ -21,15 +22,16 @@ int	init_minishell(t_ms *s, char **ep)
 	return (true);
 }
 
-void	handle_signal()
+void	check_signal(t_ms *s)
 {
 	// t_signal	signal;
+	(void)s;
 
-	if (signal(SIGINT, sig_usr))
+	if (signal(SIGINT, handle_signal))
 		perror("can't catch SIGINT");
-	else if (signal(SIGTERM, sig_usr))
+	else if (signal(SIGTERM, handle_signal))
 		perror("can't catch SIGTERM");
-	else if (signal(SIGQUIT, sig_usr))
+	else if (signal(SIGQUIT, handle_signal))
 		perror("can't catch SIGQUIT");
 	else
 		return ;
@@ -37,13 +39,13 @@ void	handle_signal()
 }
 
  /* argument is signal number */
-static void sig_usr(int signo)
+static void handle_signal(int sign, t_ms *s)
 {
-	if (signo == SIGINT)
+	if (sign == SIGINT)	/* CTRL + C */
 		printf("received SIGINT\n");
-	else if (signo == SIGTERM)
-		printf("received SIGTERM\n");
-	else if (signo == SIGQUIT)
+	else if (sign == SIGTERM && s->modal == MAIN)	/* CTRL + D */
+		return (printf("exit\n"), exit(0));
+	else if (sign == SIGQUIT)	 /* CTRL + \ */
 		printf("received SIGQUIT\n");
 	else
 		exit(0);
@@ -60,7 +62,7 @@ void	minishell(char **envp)
 		exit_minishell(&s);
 	while (true)
 	{
-		handle_signal();
+		check_signal(&s);
 		input = readline(s.prompt);
 		// lexer
 		// parser
