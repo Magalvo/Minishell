@@ -11,7 +11,7 @@
 			"name": "GCC & Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/pipex",
+			"program": "${workspaceFolder}/minishell",
 			"args": [
 
 			],
@@ -40,7 +40,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			// "console": "internalConsole",
-			"program": "${workspaceFolder}/pipex",
+			"program": "${workspaceFolder}/minishell",
 			"args": [
 
 			],
@@ -78,7 +78,7 @@
 			"name": "Launch (no build)",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/pipex",
+			"program": "${workspaceFolder}/minishell",
 			"args": [
 
 			],
