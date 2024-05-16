@@ -11,9 +11,12 @@
 # include <signal.h>
 # include <termios.h>
 # include <dirent.h>
+#include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 
-// minishell main struct
 typedef	enum s_signal t_signal;
 typedef struct s_ms t_ms;
 
@@ -25,6 +28,7 @@ enum s_signal
 	IGNORE
 };
 
+// minishell main struct
 struct	s_ms
 {
 	char	*prompt;
@@ -32,14 +36,12 @@ struct	s_ms
 };
 
 
-
-
 //	minishell.c
 int			init_minishell(t_ms *s, char **ep);
 void		exit_minishell(t_ms *s);
 void		minishell(char **envp);
-void		check_signal();
-static void handle_signal(int sign, t_ms *s);
+void		check_signal(t_ms *s);
+void 		handle_signal(int sign);
 
 
 

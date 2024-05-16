@@ -41,7 +41,8 @@
 			"limits": "c",
 			"math.h": "c",
 			"readline.h": "c",
-			"libft_define.h": "c"
+			"libft_define.h": "c",
+			"signal.h": "c"
 		}
 	}
 }
