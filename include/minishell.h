@@ -32,7 +32,7 @@ struct	s_ms
 {
 	char	*prompt;
 	int		modal;
-}	t_ms;
+};
 
 
 
