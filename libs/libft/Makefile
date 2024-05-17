@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/05/09 19:10:30 by cjoao-de         ###   ########.fr        #
+#    Updated: 2024/05/17 11:47:37 by dde-maga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,13 +39,13 @@ OBJECTS = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 # Build settings
 #
 NAME = libft.a
-CFLAGS = -Wall -Wextra -Werror -O3
+CFLAGS = -Wall -Wextra -Werror #-O3
 debug: CFLAGS += -g3 -fPIE
 MAKEFLAGS += --no-print-directory #  --silent
 .SILENT:  clean fclean debug $(OBJECTS) $(NAME)
 ARFLAGS = rvs
 RM = rm -rf
-# CC = cc
+CC = cc
 # AR = ar
 
 all: $(NAME)
