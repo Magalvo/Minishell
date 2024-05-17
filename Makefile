@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/05/15 13:10:06 by cjoao-de         ###   ########.fr        #
+#    Updated: 2024/05/17 11:48:25 by dde-maga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@
 include include/pretty_colors_ANSI
 
 # Project files
-SOURCE	= 	minishell.c
+SOURCE	= 	minishell.c	\
+			signals.c
 
 SRC		= $(addprefix source/,$(SOURCE))
 SRC_DIR = ./source/
@@ -32,7 +33,7 @@ LDFLAGS = -L$(LIBFT_DIR) -lft -lreadline
 # Project settings
 #
 NAME = minishell
-CFLAGS = -Wall -Wextra -Werror -I${LIBFT_DIR}  #-O3
+CFLAGS = -Wall -Wextra -Werror -I${LIBFT_DIR} #-O3
 debug: CFLAGS += -g3 #-fPIE #-fsanitize=address #-pg   #-fsanitize=address
 MAKEFLAGS += --no-print-directory #  --silent
 .SILENT: $(OBJ) $(NAME) clean fclean

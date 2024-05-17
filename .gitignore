@@ -63,3 +63,6 @@ dkms.conf
 # *.pdf
 # *.code-workspace
 # *.md
+
+# User-specific files
+libs/libft/Makefile
