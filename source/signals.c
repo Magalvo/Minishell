@@ -22,7 +22,7 @@ void handle_signal(int sign)
 {
 	if (sign == SIGINT)	/* CTRL + C */
 	{
-		write(1, "^C\n", 3);
+		write(1, "\n", 3);
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
