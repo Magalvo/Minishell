@@ -1,40 +1,43 @@
 
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
-void	check_signal(t_ms *s)
+void check_signal(t_ms *s)
 {
-	// t_signal	signal;
 	(void)s;
 
-	if (signal(SIGINT, handle_signal))
+	struct sigaction sa;
+	sa.sa_handler = handle_signal;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = 0;
+
+	if (sigaction(SIGINT, &sa, NULL) == -1)
 		perror("can't catch SIGINT");
-	else if (signal(SIGTERM, handle_signal))
+	if (sigaction(SIGTERM, &sa, NULL) == -1)
 		perror("can't catch SIGTERM");
-	else if (signal(SIGQUIT, handle_signal))
+	if (sigaction(SIGQUIT, &sa, NULL) == -1)
 		perror("can't catch SIGQUIT");
-	else
-		return ;
-		// exit(0);
 }
 
- /* argument is signal number */
+/* argument is signal number */
 void handle_signal(int sign)
 {
-	if (sign == SIGINT)	/* CTRL + C */
+	if (sign == SIGINT) /* CTRL + C */
 	{
-		write(1, "\n", 3);
+		write(1, "\n", 1);
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
-	else if (sign == SIGTERM )	/* CTRL + D */ //&& s->modal == MAIN
-		return (write(1, "exit\n", 5), exit(0));
-	else if (sign == SIGTERM)	/* CTRL + D */ //&& s->modal == HEREDOC
-		return (write(1, "\n", 1), exit(0));
-	else if (sign == SIGQUIT)	 /* CTRL + \ */
+	else if (sign == SIGTERM) /* CTRL + D */
+	{
+		write(1, "exit\n", 5);
+		exit(0);
+	}
+	else if (sign == SIGQUIT) /* CTRL + \ */
 		write(1, "SIGQUIT\n", 8);
 	else
 		exit(0);
+	
 }
 
 
