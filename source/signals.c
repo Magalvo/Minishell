@@ -12,9 +12,9 @@ void check_signal(t_ms *s)
 
 	if (sigaction(SIGINT, &sa, NULL) == -1)
 		perror("can't catch SIGINT");
-	if (sigaction(SIGTERM, &sa, NULL) == -1)
+	else if (sigaction(SIGTERM, &sa, NULL) == -1)
 		perror("can't catch SIGTERM");
-	if (sigaction(SIGQUIT, &sa, NULL) == -1)
+	else if (sigaction(SIGQUIT, &sa, NULL) == -1)
 		perror("can't catch SIGQUIT");
 }
 
@@ -37,7 +37,7 @@ void handle_signal(int sign)
 		write(1, "SIGQUIT\n", 8);
 	else
 		exit(0);
-	
+
 }
 
 
