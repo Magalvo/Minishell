@@ -13,6 +13,9 @@
 		"C_Cpp.codeAnalysis.exclude": {
 			"*/reference/**":true,
 		},
+		"search.exclude": {
+			"**/libs": true,
+		},
 		"typescript.validate.enable": false,
 		"javascript.validate.enable": false,
 		"files.associations": {
@@ -35,7 +38,8 @@
 			"limits": "c",
 			"readline.h": "c",
 			"libft_define.h": "c",
-			"signal.h": "c"
+			"signal.h": "c",
+			"sigaction.h": "c"
 		}
 	}
 }

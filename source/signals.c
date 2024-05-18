@@ -1,6 +1,8 @@
+// header goes here
 
 #include "../include/minishell.h"
 
+/*
 void check_signal(t_ms *s)
 {
 	(void)s;
@@ -17,35 +19,83 @@ void check_signal(t_ms *s)
 	else if (sigaction(SIGQUIT, &sa, NULL) == -1)
 		perror("can't catch SIGQUIT");
 }
+*/
 
-/* argument is signal number */
-void handle_signal(int sign)
+// advanced programming...enviromment: 10.14
+void check_signal(t_ms *s)
 {
-	if (sign == SIGINT) /* CTRL + C */
+	(void)s;
+
+	struct sigaction sa;
+
+	// sa.sa_handler = handle_signal;
+	sa.sa_sigaction = handler;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_SIGINFO;
+	// sa.sa_flags = 0;
+
+	if (sigaction(SIGINT, &sa, NULL) == -1)
+		perror("can't catch SIGINT");
+	else if (sigaction(SIGTERM, &sa, NULL) == -1)
+		perror("can't catch SIGTERM");
+	else if (sigaction(SIGQUIT, &sa, NULL) == -1)
+		perror("can't catch SIGQUIT");
+}
+
+// check siginfo_DontUse
+void handler(int signo, siginfo_t *info, void *context)
+{
+	(void)info;
+	(void)context;
+	// ucontext_t *context = (ucontext_t *)ptr;
+
+	// if (info->si_signo == SIGTERM) /* CTRL + D */
+	// {
+	// 	write(1, "exit\n", 5);
+	// 	exit(0);
+	// }
+	if (signo == SIGINT) /* CTRL + C */
 	{
 		write(1, "\n", 1);
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
-	else if (sign == SIGTERM) /* CTRL + D */
+	// ! still printing to stdout
+	else if (signo == SIGQUIT) /* CTRL + \ */
 	{
-		write(1, "exit\n", 5);
-		exit(0);
+		rl_replace_line("", 0);
+		rl_redisplay();
+		// return ;
+		// write(1, "SIGQUIT\n", 8);
 	}
-	else if (sign == SIGQUIT) /* CTRL + \ */
-		write(1, "SIGQUIT\n", 8);
-	else
-		exit(0);
-
+	// printf("Received signal %d\n", signo);
+	// printf("Signal originates from process %lu\n", (unsigned long)info->si_pid);
 }
 
-
-//use write() and not printf() for handling SIGNALS // MIGHT CRASH
-
-// int	handle_signal(int num)
+/* argument is signal number */
+// void handle_signal(int sign)
 // {
-// 	write (1, "\n", 1);
-// 	write (1, "Exit", 4);
-// 	exit(1);
+// 	if (sign == SIGINT) /* CTRL + C */
+// 	{
+// 		write(1, "\n", 1);
+// 		rl_on_new_line();
+// 		rl_replace_line("", 0);
+// 		rl_redisplay();
+// 	}
+// 	// ? handled at readline, not needed
+// 	else if (sign == SIGTERM) /* CTRL + D */
+// 	{
+// 		write(1, "exit\n", 5);
+// 		exit(0);
+// 	}
+// 	else if (sign == SIGQUIT) /* CTRL + \ */
+// 	{
+// 		rl_replace_line("", 0);
+// 		rl_redisplay();
+// 		// return ;
+// 		// write(1, "SIGQUIT\n", 8);
+// 	}
+// 	else
+// 		exit(0);
 // }
