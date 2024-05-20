@@ -66,3 +66,4 @@ dkms.conf
 
 # User-specific files
 libs/libft/Makefile
+.DS_Store
