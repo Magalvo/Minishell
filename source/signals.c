@@ -3,7 +3,7 @@
 #include "../include/minishell.h"
 
 /*
-void check_signal(t_ms *s)
+void check_signal(t_minis *s)
 {
 	(void)s;
 
@@ -22,7 +22,7 @@ void check_signal(t_ms *s)
 */
 
 // advanced programming...enviromment: 10.14
-void check_signal(t_ms *s)
+void check_signal(t_minis *s)
 {
 	(void)s;
 
