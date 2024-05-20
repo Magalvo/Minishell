@@ -1,11 +1,11 @@
 
 #include "../include/minishell.h"
 
-void check_signal(t_ms *s)
+void check_signal(t_signal type)
 {
-	(void)s;
+	(void)type;
 
-	struct sigaction sa;
+	static struct sigaction sa;
 	sa.sa_handler = handle_signal;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
@@ -16,6 +16,8 @@ void check_signal(t_ms *s)
 		perror("can't catch SIGTERM");
 	if (sigaction(SIGQUIT, &sa, NULL) == -1)
 		perror("can't catch SIGQUIT");
+	else
+		return ;
 }
 
 /* argument is signal number */
@@ -34,10 +36,12 @@ void handle_signal(int sign)
 		exit(0);
 	}
 	else if (sign == SIGQUIT) /* CTRL + \ */
-		write(1, "SIGQUIT\n", 8);
+	{
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
 	else
 		exit(0);
-	
 }
 
 
