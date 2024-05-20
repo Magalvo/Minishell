@@ -16,7 +16,7 @@
 # include <unistd.h>
 
 typedef	enum 	s_signal t_signal;
-typedef struct	s_ms t_ms;
+typedef struct	s_ms t_minis;
 typedef struct	s_builtin t_builtin
 
 enum s_signal
@@ -40,8 +40,8 @@ struct	s_builtin
 };
 
 // minishell.c
-int		init_minishell(t_ms *s, char **ep);
-void	exit_minishell(t_ms *s);
+int		init_minishell(t_minis *s, char **ep);
+void	exit_minishell(t_minis *s);
 void	minishell(char **envp);
 void	check_signal(t_signal type);
 void	handle_signal(int sign);

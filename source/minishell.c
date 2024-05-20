@@ -7,7 +7,9 @@
 // #include <readline/readline.h>
 // #include <readline/history.h>
 
-void exit_minishell(t_ms *s, char *msg)
+t_minis g_minis;
+
+void exit_minishell(t_minis *s, char *msg)
 {
 	if (msg)
 		write(1, "exit\n", ft_strlen(msg));
@@ -15,7 +17,7 @@ void exit_minishell(t_ms *s, char *msg)
 	exit(0);
 }
 
-int init_minishell(t_ms *s, char **ep)
+int init_minishell(t_minis *s, char **ep)
 {
 	(void)ep;
 
@@ -28,10 +30,11 @@ int init_minishell(t_ms *s, char **ep)
 	return (true);
 }
 
+
 // STATUS: signal caught, ctrl+\ shouldn't prints to stdout
 void minishell(char **envp)
 {
-	t_ms s;
+	t_minis s;
 	char *input;
 
 	if (!init_minishell(&s, envp))
@@ -44,11 +47,12 @@ void minishell(char **envp)
 			exit_minishell(&s, "exit\n");
 		// todo
 		/* lexer
+        ft_tokenizer;
 		parser
 		expander
 		executor */
-		if (cmd_exec(input) == 0)
-			break;
+		/* if (cmd_exec(input) == 0)
+			break; */
 		ft_dprintf(STDOUT_FILENO, "%s\n", input);
 		free(input);
 	}
@@ -62,6 +66,5 @@ int main(int argc, char *argv[], char *envp[])
 	if (argc != 1)
 		return (0);
 	minishell(envp);
-
 	return (0);
 }
