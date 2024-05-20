@@ -13,6 +13,9 @@
 		"C_Cpp.codeAnalysis.exclude": {
 			"*/reference/**":true,
 		},
+		"search.exclude": {
+			"**/libs": true,
+		},
 		"typescript.validate.enable": false,
 		"javascript.validate.enable": false,
 		"files.associations": {
@@ -29,20 +32,14 @@
 			"type_traits": "c",
 			"utility": "c",
 			"libft.h": "c",
-			"mlx.h": "c",
-			"keysym.h": "c",
-			"x.h": "c",
 			"keysymdef.h": "c",
-			"mlx_int.h": "c",
-			"fractol.h": "c",
-			"cmath": "c",
 			"complex": "c",
 			"random": "c",
 			"limits": "c",
-			"math.h": "c",
 			"readline.h": "c",
 			"libft_define.h": "c",
-			"signal.h": "c"
+			"signal.h": "c",
+			"sigaction.h": "c"
 		}
 	}
 }
