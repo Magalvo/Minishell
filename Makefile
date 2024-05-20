@@ -6,7 +6,7 @@
 #    By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/05/17 11:48:25 by dde-maga         ###   ########.fr        #
+#    Updated: 2024/05/20 12:50:35 by dde-maga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,9 @@ include include/pretty_colors_ANSI
 
 # Project files
 SOURCE	= 	minishell.c	\
-			signals.c
+			signals.c \
+			builtins.c \
+			executer.c \
 
 SRC		= $(addprefix source/,$(SOURCE))
 SRC_DIR = ./source/

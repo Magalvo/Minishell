@@ -15,18 +15,9 @@
 // # include <stdlib.h>
 // # include <unistd.h>
 
-typedef	enum s_signal t_signal;
-typedef struct s_ms t_ms;
 
-enum s_signal
-{
-	MAIN,
-	CHILD,
-	HEREDOC,
-	IGNORE
-};
 
-// struct siginfo_DontUse
+// !struct siginfo_DontUse
 //	int	si_signo; /* signal number */
 //	int si_errno; /* if nonzero, errno value from errno.h */
 //	int si_code; /* additional info (depends on signal) */
@@ -36,15 +27,35 @@ enum s_signal
 //	int si_status; /* exit value or signal number */
 //	union sigval si_value; /* application-specific value */
 	/* possibly other fields also */
+// !======================================
 
-// minishell main struct
+
+//*======================= STRUCTS ====================== *//
+typedef	enum	s_signal t_signal;
+typedef struct	s_ms t_ms;
+typedef struct	s_builtin t_builtin;
+
+enum s_signal
+{
+	MAIN,
+	CHILD,
+	HEREDOC,
+	IGNORE
+};
+
+struct s_builtin
+{
+	char	*name;
+	int		(*func)(char **args);
+};
 struct s_ms
 {
 	char	*prompt;
 	int		modal;
 };
 
-// minishell.c
+//*=============== minishell.c =====================*//
+
 int		init_minishell(t_ms *s, char **ep);
 // void	exit_minishell(t_ms *s); // changed parameters
 void	exit_minishell(t_ms *s, char *msg);
@@ -52,5 +63,19 @@ void	minishell(char **envp);
 void	check_signal(t_ms *s);
 // void	handle_signal(int sign);
 void	handler(int signo, siginfo_t *info, void *ptr);
+
+//*================ BUILTINS =====================*//
+
+int		cmd_echo(char **args);
+int		cmd_cd(char **args);
+int		cmd_pwd(char **args);
+int		cmd_export(char **args);
+int		cmd_unset(char **args);
+int		cmd_env(char **args);
+int		cmd_exit(char **args);
+int		builtin_num();
+
+//*================= EXEC =========================*//
+int		cmd_exec(char **args);
 
 #endif

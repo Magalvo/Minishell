@@ -47,6 +47,8 @@ void minishell(char **envp)
 		parser
 		expander
 		executor */
+		if (cmd_exec(input) == 0)
+			break;
 		ft_dprintf(STDOUT_FILENO, "%s\n", input);
 		free(input);
 	}
