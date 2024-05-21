@@ -33,9 +33,18 @@
 //*======================= STRUCTS ====================== *//
 typedef	enum	s_signal t_signal;
 typedef struct	s_minis t_minis;
-typedef struct	s_builtin t_builtin;
 typedef struct	s_env t_env;
 typedef struct	s_cmd t_cmd;
+typedef struct	s_builtin t_builtin;
+typedef struct	s_execution t_execution;
+
+enum s_signal
+{
+	MAIN,
+	CHILD,
+	HEREDOC,
+	IGNORE
+};
 
 struct	s_env
 {
@@ -59,21 +68,6 @@ struct	s_cmd
 	//todo 			executable; 
 };
 
-enum s_signal
-{
-	MAIN,
-	CHILD,
-	HEREDOC,
-	IGNORE
-};
-
-struct s_builtin
-{
-	char	*name;
-	int		(*func)(char **args);
-};
-
-
 struct s_minis
 {
 	char	*prompt;
@@ -84,19 +78,6 @@ struct s_minis
 	int		infile;
 	int		outfile;
 };
-
-//*Permite a Utilizacao sem transporte nos arumentos (global struct posta no main)
-extern t_minis	g_minis; 
-
-/* t_builtin builtins[] = {
-	{"echo", cmd_echo},
-	{"cd", cmd_cd},
-	{"pwd", cmd_pwd},
-	{"export", cmd_export},
-	{"unset", cmd_unset},
-	{"env", cmd_env},
-	{"exit",cmd_exit},
-} */
 
 //*=============== minishell.c =====================*//
 
@@ -111,15 +92,20 @@ void	handler(int signo, siginfo_t *info, void *ptr);
 //*================ BUILTINS =====================*//
 
 int		echo_cmd(t_cmd *cmd);
-/* //todo
-int		cmd_cd(char **args);
-int		cmd_pwd(char **args);
-int		cmd_export(char **args);
-int		cmd_unset(char **args);
-int		cmd_env(char **args);
-int		cmd_exit(char **args);
-int		builtin_num();
-*/
+int		env_cmd(t_cmd *cmd);
+//todo
+int		cd_cmd(t_cmd *cmd);
+int		pwd_cmd(t_cmd *cmd);
+int		export_cmd(t_cmd *cmd);
+int		unset_cmd(t_cmd *cmd);
+int		exit_cmd(t_cmd *cmd);
+
+struct s_builtin
+{
+	char	*name;
+	int		(*func)(t_cmd *cmd);
+};
+
 
 //*================= EXEC =========================*//
 //todo int		cmd_exec(char *args);

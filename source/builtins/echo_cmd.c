@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:11 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/20 18:48:29 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/05/21 12:50:13 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,16 @@ int	echo_cmd(t_cmd *cmd)
 	
 	i = 1;
 	check = 0;
-	while (args[i] != NULL && ft_flagged(args[i]) == 1)
+	while (cmd->cmd_args[i] != NULL && ft_flagged(cmd->cmd_args[i]) == 1)
 	{
 		check = 1;
 		i++;
 	}
-	while (args[i])
+	while (cmd->cmd_args[i])
 	{
-		ft_putstr_fd(args[i], 1);
-		if(args[i + 1])
-			ft_putstr_fd("", 1);
+		ft_putstr_fd(cmd->cmd_args[i], 1);
+		if(cmd->cmd_args[i + 1])
+			ft_putstr_fd(" ", 1);
 		i++;
 	}
 	if (check == 0)

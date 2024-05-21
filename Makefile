@@ -6,34 +6,41 @@
 #    By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/05/20 12:50:35 by dde-maga         ###   ########.fr        #
+#    Updated: 2024/05/21 12:46:18 by dde-maga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Pretty colors
+# Pretty colors
 include include/pretty_colors_ANSI
 
 # Project files
-SOURCE	= 	minishell.c	\
-			signals.c \
-			builtins.c \
-			executer.c \
+BUILTINS =	builtins.c cd_cmd.c echo_cmd.c env_cmd.c \
+			exit_cmd.c export_cmd.c pwd_cmd.c unset_cmd.c \
 
-SRC		= $(addprefix source/,$(SOURCE))
+EXECUTOR =	executor.c
+
 SRC_DIR = ./source/
+BUILTINS_DIR = $(SRC_DIR)builtins/
+EXECUTOR_DIR = $(SRC_DIR)executor/
+
+SRC = 	$(SRC_DIR)minishell.c \
+		$(SRC_DIR)signals.c \
+		$(SRC_DIR)errors.c \
+		$(addprefix $(BUILTINS_DIR), $(BUILTINS)) \
+		$(addprefix $(EXECUTOR_DIR), $(EXECUTOR)) \
 
 OBJ_DIR = ./object/
-OBJ		= $(patsubst source/%.c,$(OBJ_DIR)%.o,$(SRC))
+OBJ = $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
 INC_DIR = -I ./include/
-LIBFT_DIR=./libs/libft/
-LIBFT= $(LIBFT_DIR)libft.a
-INC_LIB=./libs/
+LIBFT_DIR = ./libs/libft/
+LIBFT = $(LIBFT_DIR)libft.a
+INC_LIB = ./libs/
 
 LDFLAGS = -L$(LIBFT_DIR) -lft -lreadline
 
 # Project settings
-#
 NAME = minishell
 CFLAGS = -Wall -Wextra -Werror -I${LIBFT_DIR} #-O3
 debug: CFLAGS += -g3 #-fPIE #-fsanitize=address #-pg   #-fsanitize=address
@@ -56,10 +63,11 @@ $(NAME): $(LIBFT) $(OBJ)
 	$(CC) $(CFLAGS)  -o $(NAME) $(OBJ) $(LDFLAGS)
 	@printf "$(GREEN_B)$(NAME) created\n$(RST)"
 
-$(OBJ):
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
-	@printf "$(CYAN_I)** compiling **		"$@"$(RST)\n"
-	$(CC) $(CFLAGS) $(INC_DIR) -c $(SRC_DIR)$(*F).c -o $@
+	@mkdir -p $(dir $@)
+	@printf "$(CYAN_I)** compiling **		"$<"$(RST)\n"
+	$(CC) $(CFLAGS) $(INC_DIR) -c $< -o $@
 
 debug: clean $(LIBFT) $(OBJ)
 	@printf "$(YELLOW)"
@@ -78,3 +86,4 @@ fclean: clean
 	@printf "$(RED)[All binaries deleted]    $(RST)\n"
 
 re: fclean all
+
