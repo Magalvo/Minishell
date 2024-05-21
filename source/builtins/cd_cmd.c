@@ -6,20 +6,21 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:15 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/20 15:53:39 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/05/21 12:49:39 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	cmd_cd(char	*args)
+int	cd_cmd(t_cmd *cmd)
 {
-	if (args == NULL)
-		ft_sprintf(stderr,"cd need arguments");
+	(void)cmd;
+/* 	if (cmd == NULL)
+		ft_sprintf(2,"cd need arguments");
 	else
 	{
-		if (chdir(args != 0))
+		if (chdir(cmd != 0))
 			perror ("cd");
-	}
+	} */
 	return (1);
 }
