@@ -22,7 +22,7 @@ int init_minishell(t_minis *s, char **ep)
 	(void)ep;
 
 	s->modal = MAIN;
-	s->prompt = "write here ->";    // v zero
+	s->prompt = "minishell>";    // v zero
 	// s->prompt = "nanoshell ->";  // v alpha
 	// s->prompt = "microshell";    // v beta
 	// s->prompt = "minishell";     // v gold

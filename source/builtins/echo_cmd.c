@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:11 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/21 12:50:13 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/05/21 16:46:40 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ static int	ft_flagged(char *s)
 
 int	echo_cmd(t_cmd *cmd)
 {
-	int	i;
-	int	check;
-	
+	int		i;
+	int		check;
 	i = 1;
 	check = 0;
 	while (cmd->cmd_args[i] != NULL && ft_flagged(cmd->cmd_args[i]) == 1)

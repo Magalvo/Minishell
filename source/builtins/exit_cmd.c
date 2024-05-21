@@ -6,14 +6,14 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:04 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/21 12:50:40 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/05/21 16:59:27 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	exit_cmd(t_cmd *cmd)
+int	exit_cmd(t_minis *mini)
 {
-	(void)cmd;
+	(void)mini;
 	return (0);
 }

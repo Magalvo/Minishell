@@ -11,24 +11,9 @@
 # include <signal.h>
 # include <termios.h>
 # include <dirent.h>
-// # include <stdio.h>
-// # include <stdlib.h>
-// # include <unistd.h>
-
-
-
-// !struct siginfo_DontUse
-//	int	si_signo; /* signal number */
-//	int si_errno; /* if nonzero, errno value from errno.h */
-//	int si_code; /* additional info (depends on signal) */
-//	pid_t si_pid; /* sending process ID */
-//	uid_t si_uid; /* sending process real user ID */
-//	void *si_addr; /* address that caused the fault */
-//	int si_status; /* exit value or signal number */
-//	union sigval si_value; /* application-specific value */
-	/* possibly other fields also */
-// !======================================
-
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 //*======================= STRUCTS ====================== *//
 typedef	enum	s_signal t_signal;
@@ -51,8 +36,8 @@ struct	s_env
 	char			*key;  //*Eg.: PATH=
 	char			*value;//*Eg.: /usr/bin (...)
 	int				token; //*Eg.: / | "" ' (...)
-	struct s_env	*prev; //* <-
-	struct s_env	*next; //* ->
+	struct s_env	*prev;
+	struct s_env	*next;
 };
 
 struct	s_cmd
@@ -61,6 +46,7 @@ struct	s_cmd
 	char			*cmd;
 	char			**cmd_args;
 	int				*pipes;
+	int				(*exec)(t_cmd *cmd, t_minis *vars);
 	struct s_cmd	*prev;
 	struct s_cmd	*next;
 
@@ -70,35 +56,35 @@ struct	s_cmd
 
 struct s_minis
 {
-	char	*prompt;
-	int		modal;
-	t_env	*envlist;
-	char	**my_env;
-	char	*username;
-	int		infile;
-	int		outfile;
+	char	*prompt;	//* ARGV
+	char	**my_env;   //* ENV copy (RAW copy)
+	char	*username;	//* Current Uer
+	int		modal;		//* MAIN / CHILD / HERE_DOC / IGNORE
+	int		infile;		//* Redirect Infile
+	int		outfile;	//* Redirect Outfile
+	t_env	*envlist;	//*	ENV copy (Sorted copy)
+	t_cmd	*cmds;		//* Command List
 };
 
 //*=============== minishell.c =====================*//
 
 int		init_minishell(t_minis *s, char **ep);
-// void	exit_minishell(t_minis *s); // changed parameters
 void	exit_minishell(t_minis *s, char *msg);
 void	minishell(char **envp);
 void	check_signal(t_minis *s);
-// void	handle_signal(int sign);
 void	handler(int signo, siginfo_t *info, void *ptr);
+//void	exit_minishell(t_minis *s); // changed parameters
+//void	handle_signal(int sign);
 
 //*================ BUILTINS =====================*//
 
 int		echo_cmd(t_cmd *cmd);
-int		env_cmd(t_cmd *cmd);
-//todo
-int		cd_cmd(t_cmd *cmd);
-int		pwd_cmd(t_cmd *cmd);
-int		export_cmd(t_cmd *cmd);
-int		unset_cmd(t_cmd *cmd);
-int		exit_cmd(t_cmd *cmd);
+int		env_cmd(t_minis *mini);
+int		cd_cmd(t_minis *mini);
+int		pwd_cmd(t_minis *mini);
+int		export_cmd(t_minis *mini);
+int		unset_cmd(t_minis *mini);
+int		exit_cmd(t_minis *mini);
 
 struct s_builtin
 {
@@ -106,10 +92,26 @@ struct s_builtin
 	int		(*func)(t_cmd *cmd);
 };
 
+int		ft_exec_buitltins(t_minis *mini, t_cmd *cmds);
 
 //*================= EXEC =========================*//
+
 //todo int		cmd_exec(char *args);
 
 //*================= ERRORS =========================*//
+
 void	error_msg(char *str);
+
 #endif
+
+// !struct siginfo_DontUse
+//	int	si_signo; /* signal number */
+//	int si_errno; /* if nonzero, errno value from errno.h */
+//	int si_code; /* additional info (depends on signal) */
+//	pid_t si_pid; /* sending process ID */
+//	uid_t si_uid; /* sending process real user ID */
+//	void *si_addr; /* address that caused the fault */
+//	int si_status; /* exit value or signal number */
+//	union sigval si_value; /* application-specific value */
+	/* possibly other fields also */
+// !======================================
