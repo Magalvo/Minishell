@@ -15,7 +15,7 @@
 int	export_cmd(t_ms *s, t_cmd *cmd)
 {
 	t_env	*env;
-	
+
 	env = s->env;
 	while (env)
 	{
@@ -23,10 +23,10 @@ int	export_cmd(t_ms *s, t_cmd *cmd)
 		{
 			if (env->key == cmd->cmd_args[0] && cmd->cmd_args[1])
 				env->value = cmd->cmd_args[1];
-			else if ()
-			{
-				
-			}
+			// else if ()
+			// {
+
+			// }
 			env = env->next;
 		}
 
