@@ -104,7 +104,7 @@ int		env_cmd(t_ms *s);
 int		cd_cmd(t_ms *mini);
 int		pwd_cmd(t_ms *mini);
 int		export_cmd(t_ms *s, t_cmd *cmd);
-int		unset_cmd(t_ms *mini);
+int		unset_cmd(t_ms *s, t_cmd *cmd);
 int		exit_cmd(t_ms *mini);
 
 //*=================== INIT =======================*//
