@@ -46,6 +46,7 @@ struct	s_env
 	char			*value;//*Eg.: /usr/bin (...)
 	struct s_env	*prev;
 	struct s_env	*next;
+	//token			env raiz ou added
 };
 
 struct	s_cmd
@@ -72,6 +73,7 @@ struct s_ms
 	int		modal;		//* MAIN / CHILD / HERE_DOC / IGNORE
 	int		infile;		//* Redirect Infile
 	int		outfile;	//* Redirect Outfile
+	char	**env_tmp;	//* Temp env;
 	char	**cmd_temp;
 	t_cmd	*cmds;		//* Command List
 	t_env	*env;		//*	ENV copy (Sorted copy)
@@ -99,12 +101,12 @@ void	handler(int signo, siginfo_t *info, void *ptr);
 
 //*================ BUILTINS =====================*//
 
-int		echo_cmd(t_cmd *cmd);
+//int		echo_cmd(t_cmd *cmd);
 int		env_cmd(t_ms *s);
 int		cd_cmd(t_ms *mini);
 int		pwd_cmd(t_ms *mini);
-int		export_cmd(t_ms *s, t_cmd *cmd);
-int		unset_cmd(t_ms *s, t_cmd *cmd);
+//int		export_cmd(t_ms *s, t_cmd *cmd);
+// int		unset_cmd(t_ms *s, t_cmd *cmd);
 int		exit_cmd(t_ms *mini);
 
 //*=================== INIT =======================*//
@@ -122,7 +124,7 @@ void	init_paths(t_ms *s, char **ep);
 
 
 
-int		ft_exec_buitltins(t_ms *mini, t_cmd *cmds);
+//int		ft_exec_buitltins(t_ms *mini, t_cmd *cmds);
 
 //*================= EXEC =========================*//
 
@@ -145,3 +147,12 @@ void	error_msg(char *str);
 //	union sigval si_value; /* application-specific value */
 	/* possibly other fields also */
 // !======================================
+
+
+//! Temporary //
+
+int		exec_input(t_ms *s);
+int		ft_exec_buitltins_chr(t_ms *s, char **cmds);
+int		echo_cmd_test(char **cmd);
+int		export_cmd_test(t_ms *s, char **cmds);
+int		unset_cmd_test(t_ms *s, char **cmds);

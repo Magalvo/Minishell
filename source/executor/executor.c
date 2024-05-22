@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:04:53 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/22 16:52:57 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:43:04 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ static void	ft_dup2(int zero, int first)
 
 void	child(t_ms s, char **argv, t_env *env)
 {
-
-
 	s.pid = fork();
 	if (!s.pid)
 	{
@@ -79,7 +77,7 @@ void	child(t_ms s, char **argv, t_env *env)
 		s.cmd = cmd_path(s.cmd_paths, s.cmd_args[0]);
 		if (!s.cmd)
 		{
-			child_dump(s);
+			exit(0);
 		}
 		execve(s.cmd, s.cmd_args, envp);
 		child_free(&s);
