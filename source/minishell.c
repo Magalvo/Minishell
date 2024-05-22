@@ -19,6 +19,8 @@ int init_minishell(t_ms *s, char **ep)
 {
 	(void)ep;
 
+	// set_env(s, ep); // ? linked list
+	init_paths(s, ep);
 	s->modal = MAIN;
 	s->prompt = "write_here ->";    // v zero
 	// s->prompt = "nanoshell ->";  // v alpha
@@ -29,7 +31,7 @@ int init_minishell(t_ms *s, char **ep)
 }
 
 
-// STATUS: signal caught, ctrl+\ shouldn't prints to stdout
+// STATUS: signal caught, ctrl+\ shouldn't print to stdout
 void minishell(char **envp)
 {
 	t_ms s;
@@ -43,6 +45,8 @@ void minishell(char **envp)
 		input = readline(s.prompt);
 		if (input == NULL && s.modal == MAIN)
 			exit_minishell(&s, "exit\n");
+		split_input(&s, input);
+		// exec_input(&s); // ! make this
 		// todo
 		/* lexer
         ft_tokenizer;
