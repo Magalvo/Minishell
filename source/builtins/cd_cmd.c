@@ -12,7 +12,7 @@
 
 #include "../../include/minishell.h"
 
-int	cd_cmd(t_minis *mini)
+int	cd_cmd(t_ms *mini)
 {
 	(void)mini;
 /* 	if (cmd == NULL)
