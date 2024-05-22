@@ -71,7 +71,7 @@ struct s_minis
 	int		modal;		//* MAIN / CHILD / HERE_DOC / IGNORE
 	int		infile;		//* Redirect Infile
 	int		outfile;	//* Redirect Outfile
-	t_env	*envp;		//*	ENV copy (Sorted copy)
+	t_env	*envp;		//*	ENV copy (Linked List)
 	t_cmd	*cmds;		//* Command List
 };
 
