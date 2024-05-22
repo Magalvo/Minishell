@@ -6,7 +6,8 @@ use 'make debug' instead of 'make re' (won't recompile libft, and adds -g flag)
    
    
 ## cjoao-de notes:
-   
+1 (echo hello; echo world) >output.txt
+2 
    
 ## dde-maga notes:
    

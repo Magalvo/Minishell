@@ -16,8 +16,9 @@ include include/pretty_colors_ANSI
 # Project files
 SOURCE	= 	minishell.c	\
 			signals.c \
-			builtins.c \
-			executer.c \
+
+#			builtins.c
+#			executer.c \
 
 SRC		= $(addprefix source/,$(SOURCE))
 SRC_DIR = ./source/
