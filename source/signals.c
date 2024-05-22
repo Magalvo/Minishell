@@ -22,7 +22,7 @@ void check_signal(t_minis *s)
 */
 
 // advanced programming...enviromment: 10.14
-void check_signal(t_minis *s)
+void check_signal(t_ms *s)
 {
 	(void)s;
 

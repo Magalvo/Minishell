@@ -26,7 +26,7 @@
 
 //*======================= STRUCTS ====================== *//
 typedef	enum	s_signal t_signal;
-typedef struct	s_minis t_minis;
+typedef struct	s_ms t_ms;
 typedef struct	s_env t_env;
 typedef struct	s_cmd t_cmd;
 typedef struct	s_builtin t_builtin;
@@ -44,7 +44,6 @@ struct	s_env
 {
 	char			*key;  //*Eg.: PATH=
 	char			*value;//*Eg.: /usr/bin (...)
-	int				token; //*Eg.: / | "" ' (...)
 	struct s_env	*prev;
 	struct s_env	*next;
 };
@@ -52,48 +51,49 @@ struct	s_env
 struct	s_cmd
 {
 	char			*env_path;
-	char			*cmd;
+	// char			*cmd; //cmd_args[0]
 	char			**cmd_args;
-	int				*pipes;
-	int				(*exec)(t_cmd *cmd, t_minis *vars);
+	int				pipes[2];
+	int				token;
+	int				(*exec)(t_cmd *cmd, t_ms *vars);
 	struct s_cmd	*prev;
 	struct s_cmd	*next;
 
 	//todo t_redirs *redir;
-	//todo 			executable; 
+	//todo 			executable;
 };
 
-struct s_minis
+struct s_ms
 {
 	char	*prompt;	//* ARGV
-	char	**path;   	//* PATH dir
-	char	*username;	//* Current Uer
+	char	*username;	//* Current User // ? needed?
 	int		modal;		//* MAIN / CHILD / HERE_DOC / IGNORE
 	int		infile;		//* Redirect Infile
 	int		outfile;	//* Redirect Outfile
-	t_env	*envp;		//*	ENV copy (Linked List)
 	t_cmd	*cmds;		//* Command List
+	t_env	*env;		//*	ENV copy (Sorted copy)
+	char	**path;   	//* PATH dir
 };
 
 //*=============== minishell.c =====================*//
 
-int		init_minishell(t_minis *s, char **ep);
-void	exit_minishell(t_minis *s, char *msg);
+int		init_minishell(t_ms *s, char **ep);
+void	exit_minishell(t_ms *s, char *msg);
 void	minishell(char **envp);
-void	check_signal(t_minis *s);
+void	check_signal(t_ms *s);
 void	handler(int signo, siginfo_t *info, void *ptr);
-//void	exit_minishell(t_minis *s); // changed parameters
+//void	exit_minishell(t_ms *s); // changed parameters
 //void	handle_signal(int sign);
 
 //*================ BUILTINS =====================*//
 
 int		echo_cmd(t_cmd *cmd);
-int		env_cmd(t_minis *mini);
-int		cd_cmd(t_minis *mini);
-int		pwd_cmd(t_minis *mini);
-int		export_cmd(t_minis *mini);
-int		unset_cmd(t_minis *mini);
-int		exit_cmd(t_minis *mini);
+int		env_cmd(t_ms *mini);
+int		cd_cmd(t_ms *mini);
+int		pwd_cmd(t_ms *mini);
+int		export_cmd(t_ms *mini);
+int		unset_cmd(t_ms *mini);
+int		exit_cmd(t_ms *mini);
 
 struct s_builtin
 {
@@ -101,7 +101,7 @@ struct s_builtin
 	int		(*func)(t_cmd *cmd);
 };
 
-int		ft_exec_buitltins(t_minis *mini, t_cmd *cmds);
+int		ft_exec_buitltins(t_ms *mini, t_cmd *cmds);
 
 //*================= EXEC =========================*//
 

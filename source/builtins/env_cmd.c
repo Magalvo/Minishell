@@ -12,17 +12,17 @@
 
 #include "../../include/minishell.h"
 
-int	env_cmd(t_minis *mini)
+int	env_cmd(t_ms *mini)
 {
 	(void)mini;
 	int i;
 
 	i = 0;
-	while(mini->my_env && mini->my_env[i] != NULL)
+	while(mini->env && mini->env[i] != NULL)
 	{
-		if (ft_strchr(mini->my_env[i], '='))
-			printf("%s", mini->my_env[i]);
-		i++;	
-	} 
+		if (ft_strchr(mini->env[i], '='))
+			printf("%s", mini->env[i]);
+		i++;
+	}
 	return (1);
 }

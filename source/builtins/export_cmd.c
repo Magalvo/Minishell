@@ -12,10 +12,10 @@
 
 #include "../../include/minishell.h"
 
-int	export_cmd(t_minis *mini)
+int	export_cmd(t_ms *mini)
 {
-	
-	
-	
+
+
+
 	return (1);
 }
