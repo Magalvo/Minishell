@@ -67,7 +67,7 @@ struct	s_cmd
 struct s_ms
 {
 	char	*prompt;	//* ARGV
-	char	**path;   	//* PATH dir
+	char	**paths;   	//* PATH dir
 	char	*username;	//* Current User // ? needed?
 	int		modal;		//* MAIN / CHILD / HERE_DOC / IGNORE
 	int		infile;		//* Redirect Infile
