@@ -23,6 +23,8 @@ int init_minishell(t_ms *s, char **ep)
 
 	// set_env(s, ep); // ? linked list
 	init_paths(s, ep);
+	//todo this as it should be
+	s->env_tmp = ep;
 	s->modal = MAIN;
 	s->prompt = "write_here ->";    // v zero
 	// s->prompt = "nanoshell ->";  // v alpha
@@ -38,13 +40,13 @@ void minishell(char **envp)
 {
 	t_ms	s;
 	char	*input;
-	int		i;
+	//int		i;
 
 	if (!init_minishell(&s, envp))
 		exit_minishell(&s, NULL);
 	while (true)
 	{
-		i = 0;
+		//i = 0;
 		check_signal(&s);
 		input = readline(s.prompt);
 		if (input == NULL && s.modal == MAIN)
@@ -62,7 +64,7 @@ void minishell(char **envp)
 		// 	i++;
 		// }
 
-		// exec_input(&s); // ! make this
+		exec_input(&s); // ! make this
 		// todo
 		/* lexer
         ft_tokenizer;
@@ -71,7 +73,7 @@ void minishell(char **envp)
 		executor */
 		/* if (cmd_exec(input) == 0)
 			break; */
-		ft_dprintf(STDOUT_FILENO, "%s\n", input);
+		//ft_dprintf(STDOUT_FILENO, "%s\n", input);
 		free(input);
 	}
 	exit_minishell(&s, NULL);
