@@ -15,6 +15,15 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+//* Integer codes para o tipo de node na ASTree
+//* Minuto 4:30 (https://youtu.be/ubt-UjcQUYg?si=ASMMiMFCAmSs3qzx)
+
+# define EXEC	1
+# define REDIR	2
+# define PIPE	3
+# define LIST	4
+# define BACK	5
+
 //*======================= STRUCTS ====================== *//
 typedef	enum	s_signal t_signal;
 typedef struct	s_minis t_minis;
@@ -57,12 +66,12 @@ struct	s_cmd
 struct s_minis
 {
 	char	*prompt;	//* ARGV
-	char	**my_env;   //* ENV copy (RAW copy)
+	char	**path;   	//* PATH dir
 	char	*username;	//* Current Uer
 	int		modal;		//* MAIN / CHILD / HERE_DOC / IGNORE
 	int		infile;		//* Redirect Infile
 	int		outfile;	//* Redirect Outfile
-	t_env	*envlist;	//*	ENV copy (Sorted copy)
+	t_env	*envp;		//*	ENV copy (Sorted copy)
 	t_cmd	*cmds;		//* Command List
 };
 
