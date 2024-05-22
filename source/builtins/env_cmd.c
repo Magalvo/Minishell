@@ -24,8 +24,8 @@ int	env_cmd(t_ms *s)
 	while(env)
 	{
 		if (env->value != NULL)
-			printf("%s=%s\n", env->key, env->value)
+			printf("%s=%s\n", env->key, env->value);
 		env = env->next;
-	}	
+	}
 	return (1);
 }

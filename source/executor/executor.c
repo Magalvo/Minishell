@@ -10,12 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../include/minishell.h"
 
 //! exec prototype, (MIGHT GO KABUM!)
-
-#include "../../includes/pipex.h"
 
 static char	*cmd_path(t_ms **paths, t_cmd *cmd)
 {
@@ -62,7 +59,7 @@ static void	ft_dup2(int zero, int first)
 
 void	child(t_ms s, char **argv, t_env *env)
 {
-	
+
 
 	s.pid = fork();
 	if (!s.pid)

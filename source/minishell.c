@@ -10,7 +10,7 @@
 void exit_minishell(t_ms *s, char *msg)
 {
 	if (msg)
-		write(1, "exit\n", ft_strlen(msg));
+		ft_putstr_fd(msg, 1);
 	(void)s;
 	exit(0);
 }
