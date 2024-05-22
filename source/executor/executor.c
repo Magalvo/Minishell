@@ -6,12 +6,11 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:04:53 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/22 16:03:45 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:52:57 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-/* #include "../../include/minishell.h"
+#include "../include/minishell.h"
 
 //! exec prototype, (MIGHT GO KABUM!)
 
@@ -60,7 +59,7 @@ static void	ft_dup2(int zero, int first)
 
 void	child(t_ms s, char **argv, t_env *env)
 {
-	
+
 
 	s.pid = fork();
 	if (!s.pid)
@@ -86,4 +85,4 @@ void	child(t_ms s, char **argv, t_env *env)
 		child_free(&s);
 		error_msg("execve");
 	}
-} */
+}
