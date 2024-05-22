@@ -6,23 +6,26 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:07 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/21 17:03:15 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:49:30 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	env_cmd(t_ms *mini)
-{
-	(void)mini;
-	int i;
+//!===========================================
+//? O sinal de = faz parte da key ou do value?
+//!===========================================
 
-	i = 0;
-	while(mini->env && mini->env[i] != NULL)
+int	env_cmd(t_ms *s)
+{
+	t_env	*env;
+
+	env = s->env;
+	while(env)
 	{
-		if (ft_strchr(mini->env[i], '='))
-			printf("%s", mini->env[i]);
-		i++;
-	}
+		if (env->value != NULL)
+			printf("%s=%s\n", env->key, env->value)
+		env = env->next;
+	}	
 	return (1);
 }

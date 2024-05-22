@@ -66,13 +66,13 @@ struct	s_cmd
 struct s_ms
 {
 	char	*prompt;	//* ARGV
+	char	**path;   	//* PATH dir
 	char	*username;	//* Current User // ? needed?
 	int		modal;		//* MAIN / CHILD / HERE_DOC / IGNORE
 	int		infile;		//* Redirect Infile
 	int		outfile;	//* Redirect Outfile
 	t_cmd	*cmds;		//* Command List
 	t_env	*env;		//*	ENV copy (Sorted copy)
-	char	**path;   	//* PATH dir
 };
 
 //*=============== minishell.c =====================*//
@@ -88,10 +88,10 @@ void	handler(int signo, siginfo_t *info, void *ptr);
 //*================ BUILTINS =====================*//
 
 int		echo_cmd(t_cmd *cmd);
-int		env_cmd(t_ms *mini);
+int		env_cmd(t_ms *s);
 int		cd_cmd(t_ms *mini);
 int		pwd_cmd(t_ms *mini);
-int		export_cmd(t_ms *mini);
+int		export_cmd(t_ms *s, t_cmd *cmd);
 int		unset_cmd(t_ms *mini);
 int		exit_cmd(t_ms *mini);
 
