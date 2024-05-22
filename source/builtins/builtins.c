@@ -12,10 +12,10 @@
 
 #include "../../include/minishell.h"
 
-//! Executar Builtins no processo pai a nao ser o printenv; 
+//! Executar Builtins no processo pai a nao ser o printenv;
 // ? Talvez possa ser no filho segundo o Mindmap  D:  :')
 
-int	ft_exec_buitltins(t_minis *mini, t_cmd *cmds)
+int	ft_exec_buitltins(t_ms *mini, t_cmd *cmds)
 {
 	if (ft_strcmp(cmds->cmd_args[0], "echo") == 0)
 		return (echo_cmd(cmds));
@@ -32,9 +32,3 @@ int	ft_exec_buitltins(t_minis *mini, t_cmd *cmds)
 	exit_cmd(mini);
 	return (1);
 }
-
-
-
-
-
-

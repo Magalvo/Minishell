@@ -12,7 +12,7 @@
 
 #include "../../include/minishell.h"
 
-int unset_cmd(t_minis *mini)
+int unset_cmd(t_ms *mini)
 {
 	(void)mini;
 	ft_sprintf(1, "unset not implemented");
