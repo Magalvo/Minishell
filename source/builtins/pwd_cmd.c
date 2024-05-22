@@ -12,7 +12,7 @@
 
 #include "../../include/minishell.h"
 
-int	pwd_cmd(t_minis *mini)
+int	pwd_cmd(t_ms *mini)
 {
 	(void)mini;
 /* 	char	cwd[1024];

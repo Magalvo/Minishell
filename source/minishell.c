@@ -7,9 +7,7 @@
 // #include <readline/readline.h>
 // #include <readline/history.h>
 
-t_minis g_minis;
-
-void exit_minishell(t_minis *s, char *msg)
+void exit_minishell(t_ms *s, char *msg)
 {
 	if (msg)
 		write(1, "exit\n", ft_strlen(msg));
@@ -17,7 +15,7 @@ void exit_minishell(t_minis *s, char *msg)
 	exit(0);
 }
 
-int init_minishell(t_minis *s, char **ep)
+int init_minishell(t_ms *s, char **ep)
 {
 	(void)ep;
 
@@ -34,7 +32,7 @@ int init_minishell(t_minis *s, char **ep)
 // STATUS: signal caught, ctrl+\ shouldn't prints to stdout
 void minishell(char **envp)
 {
-	t_minis s;
+	t_ms s;
 	char *input;
 
 	if (!init_minishell(&s, envp))
