@@ -20,15 +20,24 @@ BUILTINS =	builtins.c cd_cmd.c echo_cmd.c env_cmd.c \
 
 EXECUTOR =	executor.c
 
+AUX =
+
+AST_FACTORY =
+
+
 SRC_DIR = ./source/
 BUILTINS_DIR = $(SRC_DIR)builtins/
 EXECUTOR_DIR = $(SRC_DIR)executor/
+AUX_DIR 	= $(SRC_DIR)aux/
+AST_DIR 	= $(SRC_DIR)ast/
 
 SRC = 	$(SRC_DIR)minishell.c \
 		$(SRC_DIR)signals.c \
 		$(SRC_DIR)errors.c \
 		$(addprefix $(BUILTINS_DIR), $(BUILTINS)) \
 		$(addprefix $(EXECUTOR_DIR), $(EXECUTOR)) \
+		$(addprefix $(AUX_DIR), $(AUX)) \
+		$(addprefix $(AST_DIR), $(AST )) \
 
 OBJ_DIR = ./object/
 OBJ = $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
