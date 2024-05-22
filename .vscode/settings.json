@@ -2,7 +2,8 @@
   "files.associations": {
     "*.jsx": "javascriptreact",
     "stdio.h": "c",
-    "signal.h": "c"
+    "signal.h": "c",
+    "minishell.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }
