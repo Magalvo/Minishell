@@ -56,8 +56,9 @@ struct	s_cmd
 	int				pipes[2];
 	int				token;
 	int				(*exec)(t_cmd *cmd, t_ms *vars);
-	struct s_cmd	*prev;
-	struct s_cmd	*next;
+	struct s_cmd	*parent;
+	struct s_cmd	*left;
+	struct s_cmd	*right;
 
 	//todo t_redirs *redir;
 	//todo 			executable;
@@ -71,8 +72,15 @@ struct s_ms
 	int		modal;		//* MAIN / CHILD / HERE_DOC / IGNORE
 	int		infile;		//* Redirect Infile
 	int		outfile;	//* Redirect Outfile
+	char	**cmd_temp;
 	t_cmd	*cmds;		//* Command List
 	t_env	*env;		//*	ENV copy (Sorted copy)
+};
+
+struct s_builtin
+{
+	char	*name;
+	int		(*func)(t_cmd *cmd);
 };
 
 //*=============== minishell.c =====================*//
@@ -80,10 +88,14 @@ struct s_ms
 int		init_minishell(t_ms *s, char **ep);
 void	exit_minishell(t_ms *s, char *msg);
 void	minishell(char **envp);
-void	check_signal(t_ms *s);
-void	handler(int signo, siginfo_t *info, void *ptr);
 //void	exit_minishell(t_ms *s); // changed parameters
 //void	handle_signal(int sign);
+
+/*
+signals.c
+*/
+void	check_signal(t_ms *s);
+void	handler(int signo, siginfo_t *info, void *ptr);
 
 //*================ BUILTINS =====================*//
 
@@ -95,11 +107,20 @@ int		export_cmd(t_ms *s, t_cmd *cmd);
 int		unset_cmd(t_ms *mini);
 int		exit_cmd(t_ms *mini);
 
-struct s_builtin
-{
-	char	*name;
-	int		(*func)(t_cmd *cmd);
-};
+//*=================== INIT =======================*//
+
+
+//*==================== AUX =======================*//
+void	split_input(t_ms *s, char* input);
+
+/*
+ll_inits.c
+*/
+// void	set_env(s, ep);
+// void	set_path(s);
+void	init_paths(t_ms *s, char **ep);
+
+
 
 int		ft_exec_buitltins(t_ms *mini, t_cmd *cmds);
 
