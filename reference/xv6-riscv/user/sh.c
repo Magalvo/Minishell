@@ -142,8 +142,7 @@ getcmd(char *buf, int nbuf)
   return 0;
 }
 
-int
-main(void)
+int main(void)
 {
   static char buf[100];
   int fd;
