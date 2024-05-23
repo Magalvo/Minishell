@@ -3,14 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+         #
+#    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/05/21 12:46:18 by dde-maga         ###   ########.fr        #
+#    Updated: 2024/05/23 16:32:56 by cjoao-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Pretty colors
 # Pretty colors
 include include/pretty_colors_ANSI
 
@@ -20,7 +19,7 @@ BUILTINS =	builtins.c cd_cmd.c echo_cmd.c env_cmd.c \
 
 # EXECUTOR =	executor.c
 
-AUX = ll_inits.c auxs.c
+PARSER = ll_inits.c aux.c
 
 AST_FACTORY =
 
@@ -28,7 +27,7 @@ AST_FACTORY =
 SRC_DIR = ./source/
 BUILTINS_DIR = $(SRC_DIR)builtins/
 EXECUTOR_DIR = $(SRC_DIR)executor/
-AUX_DIR 	= $(SRC_DIR)aux/
+PARSER_DIR 	= $(SRC_DIR)parser/
 AST_DIR 	= $(SRC_DIR)ast/
 
 SRC = 	$(SRC_DIR)minishell.c \
@@ -36,7 +35,7 @@ SRC = 	$(SRC_DIR)minishell.c \
 		$(SRC_DIR)errors.c \
 		$(addprefix $(BUILTINS_DIR), $(BUILTINS)) \
 		$(addprefix $(EXECUTOR_DIR), $(EXECUTOR)) \
-		$(addprefix $(AUX_DIR), $(AUX)) \
+		$(addprefix $(PARSER_DIR), $(PARSER)) \
 		$(addprefix $(AST_DIR), $(AST )) \
 
 OBJ_DIR = ./object/
