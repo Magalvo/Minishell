@@ -34,13 +34,16 @@ void	handler(int signo, siginfo_t *info, void *ptr);
 
 //*================ BUILTINS =====================*//
 
-//int		echo_cmd(t_cmd *cmd);
+void	init_env(t_ms *ms, char **envp);
+//int	echo_cmd(t_cmd *cmd);
 int		env_cmd(t_ms *s);
 int		cd_cmd(t_ms *mini);
 int		pwd_cmd(t_ms *mini);
-//int		export_cmd(t_ms *s, t_cmd *cmd);
-// int		unset_cmd(t_ms *s, t_cmd *cmd);
+//int	export_cmd(t_ms *s, t_cmd *cmd);
+//int	unset_cmd(t_ms *s, t_cmd *cmd);
 int		exit_cmd(t_ms *mini);
+t_env	*new_env_node(char *env_var);
+
 
 //*=================== INIT =======================*//
 
@@ -74,5 +77,5 @@ void	error_msg(char *str);
 int		exec_input(t_ms *s);
 int		ft_exec_buitltins_chr(t_ms *s, char **cmds);
 int		echo_cmd_test(char **cmd);
-int		export_cmd_test(t_ms *s, char **cmds);
-int		unset_cmd_test(t_ms *s, char **cmds);
+//int		export_cmd_test(t_ms *s, char **cmds);
+//int		unset_cmd_test(t_ms *s, char **cmds);
