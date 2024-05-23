@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:07 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/23 16:08:37 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:33:45 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	env_cmd(t_ms *s)
 	while(env)
 	{
 		if (env->value != NULL)
-			printf("%s=%s\n", env->key, env->value);
+			printf("%s%s\n", env->key, env->value);
 		env = env->next;
 	}	
 	return (1);
@@ -55,10 +55,11 @@ t_env	*new_env_node(char *env_var)
 	{
 		free(node);
 		return (NULL);
-	}	
-	key_len = delimiter - env_var;
+	}
+	delimiter++;
+	key_len = (delimiter - env_var);
 	node->key = ft_substr(env_var, 0, key_len);
-	node->value = ft_strdup(delimiter + 1);
+	node->value = ft_strdup(delimiter);
 	node->prev = NULL;
 	node->next = NULL;
 	return (node);

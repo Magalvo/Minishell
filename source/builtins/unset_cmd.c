@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:50 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/22 18:03:38 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:27:08 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,3 +56,76 @@
 	}
 	return (1);
 } */
+/* int	unset_cmd(t_ms *s, char **args)
+{
+	t_env *current;
+	if (!args[1])
+		return (0);
+	current = s->env;
+	while(current)
+	{
+		if ((current->key[ft_strlen(args[1])] == '=') &&
+		 	(ft_strncmp(current->key, args[1], ft_strlen(args[1])) == 0))
+		{
+			printf("hey %s\n", current->key);
+			if(current->next == NULL)
+				current->prev->next = NULL;
+			else
+				current->prev->next = current->next;
+				
+			if(current->prev == NULL)
+				current->next->prev = NULL;
+			else
+				current->next->prev = current->prev;
+			free(current->value);
+			free(current->key);
+			free(current);
+			return (1);
+		}
+		if (current->next == NULL)
+			return (0);
+		current = current->next;
+	}
+	return (1);
+} */
+
+int unset_cmd(t_ms *s, char **args) 
+{
+    t_env *current;
+
+    if (!args[1])
+        return (0);
+    current = s->env;
+    while (current) 
+	{
+        if ((current->key[ft_strlen(args[1])] == '=') &&
+            (ft_strncmp(current->key, args[1], ft_strlen(args[1])) == 0)) 
+		{
+            printf("hey %s\n", current->key);
+            //! If the node to remove is the head
+            if (current->prev == NULL) 
+			{
+                s->env = current->next;
+                if (current->next != NULL)
+                    current->next->prev = NULL;
+            } 
+            //! If the node to remove is the tail
+            else if (current->next == NULL) 
+                current->prev->next = NULL;
+            else 
+			{
+                current->prev->next = current->next;
+                current->next->prev = current->prev;
+            }
+            free(current->value);
+            free(current->key);
+            free(current);
+            return (1);
+        }
+        current = current->next;
+    }
+    return (0);
+}
+
+
+
