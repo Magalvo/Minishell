@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:25 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/23 15:45:34 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:58:48 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int	ft_exec_buitltins_chr(t_ms *s, char **cmds)  //[{laskdl}{kjhalsd}{jakskdj}]
 			//return (pwd_cmd(s));
 		if (ft_strcmp(cmds[i], "export") == 0)
 		 	return (export_cmd(s, cmds));
-		// if (ft_strcmp(cmds[i], "unset") == 0)
-		// 	return (unset_cmd_test(s, cmds[i]));
+		if (ft_strcmp(cmds[i], "unset") == 0)
+			return (unset_cmd(s, cmds));
 		if (ft_strcmp(cmds[i], "exit") == 0)
 			return (exit_cmd(s)); 
 		i++;

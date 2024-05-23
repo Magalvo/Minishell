@@ -41,12 +41,6 @@ void minishell(char **envp)
 
 	if (!init_minishell(&s, envp))
 		exit_minishell(&s, NULL);
-	t_env *current = s.env;
-    while (current) 
-	{
-    	printf("%s=%s\n", current->key, current->value);
-    	current = current->next;
-    }
 	while (true)
 	{
 		//i = 0;
