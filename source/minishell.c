@@ -19,12 +19,9 @@ void exit_minishell(t_ms *s, char *msg)
 
 int init_minishell(t_ms *s, char **ep)
 {
-	(void)ep;
-
-	// set_env(s, ep); // ? linked list
+	init_env(s, ep);
 	init_paths(s, ep);
 	//todo this as it should be
-	s->env_tmp = ep;
 	s->modal = MAIN;
 	s->prompt = "write_here ->";    // v zero
 	// s->prompt = "nanoshell ->";  // v alpha
@@ -44,6 +41,12 @@ void minishell(char **envp)
 
 	if (!init_minishell(&s, envp))
 		exit_minishell(&s, NULL);
+	t_env *current = s.env;
+    while (current) 
+	{
+    	printf("%s=%s\n", current->key, current->value);
+    	current = current->next;
+    }
 	while (true)
 	{
 		//i = 0;
@@ -52,18 +55,11 @@ void minishell(char **envp)
 		if (input == NULL && s.modal == MAIN)
 			exit_minishell(&s, "exit\n");
 		split_input(&s, input);
-		// while (s.paths[i])
-		// {
-		// 	ft_putendl_fd(s.paths[i], 1);
-		// 	i++;
-		// }
-		// i = 0;
-		// while (s.cmd_temp[i])
-		// {
-		// 	ft_putendl_fd(s.cmd_temp[i], 1);
-		// 	i++;
-		// }
-
+		/* while (s.paths[i])
+		{
+			ft_putendl_fd(s.env[i], 1);
+			i++;
+		} */
 		exec_input(&s); // ! make this
 		// todo
 		/* lexer
