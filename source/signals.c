@@ -64,9 +64,9 @@ void handler(int signo, siginfo_t *info, void *context)
 	// ! still printing to stdout
 	else if (signo == SIGQUIT) /* CTRL + \ */
 	{
-		rl_replace_line("", 0);
-		rl_redisplay();
-		// return ;
+		// rl_replace_line("", 0);
+		// rl_redisplay();
+		return ;
 		// write(1, "SIGQUIT\n", 8);
 	}
 	// printf("Received signal %d\n", signo);
