@@ -1,4 +1,4 @@
-    #!/bin/zsh
+    #!/bin/bash
 
     # Ask for y/n input
     echo "Do you want to GIT PUSH? (y/n): "

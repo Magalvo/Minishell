@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:07 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/23 15:22:07 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:08:37 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_env	*new_env_node(char *env_var)
 	size_t	key_len;		//* new node to add to the stack
 	char	*delimiter;		//*equal signn (=)
 
-	node = malloc(sizeof(t_env));
+	node = ft_calloc(sizeof(t_env), 1);
 	if(!node)
 		error_msg("malloc (new env)");
 	delimiter = ft_strchr(env_var, '=');
@@ -67,13 +67,13 @@ t_env	*new_env_node(char *env_var)
 void	init_env(t_ms *ms, char **envp)
 {
 	t_env	*head;		//! Referencias temporarias para manipulacao da lista
-	t_env	*tail;		//! 
+	t_env	*tail;		//! Nao estao na struct do env
 	int		i;
 
 	head = NULL;
 	tail = NULL;
-	i = 0;
-	while (envp[i] != NULL)
+	i = -1;
+	while (envp[++i] != NULL)
 	{
 		t_env	*new_node = new_env_node(envp[i]);
 		if (!new_node)
@@ -89,7 +89,6 @@ void	init_env(t_ms *ms, char **envp)
 			new_node->prev = tail;
 			tail = new_node;
 		}	
-		i++;
 	}
 	ms->env = head;   //* pointer para o primeiro elemento da lista
 }
