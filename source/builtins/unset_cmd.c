@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:50 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/23 19:27:08 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/05/27 14:44:32 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,43 +89,44 @@
 	return (1);
 } */
 
-int unset_cmd(t_ms *s, char **args) 
+void	unset_clean(t_env *current)
 {
-    t_env *current;
-
-    if (!args[1])
-        return (0);
-    current = s->env;
-    while (current) 
-	{
-        if ((current->key[ft_strlen(args[1])] == '=') &&
-            (ft_strncmp(current->key, args[1], ft_strlen(args[1])) == 0)) 
-		{
-            printf("hey %s\n", current->key);
-            //! If the node to remove is the head
-            if (current->prev == NULL) 
-			{
-                s->env = current->next;
-                if (current->next != NULL)
-                    current->next->prev = NULL;
-            } 
-            //! If the node to remove is the tail
-            else if (current->next == NULL) 
-                current->prev->next = NULL;
-            else 
-			{
-                current->prev->next = current->next;
-                current->next->prev = current->prev;
-            }
-            free(current->value);
-            free(current->key);
-            free(current);
-            return (1);
-        }
-        current = current->next;
-    }
-    return (0);
+	free(current->value);
+	free(current->key);
+	free(current);
 }
 
+void	unset_move(t_env *current)
+{
+	current->prev->next = current->next;
+	current->next->prev = current->prev;
+}
 
+int unset_cmd(t_ms *s, char **args) 
+{
+	t_env *current;
+
+	current = s->env;
+	while (current && args[1]) 
+	{
+		if ((current->key[ft_strlen(args[1])] == '=') &&
+			(ft_strncmp(current->key, args[1], ft_strlen(args[1])) == 0)) 
+		{
+			if (current->prev == NULL) //! If the node to remove is the head
+			{
+				s->env = current->next;
+				if (current->next != NULL)
+					current->next->prev = NULL;
+			} 
+			else if (current->next == NULL) //! If the node to remove is the tail
+				current->prev->next = NULL;
+			else 
+				unset_move(current);
+			unset_clean(current);
+			return (1);
+		}
+		current = current->next;
+	}
+	return (0);
+}
 
