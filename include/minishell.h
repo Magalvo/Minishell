@@ -69,6 +69,7 @@ void	init_paths(t_ms *s, char **ep);
 //*================= ERRORS =========================*//
 
 void	error_msg(char *str);
+int		free_export(char *key, char *value);
 
 #endif
 
