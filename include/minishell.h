@@ -37,11 +37,13 @@ void	handler(int signo, siginfo_t *info, void *ptr);
 void	init_env(t_ms *ms, char **envp);
 //int	echo_cmd(t_cmd *cmd);
 int		env_cmd(t_ms *s);
-int		cd_cmd(t_ms *mini);
-int		pwd_cmd(t_ms *mini);
+int		cd_cmd(t_ms *mini, char **path);
+int		pwd_cmd();
 int		export_cmd(t_ms *s, char **cmd);
+int		update_key(t_env *env, char *key, char *value);
 int		unset_cmd(t_ms *s, char **args);
 int		exit_cmd(t_ms *mini);
+char	*get_env_val(t_env *env, char *key);
 t_env	*new_env_node(char *env_var);
 
 

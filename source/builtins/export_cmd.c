@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:59 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/27 14:34:36 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:10:09 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	update_key(t_env *env, char *key, char *value)
 		if (ft_strcmp(env->key, key) == 0)
 		{
 			free(env->value);
-			env->value = value;
+			env->value = ft_strdup(value);
 			return (1);
 		}
 		env = env->next;
