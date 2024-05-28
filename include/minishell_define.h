@@ -10,12 +10,18 @@ typedef struct	s_env t_env;
 typedef struct	s_builtin t_builtin;
 typedef struct	s_execution t_execution;
 
+/* parser structs */
+typedef struct	s_cmd t_cmd;
+typedef struct	s_exec t_exec;
+typedef struct	s_redir t_redir;
+typedef struct	s_pipe t_pipe;
+
 enum s_signal
 {
 	MAIN,
 	CHILD,
 	HEREDOC,
-	IGNORE
+	// IGNORE
 };
 
 struct	s_env
@@ -52,16 +58,12 @@ struct s_builtin
 
 /*	structs for AST starts here */
 # define MAXARGS	20 // ! hmm e se quisermos correr um PUSH_SWAP (500 pelo menos)
-# define SPACE[]	"\t\n\v\f\r "
-# define SYMBOLS[]	"|&()<>" // { } $ @ ' " \ / * ;
+# define SPACES		"\t\n\v\f\r "
+# define SYMBOLS	"|&()<>" // { } $ @ ' " \ / * ;
 # define RDONLY		O_RDONLY
 # define TRUNC		O_WRONLY|O_CREAT|O_TRUNC
 # define CREATE		O_WRONLY|O_CREAT
-
-typedef struct	s_cmd t_cmd;
-typedef struct	s_exec t_exec;
-typedef struct	s_redir t_redir;
-typedef struct	s_pipe t_pipe;
+# define APPEND		O_WRONLY|O_CREAT|O_APPEND
 
 enum s_cmd_type
 {
