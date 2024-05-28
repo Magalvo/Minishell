@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:25 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/23 17:58:48 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:50:24 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ int	ft_exec_buitltins_chr(t_ms *s, char **cmds)  //[{laskdl}{kjhalsd}{jakskdj}]
 	{
 		if (ft_strcmp(cmds[i], "echo") == 0)
 			return (echo_cmd_test(cmds));
-		//if (ft_strcmp(cmds[i], "cd") == 0)
-			//return (cd_cmd(s));
+		if (ft_strcmp(cmds[i], "cd") == 0)
+			return (cd_cmd(s, cmds));
 		if (ft_strcmp(cmds[i], "env") == 0)
 			return (env_cmd(s));
-		//if (ft_strcmp(cmds[i], "pwd") == 0)
-			//return (pwd_cmd(s));
+		if (ft_strcmp(cmds[i], "pwd") == 0)
+			return (pwd_cmd());
 		if (ft_strcmp(cmds[i], "export") == 0)
 		 	return (export_cmd(s, cmds));
 		if (ft_strcmp(cmds[i], "unset") == 0)

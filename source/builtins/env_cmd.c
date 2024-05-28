@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:07 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/23 18:33:45 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:49:59 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 
 //!===========================================
 //? O sinal de = faz parte da key ou do value?
+
+char	*get_env_val(t_env *env, char *key)
+{
+	while (env)
+	{
+		if (ft_strcmp(env->key, key) == 0)
+			return (env->value);
+		env = env->next;
+	}
+	return (NULL);
+}
 
 
 int	env_cmd(t_ms *s)
@@ -30,16 +41,6 @@ int	env_cmd(t_ms *s)
 	return (1);
 }
 
-
-/* int	env_cmd(t_ms *s)
-{
-	t_en **envp;
-
-	envp = s->env_tmp;
-	while(*envp)
-		printf("%s\n", *envp++);
-	return (1);
-} */
 
 t_env	*new_env_node(char *env_var)
 {

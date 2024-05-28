@@ -6,20 +6,21 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:55 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/21 16:59:44 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:41:11 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	pwd_cmd(t_ms *mini)
+int	pwd_cmd(void)
 {
-	(void)mini;
-/* 	char	cwd[1024];
+	char	*pwd;
 
-	if (getcwd(cwd, sizeof(cwd)) != NULL)
-		printf ("%s\n", cwd);
+	pwd = NULL;
+	pwd = getcwd(pwd, FILENAME_MAX);
+	if (pwd != NULL)
+		printf ("%s\n", pwd);
 	else
-		perror("pwd"); */
+		perror("pwd");
 	return (1);
 }
