@@ -37,7 +37,7 @@ void minishell(char **envp)
 {
 	t_ms	s;
 	char	*input;
-	//int		i;
+	int		not_builtin
 
 	if (!init_minishell(&s, envp))
 		exit_minishell(&s, NULL);
@@ -48,13 +48,15 @@ void minishell(char **envp)
 		input = readline(s.prompt);
 		if (input == NULL && s.modal == MAIN)
 			exit_minishell(&s, "exit\n");
-		split_input(&s, input);
+		ast_factory(&s, input); // ! make this
+		split_input(&s, input); // not needed
 		/* while (s.paths[i])
 		{
 			ft_putendl_fd(s.env[i], 1);
 			i++;
 		} */
 		exec_input(&s); // ! make this
+		s.cmds = parse_input(input);
 		// todo
 		/* lexer
         ft_tokenizer;

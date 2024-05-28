@@ -50,6 +50,11 @@ t_env	*new_env_node(char *env_var);
 //*=================== INIT =======================*//
 
 
+//*=================== PARSE ======================*//
+parse_input(char *input);
+
+
+
 //*==================== AUX =======================*//
 void	split_input(t_ms *s, char* input);
 

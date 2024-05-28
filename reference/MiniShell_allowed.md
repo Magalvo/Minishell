@@ -328,3 +328,21 @@ int tputs(const char *str, int affcnt, int (*putc)(int));
 `affcnt` - The number of lines affected, or number of repetitions of the operation.
 `putc` - A pointer to a function that takes a single character and outputs it to the terminal.
 - Description: Applies padding information to a string and outputs it to the terminal. The `str` parameter is a string that specifies a terminal capability (usually obtained from `tgetstr`). The `affcnt` parameter is the number of lines affected by the operation, or the number of repetitions of the operation. The `putc` parameter is a pointer to a function that takes a single character and outputs it to the terminal. The function returns ERR upon failure and OK upon successful completion.
+satty(int fd);
+```
+- Parameters:
+`fd` - A file descriptor.
+- Description: Checks if the file descriptor `fd` is associated with a terminal device. Returns 1 if `fd` is an open file descriptor referring to a terminal; otherwise 0 is returned, and `errno` is set to indicate the error.
+
+
+``` C
+char *ttyname(int fd);
+```
+- Parameters:
+`fd` - A file descriptor.
+- Description: Returns a pointer to a string that contains the null-terminated pathname of the terminal device that is open on the file descriptor `fd`. The string is static and may be overwritten by subsequent calls to `ttyname` or `ttyname_r`.
+
+
+``` C
+int ttyslot(void);
+```
