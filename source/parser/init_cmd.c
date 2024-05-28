@@ -9,6 +9,11 @@ ast_factory(&s, input)
 
 }
 
+void	parse_input(char *input)
+{
+    void (*input)
+}
+
 int
 getcmd(char *buf, int nbuf)
 {

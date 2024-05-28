@@ -51,7 +51,7 @@ t_env	*new_env_node(char *env_var);
 
 
 //*=================== PARSE ======================*//
-parse_input(char *input);
+void	parse_input(char *input);
 
 
 
