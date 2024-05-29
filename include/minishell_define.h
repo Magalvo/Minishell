@@ -33,7 +33,6 @@ struct	s_env
 	//token			env raiz ou added
 };
 
-
 struct s_ms
 {
 	char	*prompt;	//* ARGV
@@ -54,7 +53,6 @@ struct s_builtin
 	char	*name;
 	int		(*func)(t_cmd *cmd);
 };
-
 
 /*	structs for AST starts here */
 # define MAXARGS	20 // ! hmm e se quisermos correr um PUSH_SWAP (500 pelo menos)

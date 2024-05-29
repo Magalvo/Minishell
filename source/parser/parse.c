@@ -44,29 +44,28 @@ struct cmd *parsepipe(char **ps, char *es)
 	return cmd;
 }
 
-struct cmd*
-parseredirs(struct cmd *cmd, char **ps, char *es)
+t_cmd *parseredirs(t_cmd *cmd, char **ps, char *es)
 {
-  int tok;
-  char *q, *eq;
+	int tok;
+	char *q, *eq;
 
-  while(peek(ps, es, "<>")){
-    tok = gettoken(ps, es, 0, 0);
-    if(gettoken(ps, es, &q, &eq) != 'a')
-      panic("missing file for redirection");
-    switch(tok){
-    case '<':
-      cmd = redircmd(cmd, q, eq, O_RDONLY, 0);
-      break;
-    case '>':
-      cmd = redircmd(cmd, q, eq, O_WRONLY|O_CREATE|O_TRUNC, 1);
-      break;
-    case '+':  // >>
-      cmd = redircmd(cmd, q, eq, O_WRONLY|O_CREATE, 1);
-      break;
-    }
-  }
-  return cmd;
+	while(peek(ps, es, "<>")){
+		tok = gettoken(ps, es, 0, 0);
+		if(gettoken(ps, es, &q, &eq) != 'a')
+		panic("missing file for redirection");
+		switch(tok){
+		case '<':
+		cmd = redircmd(cmd, q, eq, O_RDONLY, 0);
+		break;
+		case '>':
+		cmd = redircmd(cmd, q, eq, O_WRONLY|O_CREATE|O_TRUNC, 1);
+		break;
+		case '+':  // >>
+		cmd = redircmd(cmd, q, eq, O_WRONLY|O_CREATE, 1);
+		break;
+		}
+	}
+	return cmd;
 }
 
 struct cmd *parseexec(char **ps, char *es)

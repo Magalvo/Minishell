@@ -11,65 +11,59 @@ ast_factory(&s, input)
 
 void	parse_input(char *input)
 {
-    void (*input)
+	void (*input)
 }
 
-int
-getcmd(char *buf, int nbuf)
+int getcmd(char *buf, int nbuf)
 {
-  write(2, "$ ", 2);
-  memset(buf, 0, nbuf);
-  gets(buf, nbuf);
-  if(buf[0] == 0) // EOF
-    return -1;
-  return 0;
+	write(2, "$ ", 2);
+	memset(buf, 0, nbuf);
+	gets(buf, nbuf);
+	if(buf[0] == 0) // EOF
+		return -1;
+	return 0;
 }
 
-struct cmd*
-execcmd(void)
+struct cmd *execcmd(void)
 {
-  struct execcmd *cmd;
+	struct execcmd *cmd;
 
-  cmd = malloc(sizeof(*cmd));
-  memset(cmd, 0, sizeof(*cmd));
-  cmd->type = EXEC;
-  return (struct cmd*)cmd;
+	cmd = malloc(sizeof(*cmd));
+	memset(cmd, 0, sizeof(*cmd));
+	cmd->type = EXEC;
+	return (struct cmd*)cmd;
 }
 
-struct cmd*
-redircmd(struct cmd *subcmd, char *file, char *efile, int mode, int fd)
+struct cmd* redircmd(t_cmd *subcmd, char *file, char *efile, int mode, int fd)
 {
-  struct redircmd *cmd;
+	struct redircmd *cmd;
 
-  cmd = malloc(sizeof(*cmd));
-  memset(cmd, 0, sizeof(*cmd));
-  cmd->type = REDIR;
-  cmd->cmd = subcmd;
-  cmd->file = file;
-  cmd->efile = efile;
-  cmd->mode = mode;
-  cmd->fd = fd;
-  return (struct cmd*)cmd;
+	cmd = malloc(sizeof(*cmd));
+	memset(cmd, 0, sizeof(*cmd));
+	cmd->type = REDIR;
+	cmd->cmd = subcmd;
+	cmd->file = file;
+	cmd->efile = efile;
+	cmd->mode = mode;
+	cmd->fd = fd;
+	return (struct cmd*)cmd;
 }
 
-struct cmd*
-pipecmd(struct cmd *left, struct cmd *right)
+struct cmd *pipecmd(t_cmd *left, t_cmd *right)
 {
-  struct pipecmd *cmd;
+	t_pipe *cmd;
 
-  cmd = malloc(sizeof(*cmd));
-  memset(cmd, 0, sizeof(*cmd));
-  cmd->type = PIPE;
-  cmd->left = left;
-  cmd->right = right;
-  return (struct cmd*)cmd;
+	cmd = malloc(sizeof(*cmd));
+	memset(cmd, 0, sizeof(*cmd));
+	cmd->type = PIPE;
+	cmd->left = left;
+	cmd->right = right;
+	return (struct cmd*)cmd;
 }
 
-char whitespace[] = " \t\r\n\v";
 char symbols[] = "<|>&;()";
 
-int
-gettoken(char **ps, char *es, char **q, char **eq)
+int gettoken(char **ps, char *es, char **q, char **eq)
 {
   char *s;
   int ret;
