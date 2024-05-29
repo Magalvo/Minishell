@@ -20,7 +20,7 @@ static int	change_pwd(t_env *env)
 	cmd = getcwd(NULL, 0);
 	if (!cmd)
 		return(ft_putstr_fd("Failed to change Dir\n", 2), 0);
-	result = update_key(env, "PWD=", cmd);
+	result = update_key(env, "PWD", cmd);
 	free(cmd);
 	return (result);
 }
@@ -29,13 +29,13 @@ static int	cd_cmd_home(t_env *env)
 {
 	char	*home;
 	
-	update_key(env, "OLDPWD=", get_env_val(env, "PWD="));
-	home = get_env_val(env,"HOME=");
+	update_key(env, "OLDPWD", get_env_val(env, "PWD"));
+	home = get_env_val(env,"HOME");
 	if (!home)
 		return (ft_putstr_fd("Err on ENV\n", 2), 0);
 	if (chdir(home) == -1)
 		return (ft_putstr_fd("Failed to change directory\n", 2), 0);
-	return (update_key(env, "PWD=", home), 1);
+	return (update_key(env, "PWD", home), 1);
 }
 
 
