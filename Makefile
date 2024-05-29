@@ -17,6 +17,8 @@ include include/pretty_colors_ANSI
 BUILTINS =	builtins.c cd_cmd.c echo_cmd.c env_cmd.c \
 			exit_cmd.c export_cmd.c pwd_cmd.c unset_cmd.c \
 
+EXECUTOR =	executor.c \
+
 # EXECUTOR =	executor.c
 
 PARSER = ll_inits.c aux.c
