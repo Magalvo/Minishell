@@ -28,16 +28,19 @@ int	is_valid_key(const char *key)
 	return (1);
 }
 
+
 char	*extract_key(const char *str, char *delimiter)
 {
 	size_t key_len = delimiter - str;
 	return ft_substr(str, 0, key_len);
 }
 
+
 int	update_key(t_env *env, char *key, char *value)
 {
 	while (env)
 	{
+		printf("EnvKey: %s%s \n Key:%s \n", env->key, env->value, key);
 		if (ft_strcmp(env->key, key) == 0)
 		{
 			free(env->value);
@@ -48,6 +51,7 @@ int	update_key(t_env *env, char *key, char *value)
 	}
 	return (0);
 }
+
 
 int	add_new_node(t_ms *s, char *str)
 {
@@ -77,28 +81,39 @@ int export_cmd(t_ms *s, char **str)
 	char	*value;
 	char	*delimiter;
 
-	if (str[1] == NULL) 
+	if (str[1] == NULL)
 		return (printf("\n"), 0);
+
 	delimiter = ft_strchr(str[1], '=');
-	if (!delimiter) 
+	if (!delimiter)
 		return (printf("Invalid format for export\n"), 0);
+
 	key = extract_key(str[1], delimiter);
 	if (!key)
 		return (0);
+
 	if (!is_valid_key(key))
 	{
 		free(key);
-		return(printf("invalid var name\n"),0);
+		return (printf("Invalid variable name\n"), 0);
 	}
+
 	value = ft_strdup(delimiter + 1);
+
 	if (!update_key(s->env, key, value))
 	{
 		if (!add_new_node(s, str[1]))
 			free_export(key, value);
 	}
+	else
+	{
+		free(value); // free the duplicated value if it was just an update
+	}
+
 	free(key);
 	return (1);
 }
+
 
 
 
