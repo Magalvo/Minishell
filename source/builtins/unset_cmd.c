@@ -111,7 +111,7 @@ int unset_cmd(t_ms *s, char **args)
 	{
 		if ((ft_strcmp(current->key, args[1]) == 0)) 
 		{
-			if (current->prev == NULL) //! If the node to remove is the head
+			if (current->prev == NULL) 		//! If the node to remove is the head
 			{
 				s->env = current->next;
 				if (current->next != NULL)
@@ -119,7 +119,7 @@ int unset_cmd(t_ms *s, char **args)
 			} 
 			else if (current->next == NULL) //! If the node to remove is the tail
 				current->prev->next = NULL;
-			else 
+			else							//! If the node to remove is in the middle
 				unset_move(current);
 			unset_clean(current);
 			return (1);
