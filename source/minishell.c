@@ -39,26 +39,39 @@ void minishell(char **envp)
 	t_ms	s;
 	char	*input;
 	// int		not_builtin;
-	//int i;
+	int i;
 
 	if (!init_minishell(&s, envp))
 		exit_minishell(&s, NULL);
 	while (true)
 	{
-		//i = 0;
 		check_signal(&s);
 		input = readline(s.prompt);
 		if (input == NULL && s.modal == MAIN)
 			exit_minishell(&s, "exit\n");
 		// ast_factory(&s, input); // ! make this
 		split_input(&s, input); // not needed
+		// i = 0;
 		/* while (s.paths[i])
 		{
 			ft_putendl_fd(s.paths[i], 1);
 			i++;
 		} */
-		// &s.cmds = parse_input(input); // ! WIP
-		exec_input(&s); // ! make this
+		s.cmds = parse_input(input); // ! WIP
+		// exec_input(&s); // ! make this
+		i = 0;
+		printf("content: %i", s.cmds.type);
+		// TODO
+		// if s.cmds.type = {EXEC, REDIR, PIPE}
+		// cast s.cmds.type into
+		// (t_exec*)s->cmds || (t_redir*)s->cmds || (t_pipe*)s->cmds
+		// ! and so on
+		// ? check debugger screenshot on reference folder
+		// ? F5 para correr debug, breakpoint at line 63, check ss for watch expressions
+		// while (s.cmds[i] != NULL)
+		// {
+		// 	i++;
+		// }
 		// todo
 		/* lexer
         ft_tokenizer;
