@@ -6,7 +6,30 @@ void	split_input(t_ms *s, char* input)
 	s->cmd_temp = ft_split(input, ' ');
 }
 
-int peek(char **ps, char *es, char *toks)
+int	add_slash(char *slash, char **paths)
+{
+	int	i;
+	int	len;
+
+	len = 0;
+	i = 0;
+	while (paths[i])
+	{
+		len = ft_strlen(paths[i]);
+		if (paths[i][len - 1] != '/')
+		{
+			slash = ft_strjoin(paths[i], "/");
+			if (!slash)
+				return (free_paths(paths, i), 0);
+			free(paths[i]);
+			paths[i] = slash;
+		}
+		i++;
+	}
+	return (1);
+}
+
+/* int peek(char **ps, char *es, char *toks)
 {
 	char *s;
 
@@ -15,10 +38,10 @@ int peek(char **ps, char *es, char *toks)
 		s++;
 	*ps = s;
 	return *s && strchr(toks, *s);
-}
+} */
 
 // NUL-terminate all the counted strings.
-t_cmd *nulterminate(t_cmd *cmd)
+/* struct cmd *nulterminate(struct cmd *cmd)
 {
 	int i;
 	struct t_exec *ecmd;
@@ -48,4 +71,4 @@ t_cmd *nulterminate(t_cmd *cmd)
 		break;
 	}
 	return cmd;
-}
+} */

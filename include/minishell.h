@@ -85,7 +85,9 @@ ll_inits.c
 */
 // void	set_env(s, ep);
 // void	set_path(s);
-void	init_paths(t_ms *s, char **ep);
+
+
+//void	init_paths(t_ms *s, char **ep);
 
 
 
@@ -94,11 +96,16 @@ void	init_paths(t_ms *s, char **ep);
 //*================= EXEC =========================*//
 
 //todo int		cmd_exec(char *args);
-
+int				exec_input(t_ms *s);
+//char			*search_path(char *command, char **paths);
+char			*env_paths(t_ms *ms, char **envp);
+int				add_slash(char *slash, char **paths);
+char			*cmd_path(char **paths, char *cmd);
 //*================= ERRORS =========================*//
 
 void	error_msg(char *str);
 int		free_export(char *key, char *value);
+void	free_paths(char **paths, int i);
 
 #endif
 

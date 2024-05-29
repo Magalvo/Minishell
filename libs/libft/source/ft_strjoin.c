@@ -33,7 +33,7 @@ Allocates (with malloc(3)) and returns a new
 string, which is the result of the concatenation
 of 's1' and 's2'. */
 
-char	*ft_strjoin(char const *s1, char const *s2)
+/* char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*join;
 	size_t	s1_len;
@@ -55,7 +55,24 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		*join++ = *s2++;
 	*join = '\0';
 	return (join - join_len);
+} */
+
+char *ft_strjoin(char const *s1, char const *s2) {
+    size_t s1_len = ft_strlen(s1);
+    size_t s2_len = ft_strlen(s2);
+    size_t join_len = s1_len + s2_len;
+
+    char *join = (char *)malloc(sizeof(char) * (join_len + 1));
+    if (join == NULL)
+        return NULL;
+
+    ft_memcpy(join, s1, s1_len);
+    ft_memcpy(join + s1_len, s2, s2_len);
+    join[join_len] = '\0';
+
+    return join;
 }
+
 
 /*
 int	main(void)
