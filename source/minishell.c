@@ -20,8 +20,9 @@ void exit_minishell(t_ms *s, char *msg)
 int init_minishell(t_ms *s, char **ep)
 {
 	init_env(s, ep);
-	init_paths(s, ep);
+	env_paths(s, ep);
 	//todo this as it should be
+	s->env_tmp = ep;				//! added raw env for execve
 	s->modal = MAIN;
 	s->prompt = "write_here ->";    // v zero
 	// s->prompt = "nanoshell ->";  // v alpha
@@ -38,6 +39,7 @@ void minishell(char **envp)
 	t_ms	s;
 	char	*input;
 	// int		not_builtin;
+	//int i;
 
 	if (!init_minishell(&s, envp))
 		exit_minishell(&s, NULL);
@@ -52,7 +54,7 @@ void minishell(char **envp)
 		split_input(&s, input); // not needed
 		/* while (s.paths[i])
 		{
-			ft_putendl_fd(s.env[i], 1);
+			ft_putendl_fd(s.paths[i], 1);
 			i++;
 		} */
 		// &s.cmds = parse_input(input); // ! WIP

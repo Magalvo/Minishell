@@ -89,5 +89,5 @@ int	echo_cmd_test(char **cmd)
 	}
 	if (check == 0)
 		ft_putstr_fd("\n", 1);
-	return (0);
+	return (1);
 }

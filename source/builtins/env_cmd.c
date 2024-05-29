@@ -15,6 +15,24 @@
 //!===========================================
 //? O sinal de = faz parte da key ou do value?
 
+char	*env_paths(t_ms *ms, char **envp)
+{
+	char	**paths;
+	char	*slash;
+
+	slash = NULL;
+	while (ft_strncmp(*envp, "PATH=", 5) != 0)
+		envp++;
+	paths = ft_split(*envp + 5, ':');
+	if (!paths)
+	{
+		return (NULL);
+	}
+	add_slash(slash, paths);
+	ms->paths = paths;
+	return (NULL);
+}
+
 char	*get_env_val(t_env *env, char *key)
 {
 	while (env)
@@ -35,7 +53,7 @@ int	env_cmd(t_ms *s)
 	while(env)
 	{
 		if (env->value != NULL)
-			printf("%s%s\n", env->key, env->value);
+			printf("%s=%s\n", env->key, env->value);
 		env = env->next;
 	}	
 	return (1);
@@ -45,8 +63,8 @@ int	env_cmd(t_ms *s)
 t_env	*new_env_node(char *env_var)
 {
 	t_env	*node;
-	size_t	key_len;		//* new node to add to the stack
-	char	*delimiter;		//*equal signn (=)
+	size_t	key_len;
+	char	*delimiter;
 
 	node = ft_calloc(sizeof(t_env), 1);
 	if(!node)
@@ -57,27 +75,24 @@ t_env	*new_env_node(char *env_var)
 		free(node);
 		return (NULL);
 	}
-	delimiter++;
-	key_len = (delimiter - env_var);
+	key_len = delimiter - env_var;
 	node->key = ft_substr(env_var, 0, key_len);
-	node->value = ft_strdup(delimiter);
+	node->value = ft_strdup(delimiter + 1); // move past '=' to get the value
 	node->prev = NULL;
 	node->next = NULL;
 	return (node);
 }
 
+
 void	init_env(t_ms *ms, char **envp)
 {
-	t_env	*head;		//! Referencias temporarias para manipulacao da lista
-	t_env	*tail;		//! Nao estao na struct do env
+	t_env	*head = NULL;
+	t_env	*tail = NULL;
 	int		i;
 
-	head = NULL;
-	tail = NULL;
-	i = -1;
-	while (envp[++i] != NULL)
+	for (i = 0; envp[i] != NULL; i++)
 	{
-		t_env	*new_node = new_env_node(envp[i]);
+		t_env *new_node = new_env_node(envp[i]);
 		if (!new_node)
 			continue;
 		if (!head)
@@ -92,6 +107,7 @@ void	init_env(t_ms *ms, char **envp)
 			tail = new_node;
 		}	
 	}
-	ms->env = head;   //* pointer para o primeiro elemento da lista
+	ms->env = head;
 }
+
 

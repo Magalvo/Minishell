@@ -56,7 +56,7 @@ list related functions
 // }
 
 // todo check if cmd starts with / or ./
-void	init_paths(t_ms *s, char **ep)
+/* void	init_paths(t_ms *s, char **ep)
 {
 	while (ft_strncmp(*ep, "PATH=", 5) != 0 && ep)
 		ep++;
@@ -64,7 +64,9 @@ void	init_paths(t_ms *s, char **ep)
 	if (s->paths == NULL)
 		exit_minishell(s, "error getting paths");
 	// s->cmdout = test_path(s, s->cmdout_args[0]);
-}
+} */
+
+
 // ? maybe needed, maybe not, depends on program flow
 // char	*test_path(t_ms *s, char *cmd)
 // {

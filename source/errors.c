@@ -23,3 +23,19 @@ int	free_export(char *key, char *value)
 		free(value);
 		return (error_msg("failed to create new node"), 0);
 }
+
+void	free_paths(char **paths, int i)
+{
+	int	ctd;
+
+	ctd = 0;
+	if (!paths)
+		return ;
+	while (ctd < i)
+	{
+		if (paths[i])
+			free(paths[i]);
+		ctd++;
+	}
+	free(paths);
+}

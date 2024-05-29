@@ -15,5 +15,6 @@
 int	exit_cmd(t_ms *mini)
 {
 	(void)mini;
+	exit(EXIT_SUCCESS);
 	return (0);
 }
