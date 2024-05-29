@@ -51,13 +51,13 @@ t_env	*new_env_node(char *env_var);
 
 
 //*=================== PARSE ======================*//
-void	parse_input(char *input);
+t_cmd	*parse_input(char *input);
 
 
 // ! PARSE WIP
 t_cmd	*nulterminate(t_cmd *cmd);
 int		peek(char **ps, char *es, char *toks);
-void	parse_input(char *input);
+void	panic(char *s);
 int		getcmd(char *buf, int nbuf);
 t_cmd	*execcmd(void);
 t_cmd	*redircmd(t_cmd *subcmd, char *file, char *efile, int mode, int fd);

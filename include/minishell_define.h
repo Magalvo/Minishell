@@ -4,7 +4,6 @@
 
 //*======================= STRUCTS ====================== *//
 typedef	enum	s_signal t_signal;
-typedef	enum	s_cmd_type t_cmd_type;
 typedef struct	s_ms t_ms;
 typedef struct	s_env t_env;
 typedef struct	s_builtin t_builtin;
@@ -28,8 +27,8 @@ struct	s_env
 {
 	char			*key;  //*Eg.: PATH=
 	char			*value;//*Eg.: /usr/bin (...)
-	struct s_env	*prev;
-	struct s_env	*next;
+	t_env	*prev;
+	t_env	*next;
 	//token			env raiz ou added
 };
 
@@ -63,14 +62,12 @@ struct s_builtin
 # define CREATE		O_WRONLY|O_CREAT
 # define APPEND		O_WRONLY|O_CREAT|O_APPEND
 
-enum s_cmd_type
-{
-	EXEC,
-	REDIR,
-	PIPE,
-	BUILTIN,
-	IGNORE
-};
+// Parsed command representation
+#define EXEC	1
+#define REDIR	2
+#define PIPE	3
+// #define LIST  4
+// #define BACK  5
 
 struct s_cmd
 {
@@ -84,21 +81,21 @@ struct s_exec
 	char *eargv[MAXARGS];
 };
 
-struct redir
+struct s_redir
 {
 	int type;
-	struct cmd *cmd;
+	t_cmd *cmd;
 	char *file;
 	char *efile;
 	int mode;
 	int fd;
 };
 
-struct pipe
+struct s_pipe
 {
 	int type;
-	struct cmd *left;
-	struct cmd *right;
+	t_cmd *left;
+	t_cmd *right;
 };
 
 

@@ -21,7 +21,7 @@ EXECUTOR =	executor.c \
 
 # EXECUTOR =	executor.c
 
-PARSER = ll_inits.c aux.c
+PARSER = ll_inits.c aux.c init_cmd.c parse.c
 
 AST_FACTORY =
 

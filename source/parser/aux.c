@@ -29,7 +29,13 @@ int	add_slash(char *slash, char **paths)
 	return (1);
 }
 
-/* int peek(char **ps, char *es, char *toks)
+void	panic(char *s)
+{
+	fprintf(stderr, "%s\n", s);
+	// exit(1);
+}
+
+int peek(char **ps, char *es, char *toks)
 {
 	char *s;
 
@@ -38,37 +44,37 @@ int	add_slash(char *slash, char **paths)
 		s++;
 	*ps = s;
 	return *s && strchr(toks, *s);
-} */
+}
 
 // NUL-terminate all the counted strings.
-/* struct cmd *nulterminate(struct cmd *cmd)
+t_cmd *nulterminate(t_cmd *cmd)
 {
 	int i;
-	struct t_exec *ecmd;
-	struct t_pipe *pcmd;
-	struct t_redir *rcmd;
+	t_exec *ecmd;
+	t_pipe *pcmd;
+	t_redir *rcmd;
 
 	if(cmd == 0)
 		return 0;
 
 	switch(cmd->type){
 	case EXEC:
-		ecmd = (struct t_exec*)cmd;
+		ecmd = (t_exec*)cmd;
 		for(i=0; ecmd->argv[i]; i++)
 		*ecmd->eargv[i] = 0;
 		break;
 
 	case REDIR:
-		rcmd = (struct t_redir*)cmd;
+		rcmd = (t_redir*)cmd;
 		nulterminate(rcmd->cmd);
 		*rcmd->efile = 0;
 		break;
 
 	case PIPE:
-		pcmd = (struct t_pipe*)cmd;
+		pcmd = (t_pipe*)cmd;
 		nulterminate(pcmd->left);
 		nulterminate(pcmd->right);
 		break;
 	}
 	return cmd;
-} */
+}
