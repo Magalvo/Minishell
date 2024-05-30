@@ -58,9 +58,9 @@ void minishell(char **envp)
 			i++;
 		} */
 		s.cmds = parse_input(input); // ! WIP
-		// exec_input(&s); // ! make this
+		exec_input(&s); // ! make this
 		// i = 0;
-		printf("content: %i", s.cmds->type);
+		//printf("content: %i", s.cmds->type);
 		// TODO
 		// if s.cmds.type = {EXEC, REDIR, PIPE}
 		// cast s.cmds.type into

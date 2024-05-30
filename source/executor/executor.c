@@ -57,13 +57,14 @@ int exec_input(t_ms *s)
 		return (exit_minishell(s, "error"), 0);
 	if (id == 0) 											//* Child process
 	{
-		path = cmd_path(s->paths, s->cmd_temp[0]);
+		t_exec	*cast = (t_exec *)s->cmds;
+		path = cmd_path(s->paths, cast->argv[0]);
 		if (!path) 
 		{
 			ft_putstr_fd(s->cmd_temp[0], 2);
 			exit(EXIT_FAILURE);
 		}
-		execve(path, s->cmd_temp, s->env_tmp);
+		execve(path, cast->argv, s->env_tmp);
 		perror("execve");  									//* If execve returns, an error occurred
 		exit(EXIT_FAILURE);
 	} 
