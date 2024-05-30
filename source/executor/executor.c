@@ -45,11 +45,11 @@ char	*cmd_path(char **paths, char *cmd)
 	return (NULL);
 }
 
-int exec_input(t_ms *s) 
+int exec_input(t_ms *s)
 {
 	char	*path;
 	int		id;
-	
+
 	if (ft_exec_buitltins_chr(s, s->cmd_temp)) 				//* Check if it's a built-in command
 		return (1);
 	id = fork();											//* Fork a new process for external commands
@@ -57,9 +57,9 @@ int exec_input(t_ms *s)
 		return (exit_minishell(s, "error"), 0);
 	if (id == 0) 											//* Child process
 	{
-		t_exec	*cast = (t_exec *)s->cmds;
+		t_exec	*cast = (t_exec *)s->ast;
 		path = cmd_path(s->paths, cast->argv[0]);
-		if (!path) 
+		if (!path)
 		{
 			ft_putstr_fd(s->cmd_temp[0], 2);
 			exit(EXIT_FAILURE);
@@ -67,7 +67,7 @@ int exec_input(t_ms *s)
 		execve(path, cast->argv, s->env_tmp);
 		perror("execve");  									//* If execve returns, an error occurred
 		exit(EXIT_FAILURE);
-	} 
+	}
 	else 													//* Parent process
 		wait(NULL);
 	return 1;
@@ -75,13 +75,13 @@ int exec_input(t_ms *s)
 
 
 
-/* char *search_path(char *command, char **paths) 
+/* char *search_path(char *command, char **paths)
 {
 	char *full_path;
 	char *temp_path;
 	int i;
 
-	if (!paths) 
+	if (!paths)
 		return NULL;
 	i = 0;
 	while (paths[i]) {
@@ -89,7 +89,7 @@ int exec_input(t_ms *s)
 		temp_path = full_path;
 		full_path = ft_strjoin(full_path, command);
 		free(temp_path);  								//! Free the intermediate string
-		if (access(full_path, X_OK) == 0) 
+		if (access(full_path, X_OK) == 0)
 			return full_path;  							//!Found executable path
 		free(full_path);  								//! Free if not executable
 		i++;

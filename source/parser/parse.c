@@ -3,7 +3,7 @@
 
 t_cmd *parsecmd(char *input)
 {
-	char		*end;
+	char	*end;
 	t_cmd	*cmd;
 
 	end = input + strlen(input);
@@ -87,14 +87,15 @@ t_cmd *parseexec(char **ps, char *es)
 {
 	char *q, *eq;
 	int tok, argc;
-	t_exec *cmd;
+	t_cmd *cmd;
 	t_cmd *ret;
+	char	**_argv;
 
 	if(peek(ps, es, "("))
 		return parseblock(ps, es);
 
 	ret = execcmd();
-	cmd = (t_exec*)ret;
+	cmd = (t_cmd*)ret;
 
 	argc = 0;
 	ret = parseredirs(ret, ps, es);
@@ -106,6 +107,10 @@ t_cmd *parseexec(char **ps, char *es)
 		cmd->argv[argc] = q;
 		cmd->eargv[argc] = eq;
 		argc++;
+		////////////////
+		_argv = create_argv(argc);
+		(void)_argv;
+		///////////////
 		if(argc >= MAXARGS)
 		panic("too many args");
 		ret = parseredirs(ret, ps, es);
@@ -113,4 +118,16 @@ t_cmd *parseexec(char **ps, char *es)
 	cmd->argv[argc] = 0;
 	cmd->eargv[argc] = 0;
 	return ret;
+}
+
+char **create_argv(int nbr)
+{
+	return((char **)malloc(sizeof(char *) * (nbr + 1)));
+}
+
+void create_arg( char **argv, char *str)
+{
+	while (*argv)
+		argv++;
+	*argv = str;
 }

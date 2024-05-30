@@ -28,17 +28,18 @@ t_cmd	*parse_input(char *input)
 
 t_cmd *execcmd(void)
 {
-	t_exec	*cmd;
+	t_cmd	*cmd;
 
 	cmd = malloc(sizeof(*cmd));
 	memset(cmd, 0, sizeof(*cmd));
 	cmd->type = EXEC;
-	return (t_cmd*)cmd;
+	// return (t_cmd*)cmd;
+	return (cmd);
 }
 
 t_cmd *redircmd(t_cmd *subcmd, char *file, char *efile, int mode, int fd)
 {
-	t_redir *cmd;
+	t_cmd *cmd;
 
 	cmd = malloc(sizeof(*cmd));
 	memset(cmd, 0, sizeof(*cmd));
@@ -48,19 +49,21 @@ t_cmd *redircmd(t_cmd *subcmd, char *file, char *efile, int mode, int fd)
 	cmd->efile = efile;
 	cmd->mode = mode;
 	cmd->fd = fd;
-	return (t_cmd*)cmd;
+	// return (t_cmd*)cmd;
+	return (cmd);
 }
 
 t_cmd *pipecmd(t_cmd *left, t_cmd *right)
 {
-	t_pipe *cmd;
+	t_cmd *cmd;
 
 	cmd = malloc(sizeof(*cmd));
 	memset(cmd, 0, sizeof(*cmd));
 	cmd->type = PIPE;
 	cmd->left = left;
 	cmd->right = right;
-	return (t_cmd*)cmd;
+	// return (t_cmd*)cmd;
+	return (cmd);
 }
 
 char symbols[] = "<|>&;()";

@@ -52,6 +52,7 @@ t_env	*new_env_node(char *env_var);
 
 //*=================== PARSE ======================*//
 t_cmd	*parse_input(char *input);
+char	**create_argv(int argc);
 
 
 // ! PARSE WIP
