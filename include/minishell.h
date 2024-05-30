@@ -71,12 +71,8 @@ t_cmd	*parseexec(char **ps, char *es);
 
 
 
-
-
-
 //*==================== AUX =======================*//
 void	split_input(t_ms *s, char* input);
-
 
 
 
