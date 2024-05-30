@@ -24,8 +24,8 @@ int init_minishell(t_ms *s, char **ep)
 	//todo this as it should be
 	s->env_tmp = ep;				//! added raw env for execve
 	s->modal = MAIN;
-	s->prompt = "write_here ->";    // v zero
-	// s->prompt = "nanoshell ->";  // v alpha
+	// s->prompt = "write_here ->";    // v zero
+	s->prompt = "nanoshell -> ";  // v alpha
 	// s->prompt = "microshell";    // v beta
 	// s->prompt = "minishell";     // v gold
 
@@ -39,7 +39,7 @@ void minishell(char **envp)
 	t_ms	s;
 	char	*input;
 	// int		not_builtin;
-	int i;
+	// int i;
 
 	if (!init_minishell(&s, envp))
 		exit_minishell(&s, NULL);
@@ -59,8 +59,8 @@ void minishell(char **envp)
 		} */
 		s.cmds = parse_input(input); // ! WIP
 		// exec_input(&s); // ! make this
-		i = 0;
-		printf("content: %i", s.cmds.type);
+		// i = 0;
+		printf("content: %i", s.cmds->type);
 		// TODO
 		// if s.cmds.type = {EXEC, REDIR, PIPE}
 		// cast s.cmds.type into
