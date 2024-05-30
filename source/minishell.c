@@ -25,9 +25,9 @@ int init_minishell(t_ms *s, char **ep)
 	s->env_tmp = ep;				//! added raw env for execve
 	s->modal = MAIN;
 	// s->prompt = "write_here ->";    // v zero
-	s->prompt = "nanoshell -> ";  // v alpha
-	// s->prompt = "microshell";    // v beta
-	// s->prompt = "minishell";     // v gold
+	s->prompt = "\e[3;33mnanoshell\e[0m\e[1;97m -> \e[0m";  // v alpha
+	// s->prompt = "\e[3;33mnanoshell\e[0m\e[1;97m -> \e[0m";    // v beta
+	// s->prompt = "\e[3;33mminishell\e[0m\e[1;97m -> \e[0m";     // v gold
 
 	return (true);
 }
@@ -57,7 +57,7 @@ void minishell(char **envp)
 			ft_putendl_fd(s.paths[i], 1);
 			i++;
 		} */
-		s.cmds = parse_input(input); // ! WIP
+		s.ast = parse_input(input); // ! WIP
 		exec_input(&s); // ! make this
 		// i = 0;
 		//printf("content: %i", s.cmds->type);

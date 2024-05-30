@@ -3,13 +3,14 @@
 
 
 //*======================= STRUCTS ====================== *//
-typedef	enum	s_signal t_signal;
+typedef	enum	s_signal e_signal;
 typedef struct	s_ms t_ms;
 typedef struct	s_env t_env;
 typedef struct	s_builtin t_builtin;
 typedef struct	s_execution t_execution;
 
 /* parser structs */
+typedef	enum	s_cmd_type e_cmd_type;
 typedef struct	s_cmd t_cmd;
 typedef struct	s_exec t_exec;
 typedef struct	s_redir t_redir;
@@ -19,7 +20,7 @@ enum s_signal
 {
 	MAIN,
 	CHILD,
-	HEREDOC,
+	// HEREDOC,
 	// IGNORE
 };
 
@@ -42,7 +43,7 @@ struct s_ms
 	int		outfile;	//* Redirect Outfile
 	char	**env_tmp;	//* Temp env;
 	char	**cmd_temp;
-	t_cmd	*cmds;		//* Command List
+	t_cmd	*ast;		//* Command List
 	t_env	*env;		//*	ENV copy (Sorted copy)
 };
 
@@ -63,17 +64,38 @@ struct s_builtin
 # define APPEND		O_WRONLY|O_CREAT|O_APPEND
 
 // Parsed command representation
-#define EXEC	1
-#define REDIR	2
-#define PIPE	3
+// #define EXEC	1
+// #define REDIR	2
+// #define PIPE	3
 // #define LIST  4
 // #define BACK  5
 
-struct s_cmd
+enum s_cmd_type
 {
-	int type;
+	EXEC	= 1,
+	REDIR	= 2,
+	PIPE	= 3,
+	HEREDOC	= 4, //maybe
 };
 
+// struct s_cmd
+// {
+// 	int type;
+// };
+
+struct	s_cmd
+{
+	int type;
+	char *argv[MAXARGS];
+	char *eargv[MAXARGS];
+	t_cmd *left;			//pipe
+	t_cmd *right;
+	t_cmd *cmd;				//redir
+	char *file;
+	char *efile;
+	int mode;
+	int fd;
+};
 struct s_exec
 {
 	int type;
@@ -98,23 +120,6 @@ struct s_pipe
 	t_cmd *right;
 };
 
-
-
-// struct	s_cmd
-// {
-// 	char			*env_path;
-// 	// char			*cmd; //cmd_args[0]
-// 	char			**cmd_args;
-// 	int				pipes[2];
-// 	int				token;
-// 	int				(*exec)(t_cmd *cmd, t_ms *vars);
-// 	struct s_cmd	*parent;
-// 	struct s_cmd	*left;
-// 	struct s_cmd	*right;
-
-// 	//todo t_redirs *redir;
-// 	//todo 			executable;
-// };
 
 
 //* Integer codes para o tipo de node na ASTree
