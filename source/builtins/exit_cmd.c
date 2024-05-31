@@ -12,9 +12,7 @@
 
 #include "../../include/minishell.h"
 
-int	exit_cmd(t_ms *mini)
+void	exit_cmd(t_ms *s)
 {
-	(void)mini;
-	exit(EXIT_SUCCESS);
-	return (0);
+	exit_minishell(s, "exit\n");
 }

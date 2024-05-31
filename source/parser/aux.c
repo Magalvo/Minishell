@@ -3,6 +3,8 @@
 
 void	split_input(t_ms *s, char* input)
 {
+	/* if (s->cmd_temp)
+		ft_free_dptr(&s->cmd_temp); */
 	s->cmd_temp = ft_split(input, ' ');
 }
 

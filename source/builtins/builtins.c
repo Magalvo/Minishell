@@ -48,7 +48,7 @@ int	ft_exec_buitltins_chr(t_ms *s, char **cmds)  //[{laskdl}{kjhalsd}{jakskdj}]
 		if (ft_strcmp(cmds[i], "unset") == 0)
 			return (unset_cmd(s, cmds));
 		if (ft_strcmp(cmds[i], "exit") == 0)
-			return (exit_cmd(s)); 
+			return (exit_cmd(s), 1); 
 		i++;
 	}
 	return (0);

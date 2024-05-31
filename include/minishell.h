@@ -42,9 +42,11 @@ int		pwd_cmd();
 int		export_cmd(t_ms *s, char **cmd);
 int		update_key(t_env *env, char *key, char *value);
 int		unset_cmd(t_ms *s, char **args);
-int		exit_cmd(t_ms *mini);
+int		print_export(t_ms *s, int lstsize);
+void	exit_cmd(t_ms *s);
 char	*get_env_val(t_env *env, char *key);
 t_env	*new_env_node(char *env_var);
+
 
 
 //*=================== INIT =======================*//

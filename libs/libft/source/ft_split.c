@@ -78,7 +78,7 @@ static char	**ft_str2arr(char **result, const char *str, char c, size_t count)
 			result[i] = ft_word2str(str, c);
 			if (!result[i])
 			{
-				ft_free_dptr(result);
+				ft_free_dptr(&result);
 				return (NULL);
 			}
 			while (*str && *str != c)
