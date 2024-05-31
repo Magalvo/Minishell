@@ -66,8 +66,8 @@ void minishell(char **envp)
 		// cast s.cmds.type into
 		// (t_exec*)s->cmds || (t_redir*)s->cmds || (t_pipe*)s->cmds
 		// ! and so on
-		// ? check debugger screenshot on reference folder
-		// ? F5 para correr debug, breakpoint at line 63, check ss for watch expressions
+		// ? F5 para correr debug, breakpoint at line 60/61
+		// ? check debugger screenshot on reference folder for expressions to watch
 		// while (s.cmds[i] != NULL)
 		// {
 		// 	i++;
