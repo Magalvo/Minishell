@@ -28,18 +28,23 @@ void check_signal(t_ms *s)
 
 	struct sigaction sa;
 
+	
 	// sa.sa_handler = handle_signal;
 	sa.sa_sigaction = handler;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = SA_SIGINFO;
 	// sa.sa_flags = 0;
 
-	if (sigaction(SIGINT, &sa, NULL) == -1)
+	if (sigaction(SIGQUIT, &sa, NULL) == -1)
+	{
+		perror("sigaction");
+		exit(EXIT_FAILURE);
+	}
+	else if (sigaction(SIGINT, &sa, NULL) == -1)
 		perror("can't catch SIGINT");
 	else if (sigaction(SIGTERM, &sa, NULL) == -1)
 		perror("can't catch SIGTERM");
-	else if (sigaction(SIGQUIT, &sa, NULL) == -1)
-		perror("can't catch SIGQUIT");
+
 }
 
 // check siginfo_DontUse
@@ -66,7 +71,8 @@ void handler(int signo, siginfo_t *info, void *context)
 	{
 		// rl_replace_line("", 0);
 		// rl_redisplay();
-		return ;
+		rl_catch_signals = 0;
+		(void)signo;
 		// write(1, "SIGQUIT\n", 8);
 	}
 	// printf("Received signal %d\n", signo);

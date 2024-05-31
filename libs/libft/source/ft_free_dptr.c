@@ -13,19 +13,20 @@
 #include "../include/libft.h"
 
 // frees a 2d array (double pointer)
-void	ft_free_dptr(char **dptr)
+void	ft_free_dptr(char ***dptr)
 {
-	int		i;
+	int	i;
 
 	i = 0;
-	if (dptr == NULL)
+	if (*dptr == NULL)
 		return ;
-	while (dptr[i])
+	while ((*dptr)[i])
 	{
-		free(dptr[i]);
+		free((*dptr)[i]);
 		i++;
 	}
-	free(dptr);
+	free(*dptr);
+	*dptr = NULL;
 }
 
 // frees a double pointer array, passed by reference and sets it to NULL

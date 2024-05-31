@@ -50,7 +50,7 @@ void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t sz);
 void	*ft_calloc(size_t nmemb, size_t sz);
 char	*ft_strdup(const char *src);
-void	ft_free_dptr(char **dptr);
+void	ft_free_dptr(char ***dptr);
 
 
 //strings

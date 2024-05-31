@@ -11,10 +11,11 @@ void exit_minishell(t_ms *s, char *msg)
 {
 	if (msg)
 		ft_putstr_fd(msg, 1);
-	(void)s;
-	ft_free_dptr(s->paths);
-	ft_free_dptr(s->cmd_temp);
-	exit(0);
+	if (s->paths != NULL)
+		ft_free_dptr(&s->paths);
+	if (s->cmd_temp != NULL)
+		ft_free_dptr(&s->cmd_temp);
+	exit(EXIT_SUCCESS);
 }
 
 int init_minishell(t_ms *s, char **ep)
@@ -24,6 +25,7 @@ int init_minishell(t_ms *s, char **ep)
 	//todo this as it should be
 	s->env_tmp = ep;				//! added raw env for execve
 	s->modal = MAIN;
+	s->cmd_temp = NULL;
 	// s->prompt = "write_here ->";    // v zero
 	s->prompt = "\e[3;33mnanoshell\e[0m\e[1;97m -> \e[0m";  // v alpha
 	// s->prompt = "\e[3;33mnanoshell\e[0m\e[1;97m -> \e[0m";    // v beta
@@ -43,6 +45,7 @@ void minishell(char **envp)
 
 	if (!init_minishell(&s, envp))
 		exit_minishell(&s, NULL);
+	// check_signal(&s);
 	while (true)
 	{
 		check_signal(&s);
