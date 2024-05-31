@@ -6,7 +6,7 @@ t_cmd *parsecmd(char *input)
 	char	*end;
 	t_cmd	*cmd;
 
-	end = input + strlen(input);
+	end = input + ft_strlen(input);
 	cmd = parseline(&input, end);
 	peek(&input, end, "");
 	if(input != end){
@@ -99,30 +99,60 @@ t_cmd *parseexec(char **ps, char *es)
 
 	argc = 0;
 	ret = parseredirs(ret, ps, es);
-	while(!peek(ps, es, "|)&;")){
+	char *ps_cpy = *ps;
+	char *es_cpy = es;
+	while(!peek(ps, es, "|)&;"))
+	{
 		if((tok=gettoken(ps, es, &q, &eq)) == 0)
-		break;
+			break;
 		if(tok != 'a')
-		panic("syntax");
+			panic("syntax");
+		argc++;
+	}
+	_argv = create_argv(argc);
+	// (void)_argv;
+	*ps = ps_cpy;
+	es = es_cpy;
+	argc = 0;
+	while(!peek(ps, es, "|)&;"))
+	{
+		if((tok=gettoken(ps, es, &q, &eq)) == 0)
+			break;
+		if(tok != 'a')
+			panic("syntax");
+
+		// _argv[argc] = (malloc(sizeof(char *) * (q - eq))		;
+		// char *new_arg = malloc(sizeof(char *) * (eq - q + 1));
+		char *new_arg = (char *)malloc(sizeof(char) * (eq - q + 1));
+		// char *new_arg = malloc(sizeof(char) * (3));
+		// ft_strlcpy(new_arg, q, (eq - q + 1));
+		memmove(new_arg, q,  (eq - q + 1));
+		_argv[argc] = new_arg;
 		cmd->argv[argc] = q;
 		cmd->eargv[argc] = eq;
 		argc++;
 		////////////////
-		_argv = create_argv(argc);
-		(void)_argv;
 		///////////////
 		if(argc >= MAXARGS)
-		panic("too many args");
+			panic("too many args");
 		ret = parseredirs(ret, ps, es);
 	}
 	cmd->argv[argc] = 0;
 	cmd->eargv[argc] = 0;
+	cmd->temp = _argv;
 	return ret;
 }
 
 char **create_argv(int nbr)
 {
-	return((char **)malloc(sizeof(char *) * (nbr + 1)));
+	char **arr;
+
+	arr = (char **)malloc(sizeof(char *) * (nbr + 1));
+	// ft_bzero(arr, (sizeof(char *) * (nbr + 1)));
+	// cmd = malloc(sizeof(*cmd));
+	// ft_memset(arr, (sizeof(char *) * (nbr)));
+	return(arr);
+	// return((char **)malloc(sizeof(char *) * (nbr)));
 }
 
 void create_arg( char **argv, char *str)

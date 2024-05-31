@@ -55,7 +55,7 @@ struct s_builtin
 };
 
 /*	structs for AST starts here */
-# define MAXARGS	20 // ! hmm e se quisermos correr um PUSH_SWAP (500 pelo menos)
+# define MAXARGS	5 // ! hmm e se quisermos correr um PUSH_SWAP (500 pelo menos)
 # define SPACES		"\t\n\v\f\r "
 # define SYMBOLS	"|&()<>" // { } $ @ ' " \ / * ;
 # define RDONLY		O_RDONLY
@@ -95,6 +95,7 @@ struct	s_cmd
 	char *efile;
 	int mode;
 	int fd;
+	char **temp;
 };
 struct s_exec
 {
