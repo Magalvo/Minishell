@@ -95,6 +95,7 @@ struct	s_cmd
 	char *efile;
 	int mode;
 	int fd;
+	char **temp;
 };
 struct s_exec
 {
