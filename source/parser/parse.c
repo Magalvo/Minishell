@@ -6,7 +6,7 @@ t_cmd *parsecmd(char *input)
 	char	*end;
 	t_cmd	*cmd;
 
-	end = input + strlen(input);
+	end = input + ft_strlen(input);
 	cmd = parseline(&input, end);
 	peek(&input, end, "");
 	if(input != end){
@@ -99,20 +99,31 @@ t_cmd *parseexec(char **ps, char *es)
 
 	argc = 0;
 	ret = parseredirs(ret, ps, es);
-	while(!peek(ps, es, "|)&;")){
-		if((tok=gettoken(ps, es, &q, &eq)) == 0)
-		break;
+	char **ps_cpy = ps;
+	char **es_cpy = es;
+	while(!peek(ps_cpy, es_cpy, "|)&;"))
+	{
+		if((tok=gettoken(ps_cpy, es_cpy, &q, &eq)) == 0)
+			break;
 		if(tok != 'a')
-		panic("syntax");
+			panic("syntax");
+		argc++;
+	}
+	_argv = create_argv(argc);
+	(void)_argv;
+	while(!peek(ps, es, "|)&;"))
+	{
+		if((tok=gettoken(ps, es, &q, &eq)) == 0)
+			break;
+		if(tok != 'a')
+			panic("syntax");
 		cmd->argv[argc] = q;
 		cmd->eargv[argc] = eq;
 		argc++;
 		////////////////
-		_argv = create_argv(argc);
-		(void)_argv;
 		///////////////
 		if(argc >= MAXARGS)
-		panic("too many args");
+			panic("too many args");
 		ret = parseredirs(ret, ps, es);
 	}
 	cmd->argv[argc] = 0;

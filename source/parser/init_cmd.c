@@ -31,7 +31,7 @@ t_cmd *execcmd(void)
 	t_cmd	*cmd;
 
 	cmd = malloc(sizeof(*cmd));
-	memset(cmd, 0, sizeof(*cmd));
+	ft_memset(cmd, 0, sizeof(*cmd));
 	cmd->type = EXEC;
 	// return (t_cmd*)cmd;
 	return (cmd);
