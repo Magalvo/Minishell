@@ -77,7 +77,7 @@ t_env	*new_env_node(char *env_var)
 	}
 	key_len = delimiter - env_var;
 	node->key = ft_substr(env_var, 0, key_len);
-	node->value = ft_strdup(delimiter + 1); // move past '=' to get the value
+	node->value = ft_strdup(delimiter + 1); //* move past '=' to get the value
 	node->prev = NULL;
 	node->next = NULL;
 	return (node);

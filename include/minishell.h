@@ -42,7 +42,7 @@ int		pwd_cmd();
 int		export_cmd(t_ms *s, char **cmd);
 int		update_key(t_env *env, char *key, char *value);
 int		unset_cmd(t_ms *s, char **args);
-int		print_export(t_ms *s, int lstsize);
+int		print_export(t_ms *s);
 void	exit_cmd(t_ms *s);
 char	*get_env_val(t_env *env, char *key);
 t_env	*new_env_node(char *env_var);
@@ -105,6 +105,8 @@ char			*cmd_path(char **paths, char *cmd);
 void	error_msg(char *str);
 int		free_export(char *key, char *value);
 void	free_paths(char **paths, int i);
+int		free_export_p(t_env *env_copy, t_env *new_node);
+
 
 #endif
 

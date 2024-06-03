@@ -80,8 +80,8 @@ int export_cmd(t_ms *s, char **str)
 	char	*value;
 	char	*delimiter;
 
-	/* if (str[1] == NULL)
-		return (print_export(s, ft_lstsize(s->env)), 0); */
+	if (str[1] == NULL)
+		return (print_export(s));
 	delimiter = ft_strchr(str[1], '=');
 	if (!delimiter)
 		return (printf("Invalid format for export\n"), 0);
@@ -104,7 +104,6 @@ int export_cmd(t_ms *s, char **str)
 	free(key);
 	return (1);
 }
-
 
 
 

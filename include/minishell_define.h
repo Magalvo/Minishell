@@ -30,7 +30,7 @@ struct	s_env
 	char			*value;//*Eg.: /usr/bin (...)
 	t_env	*prev;
 	t_env	*next;
-	//token			env raiz ou added
+	//token			//* 1 -> ENV Originals  2 ->No Value  3 ->Exported with Export
 };
 
 struct s_ms
@@ -45,6 +45,7 @@ struct s_ms
 	char	**cmd_temp;
 	t_cmd	*ast;		//* Command List
 	t_env	*env;		//*	ENV copy (Sorted copy)
+	t_env	*export	;	//* EXPORT List
 };
 
 // ? not used atm
