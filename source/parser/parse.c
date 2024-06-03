@@ -140,6 +140,7 @@ t_cmd *parseexec(char **ps, char *es)
 		cmd->eargv[argc] = eq;
 		argc++;
 		////////////////
+		// todo cleanup
 		///////////////
 		if(argc >= MAXARGS)
 			panic("too many args");
