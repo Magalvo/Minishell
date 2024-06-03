@@ -48,6 +48,7 @@ char	*get_env_val(t_env *env, char *key);
 t_env	*new_env_node(char *env_var);
 void	sort_env_list(t_env **head);
 int		print_export(t_env *env);
+int		ft_sw_builtins(const char *s1, const char *s2);
 
 
 

@@ -27,8 +27,9 @@ void swap_env_data(t_env *a, t_env *b) {
     b->value = temp_value;
 }
 
-int compare_keys(char *a, char *b) {
-    return ft_strcmp(a, b) > 0;
+int compare_keys(char *a, char *b) {\
+	int len = ft_strlen(a) > ft_strlen(b) ? ft_strlen(a): ft_strlen(b);
+    return strncmp(a, b, len) > 0; 
 }
 
 void sort_env_list(t_env **head) {
@@ -184,7 +185,7 @@ void	sort_env_list(t_env **head)
 		Iptr = NULL;
 		while (ptrI->next != Iptr)
 		{
-			if (ft_strcmp(ptrI->key, ptrI->next->key) > 0)
+			if (strcmp(ptrI->key, ptrI->next->key) > 0)
 			{
 				swap_nodes(head, ptrI, ptrI->next);
 				swapped = 1;
