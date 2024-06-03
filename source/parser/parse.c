@@ -130,7 +130,7 @@ t_cmd *parseexec(char **ps, char *es)
 			panic("syntax");
 
 		// _argv[argc] = (malloc(sizeof(char *) * (q - eq))		;
-		new_arg = calloc(sizeof(char), (eq - q));
+		new_arg = ft_calloc(sizeof(char), (eq - q));
 		// char *new_arg = malloc(sizeof(char) * (eq - q + 1));
 		// char *new_arg = malloc(sizeof(char) * (3));
 		// ft_strlcpy(new_arg, q, (eq - q + 1));
