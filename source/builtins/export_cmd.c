@@ -40,7 +40,7 @@ int update_key(t_env *env, char *key, char *value)
 {
     while (env) 
 	{
-        if (ft_strcmp(env->key, key) == 0) 
+        if (ft_sw_builtins(env->key, key) == 0) 
 		{
             if (value)
 			{

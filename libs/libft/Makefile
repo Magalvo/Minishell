@@ -25,7 +25,7 @@ SRC =	ft_isalpha.c	ft_isdigit.c	ft_tolower.c	ft_isalnum.c \
 		ft_putstr_fd.c	ft_putendl_fd.c	ft_putnbr_fd.c	ft_striteri.c \
 		ft_memmove.c	ft_split.c 		ft_isspace.c	ft_atol.c \
 		ft_issignal.c 	ft_abs.c		ft_ismax.c		ft_atof.c \
-		ft_printf.c		ft_printf_format.c	ft_sprintf.c  ft_strcmp.c\
+		ft_printf.c		ft_printf_format.c	ft_sprintf.c  \
 		get_next_line.c	get_next_line_utils.c 	ft_free_dptr.c \
 		ft_strcount.c \
 		ft_lstnew.c		ft_lstadd_front.c	ft_lstsize.c	ft_lstlast.c \

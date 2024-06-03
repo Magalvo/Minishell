@@ -27,7 +27,15 @@
 	return (1);
 } 
 */
+int	ft_sw_builtins(const char *s1, const char *s2) {
+    size_t s1_len = ft_strlen(s1);
+    size_t s2_len = ft_strlen(s2);
 
+    if (s1_len != s2_len) {
+        return (s1_len - s2_len);
+    }
+    return ft_strncmp(s1, s2, s1_len);
+}
 
 int	ft_exec_buitltins_chr(t_ms *s, char **cmds)  //[{laskdl}{kjhalsd}{jakskdj}]
 {
@@ -35,19 +43,19 @@ int	ft_exec_buitltins_chr(t_ms *s, char **cmds)  //[{laskdl}{kjhalsd}{jakskdj}]
 	(void)s;
 	while (cmds[i])
 	{
-		if (ft_strcmp(cmds[i], "echo") == 0)
+		if (ft_sw_builtins(cmds[i], "echo") == 0)
 			return (echo_cmd_test(cmds));
-		if (ft_strcmp(cmds[i], "cd") == 0)
+		if (ft_sw_builtins(cmds[i], "cd") == 0)
 			return (cd_cmd(s, cmds));
-		if (ft_strcmp(cmds[i], "env") == 0)
+		if (ft_sw_builtins(cmds[i], "env") == 0)
 			return (env_cmd(s));
-		if (ft_strcmp(cmds[i], "pwd") == 0)
+		if (ft_sw_builtins(cmds[i], "pwd") == 0)
 			return (pwd_cmd());
-		if (ft_strcmp(cmds[i], "export") == 0)
+		if (ft_sw_builtins(cmds[i], "export") == 0)
 		 	return (export_cmd(s, cmds));
-		if (ft_strcmp(cmds[i], "unset") == 0)
+		if (ft_sw_builtins(cmds[i], "unset") == 0)
 			return (unset_cmd(s, cmds));
-		if (ft_strcmp(cmds[i], "exit") == 0)
+		if (ft_sw_builtins(cmds[i], "exit") == 0)
 			return (exit_cmd(s), 1); 
 		i++;
 	}
