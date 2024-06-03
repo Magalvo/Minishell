@@ -1,6 +1,13 @@
 
 #include "../include/minishell.h"
 
+t_cmd	*parse_input(char *input)
+{
+	// parsecmd(input);
+	// void (*input)
+	return (parsecmd(input));
+}
+
 t_cmd *parsecmd(char *input)
 {
 	char	*end;
