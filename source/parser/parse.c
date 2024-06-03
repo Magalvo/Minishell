@@ -114,6 +114,7 @@ t_cmd *parseexec(char **ps, char *es)
 	*ps = ps_cpy;
 	es = es_cpy;
 	argc = 0;
+	char *new_arg;
 	while(!peek(ps, es, "|)&;"))
 	{
 		if((tok=gettoken(ps, es, &q, &eq)) == 0)
@@ -122,11 +123,11 @@ t_cmd *parseexec(char **ps, char *es)
 			panic("syntax");
 
 		// _argv[argc] = (malloc(sizeof(char *) * (q - eq))		;
-		// char *new_arg = malloc(sizeof(char *) * (eq - q + 1));
-		char *new_arg = (char *)malloc(sizeof(char) * (eq - q + 1));
+		new_arg = calloc(sizeof(char), (eq - q));
+		// char *new_arg = malloc(sizeof(char) * (eq - q + 1));
 		// char *new_arg = malloc(sizeof(char) * (3));
 		// ft_strlcpy(new_arg, q, (eq - q + 1));
-		memmove(new_arg, q,  (eq - q + 1));
+		ft_memmove((char *)new_arg, (char *)q, (eq - q));
 		_argv[argc] = new_arg;
 		cmd->argv[argc] = q;
 		cmd->eargv[argc] = eq;
