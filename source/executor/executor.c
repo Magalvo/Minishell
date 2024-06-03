@@ -50,21 +50,21 @@ int exec_input(t_ms *s)
 	char	*path;
 	int		id;
 
-	if (ft_exec_buitltins_chr(s, s->cmd_temp)) 				//* Check if it's a built-in command
+	if (ft_exec_buitltins_chr(s, s->ast->temp)) 				//* Check if it's a built-in command
 		return (1);
 	id = fork();											//* Fork a new process for external commands
 	if (id < 0)
 		return (exit_minishell(s, "error"), 0);
 	if (id == 0) 											//* Child process
 	{
-		t_exec	*cast = (t_exec *)s->ast;
-		path = cmd_path(s->paths, cast->argv[0]);
+		t_cmd	*cast = s->ast;
+		path = cmd_path(s->paths, cast->temp[0]);
 		if (!path)
 		{
-			ft_putstr_fd(s->cmd_temp[0], 2);
+			ft_putstr_fd(cast->temp[0], 2);
 			exit(EXIT_FAILURE);
 		}
-		execve(path, cast->argv, s->env_tmp);
+		execve(path, cast->temp, s->env_tmp);
 		perror("execve");  									//* If execve returns, an error occurred
 		exit(EXIT_FAILURE);
 	}

@@ -36,29 +36,39 @@ char	*extract_key(const char *str, char *delimiter)
 }
 
 
-int	update_key(t_env *env, char *key, char *value)
+int update_key(t_env *env, char *key, char *value) 
 {
-	while (env)
+    while (env) 
 	{
-		if (ft_strcmp(env->key, key) == 0)
+        if (ft_strcmp(env->key, key) == 0) 
 		{
-			free(env->value);
-			env->value = ft_strdup(value);
-			return (1);
-		}
-		env = env->next;
-	}
-	return (0);
+            if (value)
+			{
+				free(env->value);
+				env->value = ft_strdup(value);
+			}	
+            return (1);
+        }
+        env = env->next;
+    }
+    return (0);
 }
 
-
-int	add_new_node(t_ms *s, char *str)
+int	add_new_node(t_ms *s, char *key, char *value)
 {
-	t_env *new_node = new_env_node(str);
+	t_env *new_node; //= new_env_node(key,value);
 	t_env *env;
 
+	new_node = (t_env *)malloc(sizeof(t_env));
 	if(!new_node)
-		return (0);
+		error_msg("malloc (new env)");
+	new_node->key = ft_strdup(key);
+	if (value)
+		new_node->value = ft_strdup(value);
+	else
+		new_node->value = NULL;
+	new_node->prev = NULL;
+	new_node->next = NULL;
 	if (!s->env)
 		s->env = new_node;
 	else
@@ -71,7 +81,7 @@ int	add_new_node(t_ms *s, char *str)
 		env->next = new_node;
 		new_node->prev = env;
 	}
-	return 1;
+	return (1);
 }
 
 int export_cmd(t_ms *s, char **str)
@@ -81,26 +91,43 @@ int export_cmd(t_ms *s, char **str)
 	char	*delimiter;
 
 	if (str[1] == NULL)
-		return (print_export(s));
+	{
+		sort_env_list(&s->env);
+		return (print_export(s->env));
+	}
+		
 	delimiter = ft_strchr(str[1], '=');
-	if (!delimiter)
-		return (printf("Invalid format for export\n"), 0);
-	key = extract_key(str[1], delimiter);
+	if (delimiter)
+	{
+		key = extract_key(str[1], delimiter);
+		value = ft_strdup(delimiter + 1);
+	}
+	else
+	{
+		key = ft_strdup(str[1]);
+		value = NULL;
+	}
 	if (!key)
-		return (0);
+        return (0);
 	if (!is_valid_key(key))
 	{
 		free(key);
+		if (value)
+			free(value);
 		return (printf("Invalid variable name\n"), 0);
 	}
-	value = ft_strdup(delimiter + 1);
 	if (!update_key(s->env, key, value))
 	{
-		if (!add_new_node(s, str[1]))
-			free_export(key, value);
+		if (!add_new_node(s, key, value))
+			{
+				free(key);
+				if (value)
+					free(value);
+				return (0);
+			}
 	}
-	else
-		free(value); 					//! free the duplicated value if it was just an update
+	else if (value)
+		free(value);
 	free(key);
 	return (1);
 }
