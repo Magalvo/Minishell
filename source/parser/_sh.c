@@ -90,13 +90,13 @@ runcmd(struct cmd *cmd)
     runcmd(rcmd->cmd);
     break;
 
-  case LIST:
-    lcmd = (struct listcmd*)cmd;
-    if(fork1() == 0)
-      runcmd(lcmd->left);
-    wait(0);
-    runcmd(lcmd->right);
-    break;
+  // case LIST:
+  //   lcmd = (struct listcmd*)cmd;
+  //   if(fork1() == 0)
+  //     runcmd(lcmd->left);
+  //   wait(0);
+  //   runcmd(lcmd->right);
+  //   break;
 
   case PIPE:
     pcmd = (struct pipecmd*)cmd;
@@ -122,12 +122,12 @@ runcmd(struct cmd *cmd)
     wait(0);
     break;
 
-  case BACK:
-    bcmd = (struct backcmd*)cmd;
-    if(fork1() == 0)
-      runcmd(bcmd->cmd);
-    break;
-  }
+  // case BACK:
+  //   bcmd = (struct backcmd*)cmd;
+  //   if(fork1() == 0)
+  //     runcmd(bcmd->cmd);
+  //   break;
+  // }
   exit(0);
 }
 
