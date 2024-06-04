@@ -51,8 +51,8 @@ int peek(char **ps, char *es, char *toks)
 // NUL-terminate all the counted strings.
 t_cmd *nulterminate(t_cmd *cmd)
 {
-	int i;
-	t_exec *ecmd;
+	// int i;
+	// t_exec *ecmd;
 	t_pipe *pcmd;
 	t_redir *rcmd;
 
@@ -61,9 +61,9 @@ t_cmd *nulterminate(t_cmd *cmd)
 
 	switch(cmd->type){
 	case EXEC:
-		ecmd = (t_exec*)cmd;
-		for(i=0; ecmd->argv[i]; i++)
-		*ecmd->eargv[i] = 0;
+		// ecmd = (t_exec*)cmd;
+		// for(i=0; ecmd->argv[i]; i++)
+		// *ecmd->eargv[i] = 0;
 		break;
 
 	case REDIR:
