@@ -1,58 +1,65 @@
 #include "../../include/minishell.h"
 
-int print_exp(t_env *export) {
-    while (export) {
-        if (export->value != NULL && export->value[0])
-            printf("declare -x %s=\"%s\"\n", export->key, export->value);
-        else
-            printf("declare -x %s\n", export->key);
-        export = export->next;
-    }
-    return (0);
+int print_exp(t_env *export) 
+{
+	while (export) 
+	{
+		if (export->value != NULL && export->value[0])
+			printf("declare -x %s=\"%s\"\n", export->key, export->value);
+		else
+			printf("declare -x %s\n", export->key);
+		export = export->next;
+	}
+	return (0);
 }
 
 int print_export(t_env *env) {
-    return print_exp(env);
+	return print_exp(env);
 }
 
+void swap_env_data(t_env *a, t_env *b) 
+{
+	char *temp_key;
+	char *temp_value;
 
-void swap_env_data(t_env *a, t_env *b) {
-    char *temp_key = a->key;
-    char *temp_value = a->value;
-
-    a->key = b->key;
-    a->value = b->value;
-
-    b->key = temp_key;
-    b->value = temp_value;
+	temp_key = a->key;
+	temp_value = a->value;
+	a->key = b->key;
+	a->value = b->value;
+	b->key = temp_key;
+	b->value = temp_value;
 }
 
 int compare_keys(char *a, char *b) {\
 	int len = ft_strlen(a) > ft_strlen(b) ? ft_strlen(a): ft_strlen(b);
-    return strncmp(a, b, len) > 0; 
+	return strncmp(a, b, len) > 0; 
 }
 
-void sort_env_list(t_env **head) {
-    int swapped;
-    t_env *ptr;
-    t_env *lptr = NULL;
+void sort_env_list(t_env **head) 
+{
+	int	swapped;
+	t_env	*ptr;
+	t_env	*lptr = NULL;
 
-    if (*head == NULL)
-        return;
+	if (*head == NULL)
+		return;
 
-    do {
-        swapped = 0;
-        ptr = *head;
-
-        while (ptr->next != lptr) {
-            if (compare_keys(ptr->key, ptr->next->key)) {
-                swap_env_data(ptr, ptr->next);
-                swapped = 1;
-            }
-            ptr = ptr->next;
-        }
-        lptr = ptr;
-    } while (swapped);
+	swapped = 1;
+	while (swapped)
+	{
+		swapped = 0;
+		ptr = *head;
+		while (ptr->next != lptr) 
+		{
+			if (compare_keys(ptr->key, ptr->next->key)) 
+			{
+				swap_env_data(ptr, ptr->next);
+				swapped = 1;
+			}
+			ptr = ptr->next;
+		}
+		lptr = ptr;
+	}
 }
 
 

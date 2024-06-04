@@ -50,7 +50,7 @@ int exec_input(t_ms *s)
 	char	*path;
 	int		id;
 
-	if (ft_exec_buitltins_chr(s, s->ast->temp)) 				//* Check if it's a built-in command
+	if (ft_exec_buitltins_chr(s, s->ast->temp)) 				
 		return (1);
 	id = fork();											//* Fork a new process for external commands
 	if (id < 0)

@@ -16,7 +16,7 @@ include include/pretty_colors_ANSI
 # Project files
 BUILTINS =	builtins.c cd_cmd.c echo_cmd.c env_cmd.c \
 			exit_cmd.c export_cmd.c pwd_cmd.c unset_cmd.c \
-			export_print.c \
+			export_print.c export_aux.c\
 
 EXECUTOR =	executor.c \
 
@@ -53,7 +53,7 @@ LDFLAGS = -L$(LIBFT_DIR) -lft -lreadline
 
 # Project settings
 NAME = minishell
-CFLAGS = -Wall -Wextra -Werror -I${LIBFT_DIR} #-O3
+CFLAGS = -Wall -Wextra -Werror -I${LIBFT_DIR} #-fsanitize=address  #-O3
 debug: CFLAGS += -g3 #-fPIE #-fsanitize=address #-pg   #-fsanitize=address
 MAKEFLAGS += --no-print-directory #  --silent
 .SILENT: $(OBJ) $(NAME) clean fclean

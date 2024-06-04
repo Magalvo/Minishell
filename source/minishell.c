@@ -21,6 +21,7 @@ void exit_minishell(t_ms *s, char *msg)
 int init_minishell(t_ms *s, char **ep)
 {
 	init_env(s, ep);
+	//init_export(s, ep);
 	env_paths(s, ep);
 	//todo this as it should be
 	s->env_tmp = ep;				//! added raw env for execve
