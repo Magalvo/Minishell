@@ -21,8 +21,8 @@ int gettoken(char **ps, char *es, char **q, char **eq)
 	case '|':
 	case '(':
 	case ')':
-	case ';':
-	case '&':
+	// case ';':
+	case '&': // add & for AND
 	case '<':
 		s++;
 		break;
@@ -33,6 +33,7 @@ int gettoken(char **ps, char *es, char **q, char **eq)
 		s++;
 		}
 		break;
+	// TODO add << check for heredoc
 	default:
 		ret = 'a';
 		while(s < es && !strchr(SPACES, *s) && !strchr(SYMBOLS, *s))

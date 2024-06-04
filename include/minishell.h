@@ -70,6 +70,7 @@ t_cmd	*nulterminate(t_cmd *cmd);
 int		peek(char **ps, char *es, char *toks);
 void	panic(char *s);
 int		getcmd(char *buf, int nbuf);
+t_cmd	*init_cmd(void);
 t_cmd	*execcmd(void);
 t_cmd	*redircmd(t_cmd *subcmd, char *file, char *efile, int mode, int fd);
 t_cmd	*pipecmd(t_cmd *left, t_cmd *right);
