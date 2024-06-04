@@ -86,7 +86,6 @@ int export_cmd(t_ms *s, char **str)
 {
 	char	*key;
 	char	*value;
-	//char	*delimiter;
 
 	if (str[1] == NULL)
 	{
