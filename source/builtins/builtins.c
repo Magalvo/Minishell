@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:25 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/27 15:50:24 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/04 12:30:56 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,25 @@
 		return (exit_minishell(s,"error"), 0);
 	if (id == 0)
 		execve(s->cmd_temp[0], s->cmd_temp, s->env_tmp);
-	wait(NULL); 
+	wait(NULL);
 	return (1);
-} 
+}
 */
-int	ft_sw_builtins(const char *s1, const char *s2) {
-    size_t s1_len = ft_strlen(s1);
-    size_t s2_len = ft_strlen(s2);
 
-    if (s1_len != s2_len) {
-        return (s1_len - s2_len);
-    }
-    return ft_strncmp(s1, s2, s1_len);
+int	ft_sw_builtins(const char *s1, const char *s2)
+{
+	size_t s1_len = ft_strlen(s1);
+	size_t s2_len = ft_strlen(s2);
+
+	if (s1_len != s2_len) {
+		return (ft_abs(s1_len - s2_len));
+	}
+
+	// return ft_strncmp(s1, s2, s1_len);
+	if (ft_ismax(s1_len, s2_len))
+		return ft_strncmp(s1, s2, s2_len);
+	else
+		return ft_strncmp(s1, s2, s1_len);
 }
 
 int	ft_exec_buitltins_chr(t_ms *s, char **cmds)  //[{laskdl}{kjhalsd}{jakskdj}]
