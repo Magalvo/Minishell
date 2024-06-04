@@ -5,12 +5,16 @@ int print_exp(t_env *export)
 	while (export) 
 	{
 		if (export->value != NULL && export->value[0])
+		{
 			printf("declare -x %s=\"%s\"\n", export->key, export->value);
+		}
 		else
+		{
 			printf("declare -x %s\n", export->key);
+		}	
 		export = export->next;
 	}
-	return (0);
+	return (1);
 }
 
 int print_export(t_env *env) {
@@ -30,9 +34,12 @@ void swap_env_data(t_env *a, t_env *b)
 	b->value = temp_value;
 }
 
-int compare_keys(char *a, char *b) {\
-	int len = ft_strlen(a) > ft_strlen(b) ? ft_strlen(a): ft_strlen(b);
-	return strncmp(a, b, len) > 0; 
+int compare_keys(char *a, char *b) 
+{
+	int len;
+	
+	len = ft_strlen(a) > ft_strlen(b) ? ft_strlen(a): ft_strlen(b);
+	return ft_strncmp(a, b, len) > 0; 
 }
 
 void sort_env_list(t_env **head) 
