@@ -46,7 +46,7 @@ t_cmd *parsepipe(char **ps, char *es)
 {
 	t_cmd *cmd;
 
-	cmd = parseexec(ps, es);
+ 	cmd = parseexec(ps, es);
 	if(peek(ps, es, "|")){
 		gettoken(ps, es, 0, 0);
 		cmd = pipecmd(cmd, parsepipe(ps, es));
@@ -154,6 +154,7 @@ t_cmd *parseexec(char **ps, char *es)
 	// cmd->eargv[argc] = 0;
 	_argv[argc] = 0;
 	cmd->argv = _argv;
+	cmd->argc = argc;
 	return ret;
 }
 
