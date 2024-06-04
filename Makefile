@@ -6,7 +6,7 @@
 #    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/05/23 16:32:56 by cjoao-de         ###   ########.fr        #
+#    Updated: 2024/06/04 12:17:53 by cjoao-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ LDFLAGS = -L$(LIBFT_DIR) -lft -lreadline
 
 # Project settings
 NAME = minishell
-CFLAGS = -Wall -Wextra -Werror -I${LIBFT_DIR} #-O3
+CFLAGS = -Wall -Wextra -Werror -I${LIBFT_DIR} -fsanitize=address #-O3
 debug: CFLAGS += -g3 #-fPIE #-fsanitize=address #-pg   #-fsanitize=address
 MAKEFLAGS += --no-print-directory #  --silent
 .SILENT: $(OBJ) $(NAME) clean fclean
