@@ -46,6 +46,8 @@ int	ft_sw_builtins(const char *s1, const char *s2)
 
 int	ft_exec_buitltins_chr(t_ms *s, char **cmds)  //[{laskdl}{kjhalsd}{jakskdj}]
 {
+	if (s->ast->type != EXEC)
+		return (0);
 	(void)s;
 	if (ft_sw_builtins(cmds[0], "echo") == 0)
 		return (echo_cmd_test(cmds));

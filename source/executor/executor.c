@@ -57,21 +57,26 @@ int exec_input(t_ms *s)
 
 	if (s->ast == NULL)
 		return (new_line(), 1);
+
+
 	if (ft_exec_buitltins_chr(s, s->ast->argv))
 		return (1);
+	
 	id = fork();											//* Fork a new process for external commands
 	if (id < 0)
 		return (exit_minishell(s, "error"), 0);
 	if (id == 0) 											//* Child process
 	{
+		if (s->ast->type != EXEC)
+			exit(0);
 		t_cmd	*cast = s->ast;
-		path = cmd_path(s->paths, cast->temp[0]);
+		path = cmd_path(s->paths, cast->argv[0]);
 		if (!path)
 		{
-			ft_putstr_fd(cast->temp[0], 2);
+			ft_putstr_fd(cast->argv[0], 2);
 			exit(EXIT_FAILURE);
 		}
-		execve(path, cast->temp, s->env_tmp);
+		execve(path, cast->argv, s->env_tmp);
 		perror("execve");  									//* If execve returns, an error occurred
 		exit(EXIT_FAILURE);
 	}
