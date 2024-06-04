@@ -41,7 +41,7 @@ int	handle_key_value_update(t_ms *s, char *key, char *value)
 			free (value);
 	}
 	free(key);
-	return (0);
+	return (1);
 }
 void	init_export(t_ms *ms, char **envp)
 {
