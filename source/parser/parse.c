@@ -3,6 +3,9 @@
 
 t_cmd	*parse_input(char *input)
 {
+	if (ft_strlen(input) == 0)
+		return (NULL);
+
 	// parsecmd(input);
 	// void (*input)
 	return (parsecmd(input));

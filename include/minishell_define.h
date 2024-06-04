@@ -41,6 +41,7 @@ struct s_ms
 	int		modal;		//* MAIN / CHILD / HERE_DOC / IGNORE
 	int		infile;		//* Redirect Infile
 	int		outfile;	//* Redirect Outfile
+	bool	input_empty;
 	char	**env_tmp;	//* Temp env;
 	char	**cmd_temp;
 	t_cmd	*ast;		//* Command List
