@@ -139,8 +139,8 @@ t_cmd *parseexec(char **ps, char *es)
 		// ft_strlcpy(new_arg, q, (eq - q + 1));
 		ft_memmove((char *)new_arg, (char *)q, (eq - q));
 		_argv[argc] = new_arg;
-		cmd->argv[argc] = q;
-		cmd->eargv[argc] = eq;
+		// cmd->argv[argc] = q;
+		// cmd->eargv[argc] = eq;
 		argc++;
 		////////////////
 		// todo cleanup
@@ -149,9 +149,11 @@ t_cmd *parseexec(char **ps, char *es)
 			panic("too many args");
 		ret = parseredirs(ret, ps, es);
 	}
-	cmd->argv[argc] = 0;
-	cmd->eargv[argc] = 0;
-	cmd->temp = _argv;
+	// cmd->argv[argc] = 0;
+	// cmd->eargv[argc] = 0;
+	// cmd->eargv[argc] = 0;
+	_argv[argc] = 0;
+	cmd->argv = _argv;
 	return ret;
 }
 

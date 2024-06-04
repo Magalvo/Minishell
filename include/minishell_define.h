@@ -87,17 +87,19 @@ enum s_cmd_type
 
 struct	s_cmd
 {
-	int type;
-	char *argv[MAXARGS];
-	char *eargv[MAXARGS];
-	t_cmd *left;			//pipe
-	t_cmd *right;
-	t_cmd *cmd;				//redir
-	char *file;
-	char *efile;
-	int mode;
-	int fd;
-	char **temp;
+	int		type;
+	int		argc;
+	char	**argv;
+	// char	*argv[MAXARGS];
+	// char	*eargv[MAXARGS];
+	t_cmd	*left;			//pipe
+	t_cmd	*right;
+	t_cmd	*cmd;				//redir
+	char	*file;
+	char	*efile;
+	int		mode;
+	int		fd;
+	char	**temp;
 };
 
 struct s_exec
