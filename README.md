@@ -6,7 +6,9 @@ use 'make debug' instead of 'make re' (won't recompile libft, and adds -g flag)
    
 ## cjoao-de notes:
 1 (echo hello; echo world) >output.txt
-2 
+2 move ast.temp to argv
+3 create argc
+4 fix ast.argv[last]
    
 ## dde-maga notes:
    
