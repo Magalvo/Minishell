@@ -31,6 +31,7 @@ signals.c
 */
 void	check_signal(t_ms *s);
 void	handler(int signo, siginfo_t *info, void *ptr);
+void	new_line(void);
 
 //*================ BUILTINS =====================*//
 

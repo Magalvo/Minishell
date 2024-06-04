@@ -45,12 +45,19 @@ char	*cmd_path(char **paths, char *cmd)
 	return (NULL);
 }
 
+void	new_line(void)
+{
+	rl_on_new_line();
+	rl_redisplay();
+}
 int exec_input(t_ms *s)
 {
 	char	*path;
 	int		id;
 
-	if (ft_exec_buitltins_chr(s, s->ast->temp)) 				
+	if (s->ast == NULL)
+		return (new_line(), 1);
+	if (ft_exec_buitltins_chr(s, s->ast->temp))
 		return (1);
 	id = fork();											//* Fork a new process for external commands
 	if (id < 0)
