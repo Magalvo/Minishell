@@ -49,9 +49,13 @@ t_env	*new_env_node(char *env_var);
 void	sort_env_list(t_env **head);
 int		print_export(t_env *env);
 int		ft_sw_builtins(const char *s1, const char *s2);
-
-
-
+int		is_valid_key(const char *key);
+char	*get_key_from_str(const char *str);
+char	*get_value_from_str(const char *str);
+int		handle_key_value_update(t_ms *s, char *key, char *value);
+char	*extract_key(const char *str, char *delimiter);
+int		add_new_node(t_ms *s, char *key, char *value);
+void	init_export(t_ms *ms, char **envp);
 //*=================== INIT =======================*//
 
 

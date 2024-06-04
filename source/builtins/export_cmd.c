@@ -75,9 +75,7 @@ int	add_new_node(t_ms *s, char *key, char *value)
 	{
 		env = s->env;
 		while (env->next)
-		{
 			env = env->next;
-		}	
 		env->next = new_node;
 		new_node->prev = env;
 	}
@@ -88,49 +86,20 @@ int export_cmd(t_ms *s, char **str)
 {
 	char	*key;
 	char	*value;
-	char	*delimiter;
+	//char	*delimiter;
 
 	if (str[1] == NULL)
 	{
-		sort_env_list(&s->env);
-		return (print_export(s->env));
+		sort_env_list(&s->export);
+		return (print_export(s->export));
 	}
-		
-	delimiter = ft_strchr(str[1], '=');
-	if (delimiter)
-	{
-		key = extract_key(str[1], delimiter);
-		value = ft_strdup(delimiter + 1);
-	}
-	else
-	{
-		key = ft_strdup(str[1]);
-		value = NULL;
-	}
-	if (!key)
-        return (0);
-	if (!is_valid_key(key))
-	{
-		free(key);
-		if (value)
-			free(value);
-		return (printf("Invalid variable name\n"), 0);
-	}
-	if (!update_key(s->env, key, value))
-	{
-		if (!add_new_node(s, key, value))
-			{
-				free(key);
-				if (value)
-					free(value);
-				return (0);
-			}
-	}
-	else if (value)
-		free(value);
-	free(key);
-	return (1);
+	key = get_key_from_str(str[1]);
+	value = get_value_from_str(str[1]);
+	if(!key)
+		return (0);
+	return (handle_key_value_update(s, key, value));
 }
+	
 
 
 
