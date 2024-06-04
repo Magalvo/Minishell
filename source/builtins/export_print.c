@@ -37,9 +37,11 @@ void swap_env_data(t_env *a, t_env *b)
 int compare_keys(char *a, char *b) 
 {
 	int len;
-	
-	len = ft_strlen(a) > ft_strlen(b) ? ft_strlen(a): ft_strlen(b);
-	return ft_strncmp(a, b, len) > 0; 
+	if (ft_strlen(a) > ft_strlen(b))
+		len = ft_strlen(a);
+	else
+		len = ft_strlen(b);
+	return (ft_strncmp(a, b, len) > 0); 
 }
 
 void sort_env_list(t_env **head) 
