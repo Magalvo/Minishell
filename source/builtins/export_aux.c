@@ -18,7 +18,7 @@ char	*get_value_from_str(const char *str)
 		return (NULL);
 }
 
-int	handle_key_value_update(t_ms *s, char *key, char *value)
+int	handle_kv_update(t_env *env, char *key, char *value)
 {
 	if(!is_valid_key(key))
 	{
@@ -28,9 +28,9 @@ int	handle_key_value_update(t_ms *s, char *key, char *value)
 		printf("invalid Var Name");
 		return (0);
 	}
-	if (!update_key(s->env, key, value))
+	if (!update_key(env, key, value))
 	{
-		if(!add_new_node(s,key,value))
+		if(!add_new_node(env,key,value))
 		{
 			free(key);
 			if(value)
@@ -43,17 +43,19 @@ int	handle_key_value_update(t_ms *s, char *key, char *value)
 	free(key);
 	return (1);
 }
+
 void	init_export(t_ms *ms, char **envp)
 {
 	t_env	*head = NULL;
 	t_env	*tail = NULL;
 	int		i;
 
-	for (i = 0; envp[i] != NULL; i++)
+	i = 0;
+	while (envp && envp[i] != NULL)
 	{
 		t_env *new_node = new_env_node(envp[i]);
-		if (!new_node)
-			continue;
+/* 		if (!new_node)
+			continue; */
 		if (!head)
 		{
 			head = new_node;
@@ -64,7 +66,9 @@ void	init_export(t_ms *ms, char **envp)
 			tail->next = new_node;
 			new_node->prev = tail;
 			tail = new_node;
-		}	
+		}
+		i++;	
 	}
 	ms->export = head;
 }
+
