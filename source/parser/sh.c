@@ -21,10 +21,10 @@ runcmd(struct cmd *cmd)
 {
   int p[2];
   // struct backcmd *bcmd;
-  struct execcmd *ecmd;
+  struct cmd_exec *ecmd;
   // struct listcmd *lcmd;
-  struct pipecmd *pcmd;
-  struct redircmd *rcmd;
+  struct cmd_pipe *pcmd;
+  struct cmd_redir *rcmd;
 
   if(cmd == 0)
     exit(1);
@@ -34,7 +34,7 @@ runcmd(struct cmd *cmd)
     panic("runcmd");
 
   case EXEC:
-    ecmd = (struct execcmd*)cmd;
+    ecmd = (struct cmd_exec*)cmd;
     if(ecmd->argv[0] == 0)
       exit(1);
     exec(ecmd->argv[0], ecmd->argv);
@@ -42,7 +42,7 @@ runcmd(struct cmd *cmd)
     break;
 
   case REDIR:
-    rcmd = (struct redircmd*)cmd;
+    rcmd = (struct cmd_redir*)cmd;
     close(rcmd->fd);
     if(open(rcmd->file, rcmd->mode) < 0){
       fprintf(2, "open %s failed\n", rcmd->file);
@@ -52,7 +52,7 @@ runcmd(struct cmd *cmd)
     break;
 
   case PIPE:
-    pcmd = (struct pipecmd*)cmd;
+    pcmd = (struct cmd_pipe*)cmd;
     if(pipe(p) < 0)
       panic("pipe");
     if(fork1() == 0){
@@ -102,7 +102,7 @@ int main(void)
       continue;
     }
     if(fork1() == 0)
-      runcmd(parsecmd(buf));
+      runcmd(parse_cmd(buf));
     wait(0);
   }
   exit(0);

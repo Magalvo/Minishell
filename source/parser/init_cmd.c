@@ -1,7 +1,7 @@
 
 #include "../include/minishell.h"
 
-t_cmd	*init_cmd(void)
+t_cmd	*cmd_init(void)
 {
 	t_cmd	*cmd;
 
@@ -9,22 +9,22 @@ t_cmd	*init_cmd(void)
 	return (cmd);
 }
 
-t_cmd *execcmd(void)
+t_cmd *cmd_exec(void)
 {
 	t_cmd	*cmd;
 
-	cmd = init_cmd();
+	cmd = cmd_init();
 	// cmd = malloc(sizeof(*cmd));
 	// ft_memset(cmd, 0, sizeof(*cmd));
 	cmd->type = EXEC;
 	return (cmd);
 }
 
-t_cmd *redircmd(t_cmd *subcmd, char *file, char *efile, int mode, int fd)
+t_cmd *cmd_redir(t_cmd *subcmd, char *file, char *efile, int mode, int fd)
 {
 	t_cmd *cmd;
 
-	cmd = init_cmd();
+	cmd = cmd_init();
 	cmd->type = REDIR;
 	cmd->cmd = subcmd;
 	cmd->file = file;
@@ -34,11 +34,11 @@ t_cmd *redircmd(t_cmd *subcmd, char *file, char *efile, int mode, int fd)
 	return (cmd);
 }
 
-t_cmd *pipecmd(t_cmd *left, t_cmd *right)
+t_cmd *cmd_pipe(t_cmd *left, t_cmd *right)
 {
 	t_cmd *cmd;
 
-	cmd = init_cmd();
+	cmd = cmd_init();
 	cmd->type = PIPE;
 	cmd->left = left;
 	cmd->right = right;

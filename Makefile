@@ -6,7 +6,7 @@
 #    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/06/05 11:59:56 by cjoao-de         ###   ########.fr        #
+#    Updated: 2024/06/05 16:07:41 by cjoao-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ EXECUTOR =	executor.c \
 
 # EXECUTOR =	executor.c
 
-PARSER = aux.c init_cmd.c parse.c tokens.c
+PARSER =	aux.c init_cmd.c tokens.c \
+			parse.c	parse_exec.c
 
 AST_FACTORY =
 

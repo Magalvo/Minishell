@@ -72,16 +72,17 @@ t_cmd	*nulterminate(t_cmd *cmd);
 int		peek(char **ps, char *es, char *toks);
 void	panic(char *s);
 int		getcmd(char *buf, int nbuf);
-t_cmd	*init_cmd(void);
-t_cmd	*execcmd(void);
-t_cmd	*redircmd(t_cmd *subcmd, char *file, char *efile, int mode, int fd);
-t_cmd	*pipecmd(t_cmd *left, t_cmd *right);
+t_cmd	*cmd_init(void);
+t_cmd	*cmd_exec(void);
+t_cmd	*cmd_redir(t_cmd *subcmd, char *file, char *efile, int mode, int fd);
+t_cmd	*cmd_pipe(t_cmd *left, t_cmd *right);
 int		gettoken(char **ps, char *es, char **q, char **eq);
-t_cmd	*parsecmd(char *input);
-t_cmd	*parseline(char **ps, char *es);
-t_cmd	*parsepipe(char **ps, char *es);
-t_cmd	*parseredirs(t_cmd *t_cmd, char **ps, char *es);
-t_cmd	*parseexec(char **ps, char *es);
+t_cmd	*parse_cmd(char *input);
+t_cmd	*parse_line(char **ps, char *es);
+t_cmd	*parse_pipe(char **ps, char *es);
+t_cmd	*parse_redir(t_cmd *t_cmd, char **ps, char *es);
+t_cmd	*parse_block(char **ps, char *es);
+t_cmd	*parse_exec(char **ps, char *es);
 
 
 
