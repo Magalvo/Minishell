@@ -6,7 +6,7 @@
 #    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/06/04 12:17:53 by cjoao-de         ###   ########.fr        #
+#    Updated: 2024/06/05 11:59:56 by cjoao-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,8 @@ libft: $(LIBFT)
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
 
-$(NAME): $(LIBFT) $(OBJ)
+# $(NAME): $(LIBFT) $(OBJ)
+$(NAME): $(OBJ)
 	@printf "$(YELLOW)** compiling **		"$(NAME)"$(RST)\n"
 	$(CC) $(CFLAGS)  -o $(NAME) $(OBJ) $(LDFLAGS)
 	@printf "$(GREEN_B)$(NAME) created\n$(RST)"

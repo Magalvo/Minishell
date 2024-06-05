@@ -20,10 +20,10 @@ t_cmd *parsecmd(char *input)
 	cmd = parseline(&input, end);
 	peek(&input, end, "");
 	if(input != end){
-		fprintf(stderr, "leftovers: %s\n", input);
+		ft_dprintf(STDERR_FILENO, "leftovers: %s\n", input);
 		panic("syntax");
 	}
-	nulterminate(cmd);
+	// nulterminate(cmd);
 	return cmd;
 }
 
@@ -132,12 +132,13 @@ t_cmd *parseexec(char **ps, char *es)
 		if(tok != 'a')
 			panic("syntax");
 
-		// _argv[argc] = (malloc(sizeof(char *) * (q - eq))		;
-		new_arg = ft_calloc(sizeof(char), (eq - q));
+		// _argv[argc] = (malloc(sizeof(char)sizeof(char *) * (q - eq))		;
+		// new_arg = ft_calloc(sizeof(char), sizeof(char) * (eq - q));
+		new_arg = ft_calloc((eq - q) + 1, sizeof(char));
 		// char *new_arg = malloc(sizeof(char) * (eq - q + 1));
 		// char *new_arg = malloc(sizeof(char) * (3));
 		// ft_strlcpy(new_arg, q, (eq - q + 1));
-		ft_memmove((char *)new_arg, (char *)q, (eq - q));
+		ft_memmove((void *)new_arg, (void *)q, (eq - q));
 		_argv[argc] = new_arg;
 		// cmd->argv[argc] = q;
 		// cmd->eargv[argc] = eq;
@@ -160,13 +161,16 @@ t_cmd *parseexec(char **ps, char *es)
 
 char **create_argv(int nbr)
 {
-	char **arr;
+	// char **arr;
 
-	arr = (char **)malloc(sizeof(char *) * (nbr + 1));
+	// arr = (char **)malloc(sizeof(char *) * (nbr + 1));
+	// arr = ft_calloc(sizeof(char *), nbr + 1);
 	// ft_bzero(arr, (sizeof(char *) * (nbr + 1)));
 	// cmd = malloc(sizeof(*cmd));
 	// ft_memset(arr, (sizeof(char *) * (nbr)));
-	return(arr);
+	// return(arr);
+	return (ft_calloc((nbr + 1), sizeof(char *)));
+
 	// return((char **)malloc(sizeof(char *) * (nbr)));
 }
 
