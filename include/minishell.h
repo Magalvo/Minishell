@@ -58,6 +58,7 @@ int		handle_key_value_update(t_ms *s, char *key, char *value);
 char	*extract_key(const char *str, char *delimiter);
 int		add_new_node(t_ms *s, char *key, char *value);
 void	init_export(t_ms *ms, char **envp);
+int		add_slash(char *slash, char **paths);
 //*=================== INIT =======================*//
 
 
@@ -108,7 +109,6 @@ ll_inits.c
 int				exec_input(t_ms *s);
 //char			*search_path(char *command, char **paths);
 char			*env_paths(t_ms *ms, char **envp);
-int				add_slash(char *slash, char **paths);
 char			*cmd_path(char **paths, char *cmd);
 //*================= ERRORS =========================*//
 
