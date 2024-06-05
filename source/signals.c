@@ -2,63 +2,12 @@
 
 #include "../include/minishell.h"
 
-/*
-void check_signal(t_minis *s)
-{
-	(void)s;
-
-	struct sigaction sa;
-	sa.sa_handler = handle_signal;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = 0;
-
-	if (sigaction(SIGINT, &sa, NULL) == -1)
-		perror("can't catch SIGINT");
-	else if (sigaction(SIGTERM, &sa, NULL) == -1)
-		perror("can't catch SIGTERM");
-	else if (sigaction(SIGQUIT, &sa, NULL) == -1)
-		perror("can't catch SIGQUIT");
-}
-*/
-
-// advanced programming...enviromment: 10.14
-void check_signal(t_ms *s)
-{
-	(void)s;
-
-	struct sigaction sa;
-
-	
-	// sa.sa_handler = handle_signal;
-	sa.sa_sigaction = handler;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = SA_SIGINFO;
-	// sa.sa_flags = 0;
-
-	if (sigaction(SIGQUIT, &sa, NULL) == -1)
-	{
-		perror("sigaction");
-		exit(EXIT_FAILURE);
-	}
-	else if (sigaction(SIGINT, &sa, NULL) == -1)
-		perror("can't catch SIGINT");
-	else if (sigaction(SIGTERM, &sa, NULL) == -1)
-		perror("can't catch SIGTERM");
-
-}
-
 // check siginfo_DontUse
 void handler(int signo, siginfo_t *info, void *context)
 {
 	(void)info;
 	(void)context;
-	// ucontext_t *context = (ucontext_t *)ptr;
 
-	// if (info->si_signo == SIGTERM) /* CTRL + D */
-	// {
-	// 	write(1, "exit\n", 5);
-	// 	exit(0);
-	// }
 	if (signo == SIGINT) /* CTRL + C */
 	{
 		write(1, "\n", 1);
@@ -66,18 +15,56 @@ void handler(int signo, siginfo_t *info, void *context)
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
-	// ! still printing to stdout
-	else if (signo == SIGQUIT) /* CTRL + \ */
-	{
-		// rl_replace_line("", 0);
-		// rl_redisplay();
-		rl_catch_signals = 0;
-		(void)signo;
-		// write(1, "SIGQUIT\n", 8);
-	}
-	// printf("Received signal %d\n", signo);
-	// printf("Signal originates from process %lu\n", (unsigned long)info->si_pid);
 }
+
+void	sig_ignore(struct sigaction *sa, int signal)
+{
+	struct	sigaction	sa_origin;
+	int					sa_origin_flags;
+
+	sa_origin_flags = sa->sa_flags;
+	sa->sa_handler = SIG_IGN;
+	sa->sa_flags |= SA_SIGINFO;
+	if (sigemptyset(&sa->sa_mask) != 0)
+		return ;
+	sigaction(signal, sa, &sa_origin);
+	sa->sa_flags = sa_origin_flags;
+}
+
+void	check_signal(e_signal sig)
+{
+	(void)sig;
+
+	static struct sigaction sa;
+
+	if (sig == MAIN)
+	{
+		sa.sa_sigaction = handler;
+		sa.sa_flags = SA_SIGINFO;
+		if (sigemptyset(&sa.sa_mask) != 0)
+			return ;
+		sigaction (SIGINT, &sa, NULL);
+		sig_ignore(&sa, SIGQUIT);
+	}
+	else if (sig == CHILD)
+	{
+		sa.sa_handler = SIG_DFL;
+		sa.sa_flags = 0;
+		if (sigemptyset(&sa.sa_mask) != 0)
+			return ;
+		sigaction(SIGINT, &sa, NULL);
+		sigaction(SIGQUIT, &sa, NULL);
+	}
+/* 	else if (IGNORE && HERE_DOC)
+	{
+		sig_ignore(&sa, SIGINT);
+		sig_ignore(&sa, SIGQUIT);
+	} */
+}
+
+
+
+
 
 /* argument is signal number */
 // void handle_signal(int sign)
@@ -105,3 +92,46 @@ void handler(int signo, siginfo_t *info, void *context)
 // 	else
 // 		exit(0);
 // }
+
+/*
+void check_signal(t_minis *s)
+{
+	(void)s;
+
+	struct sigaction sa;
+	sa.sa_handler = handle_signal;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = 0;
+
+	if (sigaction(SIGINT, &sa, NULL) == -1)
+		perror("can't catch SIGINT");
+	else if (sigaction(SIGTERM, &sa, NULL) == -1)
+		perror("can't catch SIGTERM");
+	else if (sigaction(SIGQUIT, &sa, NULL) == -1)
+		perror("can't catch SIGQUIT");
+}
+
+// advanced programming...enviromment: 10.14
+/* void check_signal(t_ms *s)
+{
+	(void)s;
+
+	struct sigaction sa;
+
+	// sa.sa_handler = handle_signal;
+	sa.sa_sigaction = handler;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_SIGINFO;
+	// sa.sa_flags = 0;
+
+	if (sigaction(SIGQUIT, &sa, NULL) == -1)
+	{
+		perror("sigaction");
+		exit(EXIT_FAILURE);
+	}
+	else if (sigaction(SIGINT, &sa, NULL) == -1)
+		perror("can't catch SIGINT");
+	else if (sigaction(SIGTERM, &sa, NULL) == -1)
+		perror("can't catch SIGTERM");
+
+} */

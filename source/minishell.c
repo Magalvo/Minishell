@@ -46,10 +46,10 @@ void minishell(char **envp)
 
 	if (!init_minishell(&s, envp))
 		exit_minishell(&s, NULL);
-	// check_signal(&s);
+	//check_signal(&s);
 	while (true)
 	{
-		check_signal(&s);
+		check_signal(MAIN);
 		input = readline(s.prompt);
 		if (input == NULL && s.modal == MAIN)
 			exit_minishell(&s, "exit\n");
