@@ -77,7 +77,7 @@ int	ft_exec_buitltins_chr(t_ms *s, char **cmds)  //[{laskdl}{kjhalsd}{jakskdj}]
 	else if (ft_sw_builtins(cmds[0], "cd") == 0)
 		return (cd_cmd(s, cmds));
 	else if (ft_sw_builtins(cmds[0], "env") == 0)
-		return (env_cmd(s));
+		return (env_cmd(s->env));
 	else if (ft_sw_builtins(cmds[0], "pwd") == 0)
 		return (pwd_cmd());
 	else if (ft_sw_builtins(cmds[0], "export") == 0)

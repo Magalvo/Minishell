@@ -21,7 +21,7 @@ void exit_minishell(t_ms *s, char *msg)
 int init_minishell(t_ms *s, char **ep)
 {
 	init_env(s, ep);
-	//init_export(s, ep);
+	init_export(s, ep);
 	env_paths(s, ep);
 	//todo this as it should be
 	s->env_tmp = ep;				//! added raw env for execve
@@ -31,7 +31,6 @@ int init_minishell(t_ms *s, char **ep)
 	s->prompt = "\e[3;33mnanoshell\e[0m\e[1;97m -> \e[0m";  // v alpha
 	// s->prompt = "\e[3;33mnanoshell\e[0m\e[1;97m -> \e[0m";    // v beta
 	// s->prompt = "\e[3;33mminishell\e[0m\e[1;97m -> \e[0m";     // v gold
-
 	return (true);
 }
 
