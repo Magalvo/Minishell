@@ -14,8 +14,10 @@
 
 void	unset_clean(t_env *current)
 {
-	free(current->value);
-	free(current->key);
+	if (current->value)
+		free(current->value);
+	if (current->key)
+		free(current->key);
 	free(current);
 }
 
@@ -23,6 +25,32 @@ void	unset_move(t_env *current)
 {
 	current->prev->next = current->next;
 	current->next->prev = current->prev;
+}
+
+void	unset_cmd_export(t_ms *s, char **args) 
+{
+	t_env *current;
+
+	current = s->export;
+	while (current && args[1]) 
+	{
+		if ((ft_sw_builtins(current->key, args[1]) == 0)) 
+		{
+			if (current->prev == NULL) 		//! If the node to remove is the head
+			{
+				s->export = current->next;
+				if (current->next != NULL)
+					current->next->prev = NULL;
+			} 
+			else if (current->next == NULL) //! If the node to remove is the tail
+				current->prev->next = NULL;
+			else							//! If the node to remove is in the middle
+				unset_move(current);
+			unset_clean(current);
+			return ;
+		}
+		current = current->next;
+	}
 }
 
 int unset_cmd(t_ms *s, char **args) 
@@ -45,10 +73,10 @@ int unset_cmd(t_ms *s, char **args)
 			else							//! If the node to remove is in the middle
 				unset_move(current);
 			unset_clean(current);
-			return (1);
+			break;
 		}
 		current = current->next;
 	}
-	return (0);
+	unset_cmd_export(s, args);
+	return (1);
 }
-

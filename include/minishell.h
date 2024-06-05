@@ -38,13 +38,13 @@ void	new_line(void);
 
 void	init_env(t_ms *ms, char **envp);
 //int	echo_cmd(t_cmd *cmd);
-int		env_cmd(t_ms *s);
+int		env_cmd(t_env *env);
 int		cd_cmd(t_ms *mini, char **path);
 int		pwd_cmd();
 int		export_cmd(t_ms *s, char **cmd);
 int		update_key(t_env *env, char *key, char *value);
 int		unset_cmd(t_ms *s, char **args);
- int	print_export(t_env *export);
+int		print_export(t_env *export);
 void	exit_cmd(t_ms *s);
 char	*get_env_val(t_env *env, char *key);
 t_env	*new_env_node(char *env_var);
@@ -54,9 +54,10 @@ int		ft_sw_builtins(const char *s1, const char *s2);
 int		is_valid_key(const char *key);
 char	*get_key_from_str(const char *str);
 char	*get_value_from_str(const char *str);
-int		handle_key_value_update(t_ms *s, char *key, char *value);
+int		handle_kv_update(t_env *env, char *key, char *value);
+int		export_update(t_env *export, char *key, char *value);
 char	*extract_key(const char *str, char *delimiter);
-int		add_new_node(t_ms *s, char *key, char *value);
+int		add_new_node(t_env *env, char *key, char *value);
 void	init_export(t_ms *ms, char **envp);
 int		add_slash(char *slash, char **paths);
 //*=================== INIT =======================*//

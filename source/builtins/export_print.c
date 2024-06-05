@@ -4,7 +4,7 @@ int print_exp(t_env *export)
 {
 	while (export) 
 	{
-		if (export->value != NULL && export->value[0])
+		if (export->value != NULL)
 		{
 			printf("declare -x %s=\"%s\"\n", export->key, export->value);
 		}

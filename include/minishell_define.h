@@ -45,8 +45,8 @@ struct s_ms
 	char	**env_tmp;	//* Temp env;
 	char	**cmd_temp;
 	t_cmd	*ast;		//* Command List
-	t_env	*env;		//*	ENV copy (Sorted copy)
-	t_env	*export	;	//* EXPORT List
+	t_env	*env;		//*	ENV Linked List
+	t_env	*export;	//* EXPORT List (Sorted)
 };
 
 // ? not used atm

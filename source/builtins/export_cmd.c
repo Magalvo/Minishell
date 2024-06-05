@@ -54,7 +54,7 @@ int update_key(t_env *env, char *key, char *value)
     return (0);
 }
 
-int	add_new_node(t_ms *s, char *key, char *value)
+/* int	add_new_node(t_ms *s, char *key, char *value)
 {
 	t_env *new_node; //= new_env_node(key,value);
 	t_env *env;
@@ -80,6 +80,53 @@ int	add_new_node(t_ms *s, char *key, char *value)
 		new_node->prev = env;
 	}
 	return (1);
+} */
+
+/* int export_cmd(t_ms *s, char **str)
+{
+	char	*key;
+	char	*value;
+
+	if (str[1] == NULL)
+	{
+		sort_env_list(&s->export);
+		return (print_export(s->export));
+	}
+	key = get_key_from_str(str[1]);
+	value = get_value_from_str(str[1]);
+	if(!key)
+		return (0);
+	export_update(s, key, value);
+	handle_kv_update(s, key, value);
+	return (1);
+} */
+	
+int	add_new_node(t_env *env, char *key, char *value)
+{
+	t_env *new_node; //= new_env_node(key,value);
+	t_env *env_cpy;
+
+	new_node = (t_env *)malloc(sizeof(t_env));
+	if(!new_node)
+		error_msg("malloc (new env)");
+	new_node->key = ft_strdup(key);
+	if (value)
+		new_node->value = ft_strdup(value);
+	else
+		new_node->value = NULL;
+	new_node->prev = NULL;
+	new_node->next = NULL;
+	if (!env)
+		env = new_node;
+	else
+	{
+		env_cpy = env;
+		while (env_cpy->next)
+			env_cpy = env_cpy->next;
+		env_cpy->next = new_node;
+		new_node->prev = env_cpy;
+	}
+	return (1);
 }
 
 int export_cmd(t_ms *s, char **str)
@@ -96,9 +143,9 @@ int export_cmd(t_ms *s, char **str)
 	value = get_value_from_str(str[1]);
 	if(!key)
 		return (0);
-	return (handle_key_value_update(s, key, value));
+	export_update(s->export, key, value);
+	handle_kv_update(s->env, key, value);
+	return (1);
 }
-	
-
 
 
