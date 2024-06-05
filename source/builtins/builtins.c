@@ -6,11 +6,34 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:25 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/04 12:30:56 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/05 12:03:15 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+int	add_slash(char *slash, char **paths)
+{
+	int	i;
+	int	len;
+
+	len = 0;
+	i = 0;
+	while (paths[i])
+	{
+		len = ft_strlen(paths[i]);
+		if (paths[i][len - 1] != '/')
+		{
+			slash = ft_strjoin(paths[i], "/");
+			if (!slash)
+				return (free_paths(paths, i), 0);
+			free(paths[i]);
+			paths[i] = slash;
+		}
+		i++;
+	}
+	return (1);
+}
 
 //! Executar Builtins no processo pai a nao ser o printenv;
 // ? Talvez possa ser no filho segundo o Mindmap  D:  :')
@@ -62,13 +85,34 @@ int	ft_exec_buitltins_chr(t_ms *s, char **cmds)  //[{laskdl}{kjhalsd}{jakskdj}]
 	else if (ft_sw_builtins(cmds[0], "unset") == 0)
 		return (unset_cmd(s, cmds));
 	else if (ft_sw_builtins(cmds[0], "exit") == 0)
-		return (exit_cmd(s), 1); 
+		return (exit_cmd(s), 1);
 	else
 		return (0);
 }
 
 /* int	ft_exec_buitltins(t_ms *s, char **cmds)
+{int	add_slash(char *slash, char **paths)
 {
+	int	i;
+	int	len;
+
+	len = 0;
+	i = 0;
+	while (paths[i])
+	{
+		len = ft_strlen(paths[i]);
+		if (paths[i][len - 1] != '/')
+		{
+			slash = ft_strjoin(paths[i], "/");
+			if (!slash)
+				return (free_paths(paths, i), 0);
+			free(paths[i]);
+			paths[i] = slash;
+		}
+		i++;
+	}
+	return (1);
+}
 	if (ft_strcmp(cmds->cmd_args[0], "echo") == 0)
 		return (echo_cmd(cmds));
 	if (ft_strcmp(cmds->cmd_args[0], "cd") == 0)

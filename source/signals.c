@@ -110,6 +110,7 @@ void check_signal(t_minis *s)
 	else if (sigaction(SIGQUIT, &sa, NULL) == -1)
 		perror("can't catch SIGQUIT");
 }
+ */
 
 // advanced programming...enviromment: 10.14
 /* void check_signal(t_ms *s)
