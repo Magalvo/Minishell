@@ -77,7 +77,7 @@ enum s_cmd_type
 	EXEC	= 1,
 	REDIR	= 2,
 	PIPE	= 3,
-	HEREDOC	= 4, //maybe
+	//HEREDOC	= 4, //maybe
 };
 
 // struct s_cmd

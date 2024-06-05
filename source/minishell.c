@@ -46,7 +46,6 @@ void minishell(char **envp)
 
 	if (!init_minishell(&s, envp))
 		exit_minishell(&s, NULL);
-	//check_signal(&s);
 	while (true)
 	{
 		check_signal(MAIN);
