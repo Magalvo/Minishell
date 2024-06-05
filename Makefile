@@ -16,7 +16,7 @@ include include/pretty_colors_ANSI
 # Project files
 BUILTINS =	builtins.c cd_cmd.c echo_cmd.c env_cmd.c \
 			exit_cmd.c export_cmd.c pwd_cmd.c unset_cmd.c \
-			export_print.c export_aux.c\
+			export_print.c export_aux.c export_update.c\
 
 EXECUTOR =	executor.c \
 

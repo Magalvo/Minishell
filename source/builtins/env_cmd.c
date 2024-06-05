@@ -46,16 +46,16 @@ char	*get_env_val(t_env *env, char *key)
 }
 
 
-int	env_cmd(t_ms *s)
+int	env_cmd(t_env *env)
 {
-	t_env	*env;
+	t_env	*env_cpy;
 
-	env = s->env;
-	while(env)
+	env_cpy = env;
+	while(env_cpy)
 	{
-		if (env->value != NULL)
-			printf("%s=%s\n", env->key, env->value);
-		env = env->next;
+		if (env_cpy->value != NULL)
+			printf("%s=%s\n", env_cpy->key, env_cpy->value);
+		env_cpy = env_cpy->next;
 	}	
 	return (1);
 }
@@ -109,7 +109,6 @@ void	init_env(t_ms *ms, char **envp)
 		}	
 	}
 	ms->env = head;
-	ms->export = head;
 }
 
 
