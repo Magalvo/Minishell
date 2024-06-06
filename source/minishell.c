@@ -18,9 +18,38 @@ void exit_minishell(t_ms *s, char *msg)
 	exit(EXIT_SUCCESS);
 }
 
+char **set_min_env(void)
+{
+	char	**temp;
+	char	*env;
+	// TODO env output when: env -i bash
+	// PWD=/home/kajo	//? hmm, donoo
+	// SHLVL=1		// ! this one is easy
+	// PATH=/home/kajo/.local/bin/:/usr/local/bin:/usr/bin
+	// forced PATH: /home/kajo/.local/bin/
+	//				/usr/local/bin
+	//				/usr/bin
+	// ! true on fedora, maybe not on ubuntu: /usr/bin might be /bin
+	// _=/usr/bin/env			// < last command
+	// s->env_tmp
+	temp = ft_calloc((5), sizeof(char *));
+	env = ft_calloc(14 + 1, sizeof(char));
+	env = "PWD=/home/kajo\0";
+	temp[0] = env;
+	// or something like it
+	return (temp);
+ }
+
+
 int init_minishell(t_ms *s, char **ep)
 {
+	if (!*ep)
+	{
+		exit_minishell(s, NULL);
+		ep = set_min_env();		// TODO
+	}
 	init_env(s, ep);
+		//  (char **){"empty env", "\0"};
 	init_export(s, ep);
 	env_paths(s, ep);
 	//todo this as it should be
@@ -34,11 +63,30 @@ int init_minishell(t_ms *s, char **ep)
 	return (true);
 }
 
+void	init_t_ms(t_ms *s)
+{
+	// s = ft_calloc(sizeof(t_ms), sizeof(t_ms));
+	s->prompt = NULL;
+	s->paths = NULL;
+	s->username = NULL;
+	s->modal = -1;
+	s->infile = -1;
+	s->outfile = -1;
+	s->input_empty = NULL;
+	s->env_tmp = NULL;
+	s->cmd_temp = NULL;
+	s->ast = NULL;
+	s->env = NULL;
+	s->export = NULL;
+}
+
 
 // STATUS: signal caught, ctrl+\ shouldn't print to stdout
 void minishell(char **envp)
 {
 	t_ms	s;
+
+	init_t_ms(&s);
 	char	*input;
 	// int		not_builtin;
 	// int i;
@@ -93,7 +141,11 @@ int main(int argc, char *argv[], char *envp[])
 	(void)argv;
 
 	if (argc != 1)
-		return (0);
+		return (ft_dprintf(STDERR_FILENO, \
+			"Minishell takes no arguments, Exiting.\n"));
+	if (!*envp)
+		ft_dprintf(STDERR_FILENO, \
+			"Naughty naughty evALuaTOr... hmmff!\n");
 	minishell(envp);
 	return (0);
 }
