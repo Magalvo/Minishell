@@ -64,9 +64,13 @@ RM = rm -rf
 CC = cc
 # AR = ar
 
+
 all: $(NAME)
 
+
 libft: $(LIBFT)
+
+.: fclean $(LIBFT) $(NAME)
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
