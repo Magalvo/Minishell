@@ -25,14 +25,15 @@ EXECUTOR =	executor.c \
 PARSER =	aux.c init_cmd.c tokens.c \
 			parse.c	parse_exec.c
 
-AST_FACTORY =
+AUX = aux1.c
 
 
 SRC_DIR = ./source/
 BUILTINS_DIR = $(SRC_DIR)builtins/
 EXECUTOR_DIR = $(SRC_DIR)executor/
 PARSER_DIR 	= $(SRC_DIR)parser/
-AST_DIR 	= $(SRC_DIR)ast/
+AUX_DIR 	= $(SRC_DIR)aux/
+
 
 SRC = 	$(SRC_DIR)minishell.c \
 		$(SRC_DIR)signals.c \
@@ -40,7 +41,7 @@ SRC = 	$(SRC_DIR)minishell.c \
 		$(addprefix $(BUILTINS_DIR), $(BUILTINS)) \
 		$(addprefix $(EXECUTOR_DIR), $(EXECUTOR)) \
 		$(addprefix $(PARSER_DIR), $(PARSER)) \
-		$(addprefix $(AST_DIR), $(AST )) \
+		$(addprefix $(AUX_DIR), $(AUX)) \
 
 OBJ_DIR = ./object/
 OBJ = $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)

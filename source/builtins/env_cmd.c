@@ -111,4 +111,3 @@ void	init_env(t_ms *ms, char **envp)
 	ms->env = head;
 }
 
-

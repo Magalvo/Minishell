@@ -60,6 +60,9 @@ char	*extract_key(const char *str, char *delimiter);
 int		add_new_node(t_env *env, char *key, char *value);
 void	init_export(t_ms *ms, char **envp);
 int		add_slash(char *slash, char **paths);
+
+
+
 //*=================== INIT =======================*//
 
 
@@ -89,6 +92,7 @@ t_cmd	*parse_exec(char **ps, char *es);
 
 //*==================== AUX =======================*//
 void	split_input(t_ms *s, char* input);
+char	*get_env_expand(char *key);
 
 
 
