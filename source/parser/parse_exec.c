@@ -81,9 +81,9 @@ char **create_argv(int nbr)
 	// return((char **)malloc(sizeof(char *) * (nbr)));
 }
 
-void create_arg( char **argv, char *str)
-{
-	while (*argv)
-		argv++;
-	*argv = str;
-}
+// void create_arg( char **argv, char *str)
+// {
+// 	while (*argv)
+// 		argv++;
+// 	*argv = str;
+// }

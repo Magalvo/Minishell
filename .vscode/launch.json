@@ -40,8 +40,8 @@
 			"type": "cppdbg",
 			"request": "launch",
 			// "console": "internalConsole",
-			"program": "${workspaceFolder}/minishell",
-			"args": [
+			"program": "/usr/bin/env",
+			"args": [ "-i", "${workspaceFolder}/minishell",
 
 			],
 			"stopAtEntry": false,
