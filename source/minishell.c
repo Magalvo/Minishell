@@ -43,16 +43,20 @@ char **set_min_env(void)
 
 int init_minishell(t_ms *s, char **ep)
 {
+	int i = 0;  //! just for test
 	if (!*ep)
 	{
-		exit_minishell(s, NULL);
-		ep = set_min_env();		// TODO
+		initialize_env(&ep);
+		while (ep[i])
+		{
+			printf("%s\n", ep[i]);
+			i++;
+		}
+		//exit_minishell(s, NULL);
 	}
 	init_env(s, ep);
-		//  (char **){"empty env", "\0"};
 	init_export(s, ep);
 	env_paths(s, ep);
-	//todo this as it should be
 	s->env_tmp = ep;				//! added raw env for execve
 	s->modal = MAIN;
 	s->cmd_temp = NULL;
@@ -101,16 +105,10 @@ void minishell(char **envp)
 			exit_minishell(&s, "exit\n");
 		// ast_factory(&s, input); // ! make this
 		split_input(&s, input); // not needed
-		// i = 0;
-		/* while (s.paths[i])
-		{
-			ft_putendl_fd(s.paths[i], 1);
-			i++;
-		} */
 		s.ast = parse_input(input); // ! WIP
 		exec_input(&s); // ! make this
-		// i = 0;
-		//printf("content: %i", s.cmds->type);
+		env_arr_update(&s);
+		env_paths(&s, s.env_tmp);
 		// TODO
 		// if s.cmds.type = {EXEC, REDIR, PIPE}
 		// cast s.cmds.type into

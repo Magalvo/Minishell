@@ -69,7 +69,7 @@ static int	ft_flagged(char *s)
 	return (1);
 }
 
-int	echo_cmd_test(char **cmd)
+/* int	echo_cmd_test(char **cmd)
 {
 	int		i;
 	int		check;
@@ -85,6 +85,35 @@ int	echo_cmd_test(char **cmd)
 	{
 		if (cmd[i][0] == '$')
 			ft_putstr_fd(get_env_expand(cmd[i]), 1);
+		else
+		{
+			ft_putstr_fd(cmd[i], 1);
+			if(cmd[i + 1])
+				ft_putstr_fd(" ", 1);
+		}
+		i++;
+	}
+	if (check == 0)
+		ft_putstr_fd("\n", 1);
+	return (1);
+} */
+
+int	echo_cmd_test(char **cmd, t_ms *s)
+{
+	int		i;
+	int		check;
+
+	i = 1;
+	check = 0;
+	while (cmd[i] != NULL && ft_flagged(cmd[i]) == 1)
+	{
+		check = 1;
+		i++;
+	}
+	while (cmd[i])
+	{
+		if (cmd[i][0] == '$')
+			ft_putstr_fd(get_env_val(s->env, cmd[i]), 1);
 		else
 		{
 			ft_putstr_fd(cmd[i], 1);

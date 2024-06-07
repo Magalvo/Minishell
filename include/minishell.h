@@ -93,7 +93,8 @@ t_cmd	*parse_exec(char **ps, char *es);
 //*==================== AUX =======================*//
 void	split_input(t_ms *s, char* input);
 char	*get_env_expand(char *key);
-
+void	env_arr_update(t_ms *s);
+void	initialize_env(char ***envp);
 
 
 /*
@@ -130,6 +131,6 @@ int		free_export_p(t_env *env_copy, t_env *new_node);
 
 int		exec_input(t_ms *s);
 int		ft_exec_buitltins_chr(t_ms *s, char **cmds);
-int		echo_cmd_test(char **cmd);
+int		echo_cmd_test(char **cmd, t_ms *s);
 //int		export_cmd_test(t_ms *s, char **cmds);
 //int		unset_cmd_test(t_ms *s, char **cmds);

@@ -73,7 +73,7 @@ int	ft_exec_buitltins_chr(t_ms *s, char **cmds)  //[{laskdl}{kjhalsd}{jakskdj}]
 		return (0);
 	(void)s;
 	if (ft_sw_builtins(cmds[0], "echo") == 0)
-		return (echo_cmd_test(cmds));
+		return (echo_cmd_test(cmds, s));
 	else if (ft_sw_builtins(cmds[0], "cd") == 0)
 		return (cd_cmd(s, cmds));
 	else if (ft_sw_builtins(cmds[0], "env") == 0)
