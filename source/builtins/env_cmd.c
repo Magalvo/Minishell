@@ -19,22 +19,52 @@ char	*env_paths(t_ms *ms, char **envp)
 {
 	char	**paths;
 	char	*slash;
+	int		i;
+	int		found;
 
+	i = 0;
+	found = 0;
 	slash = NULL;
-	while (ft_strncmp(*envp, "PATH=", 5) != 0)
-		envp++;
-	paths = ft_split(*envp + 5, ':');
-	if (!paths)
+	paths = NULL;
+	while (envp[i] != NULL)
 	{
-		return (NULL);
+		if (ft_strncmp(envp[i], "PATH=", 5) == 0)    //!HERE Removed '=' from PATH=
+		{
+			found = 1;
+			paths = ft_split(envp[i] + 5, ':');
+			break;
+		}
+		i++;
 	}
+	if (!found || !paths)
+		return (NULL);
 	add_slash(slash, paths);
 	ms->paths = paths;
 	return (NULL);
 }
+/* char	*env_paths(t_ms *ms, char **envp)
+{
+	char	**paths;
+	char	*slash;
+
+	slash = NULL;
+	paths = NULL;
+	while (ft_strncmp(*envp, "PATH=", 5) != 0)
+		envp++;
+	if (*envp == NULL)
+		return (NULL);
+	paths = ft_split(*envp + 5, ':');
+	if (!paths)
+		return (NULL);
+	add_slash(slash, paths);
+	ms->paths = paths;
+	return (NULL);
+} */
 
 char	*get_env_val(t_env *env, char *key)
 {
+	if (key[0] == '$')
+			key = key + 1;
 	while (env)
 	{
 		// if (ft_sw_builtins(env->key, key, ft_strlen(key)) == 0)

@@ -57,11 +57,8 @@ int exec_input(t_ms *s)
 
 	if (s->ast == NULL)
 		return (new_line(), 1);
-
-
 	if (ft_exec_buitltins_chr(s, s->ast->argv))
 		return (1);
-	
 	id = fork();											//* Fork a new process for external commands
 	if (id < 0)
 		return (exit_minishell(s, "error"), 0);

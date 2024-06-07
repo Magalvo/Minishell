@@ -66,7 +66,7 @@ t_cmd *parse_exec(char **ps, char *es)
 	return ret;
 }
 
-char **create_argv(int nbr)
+char **create_argv(int nbr) // create double pointer 
 {
 	// char **arr;
 
