@@ -18,7 +18,7 @@ void exit_minishell(t_ms *s, char *msg)
 	exit(EXIT_SUCCESS);
 }
 
-char **set_min_env(void)
+/* char **set_min_env(void)
 {
 	char	**temp;
 	char	*env;
@@ -38,7 +38,7 @@ char **set_min_env(void)
 	temp[0] = env;
 	// or something like it
 	return (temp);
- }
+ } */
 
 
 int init_minishell(t_ms *s, char **ep)
@@ -66,6 +66,8 @@ int init_minishell(t_ms *s, char **ep)
 	// s->prompt = "\e[3;33mminishell\e[0m\e[1;97m -> \e[0m";     // v gold
 	return (true);
 }
+
+//!!!!!!!!!! O MINIHELL TEM DE SUBIR 1 NIVEL ASSIM QUE INICIA a nao ser que seja sem env
 
 void	init_t_ms(t_ms *s)
 {

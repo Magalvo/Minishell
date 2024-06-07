@@ -24,7 +24,7 @@ char	**null_env_init()
 	size_t	key_len;
 	size_t	cwd_len;
 
-	init_env = malloc(sizeof(char *) * 4);
+	init_env = malloc(sizeof(char *) * 5);
 	if (!init_env)
 		error_msg("malloc nulla");
 	cwd = find_cwd();
@@ -60,7 +60,18 @@ char	**null_env_init()
 		free(init_env);
 		error_msg("strdup");
 	}
-	init_env[3] = NULL;
+
+	init_env[3] = ft_strdup("PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin");
+	if(!init_env[3])
+	{
+		free(init_env[0]);
+		free(init_env[1]);
+		free(init_env[2]);
+		free(init_env);
+		error_msg("strdup");
+	}
+
+	init_env[4] = NULL;
 	return (init_env);
 }	
 

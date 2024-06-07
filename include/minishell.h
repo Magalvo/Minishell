@@ -38,7 +38,7 @@ void	new_line(void);
 
 void	init_env(t_ms *ms, char **envp);
 //int	echo_cmd(t_cmd *cmd);
-int		env_cmd(t_env *env);
+int		env_cmd(t_ms *s, char **cmds);
 int		cd_cmd(t_ms *mini, char **path);
 int		pwd_cmd();
 int		export_cmd(t_ms *s, char **cmd);
@@ -95,6 +95,7 @@ void	split_input(t_ms *s, char* input);
 char	*get_env_expand(char *key);
 void	env_arr_update(t_ms *s);
 void	initialize_env(char ***envp);
+char	**null_env_init();
 
 
 /*
