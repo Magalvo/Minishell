@@ -78,5 +78,7 @@ int unset_cmd(t_ms *s, char **args)
 		current = current->next;
 	}
 	unset_cmd_export(s, args);
+	env_arr_update(s);
+	env_paths(s, s->env_tmp);
 	return (1);
 }
