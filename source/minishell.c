@@ -1,11 +1,6 @@
 // header goes here
 
 #include "../include/minishell.h"
-// #include <signal.h>
-// #include <unistd.h>
-// #include <stdio.h>
-// #include <readline/readline.h>
-// #include <readline/history.h>
 
 void exit_minishell(t_ms *s, char *msg)
 {
@@ -108,29 +103,15 @@ void minishell(char **envp)
 		// ast_factory(&s, input); // ! make this
 		split_input(&s, input); // not needed
 		s.ast = parse_input(input); // ! WIP
+		// todo:
+		// double input display on parse error (ast == NULL)
+		// on ast NULL break execution,
 		exec_input(&s); // ! make this
+		// maybe make this functions depend on exec status
+		// dont need to run if exec didnt execute (no changes)
 		env_arr_update(&s);
 		env_paths(&s, s.env_tmp);
 		// TODO
-		// if s.cmds.type = {EXEC, REDIR, PIPE}
-		// cast s.cmds.type into
-		// (t_exec*)s->cmds || (t_redir*)s->cmds || (t_pipe*)s->cmds
-		// ! and so on
-		// ? F5 para correr debug, breakpoint at line 60/61
-		// ? check debugger screenshot on reference folder for expressions to watch
-		// while (s.cmds[i] != NULL)
-		// {
-		// 	i++;
-		// }
-		// todo
-		/* lexer
-        ft_tokenizer;
-		parser
-		expander
-		executor */
-		/* if (cmd_exec(input) == 0)
-			break; */
-		//ft_dprintf(STDOUT_FILENO, "%s\n", input);
 		free(input);
 	}
 	exit_minishell(&s, NULL);
