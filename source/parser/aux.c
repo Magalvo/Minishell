@@ -8,13 +8,21 @@ void	split_input(t_ms *s, char* input)
 	s->cmd_temp = ft_split(input, ' ');
 }
 
-void	panic(char *s)
+void	reset_ms()
 {
-	ft_dprintf(STDERR_FILENO, "%s\n", s);
-	// exit(1);
+	// todo
+	// free stuff
+	// back to prompt
 }
 
-int peek(char **ps, char *es, char *toks)
+void	reprompt(char *s)
+{
+	ft_dprintf(STDERR_FILENO, "%s\n", s);
+	reset_ms();
+}
+
+// looks ahead of the string to find *tokens while skipping spaces
+int peek(char **ps, char *es, char *tokens)
 {
 	char *s;
 
@@ -22,38 +30,38 @@ int peek(char **ps, char *es, char *toks)
 	while(s < es && ft_strchr(SPACES, *s))
 		s++;
 	*ps = s;
-	return *s && ft_strchr(toks, *s);
+	return *s && ft_strchr(tokens, *s);
 }
 
-// NUL-terminate all the counted strings.
-t_cmd *nulterminate(t_cmd *cmd)
-{
-	// int i;
-	// t_exec *ecmd;
-	t_pipe *pcmd;
-	t_redir *rcmd;
+// // NUL-terminate all the counted strings.
+// t_cmd *nulterminate(t_cmd *cmd)
+// {
+// 	// int i;
+// 	// t_exec *ecmd;
+// 	t_pipe *pcmd;
+// 	t_redir *rcmd;
 
-	if(cmd == 0)
-		return 0;
+// 	if(cmd == 0)
+// 		return 0;
 
-	switch(cmd->type){
-	case EXEC:
-		// ecmd = (t_exec*)cmd;
-		// for(i=0; ecmd->argv[i]; i++)
-		// *ecmd->eargv[i] = 0;
-		break;
+// 	switch(cmd->type){
+// 	case EXEC:
+// 		// ecmd = (t_exec*)cmd;
+// 		// for(i=0; ecmd->argv[i]; i++)
+// 		// *ecmd->eargv[i] = 0;
+// 		break;
 
-	case REDIR:
-		rcmd = (t_redir*)cmd;
-		nulterminate(rcmd->cmd);
-		*rcmd->efile = 0;
-		break;
+// 	case REDIR:
+// 		rcmd = (t_redir*)cmd;
+// 		nulterminate(rcmd->cmd);
+// 		*rcmd->efile = 0;
+// 		break;
 
-	case PIPE:
-		pcmd = (t_pipe*)cmd;
-		nulterminate(pcmd->left);
-		nulterminate(pcmd->right);
-		break;
-	}
-	return cmd;
-}
+// 	case PIPE:
+// 		pcmd = (t_pipe*)cmd;
+// 		nulterminate(pcmd->left);
+// 		nulterminate(pcmd->right);
+// 		break;
+// 	}
+// 	return cmd;
+// }

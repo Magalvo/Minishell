@@ -4,17 +4,14 @@
 
 //*======================= STRUCTS ====================== *//
 typedef	enum	s_signal e_signal;
-typedef struct	s_ms t_ms;
 typedef struct	s_env t_env;
+typedef struct	s_ms t_ms;
 typedef struct	s_builtin t_builtin;
-typedef struct	s_execution t_execution;
+typedef struct	s_execution t_execution;		//TODO not defined, still used?
 
 /* parser structs */
 typedef	enum	s_cmd_type e_cmd_type;
 typedef struct	s_cmd t_cmd;
-typedef struct	s_exec t_exec;
-typedef struct	s_redir t_redir;
-typedef struct	s_pipe t_pipe;
 
 enum s_signal
 {
@@ -57,20 +54,12 @@ struct s_builtin
 };
 
 /*	structs for AST starts here */
-# define MAXARGS	10 // ! hmm e se quisermos correr um PUSH_SWAP (500 pelo menos)
 # define SPACES		"\t\n\v\f\r "
 # define SYMBOLS	"|&()<>" // { } $ @ ' " \ / * ;
-# define RDONLY		O_RDONLY
-# define TRUNC		O_WRONLY|O_CREAT|O_TRUNC
-# define CREATE		O_WRONLY|O_CREAT
-# define APPEND		O_WRONLY|O_CREAT|O_APPEND
-
-// Parsed command representation
-// #define EXEC	1
-// #define REDIR	2
-// #define PIPE	3
-// #define LIST  4
-// #define BACK  5
+// # define RDONLY		O_RDONLY
+// # define TRUNC		O_WRONLY|O_CREAT|O_TRUNC
+// # define CREATE		O_WRONLY|O_CREAT
+// # define APPEND		O_WRONLY|O_CREAT|O_APPEND
 
 enum s_cmd_type
 {
@@ -94,7 +83,7 @@ struct	s_cmd
 	// char	*eargv[MAXARGS];
 	t_cmd	*left;			//pipe
 	t_cmd	*right;
-	t_cmd	*cmd;				//redir
+	t_cmd	*cmd;			//redir
 	char	*file;
 	char	*efile;
 	int		mode;
@@ -102,49 +91,8 @@ struct	s_cmd
 	char	**temp;
 };
 
-struct s_exec
-{
-	int type;
-	char *argv[MAXARGS];
-	char *eargv[MAXARGS];
-};
-
-struct s_redir
-{
-	int type;
-	t_cmd *cmd;
-	char *file;
-	char *efile;
-	int mode;
-	int fd;
-};
-
-struct s_pipe
-{
-	int type;
-	t_cmd *left;
-	t_cmd *right;
-};
-
-
-
 //* Integer codes para o tipo de node na ASTree
 //* Minuto 4:30 (https://youtu.be/ubt-UjcQUYg?si=ASMMiMFCAmSs3qzx)
-
-// # define EXEC	1
-// # define REDIR	2
-// # define PIPE	3
-// # define LIST	4
-// # define BACK	5
-// * OR *//
-/* typedef enum e_command_type {
-    EXEC = 1,
-    REDIR = 2,
-    PIPE = 3,
-    LIST = 4,
-    BACK = 5
-} t_command_type; */
-
 
 #endif
 

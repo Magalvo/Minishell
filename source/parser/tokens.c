@@ -10,7 +10,7 @@ int gettoken(char **ps, char *es, char **q, char **eq)
 	int ret;
 
 	s = *ps;
-	while(s < es && strchr(SPACES, *s))
+	while(s < es && ft_strchr(SPACES, *s))
 		s++;
 	if(q)
 		*q = s;
@@ -36,14 +36,14 @@ int gettoken(char **ps, char *es, char **q, char **eq)
 	// TODO add << check for heredoc
 	default:
 		ret = 'a';
-		while(s < es && !strchr(SPACES, *s) && !strchr(SYMBOLS, *s))
+		while(s < es && !ft_strchr(SPACES, *s) && !ft_strchr(SYMBOLS, *s))
 		s++;
 		break;
 	}
 	if(eq)
 		*eq = s;
 
-	while(s < es && strchr(SPACES, *s))
+	while(s < es && ft_strchr(SPACES, *s))
 		s++;
 	*ps = s;
 	return ret;

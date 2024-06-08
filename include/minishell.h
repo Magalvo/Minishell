@@ -17,6 +17,7 @@
 // # include <unistd.h>
 // ? all structs and defines are here now
 # include "minishell_define.h"
+# include "minishell_msgs.h"
 
 //*=============== minishell.c =====================*//
 
@@ -74,7 +75,7 @@ char	**create_argv(int argc);
 // ! PARSE WIP
 t_cmd	*nulterminate(t_cmd *cmd);
 int		peek(char **ps, char *es, char *toks);
-void	panic(char *s);
+void	reprompt(char *s);
 int		getcmd(char *buf, int nbuf);
 t_cmd	*cmd_init(void);
 t_cmd	*cmd_exec(void);
