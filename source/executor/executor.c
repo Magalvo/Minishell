@@ -48,7 +48,7 @@ char	*cmd_path(char **paths, char *cmd)
 void	new_line(void)
 {
 	rl_on_new_line();
-	rl_redisplay();
+	rl_replace_line("", 0);
 }
 int exec_input(t_ms *s)
 {

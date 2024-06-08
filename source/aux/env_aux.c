@@ -61,7 +61,7 @@ char	**null_env_init()
 		error_msg("strdup");
 	}
 
-	init_env[3] = ft_strdup("PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin");
+/* 	init_env[3] = ft_strdup("PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin");
 	if(!init_env[3])
 	{
 		free(init_env[0]);
@@ -69,9 +69,8 @@ char	**null_env_init()
 		free(init_env[2]);
 		free(init_env);
 		error_msg("strdup");
-	}
-
-	init_env[4] = NULL;
+	} */
+	init_env[3] = NULL;
 	return (init_env);
 }	
 
