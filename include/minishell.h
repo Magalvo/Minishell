@@ -82,7 +82,7 @@ t_cmd	*cmd_init(void);
 t_cmd	*cmd_exec(void);
 t_cmd	*cmd_redir(t_cmd *subcmd, char *file, char *efile, int mode, int fd);
 t_cmd	*cmd_pipe(t_cmd *left, t_cmd *right);
-int		gettoken(char **ps, char *es, char **q, char **eq);
+int		get_token(char **ps, char *es, char **q, char **eq);
 t_cmd	*parse_cmd(char *input);
 t_cmd	*parse_line(char **ps, char *es);
 t_cmd	*parse_pipe(char **ps, char *es);
