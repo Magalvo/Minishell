@@ -75,7 +75,7 @@ char	*get_env_val(t_env *env, char *key)
 	return (NULL);
 }
 
-//!! 49 LINHAS!!! Mas bem gastas 
+//!! 49 LINHAS!!! Mas bem gastas
 int env_cmd(t_ms *s, char **cmds)
 {
 	char	*path;
@@ -84,43 +84,44 @@ int env_cmd(t_ms *s, char **cmds)
 
 	id = 0;
 	path = NULL;
-	if (cmds[1] && cmds[1][0] == '-' && cmds[1][1] == 'i' && cmds[1][2] == '\0') 
+	if (cmds[1] && cmds[1][0] == '-' && cmds[1][1] == 'i' && cmds[1][2] == '\0')
 	{
-		if (s->env_tmp) 															//! FREE the existing environment
+		if (s->env_tmp) 								//! FREE the existing environment
 		{
 			i = 0;
-			while (s->env_tmp[i]) 
+			while (s->env_tmp[i])
 			{
 				free(s->env_tmp[i]);
 				i++;
 			}
 			free(s->env_tmp);
 		}
-		s->env_tmp = null_env_init();												//! Initialize a minimal environment																			//! Check if there is a command to execute after -i
-		if (cmds[2]) 
+		s->env_tmp = null_env_init();		//! Initialize a minimal environment
+											//! Check if there is a command to execute after -i
+		if (cmds[2])
 		{
-			id = fork(); 
+			id = fork();
 			if (id < 0)
 				return (exit_minishell(s, "error"), 0);
-			if (id == 0) 
-			{ 
+			if (id == 0)
+			{
 				path = cmd_path(s->paths, cmds[2]);
-				if (!path) 
+				if (!path)
 				{
 					ft_putstr_fd("command not found\n", 2);
 					exit(EXIT_FAILURE);
 				}
 				execve(path, &cmds[2], s->env_tmp);
-				perror("execve"); 
+				perror("execve");
 				exit(EXIT_FAILURE);
-			} 
-			else														
+			}
+			else
 				wait(NULL);
 		}
-		return (1); 														
+		return (1);
 	}
 	t_env *env_cpy = s->env;												//* Print the current env if no command was given after -i
-	while (env_cpy) 
+	while (env_cpy)
 	{
 		if (env_cpy->value != NULL)
 			printf("%s=%s\n", env_cpy->key, env_cpy->value);
@@ -168,15 +169,14 @@ void	init_env(t_ms *ms, char **envp)
 		if (!head)
 		{
 			head = new_node;
-			tail = new_node;	
+			tail = new_node;
 		}
 		else
 		{
 			tail->next = new_node;
 			new_node->prev = tail;
 			tail = new_node;
-		}	
+		}
 	}
 	ms->env = head;
 }
-
