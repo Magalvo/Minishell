@@ -27,7 +27,7 @@ t_cmd *parse_exec(char **ps, char *es)
 	// char *es_cpy = es;
 	// while(!peek(ps, es, "|)&;"))
 	// {
-	// 	if((tok=gettoken(ps, es, &q, &eq)) == 0)
+	// 	if((tok=get_token(ps, es, &q, &eq)) == 0)
 	// 		break;
 	// 	if(tok != 'a')
 	// 		reprompt(INVALID_TOKEN);
@@ -43,7 +43,7 @@ t_cmd *parse_exec(char **ps, char *es)
 	_argc = 0;
 	while(!peek(ps, es, "|)&;"))
 	{
-		if((tok=gettoken(ps, es, &q, &eq)) == 0)
+		if((tok=get_token(ps, es, &q, &eq)) == 0)
 			break;
 		if(tok != 'a')
 			reprompt(INVALID_TOKEN);
@@ -69,20 +69,21 @@ char **create_argv(int nbr)
 
 int	count_argc(char **ps, char *es)
 {
-	char	*q;
-	char	*eq;
 	char	*ps_cpy;
 	char	*es_cpy;
 	int		argc;
 	// t_cmd	*ret;
 	int		tok;
 
+	// char	*q;
+	// char	*eq;
 	argc = 0;
 	ps_cpy = *ps;
 	es_cpy = es;
 	// ret = cmd_exec();
 	while(!peek(ps, es, "|)&<>")){
-		tok=gettoken(ps, es, &q, &eq);
+		// tok=get_token(ps, es, &q, &eq);
+		tok=get_token(ps, es, NULL, NULL);
 		if (tok == 0)
 			break;
 		if (tok != 'a')

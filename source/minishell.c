@@ -101,13 +101,20 @@ void minishell(char **envp)
 		input = readline(s.prompt);
 		if (input == NULL && s.modal == MAIN)
 			exit_minishell(&s, "exit\n");
-		// ast_factory(&s, input); // ! make this
 		split_input(&s, input); // not needed
 		s.ast = parse_input(input); // ! WIP
+		// todo make this parse properly,
+		// ! ls > outfile | wc > otherfile
+		// previous tokenizer == segfault
+		// actual tokenizer == loop 4ever
+		// ? change bnf to false to execute normally
 		if (!s.bnf)
 			exec_input(&s); // ! make this
 		else
+		{
+			// s.bnf == false;
 			print_ast(&s, s.ast, -1);
+		}
 		// maybe make this functions depend on exec status
 		// dont need to run if exec didnt execute (no changes)
 /* 		env_arr_update(&s);
