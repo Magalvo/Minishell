@@ -70,10 +70,11 @@ int		add_slash(char *slash, char **paths);
 //*=================== PARSE ======================*//
 t_cmd	*parse_input(char *input);
 char	**create_argv(int argc);
+int		count_argc(char **ps, char *es);
 
 
 // ! PARSE WIP
-t_cmd	*nulterminate(t_cmd *cmd);
+// t_cmd	*nulterminate(t_cmd *cmd);
 int		peek(char **ps, char *es, char *toks);
 void	reprompt(char *s);
 int		getcmd(char *buf, int nbuf);
@@ -89,6 +90,10 @@ t_cmd	*parse_redir(t_cmd *t_cmd, char **ps, char *es);
 t_cmd	*parse_block(char **ps, char *es);
 t_cmd	*parse_exec(char **ps, char *es);
 
+
+//*==================== AUX =======================*//
+void	print_ast(t_ms *s, t_cmd *ptr, int padding);
+void	print_2d(char **ptr, int padding);
 
 
 //*==================== AUX =======================*//

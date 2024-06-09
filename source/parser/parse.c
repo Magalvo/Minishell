@@ -104,9 +104,13 @@ t_cmd *parse_redir(t_cmd *cmd, char **ps, char *es)
 			cmd = cmd_redir(cmd, q, eq, O_RDONLY, 0);
 		else if (tok == '>')
 			cmd = cmd_redir(cmd, q, eq, O_WRONLY|O_CREAT|O_TRUNC, 1);
-		else if (tok == '+')
+		else if (tok == '+')		// ? (+) is (>>)
 			cmd = cmd_redir(cmd, q, eq, O_WRONLY|O_CREAT, 1);
-		// TODO implement >| ? overwrite ?
+		else if (tok == 'H') // todo heredoc, need config
+			cmd = cmd_redir(cmd, q, eq, O_WRONLY|O_CREAT, 1);
+		else if (tok == 'O') // // TODO implement >| ? overwrite ?
+			cmd = cmd_redir(cmd, q, eq, O_WRONLY|O_CREAT, 1);
+
 	}
 	return (cmd);
 }

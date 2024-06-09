@@ -73,7 +73,8 @@ void	init_t_ms(t_ms *s)
 	s->modal = -1;
 	s->infile = -1;
 	s->outfile = -1;
-	s->input_empty = NULL;
+	s->input_empty = false;
+	s->bnf = true;
 	s->env_tmp = NULL;
 	s->cmd_temp = NULL;
 	s->ast = NULL;
@@ -103,7 +104,10 @@ void minishell(char **envp)
 		// ast_factory(&s, input); // ! make this
 		split_input(&s, input); // not needed
 		s.ast = parse_input(input); // ! WIP
-		exec_input(&s); // ! make this
+		if (!s.bnf)
+			exec_input(&s); // ! make this
+		else
+			print_ast(&s, s.ast, -1);
 		// maybe make this functions depend on exec status
 		// dont need to run if exec didnt execute (no changes)
 /* 		env_arr_update(&s);
