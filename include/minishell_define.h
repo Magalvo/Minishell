@@ -39,6 +39,7 @@ struct s_ms
 	int		infile;		//* Redirect Infile
 	int		outfile;	//* Redirect Outfile
 	bool	input_empty;
+	bool	bnf;
 	char	**env_tmp;	//* Temp env;
 	char	**cmd_temp;
 	t_cmd	*ast;		//* Command List

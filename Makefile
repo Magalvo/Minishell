@@ -27,12 +27,15 @@ PARSER =	aux.c init_cmd.c tokens.c \
 
 AUX = aux1.c env_aux.c env_aux2.c
 
+AST = ast_print.c
+
 
 SRC_DIR = ./source/
 BUILTINS_DIR = $(SRC_DIR)builtins/
 EXECUTOR_DIR = $(SRC_DIR)executor/
 PARSER_DIR 	= $(SRC_DIR)parser/
 AUX_DIR 	= $(SRC_DIR)aux/
+AST_DIR 	= $(SRC_DIR)ast/
 
 
 SRC = 	$(SRC_DIR)minishell.c \
@@ -42,6 +45,7 @@ SRC = 	$(SRC_DIR)minishell.c \
 		$(addprefix $(EXECUTOR_DIR), $(EXECUTOR)) \
 		$(addprefix $(PARSER_DIR), $(PARSER)) \
 		$(addprefix $(AUX_DIR), $(AUX)) \
+		$(addprefix $(AST_DIR), $(AST)) \
 
 OBJ_DIR = ./object/
 OBJ = $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)

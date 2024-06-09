@@ -22,22 +22,38 @@ int gettoken(char **ps, char *es, char **q, char **eq)
 	case '(':
 	case ')':
 	// case ';':
-	case '&': // add & for AND
+	// case '&': // add & for AND
+	case '&':
+		s++;
+		if(*s == '&')
+		{
+			ret = 'N';
+			s++;
+		}
+		break;
+	// case '<':
+	// 	s++;
+	// 	break;
 	case '<':
 		s++;
+		if(*s == '<'){
+		ret = 'H';
+		s++;
+		}
 		break;
 	case '>':
 		s++;
-		if(*s == '>'){
-		ret = '+';
-		s++;
+		if(*s == '>')
+		{
+			ret = '+';
+			s++;
 		}
 		break;
 	// TODO add << check for heredoc
 	default:
 		ret = 'a';
 		while(s < es && !ft_strchr(SPACES, *s) && !ft_strchr(SYMBOLS, *s))
-		s++;
+			s++;
 		break;
 	}
 	if(eq)
