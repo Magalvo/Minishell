@@ -1,26 +1,26 @@
 
 #include "../include/minishell.h"
 
-int	sw_get_token(char *str)
+int	sw_get_token(char **str)
 {
-	if (!*str)
+	if (!**str)
 		return (0);
-	else if (*str == '&')
+	else if (**str == '&')
 	{
-		if (*++str == '&')
+		if (*++*str == '&')
 			return (str++, 'N');
 	}
-	else if (*str == '<')
+	else if (**str == '<')
 	{
-		if (*++str == '<')
+		if (*++*str == '<')
 			return (str++, 'H');
 		return ('<');
 	}
-	else if (*str == '>')
+	else if (**str == '>')
 	{
-		if (*++str == '>')
+		if (*++*str == '>')
 			return (str++, '+');
-		return ('<');
+		return ('>');
 	}
 	else
 		return ('a');
@@ -41,7 +41,7 @@ int get_token(char **ps, char *es, char **q, char **eq)
 	if (ft_strchr("|()", *s) && *s != 0)
 		s++;
 	else
-		ret = sw_get_token(s);
+		ret = sw_get_token(&s);
 	while(s < es && !ft_strchr(SPACES, *s) && !ft_strchr(SYMBOLS, *s))
 		s++;
 	if(eq)
