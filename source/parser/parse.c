@@ -26,6 +26,7 @@ t_cmd	*parse_input(char *input)
 	else if (ft_strcount(input, ';') != 0)
 		// reprompt(SEMICOLON);
 		return(reprompt(SEMICOLON), NULL);
+	// todo possible error is ( or ) are inside quotes
 	else if (ft_strcount(input, '(') != ft_strcount(input, ')'))
 		// reprompt(BLOCK_MISSING);
 		return(reprompt(BLOCK_MISSING), NULL);

@@ -11,6 +11,7 @@ void	split_input(t_ms *s, char* input)
 void	reset_ms()
 {
 	// todo
+	// new_line();
 	// free stuff
 	// back to prompt
 }

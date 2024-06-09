@@ -103,15 +103,13 @@ void minishell(char **envp)
 		// ast_factory(&s, input); // ! make this
 		split_input(&s, input); // not needed
 		s.ast = parse_input(input); // ! WIP
-		// todo:
-		// double input display on parse error (ast == NULL)
-		// on ast NULL break execution,
 		exec_input(&s); // ! make this
 		// maybe make this functions depend on exec status
 		// dont need to run if exec didnt execute (no changes)
 		env_arr_update(&s);
 		env_paths(&s, s.env_tmp);
 		// TODO
+
 		free(input);
 	}
 	exit_minishell(&s, NULL);

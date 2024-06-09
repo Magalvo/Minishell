@@ -48,7 +48,7 @@ char	*cmd_path(char **paths, char *cmd)
 void	new_line(void)
 {
 	rl_on_new_line();
-	rl_redisplay();
+	rl_replace_line("", 0);
 }
 int exec_input(t_ms *s)
 {
@@ -57,6 +57,8 @@ int exec_input(t_ms *s)
 
 	if (s->ast == NULL)
 		return (new_line(), 1);
+
+
 	if (ft_exec_buitltins_chr(s, s->ast->argv))
 		return (1);
 	id = fork();											//* Fork a new process for external commands
