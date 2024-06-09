@@ -37,7 +37,7 @@ char	*env_paths(t_ms *ms, char **envp)
 		i++;
 	}
 	if (!found || !paths)
-		return (NULL);
+		paths = ft_split("/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin", ':');
 	add_slash(slash, paths);
 	ms->paths = paths;
 	return (NULL);
