@@ -130,6 +130,7 @@ void	error_msg(char *str);
 int		free_export(char *key, char *value);
 void	free_paths(char **paths, int i);
 int		free_export_p(t_env *env_copy, t_env *new_node);
+int		not_found(char *str);
 
 
 #endif

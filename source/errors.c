@@ -14,7 +14,8 @@
 
 void	error_msg(char *str)
 {
-	perror(str);
+	if (str)
+		perror(str);
 	exit(EXIT_FAILURE);
 }
 int	free_export(char *key, char *value)
@@ -51,4 +52,11 @@ int	free_export_p(t_env *env_copy, t_env *new_node)
 		free(new_node);
 	}
 	return(0);
+}
+
+int	not_found(char *str)
+{
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd(": command not found\n", 2);
+	exit(EXIT_FAILURE);
 }
