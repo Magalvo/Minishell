@@ -109,7 +109,7 @@ void minishell(char **envp)
 		// actual tokenizer == loop 4ever
 		// ? change bnf to false to execute normally
 		if (!s.bnf)
-			exec_input(&s); // ! make this
+			exec_input(&s);
 		else
 		{
 			s.bnf = false;
