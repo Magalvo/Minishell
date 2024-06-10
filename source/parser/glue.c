@@ -58,4 +58,25 @@ void	unglue_str(char *start, char *end)
 }
 
 
-void	ft_get_strinterval()
+// void	ft_get_strinterval()
+
+/*
+// before && after
+left && right
+type PIPE
+&& type AND
+( ) type AND
+(ls && wc) && ps
+
+AND
+BLOCK
+PIPE
+REDIR
+EXEC
+falta glue quotes and dquotes
+falta expand $var, excepto se dentro de quotes
+
+$PATH
+
+if (execve(s->cmdout, s->cmdout_args, envp) == -1)
+*/

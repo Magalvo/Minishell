@@ -87,8 +87,8 @@ t_cmd *parse_pipe(char **ps, char *es)
 
 // < infile, open O_RDONLY
 // > outfile, open O_WRONLY|O_CREAT|O_TRUNC
-// + heredoc, open O_WRONLY|O_CREAT, no truncate
-// APPEND no case defined yet, not needed per subject, symbol is >|
+// H heredoc, open O_WRONLY|O_CREAT, no truncate
+// + >>, open O_WRONLY|O_CREAT|O_APPEND
 t_cmd *parse_redir(t_cmd *cmd, char **ps, char *es)
 {
 	int tok;
@@ -105,12 +105,10 @@ t_cmd *parse_redir(t_cmd *cmd, char **ps, char *es)
 		else if (tok == '>')
 			cmd = cmd_redir(cmd, q, eq, O_WRONLY|O_CREAT|O_TRUNC, 1);
 		else if (tok == '+')		// ? (+) is (>>)
-			cmd = cmd_redir(cmd, q, eq, O_WRONLY|O_CREAT, 1);
-		else if (tok == 'H') // todo heredoc, need config
-			cmd = cmd_redir(cmd, q, eq, O_WRONLY|O_CREAT, 1);
-		else if (tok == 'O') // // TODO implement >| ? overwrite ?
-			cmd = cmd_redir(cmd, q, eq, O_WRONLY|O_CREAT, 1);
-
+			cmd = cmd_redir(cmd, q, eq, O_WRONLY|O_CREAT|O_APPEND, 1);
+		else if (tok == 'H') // todo check flags: (H) is here_doc
+			cmd = cmd_redir(cmd, q, eq, O_CREAT|O_RDWR|O_APPEND, 0);
+			// cmd = cmd_redir(cmd, q, eq, O_WRONLY|O_CREAT, 0);
 	}
 	return (cmd);
 }
