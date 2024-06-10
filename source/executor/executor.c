@@ -57,8 +57,6 @@ int exec_input(t_ms *s)
 
 	if (s->ast == NULL)
 		return (new_line(), 1);
-
-
 	if (ft_exec_buitltins_chr(s, s->ast->argv))
 		return (1);
 	id = fork();											//* Fork a new process for external commands
@@ -71,10 +69,7 @@ int exec_input(t_ms *s)
 		t_cmd	*cast = s->ast;
 		path = cmd_path(s->paths, cast->argv[0]);
 		if (!path)
-		{
-			ft_putstr_fd(cast->argv[0], 2);
-			exit(EXIT_FAILURE);
-		}
+			not_found(cast->argv[0]);
 		execve(path, cast->argv, s->env_tmp);
 		perror("execve");  									//* If execve returns, an error occurred
 		exit(EXIT_FAILURE);

@@ -67,6 +67,21 @@ int	ft_sw_builtins(const char *s1, const char *s2)
 		return ft_strncmp(s1, s2, s1_len);
 }
 
+void	toggle_bnf(t_ms *s)
+{
+	if(s->bnf == true)
+	{
+		s->bnf = false;
+		ft_putstr_fd("bnf: OFF\n", 1);
+	}	
+	else if (s->bnf == false)
+	{
+		s->bnf = true;
+		ft_putstr_fd("bnf: ON\n", 1);
+	}
+}
+
+
 int	ft_exec_buitltins_chr(t_ms *s, char **cmds)  //[{laskdl}{kjhalsd}{jakskdj}]
 {
 	if (s->ast->type != EXEC)
@@ -86,6 +101,8 @@ int	ft_exec_buitltins_chr(t_ms *s, char **cmds)  //[{laskdl}{kjhalsd}{jakskdj}]
 		return (unset_cmd(s, cmds));
 	else if (ft_sw_builtins(cmds[0], "exit") == 0)
 		return (exit_cmd(s), 1);
+	else if (ft_sw_builtins(cmds[0], "bnf") == 0)
+		return (toggle_bnf(s), 1);
 	else
 		return (0);
 }

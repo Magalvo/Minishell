@@ -74,7 +74,7 @@ void	init_t_ms(t_ms *s)
 	s->infile = -1;
 	s->outfile = -1;
 	s->input_empty = false;
-	s->bnf = true;
+	s->bnf = false;
 	s->env_tmp = NULL;
 	s->cmd_temp = NULL;
 	s->ast = NULL;
@@ -108,12 +108,17 @@ void minishell(char **envp)
 		// previous tokenizer == segfault
 		// actual tokenizer == loop 4ever
 		// ? change bnf to false to execute normally
-		if (!s.bnf)
-			exec_input(&s); // ! make this
+		if (s.bnf)
+		{
+			exec_input(&s);
+			if (s.bnf)
+				print_ast(&s, s.ast, -1);
+		}
 		else
 		{
-			// s.bnf == false;
-			print_ast(&s, s.ast, -1);
+			exec_input(&s); // ! make this
+			if (s.bnf)
+				print_ast(&s, s.ast, -1);
 		}
 		// maybe make this functions depend on exec status
 		// dont need to run if exec didnt execute (no changes)
