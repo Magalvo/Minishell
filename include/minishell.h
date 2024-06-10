@@ -71,7 +71,9 @@ int		add_slash(char *slash, char **paths);
 t_cmd	*parse_input(char *input);
 char	**create_argv(int argc);
 int		count_argc(char **ps, char *es);
-
+void	ft_strrep_range(char *start, char *end, char search, char replace);
+void	glue_str(char *start, char *end);
+void	unglue_str(char *start, char *end);
 
 // ! PARSE WIP
 // t_cmd	*nulterminate(t_cmd *cmd);

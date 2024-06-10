@@ -56,6 +56,7 @@ struct s_builtin
 
 /*	structs for AST starts here */
 # define SPACES		"\t\n\v\f\r "
+# define GLUE		"\1\2\3\4\5\6"
 # define SYMBOLS	"|&()<>" // { } $ @ ' " \ / * ;
 // # define RDONLY		O_RDONLY
 // # define TRUNC		O_WRONLY|O_CREAT|O_TRUNC
