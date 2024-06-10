@@ -120,8 +120,6 @@ void minishell(char **envp)
 		}
 		// maybe make this functions depend on exec status
 		// dont need to run if exec didnt execute (no changes)
-/* 		env_arr_update(&s);
-		env_paths(&s, s.env_tmp); */
 		// TODO
 
 		free(input);

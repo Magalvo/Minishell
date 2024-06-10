@@ -58,4 +58,4 @@ void	unglue_str(char *start, char *end)
 }
 
 
-void	ft_get_strinterval()
+/* void	ft_get_strinterval() */

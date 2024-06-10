@@ -113,8 +113,8 @@ int	echo_cmd_test(char **cmd, t_ms *s)
 	while (cmd[i])
 	{
 		if (cmd[i][0] == '$')
-			ft_putstr_fd(get_env_val(s->env, cmd[i]), 1);
-		else
+			return(ft_putstr_fd(get_env_val(s->env, cmd[i], s), 1), 1);
+		else 
 		{
 			ft_putstr_fd(cmd[i], 1);
 			if(cmd[i + 1])

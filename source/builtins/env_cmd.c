@@ -61,18 +61,33 @@ char	*env_paths(t_ms *ms, char **envp)
 	return (NULL);
 } */
 
-char	*get_env_val(t_env *env, char *key)
+char	*get_env_val(t_env *env, char *key, t_ms *s)
 {
+	int i;
+
+	i = 0; 
 	if (key[0] == '$')
 			key = key + 1;
-	while (env)
+	else
 	{
-		// if (ft_sw_builtins(env->key, key, ft_strlen(key)) == 0)
-		if (ft_strncmp(env->key, key, ft_strlen(key)) == 0)
-			return (env->value);
-		env = env->next;
+		while (env)
+		{
+			if (ft_strncmp(env->key, key, ft_strlen(key)) == 0)
+				return (env->value);
+			env = env->next;
+		}
 	}
-	return (NULL);
+	if (ft_strncmp(key, "PATH", 4) == 0)
+	{
+		while (s->paths && s->paths[i])
+		{
+			ft_putstr_fd(s->paths[i], 1);
+			if(s->paths[i + 1] != NULL)
+				ft_putstr_fd(":", 1);
+			i++;
+		}
+	}
+	return (ft_putstr_fd("\n", 1), NULL);	
 }
 
 //!! 49 LINHAS!!! Mas bem gastas

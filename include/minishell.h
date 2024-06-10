@@ -47,7 +47,7 @@ int		update_key(t_env *env, char *key, char *value);
 int		unset_cmd(t_ms *s, char **args);
 int		print_export(t_env *export);
 void	exit_cmd(t_ms *s);
-char	*get_env_val(t_env *env, char *key);
+char	*get_env_val(t_env *env, char *key, t_ms *s);
 t_env	*new_env_node(char *env_var);
 void	sort_env_list(t_env **head);
 int		print_export(t_env *env);
@@ -101,7 +101,7 @@ void	print_2d(char **ptr, int padding);
 //*==================== AUX =======================*//
 void	split_input(t_ms *s, char* input);
 char	*get_env_expand(char *key);
-void	env_arr_update(t_ms *s);
+void	env_arr_update(t_ms *s, char *str);
 void	initialize_env(char ***envp);
 char	**null_env_init();
 
