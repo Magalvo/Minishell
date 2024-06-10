@@ -87,7 +87,7 @@ struct	s_cmd
 	t_cmd	*right;
 	t_cmd	*cmd;			//redir
 	char	*file;
-	char	*efile;
+	// char	*efile;
 	int		mode;
 	int		fd;
 	char	**temp;
