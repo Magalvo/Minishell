@@ -102,7 +102,7 @@ int	ft_exec_buitltins_chr(t_ms *s, char **cmds)  //[{laskdl}{kjhalsd}{jakskdj}]
 	else if (ft_sw_builtins(cmds[0], "exit") == 0)
 		return (exit_cmd(s), 1);
 	else if (ft_sw_builtins(cmds[0], "bnf") == 0)
-		return (toggle_bnf(s), 1);
+		return (s->bnf = true, ft_putstr_fd("bnf ON\n", 1), 1);
 	else
 		return (0);
 }
