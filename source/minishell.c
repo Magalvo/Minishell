@@ -102,9 +102,8 @@ void minishell(char **envp)
 		if (input == NULL && s.modal == MAIN)
 			exit_minishell(&s, "exit\n");
 		split_input(&s, input); // not needed
-		glue_str(input, NULL);
-		unglue_str(input, NULL);
-
+		// glue_str(input, NULL);
+		// unglue_str(input, NULL);
 		s.ast = parse_input(input); // ! WIP
 		// todo make this parse properly,
 		// ! ls > outfile | wc > otherfile

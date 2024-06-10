@@ -20,13 +20,17 @@ t_cmd *cmd_exec(void)
 
 t_cmd *cmd_redir(t_cmd *subcmd, char *file, char *efile, int mode, int fd)
 {
-	t_cmd *cmd;
+	t_cmd	*cmd;
+	char	*filename;
 
 	cmd = cmd_init();
 	cmd->type = REDIR;
 	cmd->cmd = subcmd;
-	cmd->file = file;
-	cmd->efile = efile;
+	filename = ft_calloc((efile - file) + 1, sizeof(char));
+	ft_memmove((void *)filename, (void *)file, (efile - file));
+	// todo free this memory (filename) b4 freeing the struct
+	cmd->file = filename;
+	// cmd->efile = efile;
 	cmd->mode = mode;
 	cmd->fd = fd;
 	return (cmd);
