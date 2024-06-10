@@ -2,9 +2,9 @@
 
 //! ========================== NULL_ENV_CREATION =======================================//
 
-char	*find_cwd()
+char	*find_cwd(void)
 {
-	char *cwd;
+	char	*cwd;
 
 	cwd = malloc(1024);
 	if (!cwd)
@@ -17,7 +17,7 @@ char	*find_cwd()
 	return (cwd);
 }
 
-char	**null_env_init()
+char	**null_env_init(void)
 {
 	char	**init_env;
 	char	*cwd;
@@ -39,9 +39,7 @@ char	**null_env_init()
 	ft_strlcpy(init_env[0], "PWD=", key_len + 1);
 	ft_strlcpy(init_env[0] + key_len, cwd, cwd_len + 1);
 	free(cwd);
-
 	//* Break Func Here
-
 	init_env[1] = ft_strdup("SHLVL=1");
 	if (!init_env[1])
 	{
@@ -49,19 +47,16 @@ char	**null_env_init()
 		free(init_env);
 		error_msg("strdup");
 	}
-
 	//* Break Func Here
-
 	init_env[2] = ft_strdup("_=/usr/bin/env");
-	if(!init_env[2])
+	if (!init_env[2])
 	{
 		free(init_env[0]);
 		free(init_env[1]);
 		free(init_env);
 		error_msg("strdup");
 	}
-
-/* 	init_env[3] = ft_strdup("PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin");
+	/* 	init_env[3] = ft_strdup("PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin");
 	if(!init_env[3])
 	{
 		free(init_env[0]);
@@ -72,15 +67,14 @@ char	**null_env_init()
 	} */
 	init_env[3] = NULL;
 	return (init_env);
-}	
+}
 
-void initialize_env(char ***envp) 
+void	initialize_env(char ***envp)
 {
-	if (!(*envp) || !(*envp)[0]) 
+	if (!(*envp) || !(*envp)[0])
 		*envp = null_env_init();
 }
 //! ===============================================================================//
-
 
 //! ========================== ENV_ARRAY_UPDATE =======================================//
 char	*join_key_value(const char *key, const char *value)
@@ -93,21 +87,21 @@ char	*join_key_value(const char *key, const char *value)
 	key_len = ft_strlen(key);
 	if (value)
 		value_len = ft_strlen(value);
-	else 
+	else
 		value_len = 0;
 	total_len = key_len + value_len + 1;
-
 	join = (char *)malloc(total_len + 1);
 	if (!join)
 		error_msg("join malloc env");
 	ft_strlcpy(join, key, key_len + 1);
-	//ft_strjoin(join, key);				//? posso usar strjoin em vez de alocar?
-	if(value)
+	//ft_strjoin(join,
+							key);				//? posso usar strjoin em vez de alocar?
+	if (value)
 	{
-		join[key_len]= '=';
+		join[key_len] = '=';
 		ft_strlcpy(join + key_len + 1, value, value_len + 1);
 	}
-/* 	else
+	/* 	else
 		join[key_len] = '\0'; */
 	return (join);
 }
@@ -118,7 +112,7 @@ char	**env_convert(t_env *env)
 	int		ctd;
 	char	**env_array;
 	t_env	*current;
-	
+
 	ctd = 0;
 	current = env;
 	while (current)
@@ -128,7 +122,7 @@ char	**env_convert(t_env *env)
 	}
 	env_array = create_argv(ctd);
 	if (!env_array)
-		error_msg ("malloc env array");
+		error_msg("malloc env array");
 	current = env;
 	i = 0;
 	while (i < ctd)
@@ -142,12 +136,12 @@ char	**env_convert(t_env *env)
 }
 
 void	env_arr_update(t_ms *s, char *str)
-{	
-	(void)str;
-/* 	char **temp;
+{
  	int i;
-	int j; 
 
+	(void)str;
+	/* 	char **temp;
+	int j; 
 	i = 0;
 	temp = s->env_tmp;
  	if (ft_strncmp(str, "PATH", 4) == 0 && ft_strlen(str) == 4)
@@ -162,13 +156,12 @@ void	env_arr_update(t_ms *s, char *str)
 					temp[j] = temp[j + 1];
 					j++;
 				}
-				break;
+				break ;
 			}
 			i++;
 		} */
 	if (s->paths)
-		s->paths = NULL; 
-	
+		s->paths = NULL;
 	s->env_tmp = env_convert(s->env);
 }
 //! ===============================================================================//

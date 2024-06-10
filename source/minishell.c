@@ -2,7 +2,7 @@
 
 #include "../include/minishell.h"
 
-void exit_minishell(t_ms *s, char *msg)
+void	exit_minishell(t_ms *s, char *msg)
 {
 	if (msg)
 		ft_putstr_fd(msg, 1);
@@ -17,6 +17,7 @@ void exit_minishell(t_ms *s, char *msg)
 {
 	char	**temp;
 	char	*env;
+
 	// TODO env output when: env -i bash
 	// PWD=/home/kajo	//? hmm, donoo
 	// SHLVL=1		// ! this one is easy
@@ -34,11 +35,9 @@ void exit_minishell(t_ms *s, char *msg)
 	// or something like it
 	return (temp);
  } */
-
-
-int init_minishell(t_ms *s, char **ep)
+int	init_minishell(t_ms *s, char **ep)
 {
-	int i = 0;  //! just for test
+	int i = 0; //! just for test
 	if (!*ep)
 	{
 		initialize_env(&ep);
@@ -52,11 +51,11 @@ int init_minishell(t_ms *s, char **ep)
 	init_env(s, ep);
 	init_export(s, ep);
 	env_paths(s, ep);
-	s->env_tmp = ep;				//! added raw env for execve
+	s->env_tmp = ep; //! added raw env for execve
 	s->modal = MAIN;
 	s->cmd_temp = NULL;
 	// s->prompt = "write_here ->";    // v zero
-	s->prompt = "\e[3;33mnanoshell\e[0m\e[1;97m -> \e[0m";  // v alpha
+	s->prompt = "\e[3;33mnanoshell\e[0m\e[1;97m -> \e[0m"; // v alpha
 	// s->prompt = "\e[3;33mnanoshell\e[0m\e[1;97m -> \e[0m";    // v beta
 	// s->prompt = "\e[3;33mminishell\e[0m\e[1;97m -> \e[0m";     // v gold
 	return (true);
@@ -82,17 +81,15 @@ void	init_t_ms(t_ms *s)
 	s->export = NULL;
 }
 
-
 // STATUS: signal caught, ctrl+\ shouldn't print to stdout
-void minishell(char **envp)
+void	minishell(char **envp)
 {
 	t_ms	s;
+	char	*input;
 
 	init_t_ms(&s);
-	char	*input;
 	// int		not_builtin;
 	// int i;
-
 	if (!init_minishell(&s, envp))
 		exit_minishell(&s, NULL);
 	while (true)
@@ -120,22 +117,20 @@ void minishell(char **envp)
 		// maybe make this functions depend on exec status
 		// dont need to run if exec didnt execute (no changes)
 		// TODO
-
 		free(input);
 	}
 	exit_minishell(&s, NULL);
 }
 
-int main(int argc, char *argv[], char *envp[])
+int	main(int argc, char *argv[], char *envp[])
 {
 	(void)argv;
-
 	if (argc != 1)
-		return (ft_dprintf(STDERR_FILENO, \
-			"Minishell takes no arguments, Exiting.\n"));
+		return (ft_dprintf(STDERR_FILENO,
+							"Minishell takes no arguments, Exiting.\n"));
 	if (!*envp)
-		ft_dprintf(STDERR_FILENO, \
-			"Naughty naughty evALuaTOr... hmmff!\n");
+		ft_dprintf(STDERR_FILENO,
+					"Naughty naughty evALuaTOr... hmmff!\n");
 	minishell(envp);
 	return (0);
 }

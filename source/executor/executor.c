@@ -47,45 +47,44 @@ void	new_line(void)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 }
-int exec_input(t_ms *s)
+int	exec_input(t_ms *s)
 {
 	char	*path;
 	int		id;
+	t_cmd	*cast;
 
 	if (s->ast == NULL)
 		return (new_line(), 1);
 	if (ft_exec_buitltins_chr(s, s->ast->argv))
 		return (1);
-	id = fork();											//* Fork a new process for external commands
+	id = fork(); //* Fork a new process for external commands
 	if (id < 0)
 		return (exit_minishell(s, "error"), 0);
-	if (id == 0) 											//* Child process
+	if (id == 0) //* Child process
 	{
 		if (s->ast->type != EXEC)
 			exit(0);
-		t_cmd	*cast = s->ast;
+		cast = s->ast;
 		path = cmd_path(s->paths, cast->argv[0]);
 		if (!path)
 			not_found(cast->argv[0]);
 		execve(path, cast->argv, s->env_tmp);
-		perror("execve");  									//* If execve returns, an error occurred
+		perror("execve"); //* If execve returns, an error occurred
 		exit(EXIT_FAILURE);
 	}
-	else 													//* Parent process
+	else //* Parent process
 		wait(NULL);
-	return 1;
+	return (1);
 }
-
-
 
 /* char *search_path(char *command, char **paths)
 {
-	char *full_path;
-	char *temp_path;
-	int i;
+	char	*full_path;
+	char	*temp_path;
+	int		i;
 
 	if (!paths)
-		return NULL;
+		return (NULL);
 	i = 0;
 	while (paths[i]) {
 		full_path = ft_strjoin(paths[i], "/");
@@ -93,13 +92,12 @@ int exec_input(t_ms *s)
 		full_path = ft_strjoin(full_path, command);
 		free(temp_path);  								//! Free the intermediate string
 		if (access(full_path, X_OK) == 0)
-			return full_path;  							//!Found executable path
+			return (full_path);  							//!Found executable path
 		free(full_path);  								//! Free if not executable
 		i++;
 	}
-	return NULL;
+	return (NULL);
 } */
-
 /* void	child_dump(t_ms d)
 {
 	pipe_msg(d.cmd_args[0]);
