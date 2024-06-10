@@ -1,25 +1,61 @@
 
 #include "../include/minishell.h"
 
-void	ft_strreplace(char *start, char *end, char search, char replace)
+// replaces -search- with -replace- on the range between *start and *end
+// if end is NULL, searches until end of string.
+void	ft_strrep_range(char *start, char *end, char search, char replace)
 {
 	char *ptr;
 
 	if (start == NULL)
 		return ;
 	ptr = start;
-	while (ptr != end && *ptr != '\0')
+	if (end == NULL)
 	{
-		if (*ptr == search)
-			*ptr = replace;
-		ptr++;
+		while (*ptr != '\0')
+		{
+			if (*ptr == search)
+				*ptr = replace;
+			ptr++;
 
+		}
+	}
+	else
+	{
+		while (ptr != end)
+		{
+			if (*ptr == search)
+				*ptr = replace;
+			ptr++;
+
+		}
+	}
+}
+
+void	glue_str(char *start, char *end)
+{
+	size_t i;
+
+	i = 0;
+	while (i < ft_strlen(SPACES))
+	{
+		ft_strrep_range(start, end, SPACES[i], GLUE[i]);
+		i++;
+	}
+
+}
+
+void	unglue_str(char *start, char *end)
+{
+	size_t i;
+
+	i = 0;
+	while (i < ft_strlen(SPACES))
+	{
+		ft_strrep_range(start, end, GLUE[i], SPACES[i]);
+		i++;
 	}
 }
 
 
-void	glue(char *start, char *end, char search, char replace)
-{
-
-
-}
+void	ft_get_strinterval()

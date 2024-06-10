@@ -23,7 +23,7 @@ EXECUTOR =	executor.c \
 # EXECUTOR =	executor.c
 
 PARSER =	aux.c init_cmd.c tokens.c \
-			parse.c	parse_exec.c
+			parse.c	parse_exec.c glue.c
 
 AUX = aux1.c env_aux.c env_aux2.c
 
