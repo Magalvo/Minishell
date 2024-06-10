@@ -40,8 +40,10 @@ int	add_slash(char *slash, char **paths)
 
 /* int	exec_input(t_ms *s)
 {
+	int	id;
+
 	ft_exec_buitltins_chr(s, s->cmd_temp);
- 	int id = fork();
+ 	id = fork();
 	if (id < 0)
 		return (exit_minishell(s,"error"), 0);
 	if (id == 0)
@@ -53,27 +55,29 @@ int	add_slash(char *slash, char **paths)
 
 int	ft_sw_builtins(const char *s1, const char *s2)
 {
-	size_t s1_len = ft_strlen(s1);
-	size_t s2_len = ft_strlen(s2);
+	size_t	s1_len;
+	size_t	s2_len;
 
-	if (s1_len != s2_len) {
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	if (s1_len != s2_len)
+	{
 		return (ft_abs(s1_len - s2_len));
 	}
-
-	// return ft_strncmp(s1, s2, s1_len);
+	// return (ft_strncmp(s1, s2, s1_len));
 	if (ft_ismax(s1_len, s2_len))
-		return ft_strncmp(s1, s2, s2_len);
+		return (ft_strncmp(s1, s2, s2_len));
 	else
-		return ft_strncmp(s1, s2, s1_len);
+		return (ft_strncmp(s1, s2, s1_len));
 }
 
 void	toggle_bnf(t_ms *s)
 {
-	if(s->bnf == true)
+	if (s->bnf == true)
 	{
 		s->bnf = false;
 		ft_putstr_fd("bnf: OFF\n", 1);
-	}	
+	}
 	else if (s->bnf == false)
 	{
 		s->bnf = true;
@@ -81,8 +85,7 @@ void	toggle_bnf(t_ms *s)
 	}
 }
 
-
-int	ft_exec_buitltins_chr(t_ms *s, char **cmds)  //[{laskdl}{kjhalsd}{jakskdj}]
+int	ft_exec_buitltins_chr(t_ms *s, char **cmds) //[{laskdl}{kjhalsd}{jakskdj}]
 {
 	if (s->ast->type != EXEC)
 		return (0);
@@ -96,7 +99,7 @@ int	ft_exec_buitltins_chr(t_ms *s, char **cmds)  //[{laskdl}{kjhalsd}{jakskdj}]
 	else if (ft_sw_builtins(cmds[0], "pwd") == 0)
 		return (pwd_cmd());
 	else if (ft_sw_builtins(cmds[0], "export") == 0)
-	 	return (export_cmd(s, cmds));
+		return (export_cmd(s, cmds));
 	else if (ft_sw_builtins(cmds[0], "unset") == 0)
 		return (unset_cmd(s, cmds));
 	else if (ft_sw_builtins(cmds[0], "exit") == 0)
@@ -108,11 +111,12 @@ int	ft_exec_buitltins_chr(t_ms *s, char **cmds)  //[{laskdl}{kjhalsd}{jakskdj}]
 }
 
 /* int	ft_exec_buitltins(t_ms *s, char **cmds)
-{int	add_slash(char *slash, char **paths)
 {
 	int	i;
 	int	len;
 
+int	add_slash(char *slash, char **paths)
+{
 	len = 0;
 	i = 0;
 	while (paths[i])

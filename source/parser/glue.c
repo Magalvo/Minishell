@@ -5,7 +5,7 @@
 // if end is NULL, searches until end of string.
 void	ft_strrep_range(char *start, char *end, char search, char replace)
 {
-	char *ptr;
+	char	*ptr;
 
 	if (start == NULL)
 		return ;
@@ -17,7 +17,6 @@ void	ft_strrep_range(char *start, char *end, char search, char replace)
 			if (*ptr == search)
 				*ptr = replace;
 			ptr++;
-
 		}
 	}
 	else
@@ -27,14 +26,13 @@ void	ft_strrep_range(char *start, char *end, char search, char replace)
 			if (*ptr == search)
 				*ptr = replace;
 			ptr++;
-
 		}
 	}
 }
 
 void	glue_str(char *start, char *end)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < ft_strlen(SPACES))
@@ -42,12 +40,11 @@ void	glue_str(char *start, char *end)
 		ft_strrep_range(start, end, SPACES[i], GLUE[i]);
 		i++;
 	}
-
 }
 
 void	unglue_str(char *start, char *end)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < ft_strlen(SPACES))
@@ -57,8 +54,7 @@ void	unglue_str(char *start, char *end)
 	}
 }
 
-
-// void	ft_get_strinterval()
+// void	ft_get_strinterval(void)
 
 /*
 // before && after
@@ -78,5 +74,5 @@ falta expand $var, excepto se dentro de quotes
 
 $PATH
 
-if (execve(s->cmdout, s->cmdout_args, envp) == -1)
+if	(execve(s->cmdout, s->cmdout_args, envp) == -1)
 */

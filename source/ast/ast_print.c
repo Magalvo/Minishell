@@ -3,13 +3,13 @@
 
 void	print_2d(char **ptr, int padding)
 {
-	int i;
-	int p;
+	int	i;
+	int	p;
 
 	i = 0;
 	p = 0;
 	if (ptr == NULL)
-		return;
+		return ;
 	while (ptr[i] != NULL)
 	{
 		while (p++ < padding)
@@ -21,9 +21,9 @@ void	print_2d(char **ptr, int padding)
 
 void	print_ast(t_ms *s, t_cmd *ptr, int padding)
 {
-	int p;
+	int	p;
 
-	p=0;
+	p = 0;
 	if (s->ast == NULL)
 	{
 		printf("empty input, nothing to print");
@@ -50,10 +50,10 @@ void	print_ast(t_ms *s, t_cmd *ptr, int padding)
 		p = 0;
 		printf("LEFT leaf, \n");
 		// if (ptr->left->type == PIPE)
-			// padding++;
+		// padding++;
 		print_ast(s, ptr->left, padding);
 		// if (ptr->right->type == PIPE)
-			// padding++;
+		// padding++;
 		while (p++ < padding)
 			printf("\t");
 		p = 0;
@@ -72,9 +72,9 @@ void	print_ast(t_ms *s, t_cmd *ptr, int padding)
 		p = 0;
 		printf("FILE: %s \n", ptr->file);
 		// if (ptr->left->type == PIPE)
-			// padding++;
+		// padding++;
 		// print_ast(s, ptr->file, padding);
 		// if (ptr->right->type == PIPE)
-			// padding++;
+		// padding++;
 	}
 }

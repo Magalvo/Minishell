@@ -9,7 +9,7 @@ t_cmd	*cmd_init(void)
 	return (cmd);
 }
 
-t_cmd *cmd_exec(void)
+t_cmd	*cmd_exec(void)
 {
 	t_cmd	*cmd;
 
@@ -18,7 +18,7 @@ t_cmd *cmd_exec(void)
 	return (cmd);
 }
 
-t_cmd *cmd_redir(t_cmd *subcmd, char *file, char *efile, int mode, int fd)
+t_cmd	*cmd_redir(t_cmd *subcmd, char *file, char *efile, int mode, int fd)
 {
 	t_cmd	*cmd;
 	char	*filename;
@@ -36,9 +36,9 @@ t_cmd *cmd_redir(t_cmd *subcmd, char *file, char *efile, int mode, int fd)
 	return (cmd);
 }
 
-t_cmd *cmd_pipe(t_cmd *left, t_cmd *right)
+t_cmd	*cmd_pipe(t_cmd *left, t_cmd *right)
 {
-	t_cmd *cmd;
+	t_cmd	*cmd;
 
 	cmd = cmd_init();
 	cmd->type = PIPE;

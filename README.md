@@ -18,3 +18,7 @@ Add this line to your settings.json file, to prevent markdown files losing forma
 "[markdown]": {   
     "files.trimTrailingWhitespace": false   
 }  
+
+### C_FORMATTER_42
+cd source
+find -name "*.c" | xargs c_formatter_42
