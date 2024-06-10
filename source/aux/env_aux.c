@@ -141,8 +141,34 @@ char	**env_convert(t_env *env)
 	return (env_array);
 }
 
-void	env_arr_update(t_ms *s)
-{			
+void	env_arr_update(t_ms *s, char *str)
+{	
+	(void)str;
+/* 	char **temp;
+ 	int i;
+	int j; 
+
+	i = 0;
+	temp = s->env_tmp;
+ 	if (ft_strncmp(str, "PATH", 4) == 0 && ft_strlen(str) == 4)
+	{
+		while (temp[i])
+		{
+			if (ft_strncmp(temp[i], "PATH=", 5) == 0)
+			{
+				j = i;
+				while (temp[j])
+				{
+					temp[j] = temp[j + 1];
+					j++;
+				}
+				break;
+			}
+			i++;
+		} */
+	if (s->paths)
+		s->paths = NULL; 
+	
 	s->env_tmp = env_convert(s->env);
 }
 //! ===============================================================================//
