@@ -35,10 +35,7 @@ char	*cmd_path(char **paths, char *cmd)
 		}
 		command = ft_strjoin(*paths, cmd);
 		if (access(command, X_OK | F_OK) == 0)
-		{
-			printf("%s", command);
-			return (command);
-		}
+			return (printf("%s", command), command);
 		free(command);
 		paths++;
 	}

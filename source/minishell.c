@@ -108,17 +108,12 @@ void minishell(char **envp)
 		// previous tokenizer == segfault
 		// actual tokenizer == loop 4ever
 		// ? change bnf to false to execute normally
-		if (s.bnf)
-		{
-			exec_input(&s);
-			if (s.bnf)
-				print_ast(&s, s.ast, -1);
-		}
+		if (!s.bnf)
+			exec_input(&s); // ! make this
 		else
 		{
-			exec_input(&s); // ! make this
-			if (s.bnf)
-				print_ast(&s, s.ast, -1);
+			s.bnf = false;
+			print_ast(&s, s.ast, -1);
 		}
 		// maybe make this functions depend on exec status
 		// dont need to run if exec didnt execute (no changes)
