@@ -27,25 +27,24 @@ void	unset_move(t_env *current)
 	current->next->prev = current->prev;
 }
 
-void	unset_cmd_export(t_ms *s, char **args)
+void	unset_cmd_export(t_ms *s, char **args) 
 {
-	t_env	*current;
+	t_env *current;
 
 	current = s->export;
-	while (current && args[1])
+	while (current && args[1]) 
 	{
-		if ((ft_sw_builtins(current->key, args[1]) == 0))
+		if ((ft_sw_builtins(current->key, args[1]) == 0)) 
 		{
-			if (current->prev == NULL) //! If the node to remove is the head
+			if (current->prev == NULL) 		//! If the node to remove is the head
 			{
 				s->export = current->next;
 				if (current->next != NULL)
 					current->next->prev = NULL;
-			}
-			else if (current->next == NULL)
-				//! If the node to remove is the tail
+			} 
+			else if (current->next == NULL) //! If the node to remove is the tail
 				current->prev->next = NULL;
-			else //! If the node to remove is in the middle
+			else							//! If the node to remove is in the middle
 				unset_move(current);
 			unset_clean(current);
 			return ;
@@ -54,28 +53,27 @@ void	unset_cmd_export(t_ms *s, char **args)
 	}
 }
 
-int	unset_cmd(t_ms *s, char **args)
+int unset_cmd(t_ms *s, char **args) 
 {
-	t_env	*current;
+	t_env *current;
 
 	current = s->env;
-	while (current && args[1])
+	while (current && args[1]) 
 	{
-		if ((ft_sw_builtins(current->key, args[1]) == 0))
+		if ((ft_sw_builtins(current->key, args[1]) == 0)) 
 		{
-			if (current->prev == NULL) //! If the node to remove is the head
+			if (current->prev == NULL) 		//! If the node to remove is the head
 			{
 				s->env = current->next;
 				if (current->next != NULL)
 					current->next->prev = NULL;
-			}
-			else if (current->next == NULL)
-				//! If the node to remove is the tail
+			} 
+			else if (current->next == NULL) //! If the node to remove is the tail
 				current->prev->next = NULL;
-			else //! If the node to remove is in the middle
+			else							//! If the node to remove is in the middle
 				unset_move(current);
 			unset_clean(current);
-			break ;
+			break;
 		}
 		current = current->next;
 	}

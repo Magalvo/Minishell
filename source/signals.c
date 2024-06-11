@@ -3,10 +3,11 @@
 #include "../include/minishell.h"
 
 // check siginfo_DontUse
-void	handler(int signo, siginfo_t *info, void *context)
+void handler(int signo, siginfo_t *info, void *context)
 {
 	(void)info;
 	(void)context;
+
 	if (signo == SIGINT) /* CTRL + C */
 	{
 		write(1, "\n", 1);
@@ -18,7 +19,7 @@ void	handler(int signo, siginfo_t *info, void *context)
 
 void	sig_ignore(struct sigaction *sa, int signal)
 {
-	struct sigaction	sa_origin;
+	struct	sigaction	sa_origin;
 	int					sa_origin_flags;
 
 	sa_origin_flags = sa->sa_flags;
@@ -32,16 +33,17 @@ void	sig_ignore(struct sigaction *sa, int signal)
 
 void	check_signal(e_signal sig)
 {
-	static struct sigaction	sa;
-
 	(void)sig;
+
+	static struct sigaction sa;
+
 	if (sig == MAIN)
 	{
 		sa.sa_sigaction = handler;
 		sa.sa_flags = SA_SIGINFO;
 		if (sigemptyset(&sa.sa_mask) != 0)
 			return ;
-		sigaction(SIGINT, &sa, NULL);
+		sigaction (SIGINT, &sa, NULL);
 		sig_ignore(&sa, SIGQUIT);
 	}
 	else if (sig == CHILD)
@@ -53,12 +55,16 @@ void	check_signal(e_signal sig)
 		sigaction(SIGINT, &sa, NULL);
 		sigaction(SIGQUIT, &sa, NULL);
 	}
-	/* 	else if (IGNORE && HERE_DOC)
+/* 	else if (IGNORE && HERE_DOC)
 	{
 		sig_ignore(&sa, SIGINT);
 		sig_ignore(&sa, SIGQUIT);
 	} */
 }
+
+
+
+
 
 /* argument is signal number */
 // void handle_signal(int sign)
@@ -88,14 +94,15 @@ void	check_signal(e_signal sig)
 // }
 
 /*
-void	check_signal(t_minis *s)
+void check_signal(t_minis *s)
 {
-	struct sigaction	sa;
-
 	(void)s;
+
+	struct sigaction sa;
 	sa.sa_handler = handle_signal;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
+
 	if (sigaction(SIGINT, &sa, NULL) == -1)
 		perror("can't catch SIGINT");
 	else if (sigaction(SIGTERM, &sa, NULL) == -1)

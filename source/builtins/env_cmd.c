@@ -28,17 +28,16 @@ char	*env_paths(t_ms *ms, char **envp)
 	paths = NULL;
 	while (envp[i] != NULL)
 	{
-		if (ft_strncmp(envp[i], "PATH=", 5) == 0) //!HERE Removed '=' from PATH=
+		if (ft_strncmp(envp[i], "PATH=", 5) == 0)    //!HERE Removed '=' from PATH=
 		{
 			found = 1;
 			paths = ft_split(envp[i] + 5, ':');
-			break ;
+			break;
 		}
 		i++;
 	}
 	if (!found || !paths)
-		paths = ft_split("/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin",
-				':');
+		paths = ft_split("/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin", ':');
 	add_slash(slash, paths);
 	ms->paths = paths;
 	return (NULL);
@@ -47,7 +46,6 @@ char	*env_paths(t_ms *ms, char **envp)
 {
 	char	**paths;
 	char	*slash;
-	int		i;
 
 	slash = NULL;
 	paths = NULL;
@@ -62,11 +60,14 @@ char	*env_paths(t_ms *ms, char **envp)
 	ms->paths = paths;
 	return (NULL);
 } */
+
 char	*get_env_val(t_env *env, char *key, t_ms *s)
 {
-	i = 0;
+	int i;
+
+	i = 0; 
 	if (key[0] == '$')
-		key = key + 1;
+			key = key + 1;
 	else
 	{
 		while (env)
@@ -81,16 +82,16 @@ char	*get_env_val(t_env *env, char *key, t_ms *s)
 		while (s->paths && s->paths[i])
 		{
 			ft_putstr_fd(s->paths[i], 1);
-			if (s->paths[i + 1] != NULL)
+			if(s->paths[i + 1] != NULL)
 				ft_putstr_fd(":", 1);
 			i++;
 		}
 	}
-	return (ft_putstr_fd("\n", 1), NULL);
+	return (ft_putstr_fd("\n", 1), NULL);	
 }
 
 //!! 49 LINHAS!!! Mas bem gastas
-int	env_cmd(t_ms *s, char **cmds)
+int env_cmd(t_ms *s, char **cmds)
 {
 	char	*path;
 	int		id;
@@ -100,7 +101,7 @@ int	env_cmd(t_ms *s, char **cmds)
 	path = NULL;
 	if (cmds[1] && cmds[1][0] == '-' && cmds[1][1] == 'i' && cmds[1][2] == '\0')
 	{
-		if (s->env_tmp) //! FREE the existing environment
+		if (s->env_tmp) 								//! FREE the existing environment
 		{
 			i = 0;
 			while (s->env_tmp[i])
@@ -110,9 +111,8 @@ int	env_cmd(t_ms *s, char **cmds)
 			}
 			free(s->env_tmp);
 		}
-		s->env_tmp = null_env_init(); //! Initialize a minimal environment
-										//! Check if there is a command to execute after
-											-i
+		s->env_tmp = null_env_init();		//! Initialize a minimal environment
+											//! Check if there is a command to execute after -i
 		if (cmds[2])
 		{
 			id = fork();
@@ -135,8 +135,7 @@ int	env_cmd(t_ms *s, char **cmds)
 		}
 		return (1);
 	}
-	t_env *env_cpy = s->env;
-		//* Print the current env if no command was given after -i
+	t_env *env_cpy = s->env;												//* Print the current env if no command was given after -i
 	while (env_cpy)
 	{
 		if (env_cpy->value != NULL)
@@ -146,6 +145,7 @@ int	env_cmd(t_ms *s, char **cmds)
 	return (1);
 }
 
+
 t_env	*new_env_node(char *env_var)
 {
 	t_env	*node;
@@ -153,7 +153,7 @@ t_env	*new_env_node(char *env_var)
 	char	*delimiter;
 
 	node = ft_calloc(sizeof(t_env), 1);
-	if (!node)
+	if(!node)
 		error_msg("malloc (new env)");
 	delimiter = ft_strchr(env_var, '=');
 	if (!delimiter)
@@ -169,20 +169,18 @@ t_env	*new_env_node(char *env_var)
 	return (node);
 }
 
+
 void	init_env(t_ms *ms, char **envp)
 {
-	t_env	*head;
-	t_env	*tail;
+	t_env	*head = NULL;
+	t_env	*tail = NULL;
 	int		i;
-	t_env	*new_node;
 
-	head = NULL;
-	tail = NULL;
 	for (i = 0; envp[i] != NULL; i++)
 	{
-		new_node = new_env_node(envp[i]);
+		t_env *new_node = new_env_node(envp[i]);
 		if (!new_node)
-			continue ;
+			continue;
 		if (!head)
 		{
 			head = new_node;

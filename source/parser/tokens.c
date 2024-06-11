@@ -27,37 +27,10 @@ int	sw_get_token(char **str)
 	return (0);
 }
 
-int	get_token(char **ps, char *es, char **q, char **eq)
+int get_token(char **ps, char *es, char **q, char **eq)
 {
-	char	*s;
-	int		ret;
-
-	s = *ps;
-	while (s < es && ft_strchr(SPACES, *s))
-		s++;
-	if (q)
-		*q = s;
-	ret = *s;
-	if (ft_strchr("|()", *s) && *s != 0)
-		s++;
-	else
-		ret = sw_get_token(&s);
-	while (s < es && !ft_strchr(SPACES, *s) && !ft_strchr(SYMBOLS, *s))
-		s++;
-	if (eq)
-		*eq = s;
-	while (s < es && ft_strchr(SPACES, *s))
-		s++;
-	*ps = s;
-	return (ret);
-}
-
-// get token backup
-/*
-int	gettoken(char **ps, char *es, char **q, char **eq)
-{
-	char	*s;
-	int		ret;
+	char *s;
+	int ret;
 
 	s = *ps;
 	while(s < es && ft_strchr(SPACES, *s))
@@ -65,9 +38,38 @@ int	gettoken(char **ps, char *es, char **q, char **eq)
 	if(q)
 		*q = s;
 	ret = *s;
+	if (ft_strchr("|()", *s) && *s != 0)
+		s++;
+	else
+		ret = sw_get_token(&s);
+	while(s < es && !ft_strchr(SPACES, *s) && !ft_strchr(SYMBOLS, *s))
+		s++;
+	if(eq)
+		*eq = s;
+	while(s < es && ft_strchr(SPACES, *s))
+		s++;
+	*ps = s;
+	return (ret);
+}
+
+// get token backup
+/*
+int gettoken(char **ps, char *es, char **q, char **eq)
+{
+	char *s;
+	int ret;
+
+	s = *ps;
+	while(s < es && ft_strchr(SPACES, *s))
+		s++;
+	if(q)
+		*q = s;
+	ret = *s;
+
+
 	switch(*s){
 	case 0:
-		break ;
+		break;
 	case '|':
 	case '(':
 	case ')':
@@ -80,17 +82,17 @@ int	gettoken(char **ps, char *es, char **q, char **eq)
 			ret = 'N';
 			s++;
 		}
-		break ;
+		break;
 	// case '<':
 	// 	s++;
-	// 	break ;
+	// 	break;
 	case '<':
 		s++;
 		if(*s == '<'){
 			ret = 'H';
 			s++;
 		}
-		break ;
+		break;
 	case '>':
 		s++;
 		if(*s == '>')
@@ -98,19 +100,21 @@ int	gettoken(char **ps, char *es, char **q, char **eq)
 			ret = '+';
 			s++;
 		}
-		break ;
+		break;
 	// TODO add << check for heredoc
 	default:
 		ret = 'a';
 		while(s < es && !ft_strchr(SPACES, *s) && !ft_strchr(SYMBOLS, *s))
 			s++;
-		break ;
+		break;
 	}
+
+
 	if(eq)
 		*eq = s;
 	while(s < es && ft_strchr(SPACES, *s))
 		s++;
 	*ps = s;
-	return (ret);
+	return ret;
 }
 */

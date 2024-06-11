@@ -2,11 +2,11 @@
 
 int	add_node_export(t_env *env, char *key, char *value)
 {
-	t_env	*new_node;
-	t_env	*export;
+	t_env *new_node;
+	t_env *export;
 
 	new_node = (t_env *)malloc(sizeof(t_env));
-	if (!new_node)
+	if(!new_node)
 		error_msg("malloc (new env)");
 	new_node->key = ft_strdup(key);
 	if (value)
@@ -30,14 +30,14 @@ int	add_node_export(t_env *env, char *key, char *value)
 
 int	export_update(t_env *export, char *key, char *value)
 {
-	if (!is_valid_key(key))
+	if(!is_valid_key(key))
 	{
 		printf("invalid Var Name");
 		return (0);
 	}
 	if (!update_key(export, key, value))
 	{
-		if (!add_node_export(export, key, value))
+		if(!add_node_export(export,key,value))
 			return (0);
 	}
 	return (1);

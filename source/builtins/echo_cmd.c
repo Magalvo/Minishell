@@ -14,7 +14,7 @@
 
 /* static int	ft_flagged(char *s)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	if (s[0] != '-')
@@ -31,10 +31,8 @@
 
 int	echo_cmd(t_cmd *cmd)
 {
-	int	i;
-	int	check;
-	int	i;
-
+	int		i;
+	int		check;
 	i = 1;
 	check = 0;
 	while (cmd->cmd_args[i] != NULL && ft_flagged(cmd->cmd_args[i]) == 1)
@@ -53,8 +51,11 @@ int	echo_cmd(t_cmd *cmd)
 		ft_putstr_fd("\n", 1);
 	return (0);
 } */
+
 static int	ft_flagged(char *s)
 {
+	int i;
+
 	i = 0;
 	if (s[0] != '-')
 		return (0);
@@ -99,8 +100,8 @@ static int	ft_flagged(char *s)
 
 int	echo_cmd_test(char **cmd, t_ms *s)
 {
-	int i;
-	int check;
+	int		i;
+	int		check;
 
 	i = 1;
 	check = 0;
@@ -112,11 +113,11 @@ int	echo_cmd_test(char **cmd, t_ms *s)
 	while (cmd[i])
 	{
 		if (cmd[i][0] == '$')
-			return (ft_putstr_fd(get_env_val(s->env, cmd[i], s), 1), 1);
-		else
+			return(ft_putstr_fd(get_env_val(s->env, cmd[i], s), 1), 1);
+		else 
 		{
 			ft_putstr_fd(cmd[i], 1);
-			if (cmd[i + 1])
+			if(cmd[i + 1])
 				ft_putstr_fd(" ", 1);
 		}
 		i++;
