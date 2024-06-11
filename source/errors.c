@@ -20,9 +20,9 @@ void	error_msg(char *str)
 }
 int	free_export(char *key, char *value)
 {
-	free(key);
-	free(value);
-	return (error_msg("failed to create new node"), 0);
+		free(key);
+		free(value);
+		return (error_msg("failed to create new node"), 0);
 }
 
 void	free_paths(char **paths, int i)
@@ -51,7 +51,7 @@ int	free_export_p(t_env *env_copy, t_env *new_node)
 		free(new_node->value);
 		free(new_node);
 	}
-	return (0);
+	return(0);
 }
 
 int	not_found(char *str)

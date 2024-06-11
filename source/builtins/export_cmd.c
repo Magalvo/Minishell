@@ -14,10 +14,10 @@
 
 int	is_valid_key(const char *key)
 {
-	int	i;
+	int i;
 
 	i = 1;
-	if (!ft_isalpha(key[0]) && key[0] != '_')
+	if(!ft_isalpha(key[0]) && key[0] != '_')
 		return (0);
 	while (key[i] != '\0')
 	{
@@ -28,40 +28,37 @@ int	is_valid_key(const char *key)
 	return (1);
 }
 
+
 char	*extract_key(const char *str, char *delimiter)
 {
-	size_t	key_len;
-
-	key_len = delimiter - str;
-	return (ft_substr(str, 0, key_len));
+	size_t key_len = delimiter - str;
+	return ft_substr(str, 0, key_len);
 }
 
-int	update_key(t_env *env, char *key, char *value)
+
+int update_key(t_env *env, char *key, char *value) 
 {
-	while (env)
+    while (env) 
 	{
-		if (ft_sw_builtins(env->key, key) == 0)
+        if (ft_sw_builtins(env->key, key) == 0) 
 		{
-			if (value)
+            if (value)
 			{
 				free(env->value);
 				env->value = ft_strdup(value);
-			}
-			return (1);
-		}
-		env = env->next;
-	}
-	return (0);
+			}	
+            return (1);
+        }
+        env = env->next;
+    }
+    return (0);
 }
 
 /* int	add_new_node(t_ms *s, char *key, char *value)
 {
-	t_env	*env;
-	char	*key;
-	char	*value;
-	t_env	*env_cpy;
-
 	t_env *new_node; //= new_env_node(key,value);
+	t_env *env;
+
 	new_node = (t_env *)malloc(sizeof(t_env));
 	if(!new_node)
 		error_msg("malloc (new env)");
@@ -84,8 +81,12 @@ int	update_key(t_env *env, char *key, char *value)
 	}
 	return (1);
 } */
+
 /* int export_cmd(t_ms *s, char **str)
 {
+	char	*key;
+	char	*value;
+
 	if (str[1] == NULL)
 	{
 		sort_env_list(&s->export);
@@ -99,11 +100,14 @@ int	update_key(t_env *env, char *key, char *value)
 	handle_kv_update(s, key, value);
 	return (1);
 } */
+	
 int	add_new_node(t_env *env, char *key, char *value)
 {
 	t_env *new_node; //= new_env_node(key,value);
+	t_env *env_cpy;
+
 	new_node = (t_env *)malloc(sizeof(t_env));
-	if (!new_node)
+	if(!new_node)
 		error_msg("malloc (new env)");
 	new_node->key = ft_strdup(key);
 	if (value)
@@ -125,7 +129,7 @@ int	add_new_node(t_env *env, char *key, char *value)
 	return (1);
 }
 
-int	export_cmd(t_ms *s, char **str)
+int export_cmd(t_ms *s, char **str)
 {
 	char	*key;
 	char	*value;
@@ -137,7 +141,7 @@ int	export_cmd(t_ms *s, char **str)
 	}
 	key = get_key_from_str(str[1]);
 	value = get_value_from_str(str[1]);
-	if (!key)
+	if(!key)
 		return (0);
 	export_update(s->export, key, value);
 	handle_kv_update(s->env, key, value);
@@ -145,3 +149,5 @@ int	export_cmd(t_ms *s, char **str)
 	env_paths(s, s->env_tmp);
 	return (1);
 }
+
+

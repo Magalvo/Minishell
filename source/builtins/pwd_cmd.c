@@ -19,7 +19,7 @@ int	pwd_cmd(void)
 	pwd = NULL;
 	pwd = getcwd(pwd, FILENAME_MAX);
 	if (pwd != NULL)
-		printf("%s\n", pwd);
+		printf ("%s\n", pwd);
 	else
 		perror("pwd");
 	return (1);

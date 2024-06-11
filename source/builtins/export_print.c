@@ -1,8 +1,8 @@
 #include "../../include/minishell.h"
 
-int	print_exp(t_env *export)
+int print_exp(t_env *export) 
 {
-	while (export)
+	while (export) 
 	{
 		if (export->value != NULL)
 		{
@@ -11,21 +11,20 @@ int	print_exp(t_env *export)
 		else
 		{
 			printf("declare -x %s\n", export->key);
-		}
+		}	
 		export = export->next;
 	}
 	return (1);
 }
 
-int	print_export(t_env *env)
-{
-	return (print_exp(env));
+int print_export(t_env *env) {
+	return print_exp(env);
 }
 
-void	swap_env_data(t_env *a, t_env *b)
+void swap_env_data(t_env *a, t_env *b) 
 {
-	char	*temp_key;
-	char	*temp_value;
+	char *temp_key;
+	char *temp_value;
 
 	temp_key = a->key;
 	temp_value = a->value;
@@ -35,34 +34,33 @@ void	swap_env_data(t_env *a, t_env *b)
 	b->value = temp_value;
 }
 
-int	compare_keys(char *a, char *b)
+int compare_keys(char *a, char *b) 
 {
-	int	len;
-
+	int len;
 	if (ft_strlen(a) > ft_strlen(b))
 		len = ft_strlen(a);
 	else
 		len = ft_strlen(b);
-	return (ft_strncmp(a, b, len) > 0);
+	return (ft_strncmp(a, b, len) > 0); 
 }
 
-void	sort_env_list(t_env **head)
+void sort_env_list(t_env **head) 
 {
-	int		swapped;
+	int	swapped;
 	t_env	*ptr;
-	t_env	*lptr;
+	t_env	*lptr = NULL;
 
-	lptr = NULL;
 	if (*head == NULL)
-		return ;
+		return;
+
 	swapped = 1;
 	while (swapped)
 	{
 		swapped = 0;
 		ptr = *head;
-		while (ptr->next != lptr)
+		while (ptr->next != lptr) 
 		{
-			if (compare_keys(ptr->key, ptr->next->key))
+			if (compare_keys(ptr->key, ptr->next->key)) 
 			{
 				swap_env_data(ptr, ptr->next);
 				swapped = 1;
@@ -73,10 +71,10 @@ void	sort_env_list(t_env **head)
 	}
 }
 
+
+
 /*  int	print_export(t_env *export)
 {
-	t_env	*out;
-
 	while (export)
 	{
 		if (export->value != NULL && export->value[0])
@@ -88,20 +86,20 @@ void	sort_env_list(t_env **head)
 	return (0);
 } */
 /*
-t_env	*list_cpy(t_env *var)
+t_env *list_cpy(t_env *var)
 {
+	t_env *out;
+
 	while (var != NULL)
 	{
+
 	}
 }
 
-int	sort_list(t_env *list)
+int sort_list(t_env *list)
 {
-	t_env	*temp;
-	t_env	*out;
-	t_env	*cpy;
-	t_env	*exported;
-	t_env	*lowest_node;
+	t_env *temp;
+	t_env *out;
 
 	out = list_cpy(list);
 	while (list)
@@ -118,8 +116,13 @@ int	sort_list(t_env *list)
 	}
 	
 } */
+
 /* int	envio_ex(t_env	*env)
 {
+	t_env	*cpy;
+	t_env	*exported;
+	t_env	*lowest_node;
+
 	cpy = env;
 	lowest_node = env;
 	while (cpy)
@@ -128,8 +131,11 @@ int	sort_list(t_env *list)
 			lowest_node = cpy->key;
 		cpy = cpy->next;
 	}
+
 } */
+
 /* #include "../../include/minishell.h"
+
 int	print_exp(t_env *export)
 {
 	while (export)
@@ -145,15 +151,13 @@ int	print_exp(t_env *export)
 
 void	swap_nodes(t_env **head, t_env *node1, t_env *node2)
 {
-	t_env	*prev1;
-	t_env	*prev2;
-	t_env	*temp;
+	t_env *prev1 = NULL;
+	t_env *prev2 = NULL;
+	t_env *temp = *head;
 
-	prev1 = NULL;
-	prev2 = NULL;
-	temp = *head;
 	if (node1 == node2)
-		return ;
+		return;
+
 	// Find the previous nodes of node1 and node2
 	while (temp && temp != node1 && temp != node2)
 	{
@@ -163,6 +167,7 @@ void	swap_nodes(t_env **head, t_env *node1, t_env *node2)
 			prev2 = temp;
 		temp = temp->next;
 	}
+
 	// Swap previous pointers
 	if (prev1)
 		prev1->next = node2;
@@ -172,6 +177,7 @@ void	swap_nodes(t_env **head, t_env *node1, t_env *node2)
 		prev2->next = node1;
 	else
 		*head = node1;
+
 	// Swap next pointers
 	temp = node1->next;
 	node1->next = node2->next;
@@ -180,12 +186,13 @@ void	swap_nodes(t_env **head, t_env *node1, t_env *node2)
 
 void	sort_env_list(t_env **head)
 {
-	int		swapped;
-	t_env	*ptrI;
-	t_env	*Iptr;
+	int swapped;
+	t_env *ptrI;
+	t_env *Iptr;
 
 	if (*head == NULL)
-		return ;
+		return;
+
 	swapped = 1;
 	while (swapped)
 	{
@@ -200,9 +207,10 @@ void	sort_env_list(t_env **head)
 				swapped = 1;
 			}
 			ptrI = ptrI->next;
+
 			// Check if ptrI became NULL after moving to next node
 			if (!ptrI)
-				break ;
+				break;
 		}
 		Iptr = ptrI;
 	}

@@ -1,0 +1,14 @@
+g.sh
+include
+libs
+Makefile
+minishell
+minishell.code-workspace
+object
+otherfile
+outfile
+README.md
+reference
+source
+test.c
+workspaceState.state.json

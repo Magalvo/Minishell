@@ -2,20 +2,16 @@
 
 char	*get_key_from_str(const char *str)
 {
-	char	*delimiter;
-
-	delimiter = ft_strchr(str, '=');
+	char *delimiter = ft_strchr(str, '=');
 	if (delimiter)
 		return (extract_key(str, delimiter));
 	else
-		return (ft_strdup(str));
+		return ft_strdup(str);
 }
 
 char	*get_value_from_str(const char *str)
 {
-	char	*delimiter;
-
-	delimiter = ft_strchr(str, '=');
+	char *delimiter = ft_strchr(str, '=');
 	if (delimiter)
 		return (ft_strdup(delimiter + 1));
 	else
@@ -24,25 +20,25 @@ char	*get_value_from_str(const char *str)
 
 int	handle_kv_update(t_env *env, char *key, char *value)
 {
-	if (!is_valid_key(key))
+	if(!is_valid_key(key))
 	{
 		free(key);
-		if (value)
+		if(value)
 			free(value);
 		printf("invalid Var Name");
 		return (0);
 	}
 	if (!update_key(env, key, value))
 	{
-		if (!add_new_node(env, key, value))
+		if(!add_new_node(env,key,value))
 		{
 			free(key);
-			if (value)
+			if(value)
 				free(value);
 			return (0);
 		}
 		else if (value)
-			free(value);
+			free (value);
 	}
 	free(key);
 	return (1);
@@ -50,23 +46,20 @@ int	handle_kv_update(t_env *env, char *key, char *value)
 
 void	init_export(t_ms *ms, char **envp)
 {
-	t_env	*head;
-	t_env	*tail;
+	t_env	*head = NULL;
+	t_env	*tail = NULL;
 	int		i;
-	t_env	*new_node;
 
-	head = NULL;
-	tail = NULL;
 	i = 0;
 	while (envp && envp[i] != NULL)
 	{
-		new_node = new_env_node(envp[i]);
-		/* 		if (!new_node)
-			continue ; */
+		t_env *new_node = new_env_node(envp[i]);
+/* 		if (!new_node)
+			continue; */
 		if (!head)
 		{
 			head = new_node;
-			tail = new_node;
+			tail = new_node;	
 		}
 		else
 		{
@@ -74,7 +67,8 @@ void	init_export(t_ms *ms, char **envp)
 			new_node->prev = tail;
 			tail = new_node;
 		}
-		i++;
+		i++;	
 	}
 	ms->export = head;
 }
+
