@@ -1,0 +1,22 @@
+total 276
+-rwxr-xr-x 1 dde-maga 2023_lisboa    558 Jun  5 19:21 g.sh
+drwxr-xr-x 3 dde-maga 2023_lisboa    115 Jun 11 17:22 include
+drwxr-xr-x 3 dde-maga 2023_lisboa     19 May 17 13:34 libs
+-rwxr-xr-x 1 dde-maga 2023_lisboa   3138 Jun 11 15:08 Makefile
+-rwxr-xr-x 1 dde-maga 2023_lisboa 240560 Jun 11 19:08 minishell
+-rw-r--r-- 1 dde-maga 2023_lisboa    804 Jun  5 19:21 minishell.code-workspace
+-rw-r--r-- 1 dde-maga 2023_lisboa      0 Jun 11 10:34 new.txt
+drwxr-xr-x 7 dde-maga 2023_lisboa    126 Jun 11 18:05 object
+-rw-r--r-- 1 dde-maga 2023_lisboa     24 Jun 11 10:34 otherfile
+-rw-r--r-- 1 dde-maga 2023_lisboa   1439 Jun 11 19:14 out
+-rw-r--r-- 1 dde-maga 2023_lisboa    147 Jun 11 10:34 outfile
+-rw-r--r-- 1 dde-maga 2023_lisboa      0 Jun 11 19:16 outipt
+-rw-r--r-- 1 dde-maga 2023_lisboa    535 Jun 11 10:34 README.md
+drwxr-xr-x 4 dde-maga 2023_lisboa   4096 Jun 11 10:15 reference
+drwxr-xr-x 8 dde-maga 2023_lisboa    155 Jun 11 18:47 source
+-rw-r--r-- 1 dde-maga 2023_lisboa   2086 Jun  5 19:21 test.c
+-rw-r--r-- 1 dde-maga 2023_lisboa   2642 Jun  5 19:21 workspaceState.state.json
+[?2004h[3;33mnanoshell[0m[1;97m -> [0m^C[?2004l
+[3;33mnanoshell[0m[1;97m -> [0m[?2004h^C[?2004l
+[3;33mnanoshell[0m[1;97m -> [0m[?2004h[?2004l
+exit

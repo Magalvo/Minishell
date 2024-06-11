@@ -81,16 +81,16 @@ struct	s_cmd
 	int		type;
 	int		argc;
 	char	**argv;
-	// char	*argv[MAXARGS];
-	// char	*eargv[MAXARGS];
 	t_cmd	*left;			//pipe
 	t_cmd	*right;
 	t_cmd	*cmd;			//redir
 	char	*file;
-	// char	*efile;
 	int		mode;
 	int		fd;
 	char	**temp;
+	// char	*argv[MAXARGS];
+	// char	*eargv[MAXARGS];
+	// char	*efile;
 };
 
 //* Integer codes para o tipo de node na ASTree
