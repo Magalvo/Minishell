@@ -145,7 +145,7 @@ int export_cmd(t_ms *s, char **str)
 		return (0);
 	export_update(s->export, key, value);
 	handle_kv_update(s->env, key, value);
-	env_arr_update(s);
+	env_arr_update(s, str[1]);
 	env_paths(s, s->env_tmp);
 	return (1);
 }

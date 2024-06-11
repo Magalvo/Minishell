@@ -29,8 +29,8 @@ static int	cd_cmd_home(t_env *env)
 {
 	char	*home;
 	
-	update_key(env, "OLDPWD", get_env_val(env, "PWD"));
-	home = get_env_val(env,"HOME");
+	update_key(env, "OLDPWD", get_env_val(env, "PWD", NULL));
+	home = get_env_val(env,"HOME", NULL);
 	if (!home)
 		return (ft_putstr_fd("Err on ENV\n", 2), 0);
 	if (chdir(home) == -1)
@@ -56,6 +56,6 @@ int	cd_cmd(t_ms *mini, char **path)
 		return (cd_cmd_home(env));
 	if(chdir(path[1]) == -1)
 		return (cd_cmd_error(path[1]));
-	update_key(env, "OLDPWD=", get_env_val(env, "PWD="));
+	update_key(env, "OLDPWD=", get_env_val(env, "PWD=", NULL));
 	return(change_pwd(env));
 }

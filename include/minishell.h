@@ -77,14 +77,14 @@ void	unglue_str(char *start, char *end);
 
 // ! PARSE WIP
 // t_cmd	*nulterminate(t_cmd *cmd);
-int		peek(char **ps, char *es, char *toks);
 void	reprompt(char *s);
+int		peek(char **ps, char *es, char *toks);
 int		getcmd(char *buf, int nbuf);
+int		get_token(char **ps, char *es, char **q, char **eq);
 t_cmd	*cmd_init(void);
 t_cmd	*cmd_exec(void);
 t_cmd	*cmd_redir(t_cmd *subcmd, char *file, char *efile, int mode, int fd);
 t_cmd	*cmd_pipe(t_cmd *left, t_cmd *right);
-int		get_token(char **ps, char *es, char **q, char **eq);
 t_cmd	*parse_cmd(char *input);
 t_cmd	*parse_line(char **ps, char *es);
 t_cmd	*parse_pipe(char **ps, char *es);
@@ -122,10 +122,15 @@ ll_inits.c
 //*================= EXEC =========================*//
 
 //todo int		cmd_exec(char *args);
-int				exec_input(t_ms *s);
+//int				exec_input(t_ms *s);
 //char			*search_path(char *command, char **paths);
 char			*env_paths(t_ms *ms, char **envp);
 char			*cmd_path(char **paths, char *cmd);
+void			exec_from_ast(t_ms *s);
+void			exec_pipe(t_ms *s, t_cmd *cmd);
+void			exec_one(t_ms *s, char **argv);
+void			single_exec(t_ms *s, t_cmd *cmd, int fd_in);
+void			exec_redir(t_ms *s, t_cmd *cmd);
 //*================= ERRORS =========================*//
 
 void	error_msg(char *str);
@@ -133,6 +138,7 @@ int		free_export(char *key, char *value);
 void	free_paths(char **paths, int i);
 int		free_export_p(t_env *env_copy, t_env *new_node);
 int		not_found(char *str);
+
 
 
 #endif

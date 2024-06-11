@@ -47,7 +47,27 @@ void	new_line(void)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 }
-int exec_input(t_ms *s)
+
+void	single_exec(t_ms *s, t_cmd *cmd, int fd_in)
+{
+	pid_t	pid;
+
+	if((pid = fork()) == -1)
+		error_msg("fork");
+	else if (pid == 0)
+	{
+		if (fd_in != 0)
+		{
+			dup2 (fd_in, 0);
+			close(fd_in);
+		}
+		exec_one(s, cmd->argv);
+	}
+	else
+		waitpid(pid, NULL, 0);
+}
+
+/* int exec_input(t_ms *s)
 {
 	char	*path;
 	int		id;
@@ -56,25 +76,19 @@ int exec_input(t_ms *s)
 		return (new_line(), 1);
 	if (ft_exec_buitltins_chr(s, s->ast->argv))
 		return (1);
-	id = fork();											//* Fork a new process for external commands
-	if (id < 0)
-		return (exit_minishell(s, "error"), 0);
-	if (id == 0) 											//* Child process
+	else
 	{
-		if (s->ast->type != EXEC)
-			exit(0);
-		t_cmd	*cast = s->ast;
-		path = cmd_path(s->paths, cast->argv[0]);
-		if (!path)
-			not_found(cast->argv[0]);
-		execve(path, cast->argv, s->env_tmp);
-		perror("execve");  									//* If execve returns, an error occurred
-		exit(EXIT_FAILURE);
+		if(s->ast->type == EXEC)
+			exec_one(s, s->ast->argv);
+		else if(s->ast->type == PIPE)
+			exec_pipe(s, s->ast);
+		else if(s->ast->type == REDIR);
+		{
+
+		}
 	}
-	else 													//* Parent process
-		wait(NULL);
-	return 1;
-}
+	return (1);
+} */
 
 
 
