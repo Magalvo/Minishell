@@ -127,9 +127,9 @@ ll_inits.c
 char			*env_paths(t_ms *ms, char **envp);
 char			*cmd_path(char **paths, char *cmd);
 void			exec_from_ast(t_ms *s);
-void			exec_pipe(t_ms *s, t_cmd *cmd);
+void			exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
 void			exec_one(t_ms *s, char **argv);
-void			single_exec(t_ms *s, t_cmd *cmd, int fd_in);
+void			single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
 void			exec_redir(t_ms *s, t_cmd *cmd);
 //*================= ERRORS =========================*//
 

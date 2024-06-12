@@ -48,23 +48,36 @@ void	new_line(void)
 	rl_replace_line("", 0);
 }
 
-void	single_exec(t_ms *s, t_cmd *cmd, int fd_in)
+void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	pid_t	pid;
 
+	if(ft_exec_buitltins_chr(s, cmd->argv))
+		return ;
 	if((pid = fork()) == -1)
 		error_msg("fork");
 	else if (pid == 0)
 	{
-		if (fd_in != 0)
+		if (fd_in != STDIN_FILENO)
 		{
-			dup2 (fd_in, 0);
+			dup2 (fd_in, STDIN_FILENO);
 			close(fd_in);
+		}
+		if (fd_out != STDOUT_FILENO)
+		{
+			dup2(fd_out, STDOUT_FILENO);
+			close(fd_out);
 		}
 		exec_one(s, cmd->argv);
 	}
 	else
+	{
+		if (fd_in != STDIN_FILENO)
+			close (fd_in);
+		if (fd_out != STDOUT_FILENO)
+			close(fd_out);
 		waitpid(pid, NULL, 0);
+	}
 }
 
 /* int exec_input(t_ms *s)

@@ -9,62 +9,51 @@ void	exec_one(t_ms *s, char **argv)
 	if (!path)
 		not_found(argv[0]);
 	execve(path, argv, s->env_tmp);																		
-	return ;
+	error_msg("Error on EXECVE");
 }
 
 //! ===== Prototype for PIPE execution ======= !//
-void	exec_pipe(t_ms *s, t_cmd *cmd)
+void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	int		pipefd[2];
-	int		fd_in;
 	pid_t	pid;
 
-	fd_in = 0;
-	while (cmd)
+	if (cmd->type == PIPE)
 	{
-		if(cmd->type == EXEC)
+		if (pipe(pipefd) == -1)
+			error_msg("error on pipe");
+		if ((pid = fork()) == -1)
+			error_msg("error on pid");
+		else if (pid == 0)
 		{
-			single_exec(s, cmd, fd_in);
-			break;
+			close(pipefd[0]);
+			dup2(fd_in, STDIN_FILENO);
+			dup2(pipefd[1], STDOUT_FILENO);
+			exec_pipe(s, cmd->left, fd_in, pipefd[1]);
+			exit(EXIT_SUCCESS);
 		}
-		else if (cmd->type == PIPE)
+		else
 		{
-			if (pipe(pipefd) == -1)
-				error_msg("Urgrrr...piper pipe pipes");
-			if ((pid = fork()) == -1)
-				error_msg("Ma Fork Broke 3-/-");
-			else if(pid == 0)
-			{
-				dup2(fd_in, 0);
-				close(pipefd[0]);
-				dup2(pipefd[1], STDOUT_FILENO);
-				close(pipefd[1]);
-				exec_one(s, cmd->left->argv);
-			}
-			else
-			{
-				waitpid(pid, NULL, 0);
-				close(pipefd[1]);
-				fd_in = pipefd[0];
-				cmd = cmd->right;
-			}
+			close(pipefd[1]);
+			waitpid(pid, NULL, 0);
+			exec_pipe(s, cmd->right, pipefd[0], fd_out);
 		}
 	}
+	else
+		single_exec(s, cmd, fd_in, fd_out);
 }
 
 
-void	exec_from_ast(t_ms *s)
+void	exec_from_ast(t_ms *s, )
 {
 	t_cmd	*cmd;
-	int		fd_in;
 
-	fd_in = 0;
 	cmd = s->ast;
 	while (cmd)
 	{
 		if(cmd->type == EXEC)
 		{
-			single_exec(s, cmd, fd_in);
+			single_exec(s, cmd, STDIN_FILENO, STDOUT_FILENO);
 			break;
 		}
 		else if(cmd->type == REDIR)
@@ -74,7 +63,7 @@ void	exec_from_ast(t_ms *s)
 		}
 		else if(cmd->type == PIPE)
 		{
-			exec_pipe(s, cmd);
+			exec_pipe(s, cmd, STDIN_FILENO, STDOUT_FILENO);
 			break;
 		}
 		cmd = cmd->right;
