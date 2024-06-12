@@ -8,18 +8,21 @@ int	sw_get_token(char **str)
 	else if (**str == '&')
 	{
 		if (*++*str == '&')
-			return (str++, 'N');
+			return (++str, 'N');
 	}
 	else if (**str == '<')
 	{
 		if (*++*str == '<')
-			return (str++, 'H');
+		{
+			++*str;
+			return ('H');
+		}
 		return ('<');
 	}
 	else if (**str == '>')
 	{
 		if (*++*str == '>')
-			return (str++, '+');
+			return (++str, '+');
 		return ('>');
 	}
 	else
