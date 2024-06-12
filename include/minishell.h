@@ -130,7 +130,7 @@ void			exec_from_ast(t_ms *s);
 void			exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
 void			exec_one(t_ms *s, char **argv);
 void			single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
-void			exec_redir(t_ms *s, t_cmd *cmd);
+void			exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
 //*================= ERRORS =========================*//
 
 void	error_msg(char *str);
@@ -145,7 +145,7 @@ int		not_found(char *str);
 
 //! Temporary //
 
-int		exec_input(t_ms *s);
+//int		exec_input(t_ms *s);
 int		ft_exec_buitltins_chr(t_ms *s, char **cmds);
 int		echo_cmd_test(char **cmd, t_ms *s);
 //int		export_cmd_test(t_ms *s, char **cmds);
