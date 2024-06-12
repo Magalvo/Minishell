@@ -34,6 +34,7 @@ int get_token(char **ps, char *es, char **q, char **eq)
 {
 	char *s;
 	int ret;
+	bool skip;
 
 	s = *ps;
 	while(s < es && ft_strchr(SPACES, *s))
@@ -42,10 +43,13 @@ int get_token(char **ps, char *es, char **q, char **eq)
 		*q = s;
 	ret = *s;
 	if (ft_strchr("|()", *s) && *s != 0)
+	{
 		s++;
+		skip = true;
+	}
 	else
 		ret = sw_get_token(&s);
-	while(s < es && !ft_strchr(SPACES, *s) && !ft_strchr(SYMBOLS, *s))
+	while(s < es && !ft_strchr(SPACES, *s) && !ft_strchr(SYMBOLS, *s) && !skip)
 		s++;
 	if(eq)
 		*eq = s;
