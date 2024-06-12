@@ -68,15 +68,6 @@ char	*get_env_val(t_env *env, char *key, t_ms *s)
 	i = 0; 
 	if (key[0] == '$')
 			key = key + 1;
-	else
-	{
-		while (env)
-		{
-			if (ft_strncmp(env->key, key, ft_strlen(key)) == 0)
-				return (env->value);
-			env = env->next;
-		}
-	}
 	if (ft_strncmp(key, "PATH", 4) == 0)
 	{
 		while (s->paths && s->paths[i])
@@ -87,7 +78,16 @@ char	*get_env_val(t_env *env, char *key, t_ms *s)
 			i++;
 		}
 	}
-	return (ft_putstr_fd("\n", 1), NULL);	
+	else
+	{
+		while (env)
+		{
+			if (ft_strncmp(env->key, key, ft_strlen(key)) == 0)
+				return (env->value);
+			env = env->next;
+		}
+	}
+	return (NULL);	
 }
 
 //!! 49 LINHAS!!! Mas bem gastas
@@ -96,12 +96,13 @@ int env_cmd(t_ms *s, char **cmds)
 	char	*path;
 	int		id;
 	int		i;
+	t_env 	*env_cpy;
 
 	id = 0;
 	path = NULL;
 	if (cmds[1] && cmds[1][0] == '-' && cmds[1][1] == 'i' && cmds[1][2] == '\0')
 	{
-		if (s->env_tmp) 								//! FREE the existing environment
+		if (s->env_tmp) 								
 		{
 			i = 0;
 			while (s->env_tmp[i])
@@ -111,8 +112,7 @@ int env_cmd(t_ms *s, char **cmds)
 			}
 			free(s->env_tmp);
 		}
-		s->env_tmp = null_env_init();		//! Initialize a minimal environment
-											//! Check if there is a command to execute after -i
+		s->env_tmp = null_env_init();
 		if (cmds[2])
 		{
 			id = fork();
@@ -131,16 +131,18 @@ int env_cmd(t_ms *s, char **cmds)
 				exit(EXIT_FAILURE);
 			}
 			else
-				wait(NULL);
+				waitpid(id, NULL, 0);
 		}
-		return (1);
 	}
-	t_env *env_cpy = s->env;												//* Print the current env if no command was given after -i
-	while (env_cpy)
+	else
 	{
-		if (env_cpy->value != NULL)
-			printf("%s=%s\n", env_cpy->key, env_cpy->value);
-		env_cpy = env_cpy->next;
+		env_cpy = s->env;												//* Print the current env if no command was given after -i
+		while (env_cpy)
+		{
+			if (env_cpy->value != NULL)
+				printf("%s=%s\n", env_cpy->key, env_cpy->value);
+			env_cpy = env_cpy->next;
+		}
 	}
 	return (1);
 }
@@ -163,7 +165,10 @@ t_env	*new_env_node(char *env_var)
 	}
 	key_len = delimiter - env_var;
 	node->key = ft_substr(env_var, 0, key_len);
-	node->value = ft_strdup(delimiter + 1); //* move past '=' to get the value
+	if (!ft_strncmp("SHLVL", node->key, 5))
+		node->value = ft_itoa(ft_atoi(ft_strdup(delimiter + 1)) + 1);
+	else
+		node->value = ft_strdup(delimiter + 1);
 	node->prev = NULL;
 	node->next = NULL;
 	return (node);
@@ -174,11 +179,13 @@ void	init_env(t_ms *ms, char **envp)
 {
 	t_env	*head = NULL;
 	t_env	*tail = NULL;
+	t_env 	*new_node;
 	int		i;
-
-	for (i = 0; envp[i] != NULL; i++)
+	
+	i = 0;
+	while (envp[i] != NULL)
 	{
-		t_env *new_node = new_env_node(envp[i]);
+		new_node = new_env_node(envp[i]);
 		if (!new_node)
 			continue;
 		if (!head)
@@ -192,6 +199,7 @@ void	init_env(t_ms *ms, char **envp)
 			new_node->prev = tail;
 			tail = new_node;
 		}
+		i++;
 	}
 	ms->env = head;
 }

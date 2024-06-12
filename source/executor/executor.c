@@ -52,8 +52,6 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	pid_t	pid;
 
-	if(ft_exec_buitltins_chr(s, cmd->argv))
-		return ;
 	if((pid = fork()) == -1)
 		error_msg("fork");
 	else if (pid == 0)
@@ -69,6 +67,7 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			close(fd_out);
 		}
 		exec_one(s, cmd->argv);
+		exit (EXIT_SUCCESS);
 	}
 	else
 	{
