@@ -16,6 +16,8 @@ void	error_msg(char *str)
 {
 	if (str)
 		perror(str);
+	else
+		perror("ERROR :(");
 	exit(EXIT_FAILURE);
 }
 int	free_export(char *key, char *value)

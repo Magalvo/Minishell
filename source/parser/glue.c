@@ -17,7 +17,6 @@ void	ft_strrep_range(char *start, char *end, char search, char replace)
 			if (*ptr == search)
 				*ptr = replace;
 			ptr++;
-
 		}
 	}
 	else
