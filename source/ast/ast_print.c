@@ -71,6 +71,8 @@ void	print_ast(t_ms *s, t_cmd *ptr, int padding)
 			printf("\t");
 		p = 0;
 		printf("FILE: %s \n", ptr->file);
+		print_ast(s, ptr->cmd, padding);
+
 		// if (ptr->left->type == PIPE)
 			// padding++;
 		// print_ast(s, ptr->file, padding);
