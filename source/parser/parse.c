@@ -106,7 +106,7 @@ t_cmd *parse_redir(t_cmd *cmd, char **ps, char *es)
 			cmd = cmd_redir(cmd, q, eq, O_WRONLY|O_CREAT|O_TRUNC, 1);
 		else if (tok == '+')		// ? (+) is (>>)
 			cmd = cmd_redir(cmd, q, eq, O_WRONLY|O_CREAT|O_APPEND, 1);
-		else if (tok == 'H') // todo check flags: (H) is here_doc
+		else if (tok == 'H') // todo check flags: (H) is here_docee > e
 			cmd = cmd_redir(cmd, q, eq, O_CREAT|O_RDWR|O_APPEND, 0);
 			// cmd = cmd_redir(cmd, q, eq, O_WRONLY|O_CREAT, 0);
 	}
