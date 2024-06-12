@@ -29,7 +29,8 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			close(pipefd[0]);
 			dup2(fd_in, STDIN_FILENO);
 			dup2(pipefd[1], STDOUT_FILENO);
-			exec_pipe(s, cmd->left, fd_in, pipefd[1]);
+			close(pipefd[1]);
+			exec_one(s, cmd->left->argv);
 			exit(EXIT_SUCCESS);
 		}
 		else
@@ -39,12 +40,14 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			exec_pipe(s, cmd->right, pipefd[0], fd_out);
 		}
 	}
+	else if (cmd->type == REDIR)
+		exec_redir(s, cmd, fd_in, fd_out);
 	else
 		single_exec(s, cmd, fd_in, fd_out);
 }
 
 
-void	exec_from_ast(t_ms *s, )
+void	exec_from_ast(t_ms *s)
 {
 	t_cmd	*cmd;
 
@@ -58,7 +61,7 @@ void	exec_from_ast(t_ms *s, )
 		}
 		else if(cmd->type == REDIR)
 		{
-			exec_redir(s, cmd);
+			exec_redir(s, cmd, STDIN_FILENO, STDOUT_FILENO);
 			break;
 		}
 		else if(cmd->type == PIPE)

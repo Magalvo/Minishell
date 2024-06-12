@@ -107,4 +107,7 @@ fclean: clean
 	$(RM) $(LIBFT)
 	@printf "$(RED)[All binaries deleted]    $(RST)\n"
 
+valgrind: $(NAME)
+	valgrind --trace-children=yes --track-fds=yes --show-leak-kinds=all ./${NAME}
+
 re: fclean all
