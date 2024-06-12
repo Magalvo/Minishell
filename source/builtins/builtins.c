@@ -84,9 +84,8 @@ void	toggle_bnf(t_ms *s)
 
 int	ft_exec_buitltins_chr(t_ms *s, char **cmds)  //[{laskdl}{kjhalsd}{jakskdj}]
 {
-	if (s->ast->type != EXEC)
-		return (0);
-	(void)s;
+/*  	if (s->ast->cmd->type != EXEC)
+		return (0); */
 	if (ft_sw_builtins(cmds[0], "echo") == 0)
 		return (echo_cmd_test(cmds, s));
 	else if (ft_sw_builtins(cmds[0], "cd") == 0)

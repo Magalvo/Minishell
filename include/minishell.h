@@ -104,6 +104,7 @@ char	*get_env_expand(char *key);
 void	env_arr_update(t_ms *s, char *str);
 void	initialize_env(char ***envp);
 char	**null_env_init();
+char	**env_convert(t_env *env);
 
 
 /*
@@ -131,6 +132,7 @@ void			exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
 void			exec_one(t_ms *s, char **argv);
 void			single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
 void			exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
+void			exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out); 
 //*================= ERRORS =========================*//
 
 void	error_msg(char *str);

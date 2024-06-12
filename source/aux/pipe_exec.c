@@ -4,11 +4,13 @@
 void	exec_one(t_ms *s, char **argv)
 {
 	char	*path;
-
+	printf("%s", argv[0]);
+	if (!ft_strncmp(argv[0], "./minishell", 11))
+		execve(argv[0], argv, s->env_tmp);
 	path = cmd_path(s->paths, argv[0]);
 	if (!path)
 		not_found(argv[0]);
-	execve(path, argv, s->env_tmp);																		
+	execve(path, argv, s->env_tmp);																	
 	error_msg("Error on EXECVE");
 }
 
@@ -49,26 +51,5 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 
 void	exec_from_ast(t_ms *s)
 {
-	t_cmd	*cmd;
-
-	cmd = s->ast;
-	while (cmd)
-	{
-		if(cmd->type == EXEC)
-		{
-			single_exec(s, cmd, STDIN_FILENO, STDOUT_FILENO);
-			break;
-		}
-		else if(cmd->type == REDIR)
-		{
-			exec_redir(s, cmd, STDIN_FILENO, STDOUT_FILENO);
-			break;
-		}
-		else if(cmd->type == PIPE)
-		{
-			exec_pipe(s, cmd, STDIN_FILENO, STDOUT_FILENO);
-			break;
-		}
-		cmd = cmd->right;
-	}
+	exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
 }
