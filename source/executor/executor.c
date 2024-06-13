@@ -20,18 +20,19 @@ char	*cmd_path(char **paths, char *cmd)
 
 	if (!paths || !cmd)
 		return (NULL);
+	if(chdir(cmd) != -1)
+	{
+		printf("%s: is a directory\n", cmd);
+		exit(EXIT_FAILURE);
+	}
 	while (*paths)
 	{
 		if (ft_strncmp(*paths, cmd, ft_strlen(*paths)) == 0)
 		{
 			if (access(cmd, X_OK | F_OK) == 0)
-			{
 				return (cmd);
-			}
 			else
-			{
 				return (NULL);
-			}
 		}
 		command = ft_strjoin(*paths, cmd);
 		if (access(command, X_OK | F_OK) == 0)
