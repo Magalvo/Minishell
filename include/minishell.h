@@ -74,6 +74,16 @@ int		count_argc(char **ps, char *es);
 void	ft_strrep_range(char *start, char *end, char search, char replace);
 void	glue_str(char *start, char *end);
 void	unglue_str(char *start, char *end);
+bool	chr_betw(char *input, char *totest, char tofind);
+bool	inside_quotes(char *input, char *totest);
+bool	syntax_validation(char *input);
+char	*expander(char *input);
+char	*expand_braces(char *input);
+char	*expand_tilde(char *input);
+char	*expand_words(char *input);
+char	*remove_quotes(char *input);
+bool	check_valid_position(char *input);
+
 
 // ! PARSE WIP
 // t_cmd	*nulterminate(t_cmd *cmd);
@@ -134,7 +144,7 @@ void			exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
 void			exec_one(t_ms *s, char **argv);
 void			single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
 void			exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
-void			exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out); 
+void			exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
 //*================= ERRORS =========================*//
 
 void	error_msg(char *str);

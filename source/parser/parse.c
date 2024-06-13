@@ -1,6 +1,7 @@
 
 #include "../include/minishell.h"
 
+// ? OLD PARSER WITH BONUS STUBS
 /*
 ABOUT PARAMETERS NAMES
 char *input becomes **ptr_input (&input), so parsing position can be passed
@@ -9,31 +10,18 @@ char *q
 char *eq
 */
 
-
 t_cmd	*parse_input(char *input)
 {
+	char	*expanded_input;
+	t_cmd	*ast;
+
 	if (ft_strlen(input) == 0)
 		return (NULL);
-	// TODO brutally check syntax errors, missing checks:
-	// invalid chars (#^@)
-	// TODO recheck flow, where to exit? on reprompt? need t_ms s for that
-	if (ft_strcount(input, '\'') % 2 != 0)
-		// reprompt(MISSING_QUOTE);
-		return(reprompt(MISSING_QUOTE), NULL);
-	else if (ft_strcount(input, '\'') % 2 != 0)
-		// reprompt(MISSING_QUOTE);
-		return(reprompt(MISSING_QUOTE), NULL);
-	else if (ft_strcount(input, ';') != 0)
-		// reprompt(SEMICOLON);
-		return(reprompt(SEMICOLON), NULL);
-	// todo possible error is ( or ) are inside quotes
-	else if (ft_strcount(input, '(') != ft_strcount(input, ')'))
-		// reprompt(BLOCK_MISSING);
-		return(reprompt(BLOCK_MISSING), NULL);
-	else if (ft_strnstr(input, "||", ft_strlen(input)))
-		// reprompt(INVALID_TOKEN);
-		return(reprompt(INVALID_TOKEN), NULL);
-	return (parse_cmd(input));
+	expanded_input = expander(input);
+	ast = parse_cmd(expanded_input);
+	// ? should expanded_input be free() or pointed to _ (last command)
+	// free(expanded_input);
+	return (ast);
 }
 
 t_cmd *parse_cmd(char *input)

@@ -22,8 +22,8 @@ EXECUTOR =	executor.c ast.c \
 
 # EXECUTOR =	executor.c
 
-PARSER =	aux.c init_cmd.c tokens.c \
-			parse.c	parse_exec.c glue.c
+PARSER =	aux.c	init_cmd.c	tokens.c	parse.c	parse_exec.c	glue.c \
+			parse_quotes.c		validate.c	expander.c
 
 AUX = aux1.c env_aux.c env_aux2.c pipe_exec.c redir_exec.c \
 		free.c
