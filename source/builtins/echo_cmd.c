@@ -102,7 +102,9 @@ int	echo_cmd_test(char **cmd, t_ms *s)
 {
 	int		i;
 	int		check;
+	char	*str;
 
+	str = ft_itoa(getpid());
 	i = 1;
 	check = 0;
 	while (cmd[i] != NULL && ft_flagged(cmd[i]) == 1)
@@ -112,7 +114,12 @@ int	echo_cmd_test(char **cmd, t_ms *s)
 	}
 	while (cmd[i])
 	{
-		if (cmd[i][0] == '$' && cmd[i][1])
+		if (cmd[i][0] == '$' && cmd[i][1] == '$')
+		{
+			ft_putstr_fd(str, 1);
+			free(str);
+		}	
+		else if (cmd[i][0] == '$' && cmd[i][1])
 			ft_putstr_fd(get_env_val(s->env, cmd[i], s), 1);
 		else 
 		{
