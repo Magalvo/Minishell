@@ -7,7 +7,7 @@ void exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	int		fd;
 
 	if (!cmd) 
-		return;
+		return ;
 	if (cmd->type == EXEC)
 	{
 		if(ft_exec_buitltins_chr(s, cmd->argv))

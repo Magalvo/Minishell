@@ -50,6 +50,8 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 
 int exec_paria(t_ms *s, t_cmd *cmds)
 {
+	if (!cmds)
+		return (0);
 	if (cmds->type != EXEC)
 		return (0);
 	if (ft_sw_builtins(cmds->argv[0], "export") == 0)
