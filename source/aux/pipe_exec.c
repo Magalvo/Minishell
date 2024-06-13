@@ -9,7 +9,7 @@ void	exec_one(t_ms *s, char **argv)
 		execve(argv[0], argv, s->env_tmp);
 	path = cmd_path(s->paths, argv[0]);
 	if (!path)
-		not_found(argv[0]);
+		return ;
 	execve(path, argv, s->env_tmp);																	
 	error_msg("Error on EXECVE");
 }
