@@ -2,7 +2,17 @@
 
 #include "../include/minishell.h"
 
+
 void exit_minishell(t_ms *s, char *msg)
+{
+	if (msg)
+		ft_putstr_fd(msg, STDERR_FILENO);
+	cleanup_shell(s);
+	exit(EXIT_SUCCESS);
+}
+
+
+/* void exit_minishell(t_ms *s, char *msg)
 {
 	if (msg)
 		ft_putstr_fd(msg, 1);
@@ -10,8 +20,10 @@ void exit_minishell(t_ms *s, char *msg)
 		ft_free_dptr(&s->paths);
 	if (s->cmd_temp != NULL)
 		ft_free_dptr(&s->cmd_temp);
+	if (s->env_tmp != NULL)
+		ft_free_dptr(&s->env_tmp);
 	exit(EXIT_SUCCESS);
-}
+} */
 
 /* char **set_min_env(void)
 {

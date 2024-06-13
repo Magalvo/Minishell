@@ -89,13 +89,13 @@ int	ft_exec_buitltins_chr(t_ms *s, char **cmds)  //[{laskdl}{kjhalsd}{jakskdj}]
 	if (ft_sw_builtins(cmds[0], "echo") == 0)
 		return (echo_cmd_test(cmds, s));
 	else if (ft_sw_builtins(cmds[0], "cd") == 0)
-		return (cd_cmd(s, cmds));
+		return (1);
 	else if (ft_sw_builtins(cmds[0], "env") == 0)
 		return (env_cmd(s, cmds));
 	else if (ft_sw_builtins(cmds[0], "pwd") == 0)
 		return (pwd_cmd());
 	else if (ft_sw_builtins(cmds[0], "export") == 0)
-	 	return (export_cmd(s, cmds));
+	 	return (1);
 	else if (ft_sw_builtins(cmds[0], "unset") == 0)
 		return (unset_cmd(s, cmds));
 	else if (ft_sw_builtins(cmds[0], "exit") == 0)

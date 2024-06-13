@@ -4,7 +4,7 @@
 void	exec_one(t_ms *s, char **argv)
 {
 	char	*path;
-	printf("%s", argv[0]);
+
 	if (!ft_strncmp(argv[0], "./minishell", 11))
 		execve(argv[0], argv, s->env_tmp);
 	path = cmd_path(s->paths, argv[0]);
@@ -48,8 +48,21 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		single_exec(s, cmd, fd_in, fd_out);
 }
 
+int exec_paria(t_ms *s, t_cmd *cmds)
+{
+	if (cmds->type != EXEC)
+		return (0);
+	if (ft_sw_builtins(cmds->argv[0], "export") == 0)
+		return (export_cmd(s, cmds->argv));
+	else if (ft_sw_builtins(cmds->argv[0], "cd") == 0)
+		return (cd_cmd(s, cmds->argv));
+	else
+		return (0);
+}
 
 void	exec_from_ast(t_ms *s)
 {
+	if(exec_paria(s, s->ast))
+		return ;
 	exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
 }

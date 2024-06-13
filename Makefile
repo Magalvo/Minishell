@@ -26,6 +26,7 @@ PARSER =	aux.c init_cmd.c tokens.c \
 			parse.c	parse_exec.c glue.c
 
 AUX = aux1.c env_aux.c env_aux2.c pipe_exec.c redir_exec.c \
+		free.c
 
 AST = ast_print.c
 
@@ -108,6 +109,6 @@ fclean: clean
 	@printf "$(RED)[All binaries deleted]    $(RST)\n"
 
 valgrind: $(NAME)
-	valgrind --trace-children=yes --track-fds=yes --show-leak-kinds=all ./${NAME}
+	valgrind --trace-children=yes --leak-check=full --track-fds=yes --show-leak-kinds=all ./${NAME}
 
 re: fclean all

@@ -1,5 +1,5 @@
 #include "../include/minishell.h"
-
+										//s->ast
 void exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out) 
 {
 	pid_t	pid;
@@ -40,8 +40,8 @@ void exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	else if (cmd->type == REDIR) 
 	{
 		fd = open(cmd->file, cmd->mode, 0644);
-		if (fd < 0) 
-			error_msg("fd");
+		if (fd < 0)
+			return(perror("fd"));
 		pid = fork();
 		if (pid == -1) 
 			error_msg("pid");

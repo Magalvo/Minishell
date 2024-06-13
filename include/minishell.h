@@ -105,7 +105,9 @@ void	env_arr_update(t_ms *s, char *str);
 void	initialize_env(char ***envp);
 char	**null_env_init();
 char	**env_convert(t_env *env);
-
+void	free_env_list(t_env *env);
+void 	cleanup_shell(t_ms *s);
+void	clear_cmd(t_cmd *cmd);
 
 /*
 ll_inits.c
@@ -138,6 +140,8 @@ void			exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
 void	error_msg(char *str);
 int		free_export(char *key, char *value);
 void	free_paths(char **paths, int i);
+void	free_all_paths(char **paths);
+void	clear_env(char **env);
 int		free_export_p(t_env *env_copy, t_env *new_node);
 int		not_found(char *str);
 

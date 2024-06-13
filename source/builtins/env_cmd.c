@@ -26,6 +26,11 @@ char	*env_paths(t_ms *ms, char **envp)
 	found = 0;
 	slash = NULL;
 	paths = NULL;
+	if (ms->paths)
+	{
+		free_all_paths(ms->paths); 
+		ms->paths = NULL;
+	}
 	while (envp[i] != NULL)
 	{
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)    //!HERE Removed '=' from PATH=
@@ -95,7 +100,6 @@ int env_cmd(t_ms *s, char **cmds)
 {
 	char	*path;
 	int		id;
-	int		i;
 	t_env 	*env_cpy;
 
 	id = 0;
@@ -104,13 +108,8 @@ int env_cmd(t_ms *s, char **cmds)
 	{
 		if (s->env_tmp) 								
 		{
-			i = 0;
-			while (s->env_tmp[i])
-			{
-				free(s->env_tmp[i]);
-				i++;
-			}
-			free(s->env_tmp);
+				clear_env(s->env_tmp);
+				s->env_tmp = NULL;
 		}
 		s->env_tmp = null_env_init();
 		if (cmds[2])
@@ -165,7 +164,7 @@ t_env	*new_env_node(char *env_var)
 	}
 	key_len = delimiter - env_var;
 	node->key = ft_substr(env_var, 0, key_len);
-	if (!ft_strncmp("SHLVL", node->key, 5))
+	if (!ft_strncmp("SHLVL", node->key, 5)) 
 		node->value = ft_itoa(ft_atoi(ft_strdup(delimiter + 1)) + 1);
 	else
 		node->value = ft_strdup(delimiter + 1);

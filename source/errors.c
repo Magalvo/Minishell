@@ -43,6 +43,21 @@ void	free_paths(char **paths, int i)
 	free(paths);
 }
 
+void	free_all_paths(char **paths)
+{
+	int	i;
+
+	i = 0;
+	if(!paths)
+		return ;
+	while(paths[i])
+	{
+		free(paths[i]);
+		i++;
+	}
+	free(paths);
+}
+
 int	free_export_p(t_env *env_copy, t_env *new_node)
 {
 	while (env_copy)
