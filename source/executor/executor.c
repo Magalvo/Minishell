@@ -67,7 +67,7 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			close(fd_out);
 		}
 		exec_one(s, cmd->argv);
-		exit (EXIT_SUCCESS);
+		not_found(cmd->argv[0]);
 	}
 	else
 	{
@@ -76,6 +76,7 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		if (fd_out != STDOUT_FILENO)
 			close(fd_out);
 		waitpid(pid, NULL, 0);
+		//exit(EXIT_SUCCESS);
 	}
 }
 
