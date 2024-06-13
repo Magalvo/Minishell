@@ -7,6 +7,7 @@
 # define 	SINGLE_AMPERSAND	"background tasks not implemented."
 # define 	SEMICOLON			"command list not implemented."
 # define 	EXPANSION_ERROR		"could not expand variable." // ! needed?
+# define 	PARENTHESIS			"blocks (parenthesis) not implemented."
 # define 	BLOCK_MISSING		"missing parenthesis."
 # define 	BLOCK_UNCLOSED		"missing closing parenthesis."
 # define 	BLOCK_WTF			"missing opening parenthesis."
