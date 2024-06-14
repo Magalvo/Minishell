@@ -16,9 +16,7 @@
 
 /* from man
 The strchr() function returns a pointer
-to the first occurrence of the character c in the string s.
-*/
-
+to the first occurrence of the character c in the string s. */
 char	*ft_strchr(const char *s, int c)
 {
 	while ((char)c != *s)
