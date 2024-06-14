@@ -10,14 +10,14 @@ char *q
 char *eq
 */
 
-t_cmd	*parse_input(char *input)
+t_cmd	*parse_input(char *input, t_ms *s)
 {
 	char	*expanded_input;
 	t_cmd	*ast;
 
 	if (ft_strlen(input) == 0)
 		return (NULL);
-	expanded_input = expander(input);
+	expanded_input = expander(input, s);
 	ast = parse_cmd(expanded_input);
 	// ? should expanded_input be free() or pointed to _ (last command)
 	// free(expanded_input);

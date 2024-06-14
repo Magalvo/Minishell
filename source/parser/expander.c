@@ -17,7 +17,7 @@ A metacharacter is a space, tab, newline, or one of the following characters:
 https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html
 	// Brace Expansion -> dont implement except
 	expand -> ${parameter} only		// ! maybe
-	Tilde Expansion ~
+	Tilde Expansion ~    ~+    ~-
 	https://www.gnu.org/software/bash/manual/html_node/Tilde-Expansion.html
 	Shell Parameter Expansion -> dont interpret -> {}
 	Command Substitution -> dont implement -> $(command)
@@ -29,8 +29,49 @@ https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html
     Quote Removal
 */
 
-char	*expander(char *input)
+char	*expander(char *input, t_ms *s)
 {
+	char *start;
+	char *end;
+	char *expand;
+	char *expanded;
+
+	start = ft_strnstr(input, "$", ft_strlen(input));
+	if (start && !inside_quotes(input, start))
+	{
+		end = start;
+		// end++;
+		while (ft_isalpha(*++end) || *end == '_')
+			;
+		expand = ft_substr(input, start - input, end - start);
+		expanded = get_env_val(s->env, expand, s);
+		printf("expand: %s\n", expand);
+		printf("expanded: %s\n", expanded);
+	}
+
+/*
+	find = ft_strnstr(input, "=", ft_strlen(input));
+		if (find && find++ = '~' && find++ = '/') // =~/
+			find = ft_strnstr(input, "~", ft_strlen(input));
+
+
+	find = ft_strnstr(input, "~+", ft_strlen(input));
+	if (find && !inside_quotes(input, find))
+		replace
+
+	find = ft_strnstr(input, "~-", ft_strlen(input));
+	find = ft_strnstr(input, "~", ft_strlen(input));
+
+
+	find = ft_strnstr(input, ">(", ft_strlen(input));
+	if (find && !inside_quotes(input, find))
+	{
+		end = ft_strchr(find, ')');
+		if (!inside_quotes(input, end))
+			glue_str(find, end);
+	}
+	*/
+
 	return(input);
 	char	*expanded_input;
 	char	*braces;
