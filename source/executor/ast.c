@@ -70,7 +70,7 @@ void exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		else 
 		{
 			close(fd);
-			waitpid(pid, NULL, 0);
+			waitpid(pid, &status, 0);
 			if (WIFEXITED(status))
 				s->exit_stat = WEXITSTATUS(status);
 		}

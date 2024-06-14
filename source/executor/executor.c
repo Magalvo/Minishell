@@ -22,7 +22,7 @@ char	*cmd_path(char **paths, char *cmd)
 		return (NULL);
 	if(chdir(cmd) != -1)
 	{
-		printf("%s: is a directory\n", cmd);
+		printf("minishell: %s: is a directory\n", cmd);
 		exit(EXIT_FAILURE);
 	}
 	while (*paths)
