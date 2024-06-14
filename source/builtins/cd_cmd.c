@@ -88,6 +88,5 @@ int	cd_cmd(t_ms *mini, char **path)
 	}
 	update_key(env, "OLDPWD", get_env_val(env, "PWD", NULL));
 	export_update(mini->export, "OLDPWD", get_env_val(env, "PWD", NULL));
-	env_arr_update(mini, "OLDPWD");
 	return(change_pwd(env, mini));
 }
