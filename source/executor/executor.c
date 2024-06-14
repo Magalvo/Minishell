@@ -52,6 +52,7 @@ void	new_line(void)
 void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	pid_t	pid;
+	int		status;
 
 	if((pid = fork()) == -1)
 		error_msg("fork");
@@ -76,7 +77,9 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			close (fd_in);
 		if (fd_out != STDOUT_FILENO)
 			close(fd_out);
-		waitpid(pid, NULL, 0);
+		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+				s->exit_stat = WEXITSTATUS(status);
 		//exit(EXIT_SUCCESS);
 	}
 }

@@ -75,6 +75,8 @@ int	cd_cmd(t_ms *mini, char **path)
 		return (cd_cmd_minus(env));
 	if(chdir(path[1]) == -1)
 		return (cd_cmd_error(path[1]));
-	update_key(env, "OLDPWD=", get_env_val(env, "PWD=", NULL));
+	update_key(env, "OLDPWD", get_env_val(env, "PWD", NULL));
+	export_update(mini->export, "OLDPWD", get_env_val(env, "PWD", NULL));
+	env_arr_update(mini, "OLDPWD");
 	return(change_pwd(env));
 }

@@ -38,10 +38,12 @@ struct s_ms
 	int		modal;		//* MAIN / CHILD / HERE_DOC / IGNORE
 	int		infile;		//* Redirect Infile
 	int		outfile;	//* Redirect Outfile
+	int		exit_stat;	//* Exit Status
 	bool	input_empty;
 	bool	bnf;
 	char	**env_tmp;	//* Temp env;
 	char	**cmd_temp;
+	pid_t	pid;
 	t_cmd	*ast;		//* Command List
 	t_env	*env;		//*	ENV Linked List
 	t_env	*export;	//* EXPORT List (Sorted)
@@ -84,6 +86,7 @@ struct	s_cmd
 	t_cmd	*left;			//pipe
 	t_cmd	*right;
 	t_cmd	*cmd;			//redir
+	pid_t	pid;
 	char	*file;
 	int		mode;
 	int		fd;
