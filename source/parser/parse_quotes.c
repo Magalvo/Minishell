@@ -16,6 +16,8 @@ Within double quotes, backslashes that are followed
 by one of these characters are removed
 */
 
+//' "'1'" "'1'" '
+
 
 bool	chr_betw(char *input, char *totest, char tofind)
 {
@@ -24,13 +26,23 @@ bool	chr_betw(char *input, char *totest, char tofind)
 
 	goleft = totest;
 	goright = totest;
-	while (goright != input || *goright != '\0') //hmm, test is stupid!?!
+	if (ft_strchr(input, tofind) < goleft)
 	{
-		if (ft_strchr(goleft, tofind) && ft_strrchr(goright, tofind))
-			return (true);		// char found on both sides
+		if (ft_strrchr(input, tofind) > goright)
+		return (true);		// char found on both sides
 	}
 	return (false);
+
+	// while (goright != input || *goright != '\0') //hmm, test is stupid!?!
+	// {
+	// 	if (ft_strchr(goleft, tofind) && ft_strrchr(goright, tofind))
+	// 		return (true);		// char found on both sides
+
+	// }
+	// return (false);
 }
+
+
 
 bool	inside_quotes(char *input, char *totest)
 {
@@ -54,3 +66,19 @@ bool	check_valid_position(char *input)
 		return true;
 	return false;
 }
+
+// char *find_first(char *input, char c)
+// {
+// 	char	*ptr;
+
+// 	ptr = ft_strchr(input, c);
+// 	if (ptr)
+// 	{
+// 		if (ft_strchr(ptr, c) < ptr)
+// 		{
+// 			ptr = ft_strchr(ptr, c);
+// 		}
+// 	}
+
+
+// }
