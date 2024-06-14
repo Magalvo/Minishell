@@ -71,7 +71,7 @@ char	*get_env_val(t_env *env, char *key, t_ms *s)
 	int i;
 
 	i = 0; 
-	if (key[0] == '$')
+	if (key[0] == '$' && key[1] != '\0')
 			key = key + 1;
 	if (ft_strncmp(key, "PATH", 4) == 0)
 	{
