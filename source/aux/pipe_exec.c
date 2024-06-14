@@ -5,8 +5,12 @@ void	exec_one(t_ms *s, char **argv)
 {
 	char	*path;
 
-	if (!ft_strncmp(argv[0], "./minishell", 11))
+	if (!ft_strncmp(argv[0], "./", 2))
+	{
+		argv[0]++;
+		argv[0]++;
 		execve(argv[0], argv, s->env_tmp);
+	}	
 	path = cmd_path(s->paths, argv[0]);
 	if (!path)
 		return ;
@@ -19,6 +23,7 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	int		pipefd[2];
 	pid_t	pid;
+	int		status;
 
 	if (cmd->type == PIPE)
 	{
@@ -38,7 +43,9 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		else
 		{
 			close(pipefd[1]);
-			waitpid(pid, NULL, 0);
+			waitpid(pid, &status, 0);
+			if (WIFEXITED(status))
+				s->exit_stat = WEXITSTATUS(status);
 			exec_pipe(s, cmd->right, pipefd[0], fd_out);
 		}
 	}

@@ -3,11 +3,14 @@
 void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	pid_t	pid;
+	int		status;
 	
-	(void)fd_out;
 	fd_out = open(cmd->file, cmd->mode, 0666);
 	if (fd_out < 0)
+	{
+		s->exit_stat = 1;
 		error_msg("err_opening file");
+	}
 	pid = fork();
 	if (pid == -1)
 		error_msg("pid");
@@ -26,11 +29,13 @@ void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			exec_pipe(s, cmd->cmd,  STDIN_FILENO, fd_out);
 		else if (cmd->cmd->type == REDIR)
 			exec_redir(s, cmd->cmd, STDIN_FILENO, fd_out);
-		exit(EXIT_SUCCESS);
+		exit(s->exit_stat);
 	}
 	else 
 	{
 		close(fd_out);
-		waitpid(pid, NULL, 0);
+		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+				s->exit_stat = WEXITSTATUS(status);
 	}
 }

@@ -47,8 +47,8 @@ char	*expander(char *input, t_ms *s)
 		expanded = get_env_val(s->env, expand, s);
 		if (expanded == NULL)
 			expanded = expand;
-		printf("expand: %s\n", expand);
-		printf("expanded: %s\n", expanded);
+/* 		printf("expand: %s\n", expand);
+		printf("expanded: %s\n", expanded); */
 	}
 
 /*
