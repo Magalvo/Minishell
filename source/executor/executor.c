@@ -25,6 +25,8 @@ char	*cmd_path(char **paths, char *cmd)
 		printf("minishell: %s: is a directory\n", cmd);
 		exit(EXIT_FAILURE);
 	}
+	if(cmd[0] == '$')
+		exit(EXIT_FAILURE);
 	while (*paths)
 	{
 		if (ft_strncmp(*paths, cmd, ft_strlen(*paths)) == 0)
