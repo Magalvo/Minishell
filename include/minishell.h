@@ -68,7 +68,7 @@ int		add_slash(char *slash, char **paths);
 
 
 //*=================== PARSE ======================*//
-t_cmd	*parse_input(char *input);
+t_cmd	*parse_input(char *input, t_ms *s);
 char	**create_argv(int argc);
 int		count_argc(char **ps, char *es);
 void	ft_strrep_range(char *start, char *end, char search, char replace);
@@ -77,7 +77,7 @@ void	unglue_str(char *start, char *end);
 bool	chr_betw(char *input, char *totest, char tofind);
 bool	inside_quotes(char *input, char *totest);
 bool	syntax_validation(char *input);
-char	*expander(char *input);
+char	*expander(char *input, t_ms *s);
 char	*expand_braces(char *input);
 char	*expand_tilde(char *input);
 char	*expand_words(char *input);
