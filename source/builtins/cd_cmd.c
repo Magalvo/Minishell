@@ -20,14 +20,17 @@ static int	cd_cmd_error(char *msg)
 	return (1);
 }
 
-static int	change_pwd(t_env *env)
+static int	change_pwd(t_env *env, t_ms *s)
 {
 	char	*cmd;
 	int		result;
 	
 	cmd = getcwd(NULL, 0);
 	if (!cmd)
-		return(ft_putstr_fd("Failed to change Dir\n", 2), 0);
+	{
+		s->exit_stat = 1;
+		return(ft_putstr_fd("Failed to change Dir\n", 2), 1);   //!chaged
+	}	
 	result = update_key(env, "PWD", cmd);
 	free(cmd);
 	return (result);
@@ -42,9 +45,9 @@ static int	cd_cmd_home(t_env *env)
 	update_key(env, "OLDPWD", get_env_val(env, "PWD", NULL));
 	home = get_env_val(env,"HOME", NULL);
 	if (!home)
-		return (ft_putstr_fd("Err on ENV\n", 2), 0);
+		return (ft_putstr_fd("Err on ENV\n", 2), 1);
 	if (chdir(home) == -1)
-		return (ft_putstr_fd("Failed to change directory\n", 2), 0);
+		return (ft_putstr_fd("No such file or directory\n", 2), 1);
 	return (update_key(env, "PWD", home), 1);
 }
 
@@ -69,14 +72,22 @@ int	cd_cmd(t_ms *mini, char **path)
 	t_env *env;
 
 	env=mini->env;
+	if (path[2])
+	{
+		mini->exit_stat = 1;
+		cd_cmd_error("too many arguments\n");
+	}
 	if(!path[1] || (path[1][0] == '~' && path[1][1] == '\0'))
 		return (cd_cmd_home(env));
 	if(!path[1] || (path[1][0] == '-' && path[1][1] == '\0'))
 		return (cd_cmd_minus(env));
 	if(chdir(path[1]) == -1)
-		return (cd_cmd_error(path[1]));
+	{
+		mini->exit_stat = 1;
+		return (cd_cmd_error("No such file or directory"));
+	}
 	update_key(env, "OLDPWD", get_env_val(env, "PWD", NULL));
 	export_update(mini->export, "OLDPWD", get_env_val(env, "PWD", NULL));
 	env_arr_update(mini, "OLDPWD");
-	return(change_pwd(env));
+	return(change_pwd(env, mini));
 }
