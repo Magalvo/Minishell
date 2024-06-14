@@ -11,3 +11,10 @@ char	*get_env_expand(char *key)
 }
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+int	export_cmd_error(char *msg)
+{
+	ft_putstr_fd("minishell: export: ", 2);
+	ft_putstr_fd(msg, 2);
+	ft_putstr_fd("\n", 2);
+	return (1);
+}

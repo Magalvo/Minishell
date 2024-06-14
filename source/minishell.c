@@ -92,6 +92,7 @@ void	init_t_ms(t_ms *s)
 	s->ast = NULL;
 	s->env = NULL;
 	s->export = NULL;
+	s->exit_stat = 0;
 }
 
 

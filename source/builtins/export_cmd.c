@@ -38,68 +38,22 @@ char	*extract_key(const char *str, char *delimiter)
 
 int update_key(t_env *env, char *key, char *value) 
 {
-    while (env) 
+	while (env) 
 	{
-        if (ft_sw_builtins(env->key, key) == 0) 
+		if (ft_sw_builtins(env->key, key) == 0) 
 		{
-            if (value)
+			if (value)
 			{
 				free(env->value);
 				env->value = ft_strdup(value);
 			}	
-            return (1);
-        }
-        env = env->next;
-    }
-    return (0);
+			return (1);
+		}
+		env = env->next;
+	}
+	return (0);
 }
 
-/* int	add_new_node(t_ms *s, char *key, char *value)
-{
-	t_env *new_node; //= new_env_node(key,value);
-	t_env *env;
-
-	new_node = (t_env *)malloc(sizeof(t_env));
-	if(!new_node)
-		error_msg("malloc (new env)");
-	new_node->key = ft_strdup(key);
-	if (value)
-		new_node->value = ft_strdup(value);
-	else
-		new_node->value = NULL;
-	new_node->prev = NULL;
-	new_node->next = NULL;
-	if (!s->env)
-		s->env = new_node;
-	else
-	{
-		env = s->env;
-		while (env->next)
-			env = env->next;
-		env->next = new_node;
-		new_node->prev = env;
-	}
-	return (1);
-} */
-
-/* int export_cmd(t_ms *s, char **str)
-{
-	char	*key;
-	char	*value;
-
-	if (str[1] == NULL)
-	{
-		sort_env_list(&s->export);
-		return (print_export(s->export));
-	}
-	key = get_key_from_str(str[1]);
-	value = get_value_from_str(str[1]);
-	if(!key)
-		return (0);
-	export_update(s, key, value);
-	handle_kv_update(s, key, value);
-	return (1);
-} */
 	
 int	add_new_node(t_env *env, char *key, char *value)
 {
@@ -126,7 +80,7 @@ int	add_new_node(t_env *env, char *key, char *value)
 		env_cpy->next = new_node;
 		new_node->prev = env_cpy;
 	}
-	return (1);
+	return (0);
 }
 
 int export_cmd(t_ms *s, char **str)
@@ -141,13 +95,16 @@ int export_cmd(t_ms *s, char **str)
 	}
 	key = get_key_from_str(str[1]);
 	value = get_value_from_str(str[1]);
-	if(!key)
-		return (0);
+	if(!key || !is_valid_key(key))
+	{
+		s->exit_stat = 1;
+		return(export_cmd_error("not a valid identifier"));
+	}
 	export_update(s->export, key, value);
 	handle_kv_update(s->env, key, value);
 	env_arr_update(s, str[1]);
 	env_paths(s, s->env_tmp);
-	return (1);
+	return (0);
 }
 
 

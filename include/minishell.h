@@ -154,6 +154,7 @@ void	free_all_paths(char **paths);
 void	clear_env(char **env);
 int		free_export_p(t_env *env_copy, t_env *new_node);
 int		not_found(char *str);
+int		export_cmd_error(char *msg);
 
 
 
