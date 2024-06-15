@@ -36,12 +36,15 @@ bool	syntax_validation(char *input)
 		return(reprompt(MISSING_QUOTE), NULL);
 	else if (ft_strchr(input, ';') != 0)
 		return(reprompt(SEMICOLON), NULL);
+
 	else if (ft_strcount(input, '(') || ft_strcount(input, ')'))
 		return(reprompt(PARENTHESIS), NULL);
 	// else if (ft_strcount(input, '(') != ft_strcount(input, ')'))
 	// 	return(reprompt(BLOCK_MISSING), NULL);
+
 	else if (ft_strnstr(input, "||", ft_strlen(input)))
 		return(reprompt(INVALID_TOKEN), NULL);
+
 	else if (ft_strnstr(input, "&&", ft_strlen(input)))
 		return(reprompt(INVALID_TOKEN), NULL);
 	else

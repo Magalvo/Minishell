@@ -34,6 +34,18 @@ int peek(char **ps, char *es, char *tokens)
 	return *s && ft_strchr(tokens, *s);
 }
 
+// looks ahead of the string to find *tokens while skipping spaces
+int peek_nsp(char **ps, char *es, char *tokens)
+{
+	char *s;
+
+	s = *ps;
+	while(s < es && ft_strchr(SPACES, *s))
+		s++;
+	*ps = s;
+	return *s && ft_strchr(tokens, *s);
+}
+
 // // NUL-terminate all the counted strings.
 // t_cmd *nulterminate(t_cmd *cmd)
 // {

@@ -19,6 +19,7 @@ by one of these characters are removed
 //' "'1'" "'1'" '
 
 
+// tests if pointer has char on sides of its position
 bool	chr_betw(char *input, char *totest, char tofind)
 {
 	char *goleft;
@@ -42,8 +43,7 @@ bool	chr_betw(char *input, char *totest, char tofind)
 	// return (false);
 }
 
-
-
+// tests if quotes, dquotes exists on both sides of pointer
 bool	inside_quotes(char *input, char *totest)
 {
 	char quote;
@@ -56,6 +56,7 @@ bool	inside_quotes(char *input, char *totest)
 	return (false);
 }
 
+// does nothing for now
 bool	check_valid_position(char *input)
 {
 
