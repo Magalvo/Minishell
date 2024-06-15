@@ -77,13 +77,13 @@ void	unglue_str(char *start, char *end);
 bool	chr_betw(char *input, char *totest, char tofind);
 bool	inside_quotes(char *input, char *totest);
 bool	syntax_validation(char *input);
-char	*expander(char *input, t_ms *s);
+char	*expand_dolar(char *input, t_ms *s);
+char	*expand_tilde(char *input, t_ms *s);
 char	*expand_braces(char *input);
-char	*expand_tilde(char *input);
 char	*expand_words(char *input);
 char	*remove_quotes(char *input);
 bool	check_valid_position(char *input);
-
+char	*get_expanded(char *input, char *cut, char *paste, char *remain);
 
 // ! PARSE WIP
 // t_cmd	*nulterminate(t_cmd *cmd);

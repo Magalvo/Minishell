@@ -1,6 +1,35 @@
 
 #include "../include/minishell.h"
 
+int	sw_get_tilde(char **str)
+{
+	if (!**str)
+		return (0);
+	else if (**str == '&')
+	{
+		if (*++*str == '&')
+			return (++str, 'N');
+	}
+	else if (**str == '<')
+	{
+		if (*++*str == '<')
+		{
+			++*str;
+			return ('H');
+		}
+		return ('<');
+	}
+	else if (**str == '>')
+	{
+		if (*++*str == '>')
+			return (++str, '+');
+		return ('>');
+	}
+	else
+		return ('a');
+	return (0);
+}
+
 int	sw_get_token(char **str)
 {
 	if (!**str)
