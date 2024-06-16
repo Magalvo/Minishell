@@ -33,14 +33,10 @@ static int	ft_flagged(char *s)
 int	echo_cmd_test(char **cmd, t_ms *s)
 {
 	int		i;
-	int		j;
 	int		check;
-	//char	*str;
+	
 	(void)s;
-
-	//str = ft_itoa(s->ast->pid);
 	i = 1;
-	j = 0;
 	check = 0;
 	while (cmd[i] != NULL && ft_flagged(cmd[i]) == 1)
 	{
@@ -49,28 +45,9 @@ int	echo_cmd_test(char **cmd, t_ms *s)
 	}
 	while (cmd[i])
 	{
-	/* 	if (cmd[i][0] == '$' && cmd[i][1] == '$')
-		{
-			ft_putstr_fd(str, 1);
-			free(str);
-		}
-		else if (cmd[i][0] == '$' && cmd[i][1] == '?')
-			ft_putnbr_fd(s->exit_stat, 1);
-		else if (cmd[i][0] == '$' && cmd[i][1])
-			ft_putstr_fd(get_env_val(s->env, cmd[i], s), 1);
-		else 
-		{ */
-			j = 0;
-			while (cmd[i][j])
-			{
-				if(cmd[i][j] != 34 && cmd[i][j] != 39)
-					write (1, &cmd[i][j], 1);
-				j++;
-			}
-			//ft_putstr_fd(cmd[i], 1);
-			if(cmd[i + 1])
-				ft_putstr_fd(" ", 1);
-		
+		ft_putstr_fd(cmd[i], 1);
+		if(cmd[i + 1])
+			ft_putstr_fd(" ", 1);
 		i++;
 	}
 	if (check == 0)
