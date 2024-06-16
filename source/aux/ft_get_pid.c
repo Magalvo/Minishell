@@ -20,7 +20,8 @@ char	*get_pid(t_ms *s)
 	int			stdin_copy;
 
 	pipe(fd);
-	if ((pid = fork()) == -1)
+	pid = fork();
+	if (pid == -1)
 		error_msg("error on pid");
 	else if (pid == 0)
 	{
@@ -36,7 +37,7 @@ char	*get_pid(t_ms *s)
 		dup2(fd[0], STDIN_FILENO);
 		pid_res = get_next_line(fd[0]);
 		dup2(stdin_copy, STDIN_FILENO); // Restore the original STDIN
-		close(stdin_copy);  // Close the copy
+		close(stdin_copy); // Close the copy
 		close(fd[0]);
 		wait(0);
 		stat = ft_split(pid_res, ' ');
