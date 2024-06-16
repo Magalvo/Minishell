@@ -118,6 +118,8 @@ char	**env_convert(t_env *env);
 void	free_env_list(t_env *env);
 void 	cleanup_shell(t_ms *s);
 void	clear_cmd(t_cmd *cmd);
+char	*get_pid(t_ms *s);
+// void	set_pid(t_pid pid);
 
 /*
 ll_inits.c

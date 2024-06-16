@@ -16,8 +16,23 @@ Within double quotes, backslashes that are followed
 by one of these characters are removed
 */
 
-//' "'1'" "'1'" '
+/*
+//' "' 1 '" "'1'" '
+  | "1" "1" |
+'		0
+"		1
+last	"
 
+	bool to_xpnd
+
+
+	'"$VAR"' "'$goleft"'
+
+	int ' 1
+	int " 1
+	char last '
+	  ^				- totest
+*/
 
 // tests if pointer has char on sides of its position
 bool	chr_betw(char *input, char *totest, char tofind)
