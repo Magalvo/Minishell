@@ -14,14 +14,19 @@ t_cmd	*parse_input(char *input, t_ms *s)
 {
 	char	*xp_input;
 	t_cmd	*ast;
+	char	*ppid;
 
 	if (ft_strlen(input) == 0)
 		return (NULL);
 	xp_input = ft_strdup(input);
 	xp_input = expand_dolar(xp_input, s);
+	// glue_str(input, NULL);
+	// unglue_str(input, NULL);
 	ast = parse_cmd(xp_input);
 	// ? should expanded_input be free() or pointed to _ (last command)
 	// free(expanded_input);
+	ppid = get_pid(s);
+	printf("%s", ppid);
 	return (ast);
 }
 
@@ -32,6 +37,7 @@ t_cmd *parse_cmd(char *input)
 
 	end = input + ft_strlen(input);
 	cmd = parse_line(&input, end);
+
 	peek(&input, end, "");
 	if(input != end){
 		ft_dprintf(STDERR_FILENO, "\'%s\' ", input);
