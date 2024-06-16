@@ -20,7 +20,7 @@
 				"-g3",
 				"${file}",
 				"-o",
-				"${fileDirname}/ballons.out"
+				"${fileDirname}/${fileBasenameNoExtension}.out"
 			],
 			"options": {
 				"cwd": "${fileDirname}"
