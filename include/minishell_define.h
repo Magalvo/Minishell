@@ -11,7 +11,8 @@ typedef struct	s_execution t_execution;		//TODO not defined, still used?
 
 /* parser structs */
 typedef	enum	s_cmd_type e_cmd_type;
-typedef struct	s_cmd t_cmd;
+typedef	struct	s_cmd t_cmd;
+// typedef	struct	s_pid t_pid;
 
 enum s_signal
 {
@@ -55,6 +56,11 @@ struct s_builtin
 	char	*name;
 	int		(*func)(t_cmd *cmd);
 };
+
+// struct s_pid
+// {
+// 	char *env_arg[6];
+// };
 
 /*	structs for AST starts here */
 # define SPACES		"\t\n\v\f\r "

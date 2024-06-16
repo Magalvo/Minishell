@@ -39,7 +39,8 @@
 			"readline.h": "c",
 			"libft_define.h": "c",
 			"signal.h": "c",
-			"sigaction.h": "c"
+			"sigaction.h": "c",
+			"minishell.h": "c"
 		}
 	}
 }

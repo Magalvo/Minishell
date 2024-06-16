@@ -114,15 +114,10 @@ void minishell(char **envp)
 		input = readline(s.prompt);
 		if (input == NULL && s.modal == MAIN)
 			exit_minishell(&s, "exit\n");
-		split_input(&s, input); // not needed
-		// glue_str(input, NULL);
-		// unglue_str(input, NULL);
+		// split_input(&s, input); // not needed
 		s.ast = parse_input(input, &s); // ! WIP
 		// todo make this parse properly,
 		// ! ls > outfile | wc > otherfile
-		// previous tokenizer == segfault
-		// actual tokenizer == loop 4ever
-		// ? change bnf to false to execute normally
 		if (!s.bnf)
 			exec_from_ast(&s);
 		else

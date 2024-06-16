@@ -10,11 +10,11 @@ void	exec_one(t_ms *s, char **argv)
 		argv[0]++;
 		argv[0]++;
 		execve(argv[0], argv, s->env_tmp);
-	}	
+	}
 	path = cmd_path(s->paths, argv[0]);
 	if (!path)
 		return ;
-	execve(path, argv, s->env_tmp);																	
+	execve(path, argv, s->env_tmp);
 	error_msg("Error on EXECVE");
 }
 
