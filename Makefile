@@ -6,7 +6,7 @@
 #    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/06/05 16:07:41 by cjoao-de         ###   ########.fr        #
+#    Updated: 2024/06/17 14:04:31 by cjoao-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ PARSER =	aux.c	init_cmd.c	tokens.c	parse.c	parse_exec.c	glue.c \
 			parse_quotes.c		validate.c	expander.c
 
 AUX = aux1.c env_aux.c env_aux2.c pipe_exec.c redir_exec.c \
-		free.c	ft_get_pid.c
+		free.c	ft_getpid.c
 
 AST = ast_print.c
 

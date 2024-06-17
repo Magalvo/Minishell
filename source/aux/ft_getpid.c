@@ -1,15 +1,32 @@
 #include "../../include/minishell.h"
 
-// void	set_pid(t_pid pid)
-// {
-// 	pid->env_arg[0] = "ps";
-// 	pid->env_arg[1] = "-p";
-// 	pid->env_arg[2] = "$$";
-// 	pid->env_arg[3] = "-o";
-// 	pid->env_arg[4] = "pid=";
-// 	pid->env_arg[5] = NULL;
-// }
+// if $$ found replace with result from:	char pid_res = ft_getpid();
+char	*ft_getpid(void)
+{
+	char		*pid_res;
+	int			fd;
+	char		**stat;
 
+	fd = open("/proc/self/stat", O_RDONLY);
+	if (!fd)
+		return (NULL);
+	pid_res = get_next_line(fd);
+	if (!pid_res)
+		return (NULL);
+	stat = ft_split(pid_res, ' ');
+	free(pid_res);
+	if (!stat)
+		return (NULL);
+	pid_res = ft_strdup(stat[0]);
+	ft_free_dptr(&stat);
+	if (!pid_res)
+		return (NULL);
+	return (pid_res);
+}
+
+// for historical reasons this monstrosity shall remain here.
+// If it's stupid and it works is not stupid, then there's this function...
+/*
 char	*get_pid(t_ms *s)
 {
 	pid_t		pid;
@@ -46,26 +63,4 @@ char	*get_pid(t_ms *s)
 		return (pid_res);
 	}
 	return (NULL);
-}
-
-
-// if $$ found replace with result from:   char pid_res = ft_get_pid(&s);
-char	*ft_get_pid(void)
-{
-	char		*pid_res;
-	int			fd;
-	char		**stat;
-
-	fd = open("/proc/self/stat", O_RDONLY);
-	// ! insert protection
-		// return (NULL);
-	pid_res = get_next_line(fd);
-	// printf("%s", pid_res);
-	// ! insert protection
-		// return (NULL);
-	stat = ft_split(pid_res, ' ');
-	free(pid_res);
-	pid_res = ft_strdup(stat[0]);
-	free(stat);
-	return (pid_res);
-}
+}*/

@@ -400,3 +400,162 @@ int main() {
     return 0;
 }
 [/TESTS]
+
+
+
+
+# ollama run dolphin-mistral
+write a c function that uses execve to get the contents of /proc/self/stat and return the 4th field. you can use pipes to return the value to the main process
+Here is a C program that accomplishes this task:
+
+```c
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <string.h>
+
+int main() {
+    int pipefd[2]; // create a pipe
+    pid_t childPid;
+
+    if (pipe(pipefd) == -1) {
+        fprintf(stderr, "Failed to create a pipe: %s\n", strerror(errno));
+        exit(-1);
+    }
+    
+    childPid = fork();
+
+    // In the child process, close one end of the pipe and read from the other
+    if (childPid == 0) {
+        close(pipefd[1]); // close write end
+        char cmd[] = "/proc/self/stat";
+        FILE* file = fopen(cmd, "r");
+        if (!file) {
+            fprintf(stderr, "Failed to open proc file: %s\n", strerror(errno));
+            exit(-1);
+        }
+
+        char line[1024];
+        while (fgets(line, sizeof(line), file)) {
+            int value = atoi(strtok(line, " ")); // extract the 4th field from the stat 
+output
+            if (write(pipefd[1], &value, sizeof(int)) == -1) {
+                fprintf(stderr, "Failed to write to pipe: %s\n", strerror(errno));
+                exit(-1);
+            }
+        }
+        
+        fclose(file);
+        exit(0);
+    }
+    
+    // In the parent process, close one end of the pipe and read from the other
+    else {
+        close(pipefd[0]); // close read end
+        
+        int value;
+        if (read(pipefd[1], &value, sizeof(int)) == -1) {
+            fprintf(stderr, "Failed to read from pipe: %s\n", strerror(errno));
+            exit(-1);
+        }
+        printf("The 4th field of /proc/self/stat is %d.\n", value);
+        close(pipefd[1]); // Close the write end after reading.
+    }
+    
+    return 0;
+}
+```
+
+This program uses a pipe to communicate between a parent and child process. The child 
+process opens /proc/self/stat, reads its contents line by line, extracts the fourth field 
+(the PID), writes it to the write end of the pipe, and then exits. The parent process 
+reads from the read end of the pipe and prints the value received.
+
+Please note that this is a console-based program and won't have any visual output when 
+executed directly on a Linux command line. You can compile and run this program using `gcc 
+-o execve_example execve_example.c` then `./execve_example`. The PID will be printed to 
+the console.
+
+
+
+
+>>> write a c function that uses execve to get the contents of /proc/self/stat and return the 4t
+... h field. you can use pipes to return the value to the main process
+Here is the implementation for your requirements:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <string.h>
+
+int get_process_id() {
+    char filename[BUFSIZ];
+    FILE *file;
+
+    sprintf(filename, "/proc/%d/stat", getpid());
+    
+    file = fopen(filename, "r");
+
+    if (file) {
+        int pid;
+        fscanf(file, "%*s %d", &pid);
+
+        fclose(file);
+        
+        return pid;
+    } else {
+        perror("Error opening file");
+        exit(EXIT_FAILURE);
+    }
+}
+```
+# ollama run dolphincoder:7b
+write a c function that uses execve to get the contents of /proc/self/stat and return the 4th field. you can use pipes to return the value to the main process
+Here is the implementation for your requirements:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <string.h>
+
+int get_process_id() {
+    char filename[BUFSIZ];
+    FILE *file;
+
+    sprintf(filename, "/proc/%d/stat", getpid());
+    
+    file = fopen(filename, "r");
+
+    if (file) {
+        int pid;
+        fscanf(file, "%*s %d", &pid);
+
+        fclose(file);
+        
+        return pid;
+    } else {
+        perror("Error opening file");
+        exit(EXIT_FAILURE);
+    }
+}
+```
+
+In this code, `getpid()` is used to get the current process id. Then, a string format is 
+used with `sprintf` to construct the filename for `/proc/self/stat`. The `fscanf` function 
+reads the contents of this file and extracts the process ID from it. Finally, the program 
+exits with an error message if the file cannot be opened or read.
+
+In the main function, you can call `get_process_id()` to obtain the current process id. 
+Note that this code assumes that the `/proc/self/stat` file contains valid information for 
+the current process and can be used to retrieve the process ID. Please ensure that this 
+information is available before attempting to use the above code.
+
+Hope this helps! Let me know if you have any further questions.
