@@ -48,4 +48,24 @@ char	*get_pid(t_ms *s)
 	return (NULL);
 }
 
+
 // if $$ found replace with result from:   char pid_res = ft_get_pid(&s);
+char	*ft_get_pid(void)
+{
+	char		*pid_res;
+	int			fd;
+	char		**stat;
+
+	fd = open("/proc/self/stat", O_RDONLY);
+	// ! insert protection
+		// return (NULL);
+	pid_res = get_next_line(fd);
+	// printf("%s", pid_res);
+	// ! insert protection
+		// return (NULL);
+	stat = ft_split(pid_res, ' ');
+	free(pid_res);
+	pid_res = ft_strdup(stat[0]);
+	free(stat);
+	return (pid_res);
+}

@@ -26,7 +26,9 @@ t_cmd	*parse_input(char *input, t_ms *s)
 	// ? should expanded_input be free() or pointed to _ (last command)
 	// free(expanded_input);
 	ppid = get_pid(s);
-	printf("%s", ppid);
+	printf("%s\n", ppid);
+	ppid = ft_get_pid();
+	printf("%s\n", ppid);
 	return (ast);
 }
 
