@@ -41,7 +41,7 @@ void	init_env(t_ms *ms, char **envp);
 //int	echo_cmd(t_cmd *cmd);
 int		env_cmd(t_ms *s, char **cmds);
 int		cd_cmd(t_ms *mini, char **path);
-int		pwd_cmd();
+int		pwd_cmd(t_ms *s);
 int		export_cmd(t_ms *s, char **cmd);
 int		update_key(t_env *env, char *key, char *value);
 int		unset_cmd(t_ms *s, char **args);
@@ -124,6 +124,8 @@ void 	cleanup_shell(t_ms *s);
 void	clear_cmd(t_cmd *cmd);
 // char	*get_pid(t_ms *s);
 char	*ft_getpid(void);
+void	free_env_array(char **env_array);
+
 char	*ft_getrnd_str(void);
 
 /*
