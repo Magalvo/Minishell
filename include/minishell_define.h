@@ -43,6 +43,7 @@ struct s_ms
 	bool	input_empty;
 	bool	bnf;
 	char	**env_tmp;	//* Temp env;
+	int		here_doc;	//* NUM of heredocs
 	char	**cmd_temp;
 	pid_t	pid;
 	t_cmd	*ast;		//* Command List
