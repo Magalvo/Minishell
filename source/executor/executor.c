@@ -82,7 +82,6 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		waitpid(pid, &status, 0);
 		if (WIFEXITED(status))
 				s->exit_stat = WEXITSTATUS(status);
-		//exit(EXIT_SUCCESS);
 	}
 }
 

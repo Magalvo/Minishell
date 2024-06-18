@@ -64,7 +64,7 @@ int init_minishell(t_ms *s, char **ep)
 	init_env(s, ep);
 	init_export(s, ep);
 	env_paths(s, ep);
-	s->env_tmp = env_convert(s->export);				//! added raw env for execve
+	s->env_tmp = env_convert(s->export);			//! added raw env for execve
 	s->modal = MAIN;
 	s->cmd_temp = NULL;
 	// s->prompt = "write_here ->";    // v zero
@@ -93,7 +93,6 @@ void	init_t_ms(t_ms *s)
 	s->env = NULL;
 	s->export = NULL;
 	s->exit_stat = 0;
-	s->here_doc = 0;
 }
 
 

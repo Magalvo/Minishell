@@ -15,7 +15,7 @@ void exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		}
 	}
 	else if (cmd->mode == 1090 && cmd->fd == 0)
-		fd_in = open(cmd->file, O_RDONLY);
+		fd_in = here_doc(cmd->file, NULL, NULL);
 	else if (cmd->file) 
 	{
 		fd_in = open(cmd->file, O_RDONLY);
