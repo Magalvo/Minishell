@@ -88,27 +88,45 @@ t_cmd *parse_pipe(char **ps, char *es)
 // + >>, open O_WRONLY|O_CREAT|O_APPEND
 t_cmd *parse_redir(t_cmd *cmd, char **ps, char *es)
 {
-	int tok;
-	char *q;
-	char *eq;
+	int		tok;
+	char	*q;
+	char	*eq;
 
 	while(peek(ps, es, "<>"))
 	{
 		tok = get_token(ps, es, 0, 0);
 		if(get_token(ps, es, &q, &eq) != 'a')
 			reprompt(MISSING_REDIRECT);
-		if (tok == '<')
-			cmd = cmd_redir(cmd, q, eq, O_RDONLY, 0);
-		else if (tok == '>')
-			cmd = cmd_redir(cmd, q, eq, O_WRONLY|O_CREAT|O_TRUNC, 1);
-		else if (tok == '+')		// ? (+) is (>>)
-			cmd = cmd_redir(cmd, q, eq, O_WRONLY|O_CREAT|O_APPEND, 1);
-		else if (tok == 'H') // todo check flags: (H) is here_doc
-			cmd = cmd_heredoc(cmd, O_RDWR|O_CREAT|O_APPEND, 0);
-			// cmd = cmd_redir(cmd, q, eq, O_WRONLY|O_CREAT, 0);
+		cmd = redir_sw(cmd, tok, q, eq);
+		// if (tok == '<')
+		// 	cmd = cmd_redir(cmd, q, eq, O_RDONLY, 0);
+		// else if (tok == '>')
+		// 	cmd = cmd_redir(cmd, q, eq, O_WRONLY|O_CREAT|O_TRUNC, 1);
+		// else if (tok == '+')		// ? (+) is (>>)
+		// 	cmd = cmd_redir(cmd, q, eq, O_WRONLY|O_CREAT|O_APPEND, 1);
+		// else if (tok == 'H') // todo check flags: (H) is here_doc
+		// 	cmd = cmd_heredoc(cmd, filename2, O_RDWR|O_CREAT|O_APPEND);
 	}
 	return (cmd);
 }
+
+t_cmd *redir_sw(t_cmd *cmd, int tok, char *file, char *efile)
+{
+	char	*filename;
+
+	filename = ft_substr(file, 0, file - efile);
+	if (tok == '<')
+			cmd = cmd_redir(cmd, filename, O_RDONLY, 0);
+	else if (tok == '>')
+		cmd = cmd_redir(cmd, filename, O_WRONLY|O_CREAT|O_TRUNC, 1);
+	else if (tok == '+')		// ? (+) is (>>)
+		cmd = cmd_redir(cmd, filename, O_WRONLY|O_CREAT|O_APPEND, 1);
+	else if (tok == 'H') // todo check flags: (H) is here_doc
+		cmd = cmd_heredoc(cmd, filename, O_RDWR|O_CREAT|O_APPEND);
+	return (cmd);
+
+}
+
 
 t_cmd *parse_block(char **ps, char *es)
 {
@@ -124,4 +142,3 @@ t_cmd *parse_block(char **ps, char *es)
 	cmd = parse_redir(cmd, ps, es);
 	return cmd;
 }
-

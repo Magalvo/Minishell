@@ -96,6 +96,7 @@ struct	s_cmd
 	t_cmd	*cmd;			//redir
 	pid_t	pid;
 	char	*file;
+	char	*delim;
 	int		mode;
 	int		fd;
 	char	**temp;

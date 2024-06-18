@@ -4,6 +4,7 @@
 // checks input for tokens and calls appropiate function
 // returns a 2d_arr with the found symbols
 // TODO break in 2 or 3 - so many lines ;(
+// Algures neste ficheiro ele mete valor no ficheiro
 t_cmd *parse_exec(char **ps, char *es)
 {
 	char	*q;
@@ -19,27 +20,8 @@ t_cmd *parse_exec(char **ps, char *es)
 		return (parse_block(ps, es));
 	ret = cmd_exec();
 	cmd = ret;
-	// argc = 0;
-
 	ret = parse_redir(ret, ps, es);
-	// argc = count_argc(ps, es, );
-	// char *ps_cpy = *ps;
-	// char *es_cpy = es;
-	// while(!peek(ps, es, "|)&;"))
-	// {
-	// 	if((tok=get_token(ps, es, &q, &eq)) == 0)
-	// 		break;
-	// 	if(tok != 'a')
-	// 		reprompt(INVALID_TOKEN);
-	// 	argc++;
-	// }
-
-	// _argv = create_argv(argc);
 	_argv = create_argv(count_argc(ps, es));
-	// (void)_argv;
-
-	// *ps = ps_cpy;
-	// es = es_cpy;
 	_argc = 0;
 	while(!peek(ps, es, "|)&;"))
 	{
