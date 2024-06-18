@@ -124,3 +124,4 @@ t_cmd *parse_block(char **ps, char *es)
 	cmd = parse_redir(cmd, ps, es);
 	return cmd;
 }
+
