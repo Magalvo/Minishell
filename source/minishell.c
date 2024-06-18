@@ -93,6 +93,7 @@ void	init_t_ms(t_ms *s)
 	s->env = NULL;
 	s->export = NULL;
 	s->exit_stat = 0;
+	s->here_doc = 0;
 }
 
 

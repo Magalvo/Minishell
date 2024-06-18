@@ -4,10 +4,15 @@ void exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	int     pipefd[2];
 	pid_t   pid;
-	int     status;
+	int		status;
 	
 	if (!cmd)
 		return;
+	while (s->here_doc != 0)
+	{
+		here_doc("EOF", s, cmd);
+		s->here_doc -= 1;
+	}	
 	if (cmd->type == EXEC)
 	{
 		if (ft_exec_buitltins_chr(s, cmd->argv)) 
