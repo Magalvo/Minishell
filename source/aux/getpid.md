@@ -1,5 +1,5 @@
 # ollama run deepseek-coder:6.7b
-write a c function that uses execve to get the contents of /proc/self/stat and return the 4th field. you can use pipes to return the value to the main process   
+> write a c function that uses execve to get the contents of /proc/self/stat and return the 4th field. you can use pipes to return the value to the main process   
 
 In Linux, `/proc/self/stat` file contains information about current running process. The 
 fields are separated by spaces and they represent different properties of the process. For 
@@ -60,7 +60,7 @@ from /proc directory or else it will fail with an error.
 
 
 # ollama run wizardcoder:latest
->>> write a c function that uses execve to get the contents of /proc/self/stat and return the 4th field. you can use pipes to return the value to the main process
+> write a c function that uses execve to get the contents of /proc/self/stat and return the 4th field. you can use pipes to return the value to the main process
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -124,8 +124,8 @@ Contents of /proc/self/stat field 4: 23456
 
 
 # ollama run mistral
->>> write a c function that uses execve to get the contents of /proc/self/stat and return the 4t
-... h field. you can use pipes to return the value to the main process
+> write a c function that uses execve to get the contents of /proc/self/stat and return the 4t h field. you can use pipes to return the value to the main process
+
  Here's an example C function that uses pipes, `execve`, and parses the fourth field from 
 `/proc/self/stat`. This function assumes a Linux environment.
 
@@ -216,7 +216,8 @@ int main() {
 
 
 # ollama run llama3:8b
->>> write a c function that uses execve to get the contents of /proc/self/stat and return the 4th field. you can use pipes to return the value to the main process
+> write a c function that uses execve to get the contents of /proc/self/stat and return the 4th field. you can use pipes to return the value to the main process
+
 Here's an example C function that demonstrates how to achieve this using `execve`, `pipe`, 
 and `fork`:
 
@@ -289,7 +290,9 @@ get the output from the child.
 
 
 # ollama run codellama:7b
->>> write a c function that uses execve to get the contents of /proc/self/stat and return the 4th field. you can use pipes to return the value to the main process
+> write a c function that uses execve to get the contents of /proc/self/stat and return the 4th field. you can use pipes to return the value to the main process
+
+```python
 [PYTHON]
 import os
 import subprocess
@@ -302,6 +305,9 @@ def get_pid():
         pid = fields[4]
     return pid
 [/PYTHON]
+```
+
+```c
 [C]
 #include <stdio.h>
 #include <stdlib.h>
@@ -370,6 +376,8 @@ int main() {
     return 0;
 }
 [/C]
+```
+```c
 [TESTS]
 #include <stdio.h>
 #include <stdlib.h>
@@ -400,12 +408,13 @@ int main() {
     return 0;
 }
 [/TESTS]
-
+```
 
 
 
 # ollama run dolphin-mistral
-write a c function that uses execve to get the contents of /proc/self/stat and return the 4th field. you can use pipes to return the value to the main process
+> write a c function that uses execve to get the contents of /proc/self/stat and return the 4th field. you can use pipes to return the value to the main process
+
 Here is a C program that accomplishes this task:
 
 ```c
@@ -481,41 +490,9 @@ the console.
 
 
 
->>> write a c function that uses execve to get the contents of /proc/self/stat and return the 4t
-... h field. you can use pipes to return the value to the main process
-Here is the implementation for your requirements:
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <string.h>
-
-int get_process_id() {
-    char filename[BUFSIZ];
-    FILE *file;
-
-    sprintf(filename, "/proc/%d/stat", getpid());
-    
-    file = fopen(filename, "r");
-
-    if (file) {
-        int pid;
-        fscanf(file, "%*s %d", &pid);
-
-        fclose(file);
-        
-        return pid;
-    } else {
-        perror("Error opening file");
-        exit(EXIT_FAILURE);
-    }
-}
-```
 # ollama run dolphincoder:7b
-write a c function that uses execve to get the contents of /proc/self/stat and return the 4th field. you can use pipes to return the value to the main process
+> write a c function that uses execve to get the contents of /proc/self/stat and return the 4th field. you can use pipes to return the value to the main process
+
 Here is the implementation for your requirements:
 
 ```c
