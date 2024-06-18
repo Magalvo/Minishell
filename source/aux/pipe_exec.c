@@ -4,18 +4,30 @@
 void	exec_one(t_ms *s, char **argv)
 {
 	char	*path;
+	char	*cmd_name;
 
-	if (!ft_strncmp(argv[0], "./", 2))
-	{
-		argv[0]++;
-		argv[0]++;
+	if (argv[0][0] == '/')
 		execve(argv[0], argv, s->env_tmp);
+	else if ( argv[0][0] == '.' && argv[0][1] == '/')
+		execve(argv[0], argv, s->env_tmp);
+	else
+	{
+		path = cmd_path(s->paths, argv[0]);
+		if (!path)
+		{
+			ft_putstr_fd("cmd not found\n", 2);
+			return ;
+		}
+		cmd_name = ft_strchr(path, '/');
+		if (cmd_name)
+		{
+			cmd_name++;
+			argv[0] = cmd_name;
+		}
+		execve(path, argv, s->env_tmp);
+		free(path);
 	}
-	path = cmd_path(s->paths, argv[0]);
-	if (!path)
-		return ;
-	execve(path, argv, s->env_tmp);
-	error_msg("Error on EXECVE");
+	error_msg("execve");
 }
 
 //! ===== Prototype for PIPE execution ======= !//
