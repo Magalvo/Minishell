@@ -12,7 +12,7 @@
 
 #include "../../include/minishell.h"
 
-int	pwd_cmd(void)
+int	pwd_cmd(t_ms *s)
 {
 	char	*pwd;
 
@@ -21,6 +21,6 @@ int	pwd_cmd(void)
 	if (pwd != NULL)
 		printf ("%s\n", pwd);
 	else
-		perror("pwd");
+		printf("%s\n", get_env_val(s->env, "PWD", s));
 	return (1);
 }

@@ -99,17 +99,29 @@ char	*join_key_value(const char *key, const char *value)
 
 	join = (char *)malloc(total_len + 1);
 	if (!join)
-		error_msg("join malloc env");
-	ft_strlcpy(join, key, key_len + 1);
-	//ft_strjoin(join, key);				//? posso usar strjoin em vez de alocar?
+		return (NULL);
+	ft_strlcpy(join, key, key_len + 1);			//? posso usar strjoin em vez de alocar?
 	if(value)
 	{
 		join[key_len]= '=';
 		ft_strlcpy(join + key_len + 1, value, value_len + 1);
 	}
-/* 	else
-		join[key_len] = '\0'; */
 	return (join);
+}
+
+void	free_env_array(char **env_array)
+{
+	int	i;
+
+	i = 0;
+	if(!env_array)
+		return ;
+	while (env_array[i])
+	{
+		free(env_array[i]);
+		i++;
+	}
+	free(env_array);
 }
 
 char	**env_convert(t_env *env)
@@ -134,6 +146,11 @@ char	**env_convert(t_env *env)
 	while (i < ctd)
 	{
 		env_array[i] = join_key_value(current->key, current->value);
+		if (!env_array[i])
+		{
+			free_env_array(env_array);
+			error_msg("malloc join key value");
+		}
 		current = current->next;
 		i++;
 	}
@@ -168,7 +185,7 @@ void	env_arr_update(t_ms *s, char *str)
 		} */
 	if (s->paths)
 		s->paths = NULL; 
-	
+	free_env_array(s->env_tmp);
 	s->env_tmp = env_convert(s->env);
 }
 //! ===============================================================================//
