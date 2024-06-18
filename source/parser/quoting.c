@@ -165,3 +165,42 @@ Note that this implementation assumes that the input string does not contain
 any escape characters, such as \", \', etc. If the input string contains these
 characters, the function may not work correctly.
 */
+
+#include "../include/minishell.h"
+
+
+void	quote_find(const char *str)
+{
+	bool	qt;
+	bool	dqt;
+	char	last,
+	char	key[3];
+	int		i;
+
+	i = 0;
+	key = {'0', '0', '0'};
+
+	while (i < ft_strlen(str))
+	{
+		if (ft_strchr("\"'", str[i]) == 0 )
+			i++;
+		if (str[[i]] == '\'')
+		{
+			if (str[i] == key[2])
+				key[0] = ' ';
+				key[2] = ' ';
+			else
+				key[0] = '\'';
+				key[2] = '\'';
+		}
+		else if (str[[i]] == '\'')
+		{
+			if (str[i] == key[2])
+				key[1] = ' ';
+				key[2] = ' ';
+			else
+				key[1] = '"';
+				key[2] = '"';
+		}
+	}
+}
