@@ -47,6 +47,24 @@ char	*ft_strdup(const char *src)
 	return (dup);
 }
 
+char	*ft_strndup(const char *src, size_t n)
+{
+	char	*dup;
+	size_t	i;
+
+	i = 0;
+	dup = (char *)malloc(sizeof(char) * (n + 1));
+	if (!dup)
+		return (NULL);
+	while (src[i] != '\0' && i < n)
+	{
+		dup[i] = src[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
+}
+
 /*
 int	main(void)
 {
