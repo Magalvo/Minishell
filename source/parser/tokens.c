@@ -34,24 +34,21 @@ int	sw_get_token(char **str)
 {
 	if (!**str)
 		return (0);
-	else if (**str == '&')
-	{
-		if (*++*str == '&')
-			return (++str, 'N');
-	}
+	// else if (**str == '&')
+	// {
+	// 	if (*++*str == '&')
+	// 		return (++*str, 'N');
+	// }
 	else if (**str == '<')
 	{
 		if (*++*str == '<')
-		{
-			++*str;
-			return ('H');
-		}
+			return (++*str, 'H');
 		return ('<');
 	}
 	else if (**str == '>')
 	{
 		if (*++*str == '>')
-			return (++str, '+');
+			return (++*str, '+');
 		return ('>');
 	}
 	else

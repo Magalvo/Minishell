@@ -14,7 +14,7 @@ t_cmd	*parse_input(char *input, t_ms *s)
 {
 	char	*xp_input;
 	t_cmd	*ast;
-	char	*ppid;
+	// char	*ppid;
 
 	if (ft_strlen(input) == 0)
 		return (NULL);
@@ -25,10 +25,10 @@ t_cmd	*parse_input(char *input, t_ms *s)
 	ast = parse_cmd(xp_input);
 	// ? should expanded_input be free() or pointed to _ (last command)
 	// free(expanded_input);
-	// ppid = get_pid(s);
+	// ppid = ft_getpid();
 	// printf("%s\n", ppid);
-	ppid = ft_getpid();
-	printf("%s\n", ppid);
+	// ppid = ft_getrnd_str();
+	// printf("%s\n", ppid);
 	return (ast);
 }
 
@@ -104,7 +104,7 @@ t_cmd *parse_redir(t_cmd *cmd, char **ps, char *es)
 		else if (tok == '+')		// ? (+) is (>>)
 			cmd = cmd_redir(cmd, q, eq, O_WRONLY|O_CREAT|O_APPEND, 1);
 		else if (tok == 'H') // todo check flags: (H) is here_doc
-			cmd = cmd_redir(cmd, q, eq, O_RDWR|O_CREAT|O_APPEND, 0);
+			cmd = cmd_heredoc(cmd, O_RDWR|O_CREAT|O_APPEND, 0);
 			// cmd = cmd_redir(cmd, q, eq, O_WRONLY|O_CREAT, 0);
 	}
 	return (cmd);

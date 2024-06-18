@@ -1,6 +1,7 @@
 #ifndef MINISHELL_DEFINE_H
 # define MINISHELL_DEFINE_H
 
+# define STR_SIZE 16
 
 //*======================= STRUCTS ====================== *//
 typedef	enum	s_signal e_signal;
@@ -76,7 +77,7 @@ enum s_cmd_type
 	EXEC	= 1,
 	REDIR	= 2,
 	PIPE	= 3,
-	//HEREDOC	= 4, //maybe
+	HEREDOC	= 4, //maybe
 };
 
 // struct s_cmd

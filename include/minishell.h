@@ -94,6 +94,7 @@ int		get_token(char **ps, char *es, char **q, char **eq);
 t_cmd	*cmd_init(void);
 t_cmd	*cmd_exec(void);
 t_cmd	*cmd_redir(t_cmd *subcmd, char *file, char *efile, int mode, int fd);
+t_cmd	*cmd_heredoc(t_cmd *subcmd, int mode, int fd);
 t_cmd	*cmd_pipe(t_cmd *left, t_cmd *right);
 t_cmd	*parse_cmd(char *input);
 t_cmd	*parse_line(char **ps, char *es);
@@ -120,6 +121,7 @@ void 	cleanup_shell(t_ms *s);
 void	clear_cmd(t_cmd *cmd);
 // char	*get_pid(t_ms *s);
 char	*ft_getpid(void);
+char	*ft_getrnd_str(void);
 
 /*
 ll_inits.c
