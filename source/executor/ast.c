@@ -61,7 +61,6 @@ void	free_ast(t_cmd *cmd)
 	free_ast(cmd->left);
 	free_ast(cmd->right);
 	free_ast(cmd->cmd);
-	close_fd(&(cmd->fd));
 	if(cmd->argv)
 	{
 		i = 0;
