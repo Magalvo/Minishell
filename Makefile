@@ -61,12 +61,12 @@ LDFLAGS = -L$(LIBFT_DIR) -lft -lreadline
 # Project settings
 NAME = minishell
 CFLAGS = -Wall -Wextra -Werror -I${LIBFT_DIR} #-fsanitize=address  #-O3
-debug: CFLAGS += -g3 #-fPIE #-fsanitize=address #-pg   #-fsanitize=address
+debug: CFLAGS += -g3  #-fPIE #-fsanitize=address #-pg   #-fsanitize=address
 MAKEFLAGS += --no-print-directory #  --silent
 .SILENT: $(OBJ) $(NAME) clean fclean
 ARFLAGS = rvs
 RM = rm -rf
-CC = cc
+CC = cc					#gcc -ggdb -fsanitize=address -fno-omit-frame-pointer
 # AR = ar
 
 
@@ -109,6 +109,8 @@ fclean: clean
 	@printf "$(RED)[All binaries deleted]    $(RST)\n"
 
 valgrind: $(NAME)
-	valgrind --trace-children=yes --leak-check=full --track-fds=yes --show-leak-kinds=all ./${NAME}
+	valgrind --suppressions=readline.supp --leak-check=full --track-fds=yes --show-leak-kinds=all ./${NAME}
+#valgrind --suppressions=readline.supp --tool=memcheck --tool=callgrind  --track-fds=yes ./${NAME}
+	
 
 re: fclean all
