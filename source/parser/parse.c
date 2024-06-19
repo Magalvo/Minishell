@@ -116,7 +116,7 @@ t_cmd *redir_sw(t_cmd *cmd, int tok, char *file, char *efile)
 
 	filename = ft_substr(file, 0, file - efile);
 	if (tok == '<')
-			cmd = cmd_redir(cmd, filename, O_RDONLY, 0);
+		cmd = cmd_redir(cmd, filename, O_RDONLY, 0);
 	else if (tok == '>')
 		cmd = cmd_redir(cmd, filename, O_WRONLY|O_CREAT|O_TRUNC, 1);
 	else if (tok == '+')		// ? (+) is (>>)
