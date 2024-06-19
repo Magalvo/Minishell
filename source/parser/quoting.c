@@ -169,38 +169,58 @@ characters, the function may not work correctly.
 #include "../include/minishell.h"
 
 
-void	quote_find(const char *str)
+void	quote_find(const char *str, const char *ptr)
 {
 	bool	qt;
 	bool	dqt;
 	char	last,
-	char	key[3];
-	int		i;
 
-	i = 0;
-	key = {'0', '0', '0'};
-
-	while (i < ft_strlen(str))
+	while (str < ptr)
 	{
-		if (ft_strchr("\"'", str[i]) == 0 )
-			i++;
-		if (str[[i]] == '\'')
-		{
-			if (str[i] == key[2])
-				key[0] = ' ';
-				key[2] = ' ';
+		if (*str == '"')
+			if (last == '"')
+				dqt = false;
 			else
-				key[0] = '\'';
-				key[2] = '\'';
-		}
-		else if (str[[i]] == '\'')
-		{
-			if (str[i] == key[2])
-				key[1] = ' ';
-				key[2] = ' ';
+				dqt = true;
+		else if (*str == '\'')
+			if (last == '\'')
+				qt = false;
 			else
-				key[1] = '"';
-				key[2] = '"';
-		}
+				qt = true;
+		if (*str == '"' || *str == '\'')
+			last = *str;
+		str++;
 	}
 }
+
+		// else if (last != str[i]) {
+		// 	qt ^= !dqt;
+		// 	dqt ^= !qt;
+		// }
+		// else
+		// 	last = str[i];
+
+
+	// while (i < ft_strlen(str))
+	// {
+	// 	if (ft_strchr("\"'", str[i]) == 0 )
+	// 		i++;
+	// 	if (str[[i]] == '\'')
+	// 	{
+	// 		if (str[i] == key[2])
+	// 			key[0] = ' ';
+	// 			key[2] = ' ';
+	// 		else
+	// 			key[0] = '\'';
+	// 			key[2] = '\'';
+	// 	}
+	// 	else if (str[[i]] == '\'')
+	// 	{
+	// 		if (str[i] == key[2])
+	// 			key[1] = ' ';
+	// 			key[2] = ' ';
+	// 		else
+	// 			key[1] = '"';
+	// 			key[2] = '"';
+	// 	}
+	// }

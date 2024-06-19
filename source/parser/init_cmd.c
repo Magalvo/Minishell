@@ -56,7 +56,6 @@ t_cmd *cmd_heredoc(t_cmd *subcmd, char *delim, int mode)
 	if (!cmd->fd)
 		perror("error creating heredoc file");
 	// here_doc2(cmd->delim)
-
 	return (cmd);
 }
 
