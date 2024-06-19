@@ -152,9 +152,7 @@ t_env	*new_env_node(char *env_var)
 	t_env	*node;
 	size_t	key_len;
 	char	*delimiter;
-	char	*duped;
 	int		num;
-	char	*value;
 
 	node = ft_calloc(sizeof(t_env), 1);
 	if(!node)
@@ -167,20 +165,28 @@ t_env	*new_env_node(char *env_var)
 	}
 	key_len = delimiter - env_var;
 	node->key = ft_substr(env_var, 0, key_len);
-	if (!ft_strncmp("SHLVL", node->key, 5))
+	if (!node->key) {
+		free(node);
+		return NULL;
+	}
+	if (!strncmp("SHLVL", node->key, 5)) 
 	{
-		duped = ft_strdup(delimiter + 1);
-		num = ft_atoi(duped);
-		value = ft_itoa(num);
-		node->value = value;
-		free(value);
-		free(duped);
+		num = ft_atoi(delimiter + 1);
+		node->value = ft_itoa(num + 1);
+		if (!node->value) {
+			free(node->key);
+			free(node);
+			return NULL;
+		}
 	}
 	else
 	{
-		duped = ft_strdup(delimiter + 1);
-		node->value = duped;
-		free(duped);
+		node->value = ft_strdup(delimiter + 1);
+		if (!node->value) {
+			free(node->key);
+			free(node);
+			return NULL;
+		}
 	}
 	node->prev = NULL;
 	node->next = NULL;
