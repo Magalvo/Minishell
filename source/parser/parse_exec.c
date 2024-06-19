@@ -5,7 +5,7 @@
 // returns a 2d_arr with the found symbols
 // TODO break in 2 or 3 - so many lines ;(
 // Algures neste ficheiro ele mete valor no ficheiro
-t_cmd *parse_exec(char **ps, char *es)
+t_cmd *parse_exec(char **ps, char *es, t_ms *s)
 {
 	char	*q;
 	char	*eq;
@@ -16,11 +16,11 @@ t_cmd *parse_exec(char **ps, char *es)
 	char	*new_arg;
 	char	**_argv;
 
-	if(peek(ps, es, "("))
-		return (parse_block(ps, es));
+	// if(peek(ps, es, "("))
+	// 	return (parse_block(ps, es));
 	ret = cmd_exec();
 	cmd = ret;
-	ret = parse_redir(ret, ps, es);
+	ret = parse_redir(ret, ps, es, s);
 	_argv = create_argv(count_argc(ps, es));
 	_argc = 0;
 	while(!peek(ps, es, "|)&;"))
@@ -33,7 +33,7 @@ t_cmd *parse_exec(char **ps, char *es)
 		ft_memmove((void *)new_arg, (void *)q, (eq - q));
 		_argv[_argc] = new_arg;
 		_argc++;
-		ret = parse_redir(ret, ps, es);
+		ret = parse_redir(ret, ps, es, s);
 	}
 	_argv[_argc] = 0;
 	cmd->argv = _argv;
