@@ -59,7 +59,8 @@ int	exec_heredoc(char *dli, char *file, int expand, t_ms *s)
 	int		fd_file;
 	char	*line;
 	char	*xp_line;
-
+	s->modal = HERE_DOC;
+	check_signal(HERE_DOC);
 	fd_file = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd_file == -1)
 		error_msg("Error opening here_doc");
@@ -68,7 +69,11 @@ int	exec_heredoc(char *dli, char *file, int expand, t_ms *s)
 		write(1, "> ", 2);
 		line = get_next_line(0);
 		if (line == NULL || ft_strncmp(dli, line, ft_strlen(dli)) == 0)
+		{
+			if (!line)
+				printf("\nEOF detected, exiting here_doc\n");
 			break ;
+		}
 		if (expand == 0)
 		{
 			xp_line = expand_dolar(line, s);
@@ -87,6 +92,7 @@ int	exec_heredoc(char *dli, char *file, int expand, t_ms *s)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		error_msg("opening here_doc");
+	s->modal = MAIN;
 	return (fd);
 }
 

@@ -19,8 +19,8 @@ enum s_signal
 {
 	MAIN,
 	CHILD,
-	// HEREDOC,
-	// IGNORE
+	HERE_DOC,
+	IGNORE
 };
 
 struct	s_env
