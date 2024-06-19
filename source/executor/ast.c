@@ -46,6 +46,6 @@ void exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			close(pipefd[0]);
 		}
 	} 
-	else if (cmd->type == REDIR) 
+	else if (cmd->type == REDIR || cmd->type == HEREDOC) 
 		exec_redir(s, cmd, fd_in, fd_out);
 }

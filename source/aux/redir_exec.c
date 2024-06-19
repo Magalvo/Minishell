@@ -6,9 +6,7 @@ void exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	int		status;
 
 	if (cmd->type == HEREDOC)
-	{
 		fd_in = cmd->fd;
-	}
 	else if ((cmd->mode & O_WRONLY || cmd->mode & O_RDWR)) 
 	{
 		fd_out = open(cmd->file, cmd->mode, 0666);
