@@ -72,7 +72,7 @@ int	exec_heredoc(char *dli, char *file, int expand, t_ms *s)
 		if (expand == 0)
 		{
 			xp_line = expand_dolar(line, s);
-			free(line);
+			//free(line);
 			ft_putstr_fd(xp_line, fd_file);
 			free(xp_line);
 		}

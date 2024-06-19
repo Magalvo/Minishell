@@ -55,11 +55,11 @@ void	check_signal(e_signal sig)
 		sigaction(SIGINT, &sa, NULL);
 		sigaction(SIGQUIT, &sa, NULL);
 	}
-/* 	else if (IGNORE && HERE_DOC)
+/*  	else if (IGNBRK && HEREDOC)
 	{
 		sig_ignore(&sa, SIGINT);
 		sig_ignore(&sa, SIGQUIT);
-	} */
+	}  */
 }
 
 
