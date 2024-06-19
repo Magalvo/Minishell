@@ -46,14 +46,15 @@ int	handle_kv_update(t_env *env, char *key, char *value)
 
 void	init_export(t_ms *ms, char **envp)
 {
-	t_env	*head = NULL;
-	t_env	*tail = NULL;
+	t_env	*head;
+	t_env	*tail;
+	t_env 	*new_node;
 	int		i;
 
 	i = 0;
-	while (envp && envp[i] != NULL)
+	while (envp[i] != NULL)
 	{
-		t_env *new_node = new_env_node(envp[i]);
+		new_node = new_env_node(envp[i]);
 /* 		if (!new_node)
 			continue; */
 		if (!head)
@@ -69,6 +70,7 @@ void	init_export(t_ms *ms, char **envp)
 		}
 		i++;	
 	}
+	free_env_list(ms->export);
 	ms->export = head;
 }
 

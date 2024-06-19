@@ -2,13 +2,37 @@
 
 #include "../include/minishell.h"
 
+void	close_fd(int *fd)
+{
+	if (*fd >= 0)
+	{
+		close(*fd);
+		*fd = -1;
+	}
+}
 
 void exit_minishell(t_ms *s, char *msg)
 {
+	int	exiter;
+	
+	if (!s)
+		return ;
+
+	close_fd(&(s->infile));
+    close_fd(&(s->outfile));
+
+	if (s->env)
+		free_env_list(s->env);
+	if (s->export)
+   		free_env_list(s->export);
+	if (s->ast != NULL)
+		free_ast(s->ast);
+	exiter = s->exit_stat;
 	if (msg)
 		ft_putstr_fd(msg, STDERR_FILENO);
+	
 	cleanup_shell(s);
-	exit(EXIT_SUCCESS);
+	exit(exiter);
 }
 
 
@@ -129,7 +153,9 @@ void minishell(char **envp)
 		// dont need to run if exec didnt execute (no changes)
 		// TODO
 
+		
 		free(input);
+		reset_ast(&s);
 	}
 	exit_minishell(&s, NULL);
 }

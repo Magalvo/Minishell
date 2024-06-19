@@ -22,7 +22,7 @@ t_cmd	*parse_input(char *input, t_ms *s)
 	xp_input = expand_dolar(xp_input, s);
 	// glue_str(input, NULL);
 	// unglue_str(input, NULL);
-	ast = parse_cmd(xp_input);
+	ast = parse_cmd(xp_input, s);
 	// ? should expanded_input be free() or pointed to _ (last command)
 	// free(expanded_input);
 	// ppid = ft_getpid();
@@ -32,13 +32,13 @@ t_cmd	*parse_input(char *input, t_ms *s)
 	return (ast);
 }
 
-t_cmd *parse_cmd(char *input)
+t_cmd *parse_cmd(char *input, t_ms *s)
 {
 	char	*end;
 	t_cmd	*cmd;
 
 	end = input + ft_strlen(input);
-	cmd = parse_line(&input, end);
+	cmd = parse_line(&input, end, s);
 
 	peek(&input, end, "");
 	if(input != end){
@@ -52,11 +52,11 @@ t_cmd *parse_cmd(char *input)
 // ps is pointer to a position of input
 // end is a pointer to the end of the symbol
 // so ptr_cmd	end_cmd
-t_cmd *parse_line(char **ps, char *es)
+t_cmd *parse_line(char **ps, char *es, t_ms *s)
 {
 	t_cmd *cmd;
 
-	cmd = parse_pipe(ps, es);
+	cmd = parse_pipe(ps, es, s);
 	// while(peek(ps, es, "&")){
 	// 	get_token(ps, es, 0, 0);
 	// 	cmd = backcmd(cmd);
@@ -70,14 +70,14 @@ t_cmd *parse_line(char **ps, char *es)
 
 //
 // looks for pipes, if found runs recursively until no pipe found
-t_cmd *parse_pipe(char **ps, char *es)
+t_cmd *parse_pipe(char **ps, char *es, t_ms *s)
 {
 	t_cmd *cmd;
 
- 	cmd = parse_exec(ps, es);
+ 	cmd = parse_exec(ps, es, s);
 	if(peek(ps, es, "|")){
 		get_token(ps, es, 0, 0);
-		cmd = cmd_pipe(cmd, parse_pipe(ps, es));
+		cmd = cmd_pipe(cmd, parse_pipe(ps, es, s));
 	}
 	return cmd;
 }
@@ -86,7 +86,7 @@ t_cmd *parse_pipe(char **ps, char *es)
 // > outfile, open O_WRONLY|O_CREAT|O_TRUNC
 // H heredoc, open O_WRONLY|O_CREAT, no truncate
 // + >>, open O_WRONLY|O_CREAT|O_APPEND
-t_cmd *parse_redir(t_cmd *cmd, char **ps, char *es)
+t_cmd *parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 {
 	int		tok;
 	char	*q;
@@ -97,24 +97,21 @@ t_cmd *parse_redir(t_cmd *cmd, char **ps, char *es)
 		tok = get_token(ps, es, 0, 0);
 		if(get_token(ps, es, &q, &eq) != 'a')
 			reprompt(MISSING_REDIRECT);
-		cmd = redir_sw(cmd, tok, q, eq);
-		// if (tok == '<')
-		// 	cmd = cmd_redir(cmd, q, eq, O_RDONLY, 0);
-		// else if (tok == '>')
-		// 	cmd = cmd_redir(cmd, q, eq, O_WRONLY|O_CREAT|O_TRUNC, 1);
-		// else if (tok == '+')		// ? (+) is (>>)
-		// 	cmd = cmd_redir(cmd, q, eq, O_WRONLY|O_CREAT|O_APPEND, 1);
-		// else if (tok == 'H') // todo check flags: (H) is here_doc
-		// 	cmd = cmd_heredoc(cmd, filename2, O_RDWR|O_CREAT|O_APPEND);
+		// make_filename(q, eq);
+		// cmd = redir_sw(cmd, tok, q, eq);
+		cmd = redir_sw(cmd, tok, ft_substr(q, 0, eq - q), s);
+		// ft_substr(q, 0, eq - q);
+
 	}
 	return (cmd);
 }
 
-t_cmd *redir_sw(t_cmd *cmd, int tok, char *file, char *efile)
+// t_cmd *redir_sw(t_cmd *cmd, int tok, char *file, char *efile)
+t_cmd *redir_sw(t_cmd *cmd, int tok, char *filename, t_ms *s)
 {
-	char	*filename;
+	// char	*filename;
 
-	filename = ft_substr(file, 0, file - efile);
+	// filename = ft_substr(file, 0, efile - file);
 	if (tok == '<')
 		cmd = cmd_redir(cmd, filename, O_RDONLY, 0);
 	else if (tok == '>')
@@ -122,23 +119,23 @@ t_cmd *redir_sw(t_cmd *cmd, int tok, char *file, char *efile)
 	else if (tok == '+')		// ? (+) is (>>)
 		cmd = cmd_redir(cmd, filename, O_WRONLY|O_CREAT|O_APPEND, 1);
 	else if (tok == 'H') // todo check flags: (H) is here_doc
-		cmd = cmd_heredoc(cmd, filename, O_RDWR|O_CREAT|O_APPEND);
+		cmd = cmd_heredoc(cmd, filename, O_RDWR|O_CREAT|O_APPEND, s);
 	return (cmd);
 
 }
 
 
-t_cmd *parse_block(char **ps, char *es)
-{
-	t_cmd *cmd;
+// t_cmd *parse_block(char **ps, char *es)
+// {
+// 	t_cmd *cmd;
 
-	if(!peek(ps, es, "("))
-		reprompt(BLOCK_WTF);
-	get_token(ps, es, 0, 0);
-	cmd = parse_line(ps, es);
-	if(!peek(ps, es, ")"))
-		reprompt(BLOCK_UNCLOSED);
-	get_token(ps, es, 0, 0);
-	cmd = parse_redir(cmd, ps, es);
-	return cmd;
-}
+// 	if(!peek(ps, es, "("))
+// 		reprompt(BLOCK_WTF);
+// 	get_token(ps, es, 0, 0);
+// 	cmd = parse_line(ps, es, s);
+// 	if(!peek(ps, es, ")"))
+// 		reprompt(BLOCK_UNCLOSED);
+// 	get_token(ps, es, 0, 0);
+// 	cmd = parse_redir(cmd, ps, es, s);
+// 	return cmd;
+// }

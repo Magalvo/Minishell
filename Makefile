@@ -6,7 +6,7 @@
 #    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/06/18 12:38:06 by cjoao-de         ###   ########.fr        #
+#    Updated: 2024/06/19 17:24:23 by cjoao-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ MAKEFLAGS += --no-print-directory #  --silent
 .SILENT: $(OBJ) $(NAME) clean fclean
 ARFLAGS = rvs
 RM = rm -rf
-CC = cc
+CC = cc					#gcc -ggdb -fsanitize=address -fno-omit-frame-pointer
 # AR = ar
 
 
@@ -109,6 +109,8 @@ fclean: clean
 	@printf "$(RED)[All binaries deleted]    $(RST)\n"
 
 valgrind: $(NAME)
-	valgrind --trace-children=yes --leak-check=full --track-fds=yes --show-leak-kinds=all ./${NAME}
+	valgrind --suppressions=readline.supp --leak-check=full --track-fds=yes --track-origins=yes --show-leak-kinds=all ./${NAME}
+#valgrind --suppressions=readline.supp --tool=memcheck --tool=callgrind  --track-fds=yes ./${NAME}
+
 
 re: fclean all

@@ -61,7 +61,7 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			exec_pipe(s, cmd->right, pipefd[0], fd_out);
 		}
 	}
-	else if (cmd->type == REDIR)
+	else if (cmd->type == REDIR || cmd->type == HEREDOC)
 		exec_redir(s, cmd, fd_in, fd_out);
 	else
 		single_exec(s, cmd, fd_in, fd_out);

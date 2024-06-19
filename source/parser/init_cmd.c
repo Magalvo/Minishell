@@ -21,22 +21,17 @@ t_cmd *cmd_exec(void)
 t_cmd *cmd_redir(t_cmd *subcmd, char *filename, int mode, int fd)
 {
 	t_cmd	*cmd;
-	// char	*filename;
 
 	cmd = cmd_init();
 	cmd->type = REDIR;
 	cmd->cmd = subcmd;
-	// filename = ft_calloc((efile - file) + 1, sizeof(char));
-	// ft_memmove((void *)filename, (void *)file, (efile - file));
-	// todo free this memory (filename) b4 freeing the struct
 	cmd->file = filename;
-	// cmd->efile = efile;
 	cmd->mode = mode;
 	cmd->fd = fd;
 	return (cmd);
 }
 
-t_cmd *cmd_heredoc(t_cmd *subcmd, char *delim, int mode)
+t_cmd *cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 {
 	t_cmd	*cmd;
 	char	*filename;
@@ -51,19 +46,19 @@ t_cmd *cmd_heredoc(t_cmd *subcmd, char *delim, int mode)
 	free(filename);
 	if (!cmd->file)
 		perror("strjoin null");
-	// cmd->fd = open(cmd->file, mode, 0644); // O_RDWR|O_CREAT|O_APPEND
-	cmd->fd = here_doc2(cmd->delim, cmd->file);
+	cmd->fd = exec_heredoc(cmd->delim, cmd->file, \
+		(ft_strchr(delim, '\'') || ft_strchr(delim, '"')), s);
 	if (!cmd->fd)
 		perror("error creating heredoc file");
-	// here_doc2(cmd->delim)
 	return (cmd);
 }
 
-int	here_doc2(char *dli, char *file)
+int	exec_heredoc(char *dli, char *file, int expand, t_ms *s)
 {
 	int		fd;
 	int		fd_file;
 	char	*line;
+	char	*xp_line;
 
 	fd_file = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd_file == -1)
@@ -74,8 +69,18 @@ int	here_doc2(char *dli, char *file)
 		line = get_next_line(0);
 		if (line == NULL || ft_strncmp(dli, line, ft_strlen(dli)) == 0)
 			break ;
-		ft_putstr_fd(line, fd_file);
-		free(line);
+		if (expand == 0)
+		{
+			xp_line = expand_dolar(line, s);
+			//free(line);
+			ft_putstr_fd(xp_line, fd_file);
+			free(xp_line);
+		}
+		else
+		{
+			ft_putstr_fd(line, fd_file);
+			free(line);
+		}
 	}
 	free(line);
 	close(fd_file);
