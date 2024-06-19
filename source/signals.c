@@ -31,10 +31,16 @@ void	sig_ignore(struct sigaction *sa, int signal)
 	sa->sa_flags = sa_origin_flags;
 }
 
+void	here_handler(int signal, siginfo_t *info, void *context)
+{
+	(void)info;
+	(void)context;
+	if (signal == SIGINT)
+		exit(130);
+}
+
 void	check_signal(e_signal sig)
 {
-	(void)sig;
-
 	static struct sigaction sa;
 
 	if (sig == MAIN)
@@ -55,11 +61,15 @@ void	check_signal(e_signal sig)
 		sigaction(SIGINT, &sa, NULL);
 		sigaction(SIGQUIT, &sa, NULL);
 	}
-/*  	else if (IGNBRK && HEREDOC)
+	else if (sig == HERE_DOC)
 	{
-		sig_ignore(&sa, SIGINT);
+		sa.sa_sigaction = here_handler;
+		sa.sa_flags = SA_SIGINFO;
+		if (sigemptyset(&sa.sa_mask) != 0)
+			return ;
+		sigaction(SIGINT, &sa, NULL);
 		sig_ignore(&sa, SIGQUIT);
-	}  */
+	}
 }
 
 
