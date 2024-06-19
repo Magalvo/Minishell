@@ -100,12 +100,14 @@ char	*join_key_value(const char *key, const char *value)
 	join = (char *)malloc(total_len + 1);
 	if (!join)
 		return (NULL);
-	ft_strlcpy(join, key, key_len + 1);			//? posso usar strjoin em vez de alocar?
+	ft_strlcpy(join, key, key_len + 1);			
 	if(value)
 	{
 		join[key_len]= '=';
 		ft_strlcpy(join + key_len + 1, value, value_len + 1);
 	}
+	else
+		join[key_len] = '\0';
 	return (join);
 }
 
