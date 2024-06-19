@@ -88,7 +88,7 @@ char	*remove_quotes(char *input);
 bool	check_valid_position(char *input);
 char	*get_expanded(char *input, char *cut, char *paste, char *remain);
 int		here_doc(char *dli, t_ms *s, t_cmd *cmd);
-int		here_doc2(char *dli, char *file);
+int		exec_heredoc(char *dli, char *file, int expand, t_ms *s);
 
 
 // ! PARSE WIP
@@ -100,15 +100,15 @@ int		get_token(char **ps, char *es, char **q, char **eq);
 t_cmd	*cmd_init(void);
 t_cmd	*cmd_exec(void);
 t_cmd	*cmd_redir(t_cmd *subcmd, char *filename, int mode, int fd);
-t_cmd	*cmd_heredoc(t_cmd *subcmd, char *delim, int mode);
+t_cmd	*cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s);
 t_cmd	*cmd_pipe(t_cmd *left, t_cmd *right);
-t_cmd	*parse_cmd(char *input);
-t_cmd	*parse_line(char **ps, char *es);
-t_cmd	*parse_pipe(char **ps, char *es);
-t_cmd	*parse_redir(t_cmd *t_cmd, char **ps, char *es);
-t_cmd	*redir_sw(t_cmd *cmd, int tok, char *file, char *efile);
-t_cmd	*parse_block(char **ps, char *es);
-t_cmd	*parse_exec(char **ps, char *es);
+t_cmd	*parse_cmd(char *input, t_ms *s);
+t_cmd	*parse_line(char **ps, char *es, t_ms *s);
+t_cmd	*parse_pipe(char **ps, char *es, t_ms *s);
+t_cmd	*parse_redir(t_cmd *t_cmd, char **ps, char *es, t_ms *s);
+t_cmd	*redir_sw(t_cmd *cmd, int tok, char *filename, t_ms *s);
+// t_cmd	*parse_block(char **ps, char *es, t_ms *s);
+t_cmd	*parse_exec(char **ps, char *es, t_ms *s);
 
 
 //*==================== AUX =======================*//

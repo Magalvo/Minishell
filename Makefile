@@ -6,7 +6,7 @@
 #    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/06/18 12:38:06 by cjoao-de         ###   ########.fr        #
+#    Updated: 2024/06/19 17:24:23 by cjoao-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ LDFLAGS = -L$(LIBFT_DIR) -lft -lreadline
 # Project settings
 NAME = minishell
 CFLAGS = -Wall -Wextra -Werror -I${LIBFT_DIR} #-fsanitize=address  #-O3
-debug: CFLAGS += -g3  #-fPIE #-fsanitize=address #-pg   #-fsanitize=address
+debug: CFLAGS += -g3 #-fPIE #-fsanitize=address #-pg   #-fsanitize=address
 MAKEFLAGS += --no-print-directory #  --silent
 .SILENT: $(OBJ) $(NAME) clean fclean
 ARFLAGS = rvs
@@ -111,6 +111,6 @@ fclean: clean
 valgrind: $(NAME)
 	valgrind --suppressions=readline.supp --leak-check=full --track-fds=yes --track-origins=yes --show-leak-kinds=all ./${NAME}
 #valgrind --suppressions=readline.supp --tool=memcheck --tool=callgrind  --track-fds=yes ./${NAME}
-	
+
 
 re: fclean all
