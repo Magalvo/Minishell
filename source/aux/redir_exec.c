@@ -5,7 +5,9 @@ void exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	pid_t	pid;
 	int		status;
 
-	if ((cmd->mode & O_WRONLY || cmd->mode & O_RDWR) && cmd->mode != 1090) 
+	if (cmd->type == HEREDOC)
+		fd_in = cmd->fd;
+	else if ((cmd->mode & O_WRONLY || cmd->mode & O_RDWR)) 
 	{
 		fd_out = open(cmd->file, cmd->mode, 0666);
 		if (fd_out < 0) 
@@ -14,8 +16,6 @@ void exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			return(perror("open"));
 		}
 	}
-	else if (cmd->mode == 1090 && cmd->fd == 0)
-		fd_in = here_doc(cmd->file, NULL, NULL);
 	else if (cmd->file) 
 	{
 		fd_in = open(cmd->file, O_RDONLY);
@@ -46,6 +46,8 @@ void exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			exec_pipe(s, cmd->cmd, STDIN_FILENO, fd_out);
 	 	else if (cmd->cmd->type == REDIR)
 			exec_redir(s, cmd->cmd, STDIN_FILENO, fd_out);
+		else if (cmd->cmd->type == HEREDOC)
+			exec_redir(s, cmd->cmd, STDIN_FILENO, fd_out);
 		exit(s->exit_stat);
 	} 
 	else 
@@ -57,8 +59,6 @@ void exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		waitpid(pid, &status, 0);
 		if (WIFEXITED(status))
 			s->exit_stat = WEXITSTATUS(status);
-		if (cmd->mode == 1090 && cmd->fd == 0)
-			unlink(".here_doc");
 	}
 }
 

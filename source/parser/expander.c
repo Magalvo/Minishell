@@ -61,7 +61,8 @@ char	*expand_dolar(char *input, t_ms *s)
 		}
 		start = ft_strnstr(input, "$", ft_strlen(input));
 	}
-	return(input);
+	res = ft_strdup(input);
+	return(free(input), res);
 }
 
 // due to limitations of subject. expansion in the form: ~username are not done
