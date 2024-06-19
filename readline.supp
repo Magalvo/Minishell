@@ -1,0 +1,61 @@
+# https://github.com/JonathanDUFOUR/minishell/blob/master/ignoreliberror
+{
+    leak readline
+    Memcheck:Leak
+    ...
+    fun:readline
+}
+{
+    leak add_history
+    Memcheck:Leak
+    ...
+    fun:add_history
+}
+{
+    leak readline
+    Memcheck:Leak
+    ...
+    fun:readline
+}
+{
+    leak add_history
+    Memcheck:Leak
+    ...
+    fun:add_history
+}
+{
+    still_reachable xrealloc
+    Memcheck:Leak
+    ...
+    fun:realloc
+}
+{
+    still_reachable rl_extend_line_buffer
+    Memcheck:Leak
+    ...
+    fun:rl_extend_line_buffer
+}
+{
+    still_reachable rl_insert_text
+    Memcheck:Leak
+    ...
+    fun:rl_insert_text
+}
+{
+    still_reachable rl_bracketed_paste_begin
+    Memcheck:Leak
+    ...
+    fun:rl_bracketed_paste_begin
+}
+{
+    still_reachable _rl_dispatch_subseq
+    Memcheck:Leak
+    ...
+    fun:_rl_dispatch_subseq
+}
+{
+    still_reachable readline_internal_char
+    Memcheck:Leak
+    ...
+    fun:readline_internal_char
+}

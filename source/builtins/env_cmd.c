@@ -147,30 +147,28 @@ int env_cmd(t_ms *s, char **cmds)
 }
 
 
-t_env	*new_env_node(char *env_var)
-{
-	t_env	*node;
-	size_t	key_len;
-	char	*delimiter;
-	int		num;
+t_env *new_env_node(char *env_var) {
+	t_env *node;
+	size_t key_len;
+	char *delimiter;
+	int num;
 
 	node = ft_calloc(sizeof(t_env), 1);
-	if(!node)
+	if (!node)
 		error_msg("malloc (new env)");
 	delimiter = ft_strchr(env_var, '=');
-	if (!delimiter)
-	{
-		free(node);
-		return (NULL);
-	}
-	key_len = delimiter - env_var;
-	node->key = ft_substr(env_var, 0, key_len);
-	if (!node->key) {
+	if (!delimiter) {
 		free(node);
 		return NULL;
 	}
-	if (!strncmp("SHLVL", node->key, 5)) 
+	key_len = delimiter - env_var;
+	node->key = ft_strndup(env_var, key_len);
+	if (!node->key) 
 	{
+		free(node);
+		return NULL;
+	}
+	if (!ft_strncmp("SHLVL", node->key, 5)) {
 		num = ft_atoi(delimiter + 1);
 		node->value = ft_itoa(num + 1);
 		if (!node->value) {
@@ -178,9 +176,7 @@ t_env	*new_env_node(char *env_var)
 			free(node);
 			return NULL;
 		}
-	}
-	else
-	{
+	} else {
 		node->value = ft_strdup(delimiter + 1);
 		if (!node->value) {
 			free(node->key);
@@ -190,7 +186,7 @@ t_env	*new_env_node(char *env_var)
 	}
 	node->prev = NULL;
 	node->next = NULL;
-	return (node);
+	return node;
 }
 
 
@@ -220,5 +216,6 @@ void	init_env(t_ms *ms, char **envp)
 		}
 		i++;
 	}
+	free_env_list(ms->env);
 	ms->env = head;
 }

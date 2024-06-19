@@ -34,6 +34,9 @@ signals.c
 void	check_signal(e_signal sig);
 void	handler(int signo, siginfo_t *info, void *ptr);
 void	new_line(void);
+void	reset_ast(t_ms *s);
+void	free_ast(t_cmd *cmd);
+void	close_fd(int *fd);
 
 //*================ BUILTINS =====================*//
 
@@ -86,6 +89,7 @@ bool	check_valid_position(char *input);
 char	*get_expanded(char *input, char *cut, char *paste, char *remain);
 int		here_doc(char *dli, t_ms *s, t_cmd *cmd);
 int		here_doc2(char *dli, char *file);
+
 
 // ! PARSE WIP
 // t_cmd	*nulterminate(t_cmd *cmd);

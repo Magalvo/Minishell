@@ -49,3 +49,46 @@ void exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	else if (cmd->type == REDIR || cmd->type == HEREDOC) 
 		exec_redir(s, cmd, fd_in, fd_out);
 }
+
+
+void	free_ast(t_cmd *cmd)
+{
+	int	i;
+
+	i = 0;
+	if (!cmd)
+		return ;
+	free_ast(cmd->left);
+	free_ast(cmd->right);
+	free_ast(cmd->cmd);
+	close_fd(&(cmd->fd));
+	if(cmd->argv)
+	{
+		i = 0;
+		while(cmd->argv[i])
+			free(cmd->argv[i++]);
+		free(cmd->argv);
+	}
+	if (cmd->file)
+		free(cmd->file);
+	if (cmd->delim)
+		free(cmd->delim);
+
+	if (cmd->temp)
+	{
+		i = 0;
+		while (cmd->temp[i])
+			free(cmd->temp[i++]);
+		free(cmd->temp);
+	}
+	free(cmd);
+}
+
+void	reset_ast(t_ms *s)
+{
+	if(s->ast)
+	{
+		free_ast(s->ast);
+		s->ast = NULL;
+	}
+}
