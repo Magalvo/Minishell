@@ -75,7 +75,8 @@ int get_token(char **ps, char *es, char **q, char **eq)
 	}
 	else
 		ret = sw_get_token(&s);
-	while(s < es && !ft_strchr(SPACES, *s) && !ft_strchr(SYMBOLS, *s) && !skip)
+	while(s < es && !ft_strchr(SPACES, *s) && !ft_strchr(SYMBOLS, *s) \
+		&& !skip && ret == 'a')
 		s++;
 	if(eq)
 		*eq = s;
