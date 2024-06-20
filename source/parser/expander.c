@@ -45,7 +45,8 @@ char	*expand_dolar(char *input, t_ms *s)
 	char	*res;
 
 	start = ft_strnstr(input, "$", ft_strlen(input));
-	while (start != NULL)
+	while (start != NULL && (*(char *)start + 1 != '?' && *(char *)start + 1 != '0' &&
+		!ft_strchr(SPACES, *(char *)(start + 1))))
 	{
 		if (start && !chr_betw(input, start, '\''))
 		{
