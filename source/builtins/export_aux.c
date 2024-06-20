@@ -70,7 +70,7 @@ void	init_export(t_ms *ms, char **envp)
 		}
 		i++;	
 	}
-	//free_env_list(ms->export);
+	free_env_list(ms->export);
 	ms->export = head;
 }
 
