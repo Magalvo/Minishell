@@ -36,7 +36,7 @@ void exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			exec_from_ast_recursive(s, cmd->left, fd_in, STDOUT_FILENO);
 			exit(s->exit_stat);
 		} 
-		else 
+		else
 		{
 			close(pipefd[1]);
 			exec_from_ast_recursive(s, cmd->right, pipefd[0], fd_out);
@@ -44,6 +44,8 @@ void exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			waitpid(pid, &status, 0);
 			if (WIFEXITED(status)) 
 				s->exit_stat = WEXITSTATUS(status);
+			else if (WIFSIGNALED(status))
+				s->exit_stat = 128 + WTERMSIG(status);
 		}
 	} 
 	else if (cmd->type == REDIR || cmd->type == HEREDOC) 
@@ -72,7 +74,6 @@ void	free_ast(t_cmd *cmd)
 		free(cmd->file);
 	if (cmd->delim)
 		free(cmd->delim);
-
 	if (cmd->temp)
 	{
 		i = 0;

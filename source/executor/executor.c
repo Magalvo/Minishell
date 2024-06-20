@@ -73,9 +73,8 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			close(fd_out);
 		}
 		exec_one(s, cmd->argv);
-		not_found(cmd->argv[0]);
 		s->exit_stat = 127;
-		exit(127);
+		not_found(cmd->argv[0], s->exit_stat);
 	}
 	else
 	{
@@ -84,22 +83,12 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		if (fd_out != STDOUT_FILENO)
 			close(fd_out);
 		waitpid(pid, &status, 0);
-
-        /* // Check the exit status of the child process
         if (WIFEXITED(status))
-        {
             s->exit_stat = WEXITSTATUS(status);
-        }
         else if (WIFSIGNALED(status))
-        {
             s->exit_stat = 128 + WTERMSIG(status);
-        }
-        else
-        {
-            s->exit_stat = 1; // Default to 1 for other cases
-        }
-		printf("EXEC-> %d\n", status); */
-		s->exit_stat = status;
+		printf("EXEC-> %d\n", status); 
+/* 		s->exit_stat = status;
 		if (status == 131)
 			printf("Quit\n");
 		if (status == 2)
@@ -108,7 +97,8 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			printf("\n");
 		}
 		if (status > 255)
-			status /= 256;
+			status /= 256; */
+		printf("STATUS->%d\n", s->exit_stat);
 	}
 }
 
