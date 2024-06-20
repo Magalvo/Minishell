@@ -39,11 +39,11 @@ void exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		else 
 		{
 			close(pipefd[1]);
+			exec_from_ast_recursive(s, cmd->right, pipefd[0], fd_out);
+			close(pipefd[0]);
 			waitpid(pid, &status, 0);
 			if (WIFEXITED(status)) 
 				s->exit_stat = WEXITSTATUS(status);
-			exec_from_ast_recursive(s, cmd->right, pipefd[0], fd_out);
-			close(pipefd[0]);
 		}
 	} 
 	else if (cmd->type == REDIR || cmd->type == HEREDOC) 
