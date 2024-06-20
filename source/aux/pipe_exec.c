@@ -56,6 +56,7 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		{
 			close(pipefd[1]);
 			waitpid(pid, &status, 0);
+			printf("PIPE-> %d\n", status);
 			if (WIFEXITED(status))
 				s->exit_stat = WEXITSTATUS(status);
 			exec_pipe(s, cmd->right, pipefd[0], fd_out);
