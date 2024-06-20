@@ -36,7 +36,10 @@ void	here_handler(int signal, siginfo_t *info, void *context)
 	(void)info;
 	(void)context;
 	if (signal == SIGINT)
+	{
+		printf("\n");
 		exit(130);
+	}	
 }
 
 void	check_signal(e_signal sig)
@@ -68,6 +71,11 @@ void	check_signal(e_signal sig)
 		if (sigemptyset(&sa.sa_mask) != 0)
 			return ;
 		sigaction(SIGINT, &sa, NULL);
+		sig_ignore(&sa, SIGQUIT);
+	}
+	else if (sig == IGNORE)
+	{
+		sig_ignore(&sa, SIGINT);
 		sig_ignore(&sa, SIGQUIT);
 	}
 }

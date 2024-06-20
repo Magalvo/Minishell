@@ -49,7 +49,7 @@ int		export_cmd(t_ms *s, char **cmd);
 int		update_key(t_env *env, char *key, char *value);
 int		unset_cmd(t_ms *s, char **args);
 int		print_export(t_env *export);
-void	exit_cmd(t_ms *s);
+void	exit_cmd(t_ms *s, int status);
 char	*get_env_val(t_env *env, char *key, t_ms *s);
 t_env	*new_env_node(char *env_var);
 void	sort_env_list(t_env **head);

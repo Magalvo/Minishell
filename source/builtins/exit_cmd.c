@@ -12,7 +12,11 @@
 
 #include "../../include/minishell.h"
 
-void	exit_cmd(t_ms *s)
+void	exit_cmd(t_ms *s, int status)
 {
-	exit_minishell(s, "exit\n");
+	if (!status)
+		status = s->exit_stat;
+	if (s->ast)
+		free_ast(s->ast);
+	exit(status);
 }
