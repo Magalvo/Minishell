@@ -46,8 +46,8 @@ int	handle_kv_update(t_env *env, char *key, char *value)
 
 void	init_export(t_ms *ms, char **envp)
 {
-	t_env	*head;
-	t_env	*tail;
+	t_env	*head = NULL;
+	t_env	*tail = NULL;
 	t_env 	*new_node;
 	int		i;
 
