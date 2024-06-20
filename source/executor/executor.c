@@ -56,10 +56,12 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	pid_t	pid;
 	int		status;
 
+	check_signal(IGNORE);
 	if((pid = fork()) == -1)
 		error_msg("fork");
 	else if (pid == 0)
 	{
+		check_signal(CHILD);
 		if (fd_in != STDIN_FILENO)
 		{
 			dup2 (fd_in, STDIN_FILENO);
@@ -81,7 +83,11 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			close(fd_out);
 		waitpid(pid, &status, 0);
 		if (WIFEXITED(status))
-				s->exit_stat = WEXITSTATUS(status);
+		{
+			s->exit_stat = WEXITSTATUS(status);
+			if (s->exit_stat == 131)
+				printf("Quit\n");
+		}
 	}
 }
 
