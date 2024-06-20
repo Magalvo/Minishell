@@ -14,7 +14,7 @@ void	close_fd(int *fd)
 void exit_minishell(t_ms *s, char *msg)
 {
 	int	exiter;
-	
+
 	if (!s)
 		return ;
 
@@ -30,7 +30,7 @@ void exit_minishell(t_ms *s, char *msg)
 	exiter = s->exit_stat;
 	if (msg)
 		ft_putstr_fd(msg, STDERR_FILENO);
-	
+
 	cleanup_shell(s);
 	exit(exiter);
 }
@@ -152,8 +152,6 @@ void minishell(char **envp)
 		// maybe make this functions depend on exec status
 		// dont need to run if exec didnt execute (no changes)
 		// TODO
-
-		
 		free(input);
 		reset_ast(&s);
 	}
@@ -164,6 +162,7 @@ int main(int argc, char *argv[], char *envp[])
 {
 	(void)argv;
 
+	printf("%s", ft_getrnd_str());
 	if (argc != 1)
 		return (ft_dprintf(STDERR_FILENO, \
 			"Minishell takes no arguments, Exiting.\n"));
