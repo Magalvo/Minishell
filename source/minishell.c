@@ -162,7 +162,7 @@ int main(int argc, char *argv[], char *envp[])
 {
 	(void)argv;
 
-	printf("%s", ft_getrnd_str());
+	// printf("%s", ft_getrnd_str());
 	if (argc != 1)
 		return (ft_dprintf(STDERR_FILENO, \
 			"Minishell takes no arguments, Exiting.\n"));

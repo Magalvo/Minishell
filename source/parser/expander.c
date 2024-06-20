@@ -121,6 +121,7 @@ char	*expand_tilde(char *input, t_ms *s)
 // nip_tuck_input: creates new input *char replacing with expanded parts
 char	*get_expanded(char *input, char *cut, char *paste, char *remain)
 {
+	// echo $PWD $LIXO $USER $LLL
 	char *expanded;
 	int first;
 	int insert;
