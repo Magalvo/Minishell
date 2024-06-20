@@ -88,7 +88,6 @@ int exec_heredoc(char *dli, char *file, int expand, t_ms *s)
 	fd_file = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd_file == -1)
 		error_msg("Error opening here_doc");
-
 	check_signal(IGNORE);
 	frk = fork();
 	if (frk < 0)
