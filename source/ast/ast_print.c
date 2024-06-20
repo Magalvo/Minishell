@@ -72,11 +72,24 @@ void	print_ast(t_ms *s, t_cmd *ptr, int padding)
 		p = 0;
 		printf("FILE: %s \n", ptr->file);
 		print_ast(s, ptr->cmd, padding);
+	}
+	else if (ptr->type == HEREDOC)
+	{
+		padding++;
+		while (p++ < padding)
+			printf("\t");
+		p = 0;
+		printf("type HEREDOC, \n");
+		while (p++ < padding)
+			printf("\t");
+		p = 0;
+		printf("DELIM: %s \n", ptr->delim);
+		print_ast(s, ptr->cmd, padding);
+	}
 
 		// if (ptr->left->type == PIPE)
 			// padding++;
 		// print_ast(s, ptr->file, padding);
 		// if (ptr->right->type == PIPE)
 			// padding++;
-	}
 }
