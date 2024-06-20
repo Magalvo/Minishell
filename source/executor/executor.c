@@ -14,7 +14,7 @@
 
 //! exec prototype, (MIGHT GO KABUM!)
 
-char	*cmd_path(char **paths, char *cmd)
+char	*cmd_path(char **paths, char *cmd, t_ms *s)
 {
 	char	*command;
 
@@ -23,10 +23,8 @@ char	*cmd_path(char **paths, char *cmd)
 	if(chdir(cmd) != -1)
 	{
 		printf("minishell: %s: is a directory\n", cmd);
-		exit(EXIT_FAILURE);
+		set_exit(126, s);
 	}
-	if(cmd[0] == '$')
-		exit(EXIT_FAILURE);
 	while (*paths)
 	{
 		if (ft_strncmp(*paths, cmd, ft_strlen(*paths)) == 0)
@@ -51,30 +49,36 @@ void	new_line(void)
 	rl_replace_line("", 0);
 }
 
+static void	assist_file(int fd, int standard)
+{	
+	dup2 (fd, standard);
+	close(fd);
+}
+
+int	fork1(void)
+{
+	pid_t	pid;
+
+	if((pid = fork()) == -1)
+		error_msg("fork");
+	return (pid);
+}
+
 void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	pid_t	pid;
-	int		status;
 
 	check_signal(IGNORE);
-	if((pid = fork()) == -1)
-		error_msg("fork");
-	else if (pid == 0)
+	pid = fork1();
+	if (pid == 0)
 	{
 		check_signal(CHILD);
 		if (fd_in != STDIN_FILENO)
-		{
-			dup2 (fd_in, STDIN_FILENO);
-			close(fd_in);
-		}
+			assist_file(fd_in, STDIN_FILENO);
 		if (fd_out != STDOUT_FILENO)
-		{
-			dup2(fd_out, STDOUT_FILENO);
-			close(fd_out);
-		}
+			assist_file(fd_out, STDOUT_FILENO);
 		exec_one(s, cmd->argv);
-		s->exit_stat = 127;
-		not_found(cmd->argv[0], s->exit_stat);
+		not_found(cmd->argv[0], 127, s);
 	}
 	else
 	{
@@ -82,25 +86,11 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			close (fd_in);
 		if (fd_out != STDOUT_FILENO)
 			close(fd_out);
-		waitpid(pid, &status, 0);
-        if (WIFEXITED(status))
-            s->exit_stat = WEXITSTATUS(status);
-        else if (WIFSIGNALED(status))
-            s->exit_stat = 128 + WTERMSIG(status);
-		printf("EXEC-> %d\n", status); 
-/* 		s->exit_stat = status;
-		if (status == 131)
-			printf("Quit\n");
-		if (status == 2)
-		{
-			s->exit_stat = 130;	
-			printf("\n");
-		}
-		if (status > 255)
-			status /= 256; */
-		printf("STATUS->%d\n", s->exit_stat);
+		wait_till_end(s, pid);
 	}
 }
+
+
 
 /* int exec_input(t_ms *s)
 {
@@ -163,3 +153,15 @@ static void	ft_dup2(int zero, int first)
 	dup2(zero, 0);
 	dup2(first, 1);
 } */
+
+//!!FONTE
+/* 		s->exit_stat = status;
+		if (status == 131)
+			printf("Quit\n");
+		if (status == 2)
+		{
+			s->exit_stat = 130;	
+			printf("\n");
+		}
+		if (status > 255)
+			status /= 256; */

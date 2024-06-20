@@ -4,15 +4,9 @@ void exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	int     pipefd[2];
 	pid_t   pid;
-	int		status;
 	
 	if (!cmd)
 		return;
-/* 	while (s->here_doc != 0)
-	{
-		here_doc("EOF", s, cmd);
-		s->here_doc -= 1;
-	} */	
 	if (cmd->type == EXEC)
 	{
 		if (ft_exec_buitltins_chr(s, cmd->argv)) 
@@ -41,11 +35,7 @@ void exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			close(pipefd[1]);
 			exec_from_ast_recursive(s, cmd->right, pipefd[0], fd_out);
 			close(pipefd[0]);
-			waitpid(pid, &status, 0);
-			if (WIFEXITED(status)) 
-				s->exit_stat = WEXITSTATUS(status);
-			else if (WIFSIGNALED(status))
-				s->exit_stat = 128 + WTERMSIG(status);
+			wait_till_end(s, pid);
 		}
 	} 
 	else if (cmd->type == REDIR || cmd->type == HEREDOC) 

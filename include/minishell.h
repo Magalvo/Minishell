@@ -48,7 +48,7 @@ int		pwd_cmd(t_ms *s);
 int		export_cmd(t_ms *s, char **cmd);
 int		update_key(t_env *env, char *key, char *value);
 int		unset_cmd(t_ms *s, char **args);
-int		print_export(t_env *export);
+int		print_exp(t_env *export);
 void	exit_cmd(t_ms *s);
 char	*get_env_val(t_env *env, char *key, t_ms *s);
 t_env	*new_env_node(char *env_var);
@@ -151,7 +151,7 @@ ll_inits.c
 //int				exec_input(t_ms *s);
 //char			*search_path(char *command, char **paths);
 char			*env_paths(t_ms *ms, char **envp);
-char			*cmd_path(char **paths, char *cmd);
+char			*cmd_path(char **paths, char *cmd, t_ms *s);
 void			exec_from_ast(t_ms *s);
 void			exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
 void			exec_one(t_ms *s, char **argv);
@@ -166,10 +166,13 @@ void	free_paths(char **paths, int i);
 void	free_all_paths(char **paths);
 void	clear_env(char **env);
 int		free_export_p(t_env *env_copy, t_env *new_node);
-int		not_found(char *str, int status);
+int		not_found(char *str, int status, t_ms *s);
 int		export_cmd_error(char *msg);
 
 
+//!! To be sorted//
+void	set_exit(int stat, t_ms *s);
+void	wait_till_end(t_ms *s, pid_t pid);
 
 #endif
 

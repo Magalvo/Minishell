@@ -119,7 +119,7 @@ int env_cmd(t_ms *s, char **cmds)
 				return (exit_minishell(s, "error"), 0);
 			if (id == 0)
 			{
-				path = cmd_path(s->paths, cmds[2]);
+				path = cmd_path(s->paths, cmds[2], s);
 				if (!path)
 				{
 					ft_putstr_fd("command not found\n", 2);

@@ -71,11 +71,11 @@ int	free_export_p(t_env *env_copy, t_env *new_node)
 	return(0);
 }
 
-int	not_found(char *str, int status)
+int	not_found(char *str, int status, t_ms *s)
 {
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd(": command not found\n", 2);
 	ft_putnbr_fd(status, 2);
 	ft_putstr_fd("\n", 2);
-	exit(status);
+	return(set_exit(status, s), 1);
 }

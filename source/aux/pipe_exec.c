@@ -6,13 +6,13 @@ void	exec_one(t_ms *s, char **argv)
 	char	*path;
 	char	*cmd_name;
 
-	if (argv[0][0] == '/')
+	if (argv[0][0] == '/' && argv[0][1])
 		execve(argv[0], argv, s->env_tmp);
-	else if ( argv[0][0] == '.' && argv[0][1] == '/')
+	else if ( argv[0][0] == '.' && argv[0][1] == '/' && argv[0][2])
 		execve(argv[0], argv, s->env_tmp);
 	else
 	{
-		path = cmd_path(s->paths, argv[0]);
+		path = cmd_path(s->paths, argv[0], s);
 		if (!path)
 		{
 			ft_putstr_fd("cmd not found\n", 2);
@@ -25,9 +25,9 @@ void	exec_one(t_ms *s, char **argv)
 			argv[0] = cmd_name;
 		}
 		execve(path, argv, s->env_tmp);
+		s->exit_stat = 126;
 		free(path);
 	}
-	error_msg("execve");
 }
 
 //! ===== Prototype for PIPE execution ======= !//
@@ -70,14 +70,13 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 
 int exec_paria(t_ms *s, t_cmd *cmds)
 {
-	if (!cmds)
+	if (!cmds || cmds->type != EXEC)
 		return (0);
-	if (cmds->type != EXEC)
-		return (0);
+
 	if (ft_sw_builtins(cmds->argv[0], "export") == 0)
-		return (export_cmd(s, cmds->argv));
+		return (export_cmd(s, cmds->argv), 1);
 	else if (ft_sw_builtins(cmds->argv[0], "cd") == 0)
-		return (cd_cmd(s, cmds->argv));
+		return (cd_cmd(s, cmds->argv), 1);
 	else
 		return (0);
 }
@@ -86,7 +85,6 @@ void	exec_from_ast(t_ms *s)
 {
 	if (s->ast == NULL)
 		return ;
-	if(exec_paria(s, s->ast))
-		return ;
-	exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
+	if(!exec_paria(s, s->ast))
+		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
 }
