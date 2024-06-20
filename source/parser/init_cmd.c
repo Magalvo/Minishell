@@ -58,7 +58,7 @@ t_cmd *cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 	return (cmd);
 }
 
-void	exec_expander(t_ms *s, char *line, int fd_file, char *xp_line)
+void	expand_heredoc(t_ms *s, char *line, int fd_file, char *xp_line)
 {
 	xp_line = expand_dolar(line, s);
 	ft_putstr_fd(xp_line, fd_file);		
@@ -107,7 +107,7 @@ int exec_heredoc(char *dli, char *file, int expand, t_ms *s)
 			if (ft_strncmp(dli, line, ft_strlen(dli)) == 0)
 				break;
 			if (expand == 0)
-				exec_expander(s, line, fd_file, xp_line);
+				expand_heredoc(s, line, fd_file, xp_line);
 			else
 			{
 				ft_putstr_fd(line, fd_file);
