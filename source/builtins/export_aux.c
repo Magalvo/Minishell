@@ -55,8 +55,8 @@ void	init_export(t_ms *ms, char **envp)
 	while (envp[i] != NULL)
 	{
 		new_node = new_env_node(envp[i]);
-/* 		if (!new_node)
-			continue; */
+		if (!new_node)
+			continue;
 		if (!head)
 		{
 			head = new_node;
@@ -70,7 +70,7 @@ void	init_export(t_ms *ms, char **envp)
 		}
 		i++;	
 	}
-	free_env_list(ms->export);
+	//free_env_list(ms->export);
 	ms->export = head;
 }
 

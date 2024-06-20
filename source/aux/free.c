@@ -77,3 +77,10 @@ void cleanup_shell(t_ms *s)
 		s->ast = NULL;
 	} */
 }
+
+void	set_exit(int stat, t_ms *s)
+{	
+	if (s)
+		s->exit_stat = stat;
+	exit(stat);
+}
