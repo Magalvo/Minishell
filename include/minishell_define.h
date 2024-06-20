@@ -19,8 +19,8 @@ enum s_signal
 {
 	MAIN,
 	CHILD,
-	// HEREDOC,
-	// IGNORE
+	HERE_DOC,
+	IGNORE
 };
 
 struct	s_env
@@ -47,6 +47,7 @@ struct s_ms
 	int		here_doc;	//* NUM of heredocs
 	char	**cmd_temp;
 	pid_t	pid;
+	bool	tog;		//*For here doc signal
 	t_cmd	*ast;		//* Command List
 	t_env	*env;		//*	ENV Linked List
 	t_env	*export;	//* EXPORT List (Sorted)
