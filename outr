@@ -1,0 +1,25 @@
+total 128
+drwxr-xr-x 9 dde-maga 2023_lisboa  4096 Jun 20 15:29 .
+drwxr-xr-x 9 dde-maga 2023_lisboa   122 May 18 12:24 ..
+-rw-r--r-- 1 dde-maga 2023_lisboa     0 Jun 20 12:53 >2
+-rw-r--r-- 1 dde-maga 2023_lisboa     0 Jun 20 14:05 46
+-rw-r--r-- 1 dde-maga 2023_lisboa  6148 Jun  5 19:21 .DS_Store
+drwxr-xr-x 8 dde-maga 2023_lisboa  4096 Jun 20 14:04 .git
+-rw-r--r-- 1 dde-maga 2023_lisboa   638 Jun 14 11:37 .gitignore
+-rwxr-xr-x 1 dde-maga 2023_lisboa   558 Jun  5 19:21 g.sh
+drwxr-xr-x 3 dde-maga 2023_lisboa   115 Jun 19 17:31 include
+-rw-r--r-- 1 dde-maga 2023_lisboa  2941 Jun 17 12:42 kj_test.c
+drwxr-xr-x 3 dde-maga 2023_lisboa    19 May 17 13:34 libs
+-rwxr-xr-x 1 dde-maga 2023_lisboa  3521 Jun 19 17:31 Makefile
+-rwxr-xr-x 1 dde-maga 2023_lisboa 67120 Jun 20 15:24 minishell
+-rw-r--r-- 1 dde-maga 2023_lisboa   827 Jun 17 12:42 minishell.code-workspace
+drwxr-xr-x 7 dde-maga 2023_lisboa   126 Jun 20 15:02 object
+-rw-r--r-- 1 dde-maga 2023_lisboa     0 Jun 20 15:29 outr
+-rw-r--r-- 1 dde-maga 2023_lisboa   919 Jun 19 15:25 readline.supp
+-rw-r--r-- 1 dde-maga 2023_lisboa   535 Jun 11 10:34 README.md
+drwxr-xr-x 4 dde-maga 2023_lisboa  4096 Jun 11 10:15 reference
+drwxr-xr-x 8 dde-maga 2023_lisboa   140 Jun 20 14:04 source
+-rw-r--r-- 1 dde-maga 2023_lisboa  2086 Jun  5 19:21 test.c
+-rw-r--r-- 1 dde-maga 2023_lisboa   827 Jun 14 10:19 TODO.md
+drwxr-xr-x 2 dde-maga 2023_lisboa    64 Jun 20 14:03 .vscode
+-rw-r--r-- 1 dde-maga 2023_lisboa  2642 Jun  5 19:21 workspaceState.state.json
