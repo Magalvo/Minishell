@@ -2,6 +2,7 @@
 # define MINISHELL_DEFINE_H
 
 # define STR_SIZE 16
+# define MAX_PIDS 1024
 
 //*======================= STRUCTS ====================== *//
 typedef	enum	s_signal e_signal;
