@@ -34,3 +34,9 @@ void	free_node(t_env *node)
 		free(node);
 	}
 }
+
+void	dup_and_close(int fd, int standard)
+{
+	dup2(fd, standard);
+	close(fd);
+}

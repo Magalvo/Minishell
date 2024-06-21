@@ -31,7 +31,7 @@ void	exec_one(t_ms *s, char **argv)
 }
 
 //! ===== Prototype for PIPE execution ======= !//
-void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+/* void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	int		pipefd[2];
 	pid_t	pid;
@@ -55,7 +55,8 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		else
 		{
 			close(pipefd[1]);
-			waitpid(pid, &status, 0);
+			wait_till_end(s, pid);
+			 waitpid(pid, &status, 0);
 			printf("PIPE-> %d\n", status);
 			if (WIFEXITED(status))
 				s->exit_stat = WEXITSTATUS(status);
@@ -66,7 +67,7 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		exec_redir(s, cmd, fd_in, fd_out);
 	else
 		single_exec(s, cmd, fd_in, fd_out);
-}
+} */
 
 int exec_paria(t_ms *s, t_cmd *cmds)
 {
@@ -83,7 +84,7 @@ int exec_paria(t_ms *s, t_cmd *cmds)
 
 void	exec_from_ast(t_ms *s)
 {
-	if (s->ast == NULL)
+    if (s->ast == NULL)
 		return ;
 	if(!exec_paria(s, s->ast))
 		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);

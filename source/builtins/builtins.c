@@ -40,7 +40,7 @@ int	add_slash(char *slash, char **paths)
 
 /* int	exec_input(t_ms *s)
 {
-	ft_exec_buitltins_chr(s, s->cmd_temp);
+	ft_exec_builtins_chr(s, s->cmd_temp);
  	int id = fork();
 	if (id < 0)
 		return (exit_minishell(s,"error"), 0);
@@ -82,7 +82,7 @@ void	toggle_bnf(t_ms *s)
 }
 
 
-int	ft_exec_buitltins_chr(t_ms *s, char **cmds)  //[{laskdl}{kjhalsd}{jakskdj}]
+int	ft_exec_builtins_chr(t_ms *s, char **cmds)  //[{laskdl}{kjhalsd}{jakskdj}]
 {
 /*  	if (s->ast->cmd->type != EXEC)
 		return (0); */

@@ -20,17 +20,24 @@ int	export_cmd_error(char *msg)
 }
 void	wait_till_end(t_ms *s, pid_t pid)
 {
-	int status;
+    int	status;
 
 	waitpid(pid, &status, 0);
-	printf("EXEC-> %d\n", status); 
-	printf("STATUS->%d\n", s->exit_stat);
-    if (WIFEXITED(status)) 
+	if (status == 13)
+		s->exit_stat = s->exit_stat;
+    else if (WIFEXITED(status))
         s->exit_stat = WEXITSTATUS(status);
     else if (WIFSIGNALED(status))
+        s->exit_stat = 128 + WTERMSIG(status);
+	if (s->exit_stat == 131)
+		printf("Quit\n");
+	if (s->exit_stat == 2)
 	{
-		s->exit_stat = 128 + WTERMSIG(status);
-	} 
+		s->exit_stat = 130;	
+		printf("\n");
+	}
+	if (s->exit_stat > 255)
+		s->exit_stat /= 256;
 	printf("EXEC-> %d\n", status); 
 	printf("STATUS->%d\n", s->exit_stat);
 }
