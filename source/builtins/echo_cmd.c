@@ -45,7 +45,7 @@ int	echo_cmd_test(char **cmd, t_ms *s)
 	}
 	while (cmd[i])
 	{
-		if (cmd[i][0] == '$' && cmd[i][0] == '?')
+		if (cmd[i][0] == '+' && cmd[i][0] == '+')
 			ft_putnbr_fd(s->exit_stat, 1);
 		ft_putstr_fd(cmd[i], 1);
 		if(cmd[i + 1])

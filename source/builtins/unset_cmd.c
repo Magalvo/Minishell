@@ -27,6 +27,9 @@ void	unset_move(t_env *current)
 	current->next->prev = current->prev;
 }
 
+//! If the node to remove is the head
+//! If the node to remove is the tail
+//! If the node to remove is in the middle
 void	unset_cmd_export(t_ms *s, char **args) 
 {
 	t_env *current;
@@ -36,15 +39,15 @@ void	unset_cmd_export(t_ms *s, char **args)
 	{
 		if ((ft_sw_builtins(current->key, args[1]) == 0)) 
 		{
-			if (current->prev == NULL) 		//! If the node to remove is the head
+			if (current->prev == NULL) 		
 			{
 				s->export = current->next;
 				if (current->next != NULL)
 					current->next->prev = NULL;
 			} 
-			else if (current->next == NULL) //! If the node to remove is the tail
+			else if (current->next == NULL) 
 				current->prev->next = NULL;
-			else							//! If the node to remove is in the middle
+			else							
 				unset_move(current);
 			unset_clean(current);
 			return ;
@@ -53,6 +56,16 @@ void	unset_cmd_export(t_ms *s, char **args)
 	}
 }
 
+void	unset_cmd_aux(t_ms *s, t_env **current)
+{
+	s->env = (*current)->next;
+	if ((*current)->next != NULL)
+		(*current)->next->prev = NULL;
+}
+
+//! If the node to remove is the head
+//! If the node to remove is the tail
+//! If the node to remove is in the middle
 int unset_cmd(t_ms *s, char **args) 
 {
 	t_env *current;
@@ -62,15 +75,11 @@ int unset_cmd(t_ms *s, char **args)
 	{
 		if ((ft_sw_builtins(current->key, args[1]) == 0)) 
 		{
-			if (current->prev == NULL) 		//! If the node to remove is the head
-			{
-				s->env = current->next;
-				if (current->next != NULL)
-					current->next->prev = NULL;
-			} 
-			else if (current->next == NULL) //! If the node to remove is the tail
+			if (current->prev == NULL) 		
+				unset_cmd_aux(s, &current);
+			else if (current->next == NULL) 
 				current->prev->next = NULL;
-			else							//! If the node to remove is in the middle
+			else							
 				unset_move(current);
 			unset_clean(current);
 			break;
@@ -79,6 +88,6 @@ int unset_cmd(t_ms *s, char **args)
 	}
 	unset_cmd_export(s, args);
 	env_arr_update(s, args[1]);
-	//env_paths(s, s->env_tmp);
+	env_paths(s, s->env_tmp);
 	return (1);
 }
