@@ -138,6 +138,7 @@ char	*ft_getrnd_str(void);
 void	free_node(t_env *node);
 char	*key_dup(char *env_var, size_t key_len);
 int		setting_value(t_env *node, char *delimiter);
+void	dup_and_close(int fd, int standard);
 
 
 //*================= EXEC =========================*//
@@ -174,7 +175,7 @@ void	wait_till_end(t_ms *s, pid_t pid);
 //! Temporary //
 
 //int		exec_input(t_ms *s);
-int		ft_exec_buitltins_chr(t_ms *s, char **cmds);
+int		ft_exec_builtins_chr(t_ms *s, char **cmds);
 int		echo_cmd_test(char **cmd, t_ms *s);
 //int		export_cmd_test(t_ms *s, char **cmds);
 //int		unset_cmd_test(t_ms *s, char **cmds);
