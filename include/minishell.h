@@ -40,6 +40,7 @@ void	close_fd(int *fd);
 
 //*================ BUILTINS =====================*//
 
+void	init_list(t_env **list, char **envp);
 void	init_env(t_ms *ms, char **envp);
 //int	echo_cmd(t_cmd *cmd);
 int		env_cmd(t_ms *s, char **cmds);
@@ -51,7 +52,6 @@ int		unset_cmd(t_ms *s, char **args);
 int		print_exp(t_env *export);
 void	exit_cmd(t_ms *s);
 char	*get_env_val(t_env *env, char *key, t_ms *s);
-t_env	*new_env_node(char *env_var);
 void	sort_env_list(t_env **head);
 int		print_export(t_env *env);
 int		ft_sw_builtins(const char *s1, const char *s2);
@@ -64,6 +64,7 @@ char	*extract_key(const char *str, char *delimiter);
 int		add_new_node(t_env *env, char *key, char *value);
 void	init_export(t_ms *ms, char **envp);
 int		add_slash(char *slash, char **paths);
+t_env	*new_env_node(char *env_var);
 
 
 
@@ -135,21 +136,16 @@ void	clear_cmd(t_cmd *cmd);
 // char	*get_pid(t_ms *s);
 char	*ft_getpid(void);
 void	free_env_array(char **env_array);
-
+void	init_aux(t_env **head, t_env **tail, t_env *new_node);
 char	*ft_getrnd_str(void);
 
-/*
-ll_inits.c
-*/
-// void	set_env(s, ep);
-// void	set_path(s);
+//*==================== AUX 3 =======================*//
 
+void	free_node(t_env *node);
+char	*key_dup(char *env_var, size_t key_len);
+int		setting_value(t_env *node, char *delimiter);
+void	dup_and_close(int fd, int standard);
 
-//void	init_paths(t_ms *s, char **ep);
-
-
-
-//int		ft_exec_buitltins(t_ms *mini, t_cmd *cmds);
 
 //*================= EXEC =========================*//
 
@@ -185,7 +181,7 @@ void	wait_till_end(t_ms *s, pid_t pid);
 //! Temporary //
 
 //int		exec_input(t_ms *s);
-int		ft_exec_buitltins_chr(t_ms *s, char **cmds);
+int		ft_exec_builtins_chr(t_ms *s, char **cmds);
 int		echo_cmd_test(char **cmd, t_ms *s);
 //int		export_cmd_test(t_ms *s, char **cmds);
 //int		unset_cmd_test(t_ms *s, char **cmds);

@@ -27,3 +27,76 @@ int	here_doc(char *dli, t_ms *s, t_cmd *cmd)
 		error_msg("opening here_doca");
 	return (in_file);
 }
+
+void	init_aux(t_env **head, t_env **tail, t_env *new_node)
+{
+	if (!*head)
+	{
+		*head = new_node;
+		*tail = new_node;
+	}
+	else
+	{
+		(*tail)->next = new_node;
+		new_node->prev = *tail;
+		*tail = new_node;
+	}
+}
+
+char	*env_paths(t_ms *ms, char **envp)
+{
+	char	**paths;
+	char	*slash;
+	int		i;
+	int		found;
+
+	i = -1;
+	found = 0;
+	slash = NULL;
+	paths = NULL;
+	if (ms->paths)
+		free_all_paths(ms->paths); 
+	while (envp[++i] != NULL)
+	{
+		if (ft_strncmp(envp[i], "PATH=", 5) == 0)    //!HERE Removed '=' from PATH=
+		{
+			found = 1;
+			paths = ft_split(envp[i] + 5, ':');
+			break;
+		}
+	}
+	if (!found || !paths)
+		paths = ft_split("/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin", ':');
+	add_slash(slash, paths);
+	ms->paths = paths;
+	return (NULL);
+}
+
+char	*get_env_val(t_env *env, char *key, t_ms *s)
+{
+	int i;
+
+	i = 0; 
+	if (key[0] == '$' && key[1] != '\0')
+			key = key + 1;
+	if (ft_strncmp(key, "PATH", 4) == 0)
+	{
+		while (s->paths && s->paths[i])
+		{
+			ft_putstr_fd(s->paths[i], 1);
+			if(s->paths[i + 1] != NULL)
+				ft_putstr_fd(":", 1);
+			i++;
+		}
+	}
+	else
+	{
+		while (env)
+		{
+			if (ft_strncmp(env->key, key, ft_strlen(key)) == 0)
+				return (env->value);
+			env = env->next;
+		}
+	}
+	return (NULL);	
+}

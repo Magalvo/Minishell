@@ -2,6 +2,7 @@
 # define MINISHELL_DEFINE_H
 
 # define STR_SIZE 16
+# define MAX_PIDS 1024
 
 //*======================= STRUCTS ====================== *//
 typedef	enum	s_signal e_signal;
@@ -14,7 +15,7 @@ typedef struct	s_execution t_execution;		//TODO not defined, still used?
 typedef	enum	s_cmd_type e_cmd_type;
 typedef	enum	s_quote_type e_quote_type;
 typedef	struct	s_cmd t_cmd;
-// typedef	struct	s_pid t_pid;
+typedef	struct	s_pids t_pids;
 
 enum s_signal
 {
@@ -22,6 +23,12 @@ enum s_signal
 	CHILD,
 	HERE_DOC,
 	IGNORE
+};
+
+struct s_pids
+{
+	pid_t pids[MAX_PIDS];
+	int pid_count;
 };
 
 struct	s_env
@@ -52,6 +59,7 @@ struct s_ms
 	t_cmd	*ast;		//* Command List
 	t_env	*env;		//*	ENV Linked List
 	t_env	*export;	//* EXPORT List (Sorted)
+	t_pids	pids_exec;	//* Wiat the cmds
 };
 
 // ? not used atm
