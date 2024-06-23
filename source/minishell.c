@@ -135,7 +135,25 @@ void minishell(char **envp)
 	while (true)
 	{
 		check_signal(MAIN);
+
+		// ? test loop
+		// if (isatty(fileno(stdin)))
+		// {
+		// 	input = readline(s.prompt);
+		// 	// shell->prompt = readline(shell->terminal_prompt);
+		// }
+		// else
+		// {
+		// 	char *line;
+		// 	line = get_next_line(fileno(stdin));
+		// 	input = ft_strtrim(line, "\n");
+		// 	free(line);
+		// }
+		// ! end test loop
+
+		// ? regular readline function
 		input = readline(s.prompt);
+
 		if (input == NULL && s.modal == MAIN)
 			exit_minishell(&s, "exit\n");
 		// split_input(&s, input); // not needed

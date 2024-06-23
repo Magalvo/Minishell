@@ -1,6 +1,7 @@
 
 #include "../include/minishell.h"
 
+
 /*
 Enclosing characters in single quotes (') preserves the literal value
 of each character within the quotes.
@@ -15,6 +16,71 @@ by one of the following characters: ($), ('), ("), (\), or newline (\n).
 Within double quotes, backslashes that are followed
 by one of these characters are removed
 */
+
+int syntax_quotes(const char *str)
+{
+	int key[3] = {NONE, NONE, NONE}; // key[0] unused, key[1] for single quote, key[2] for double quote
+
+	while (*str)
+	{
+		if (*str == QUOTE)
+		{
+			if (key[2] == NONE)
+			{
+				if (key[1] == NONE) // If single quote is not active
+					key[1] = EQUOTE; // Mark as active
+				else // If single quote is active
+					key[1] = NONE; // Mark as closed
+			}
+		}
+		else if (*str == DQUOTE)
+		{
+			if (key[1] == NONE)
+			{
+				if (key[2] == NONE) // If double quote is not active
+					key[2] = EDQUOTE; // Mark as active
+				else // If double quote is active
+					key[2] = NONE; // Mark as closed
+			}
+		}
+		str++;
+	}
+	if (key[1] != NONE || key[2] != NONE)
+		return -1; // Indicate an unclosed quote block
+	else
+		return 0; // All quotes are closed
+}
+
+// Main function to determine the quote context of a character in a string
+int syntax_quoted(const char *str, const char *totest)
+{
+	int state;
+
+	state = NONE;
+	if (totest == NULL)
+		return (-1);
+	// for (const totest *p = str; p < pos; ++p) {
+	while (str < totest)
+	{
+
+		if (*str == QUOTE)
+		{
+			if (state == NONE)
+				state = EQUOTE;
+			else if (state == EQUOTE)
+				state = NONE;
+		}
+		else if (*str == DQUOTE)
+		{
+			if (state == NONE)
+				state = EDQUOTE;
+			else if (state == EDQUOTE)
+				state = NONE;
+		}
+	str++;
+	}
+	return (state);
+}
 
 /*
 //' "' 1 '" "'1'" '

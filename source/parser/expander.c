@@ -124,29 +124,32 @@ char	*get_expanded(char *input, char *cut, char *paste, char *remain)
 {
 	// echo $PWD $LIXO $USER $LLL
 	char *expanded;
-	int first;
-	int insert;
-	int last;
+	size_t first;
+	size_t insert;
+	size_t last;
 
-	first = cut - input;	//size of right string
-	insert = ft_strlen(paste);	//size of insert string
+	first = ft_strlen(input) - ft_strlen(cut);	//size of right string
+	if (paste == NULL)
+		insert = 0;
+	else
+		insert = ft_strlen(paste);	//size of insert string
 	last = ft_strlen(remain);
-	expanded = ft_calloc(1, first + insert + last);
-	ft_memmove(expanded, input, first);
-	ft_memmove(expanded + first, paste, insert);
-	ft_memmove(expanded + first + insert, remain, last);
+	expanded = ft_calloc(1, first + insert + last + 1);
+	ft_memcpy(expanded, input, first);
+	ft_memcpy(expanded + first, paste, insert);
+	ft_memcpy(expanded + first + insert, remain, last);
 	return (expanded);
 }
 
 // ! delete me, maybe
-char	*expand_braces(char *input)
+char	expand_braces(char *input)
 {
 	if ((ft_strcount(input, '{') && ft_strcount(input, '}')) &&
 		(ft_strcount(input, '{') == ft_strcount(input, '}')))
 	{
-		return ("a");
+		return ('a');
 	}
-	return ("a");
+	return ('a');
 }
 
 // stub

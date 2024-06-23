@@ -1,2 +1,38 @@
 
-/usr/bin/env /bin/sh /tmp/Microsoft-MIEngine-Cmd-k05hrkij.ved 
+echo $PWD $LIXO $USER $LLL
+len
+input	26
+start	21	$PWD
+end		17	 $LIXO
+first	5
+insert	37
+last	17
+
+echo /hoser $LIXO $USER $LLL
+len
+input	59
+start	16	$LIXO
+end		11	 $USER
+first	43
+insert	0
+last	11
+
+echo /hoser  $USER $LLL
+len
+input	54
+start	10	$USER
+end		4	 $LLL
+first	44
+insert	4
+last	5
+
+echo /hoser  kajo $LLL
+len
+input	53
+start	4	$LLL
+end		0
+first	49
+insert	0
+last	0
+
+echo /home/kajo/42/minishell/source/parser  kajo  $LLL
