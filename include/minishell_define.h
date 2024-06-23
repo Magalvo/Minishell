@@ -76,8 +76,9 @@ enum s_quote_type
 	EDQUOTE
 };
 
-#define QUOTE '\''
-#define DQUOTE '\"'
+# define QUOTE '\''
+# define DQUOTE '\"'
+// # define EMPTY_ARG 17
 
 // struct s_pid
 // {
