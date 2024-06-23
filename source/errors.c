@@ -56,6 +56,7 @@ void	free_all_paths(char **paths)
 		i++;
 	}
 	free(paths);
+	paths = NULL;
 }
 
 int	free_export_p(t_env *env_copy, t_env *new_node)

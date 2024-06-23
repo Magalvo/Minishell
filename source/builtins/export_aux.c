@@ -44,33 +44,46 @@ int	handle_kv_update(t_env *env, char *key, char *value)
 	return (1);
 }
 
-void	init_export(t_ms *ms, char **envp)
+void	init_list(t_env **list, char **envp)
 {
-	t_env	*head = NULL;
-	t_env	*tail = NULL;
-	t_env 	*new_node;
 	int		i;
-
+	t_env	*head;
+	t_env	*tail;
+	t_env 	*new_node;
+	
 	i = 0;
+	head = NULL;
+	tail = NULL;
+	while (envp[i] != NULL)
+	{
+		new_node = new_env_node(envp[i]);
+		if (new_node)
+			init_aux(&head, &tail, new_node);
+		i++;
+	}
+	free_env_list(*list);
+	*list = head;
+}
+
+/* void	init_export(t_ms *ms, char **envp)
+{
+	int		i;
+	t_env	*head;
+	t_env	*tail;
+	t_env 	*new_node;
+	
+	i = 0;
+	head = NULL;
+	tail = NULL;
 	while (envp[i] != NULL)
 	{
 		new_node = new_env_node(envp[i]);
 		if (!new_node)
 			continue;
-		if (!head)
-		{
-			head = new_node;
-			tail = new_node;	
-		}
-		else
-		{
-			tail->next = new_node;
-			new_node->prev = tail;
-			tail = new_node;
-		}
-		i++;	
+		if (new_node)
+			init_aux(&head, &tail, new_node);
+		i++;
 	}
 	free_env_list(ms->export);
 	ms->export = head;
-}
-
+} */

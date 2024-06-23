@@ -85,8 +85,8 @@ int init_minishell(t_ms *s, char **ep)
 		}
 		//exit_minishell(s, NULL);
 	}
-	init_env(s, ep);
-	init_export(s, ep);
+	init_list(&s->env, ep);
+	init_list(&s->export, ep);
 	env_paths(s, ep);
 	s->env_tmp = env_convert(s->export);			//! added raw env for execve
 	s->modal = MAIN;

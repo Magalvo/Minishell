@@ -68,26 +68,26 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	pid_t	pid;
 
-	check_signal(IGNORE);
+    check_signal(IGNORE);
 	pid = fork1();
-	if (pid == 0)
-	{
-		check_signal(CHILD);
-		if (fd_in != STDIN_FILENO)
-			assist_file(fd_in, STDIN_FILENO);
-		if (fd_out != STDOUT_FILENO)
-			assist_file(fd_out, STDOUT_FILENO);
-		exec_one(s, cmd->argv);
-		not_found(cmd->argv[0], 127, s);
-	}
-	else
-	{
-		if (fd_in != STDIN_FILENO)
+    if (pid == 0)
+    {
+        check_signal(CHILD);
+        if (fd_in != STDIN_FILENO)
+            assist_file(fd_in, STDIN_FILENO);
+        if (fd_out != STDOUT_FILENO)
+            assist_file(fd_out, STDOUT_FILENO);
+        exec_one(s, cmd->argv);
+        not_found(cmd->argv[0], 127, s);
+    }
+    else
+    {
+        if (fd_in != STDIN_FILENO)
 			close (fd_in);
-		if (fd_out != STDOUT_FILENO)
-			close(fd_out);
+        if (fd_out != STDOUT_FILENO)
+            close(fd_out);
 		wait_till_end(s, pid);
-	}
+    }
 }
 
 
@@ -99,7 +99,7 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 
 	if (s->ast == NULL)
 		return (new_line(), 1);
-	if (ft_exec_buitltins_chr(s, s->ast->argv))
+	if (ft_exec_builtins_chr(s, s->ast->argv))
 		return (1);
 	else
 	{

@@ -10,6 +10,7 @@ void	clear_env(char **env)
 			free(env[i++]);
 		free(env);
 	}
+	env = NULL;
 }
 
 void	clear_cmd(t_cmd *cmd)
