@@ -160,5 +160,6 @@ char	*expand_words(char *input)
 // TODO this
 char	*remove_quotes(char *input)
 {
+	// char 17
 	return (input);
 }
