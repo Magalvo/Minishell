@@ -28,7 +28,9 @@ void	wait_till_end(t_ms *s, pid_t pid)
     else if (WIFEXITED(status))
         s->exit_stat = WEXITSTATUS(status);
     else if (WIFSIGNALED(status))
-        s->exit_stat = 128 + WTERMSIG(status);
+	{
+		s->exit_stat = 128 + WTERMSIG(status);
+	}  
 	if (s->exit_stat == 131)
 		printf("Quit\n");
 	if (s->exit_stat == 2)

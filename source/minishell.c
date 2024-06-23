@@ -21,10 +21,10 @@ void exit_minishell(t_ms *s, char *msg)
 	close_fd(&(s->infile));
     close_fd(&(s->outfile));
 
-/* 	if (s->env)
+ 	if (s->env)
 		free_env_list(s->env);
 	if (s->export)
-   		free_env_list(s->export); */
+   		free_env_list(s->export);
 	if (s->ast != NULL)
 		free_ast(s->ast);
 	exiter = s->exit_stat;
