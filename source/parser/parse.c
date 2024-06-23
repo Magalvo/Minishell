@@ -6,8 +6,8 @@
 ABOUT PARAMETERS NAMES
 char *input becomes **ptr_input (&input), so parsing position can be passed
 char *end is pointer to end of input: end = input + ft_strlen(input);
-char *q
-char *eq
+char *q		is pointer to start of quote
+char *eq	is pointer to end of quote
 */
 
 t_cmd	*parse_input(char *input, t_ms *s)
@@ -17,6 +17,8 @@ t_cmd	*parse_input(char *input, t_ms *s)
 	// char	*ppid;
 
 	if (ft_strlen(input) == 0)
+		return (NULL);
+	if (!syntax_validation(input))
 		return (NULL);
 	xp_input = ft_strdup(input);
 	xp_input = expand_dolar(xp_input, s);

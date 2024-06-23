@@ -12,6 +12,7 @@ typedef struct	s_execution t_execution;		//TODO not defined, still used?
 
 /* parser structs */
 typedef	enum	s_cmd_type e_cmd_type;
+typedef	enum	s_quote_type e_quote_type;
 typedef	struct	s_cmd t_cmd;
 // typedef	struct	s_pid t_pid;
 
@@ -59,6 +60,16 @@ struct s_builtin
 	char	*name;
 	int		(*func)(t_cmd *cmd);
 };
+
+enum s_quote_type
+{
+	NONE,
+	EQUOTE,
+	EDQUOTE
+};
+
+#define QUOTE '\''
+#define DQUOTE '\"'
 
 // struct s_pid
 // {

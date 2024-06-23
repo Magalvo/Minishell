@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int isInQuotes(const char *str,  char *ptr) {
+int isInQuotes(const char *str, char *ptr) {
     if (*ptr == 0 || *(ptr-1) == '"' && ptr[-2] != '\\')
         return 0;
 
