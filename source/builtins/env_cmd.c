@@ -96,7 +96,10 @@ t_env	*new_env_node(char *env_var)
 		return (NULL);
 	}
 	if (!setting_value(node, delimiter))
-		return (free_node(node), NULL);
+	{
+		free_node(node);
+		return (NULL);
+	}
 	node->prev = NULL;
 	node->next = NULL;
 	return (node);

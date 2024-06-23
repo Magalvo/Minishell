@@ -38,20 +38,15 @@ void	clear_cmd(t_cmd *cmd)
 }
 
 
-void free_env_list(t_env *env)
+void free_env_list(t_env *list)
 {
-	t_env *tmp;
+	t_env *temp;
 
-	while (env)
+	while (list != NULL)
 	{
-		tmp = env;
-		env = env->next;
-		if(tmp->key)
-			free(tmp->key);
-		if(tmp->value)
-			free(tmp->value);
-		if(tmp)
-			free(tmp);
+		temp = list;
+		list = list->next;
+		free_node(temp);
 	}
 }
 

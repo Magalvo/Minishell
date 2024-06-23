@@ -140,7 +140,8 @@ char	**env_convert(t_env *env)
 		ctd++;
 		current = current->next;
 	}
-	env_array = create_argv(ctd);
+	env_array = (char **)malloc((ctd + 1) * sizeof(char *));
+	//env_array = create_argv(ctd);
 	if (!env_array)
 		error_msg ("malloc env array");
 	current = env;
@@ -152,6 +153,7 @@ char	**env_convert(t_env *env)
 		{
 			free_env_array(env_array);
 			error_msg("malloc join key value");
+			return (NULL);
 		}
 		current = current->next;
 		i++;
@@ -186,7 +188,10 @@ void	env_arr_update(t_ms *s, char *str)
 			i++;
 		} */
 	if (s->paths)
-		s->paths = NULL; 
+	{
+		free_all_paths(s->paths);	
+		s->paths = NULL;
+	}
 	free_env_array(s->env_tmp);
 	s->env_tmp = env_convert(s->env);
 }

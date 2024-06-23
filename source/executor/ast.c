@@ -30,6 +30,7 @@ void exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
                 dup2(pipefd[1], STDOUT_FILENO);
             close(pipefd[1]);
 			exec_from_ast_recursive(s, cmd->left, fd_in, STDOUT_FILENO);
+			free_ast(cmd); // Should I make a free here?
             exit(s->exit_stat);
         }
         else
