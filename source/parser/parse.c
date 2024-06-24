@@ -18,7 +18,10 @@ t_cmd	*parse_input(char *input, t_ms *s)
 
 	if (ft_strlen(input) == 0)
 		return (NULL);
-	if (!syntax_validation(input))
+	// if (s.last_input != NULL)
+	// 	free(s.last_input);
+	// s.last_input = ft_strdup(input);
+	if (!syntax_validation(input, s))
 		return (NULL);
 	xp_input = ft_strdup(input);
 	xp_input = expand_sw_vars(xp_input, s);
@@ -27,10 +30,6 @@ t_cmd	*parse_input(char *input, t_ms *s)
 	ast = parse_cmd(xp_input, s);
 	// ? should expanded_input be free() or pointed to _ (last command)
 	// free(expanded_input);
-	// ppid = ft_getpid();
-	// printf("%s\n", ppid);
-	// ppid = ft_getrnd_str();
-	// printf("%s\n", ppid);
 	free(xp_input);
 	return (ast);
 }
@@ -40,13 +39,15 @@ t_cmd *parse_cmd(char *input, t_ms *s)
 	char	*end;
 	t_cmd	*cmd;
 
+
+
 	end = input + ft_strlen(input);
 	cmd = parse_line(&input, end, s);
 
 	peek(&input, end, "");
 	if(input != end){
 		ft_dprintf(STDERR_FILENO, "\'%s\' ", input);
-		reprompt(INCOMPLETE_PARSE);
+		reprompt(INCOMPLETE_PARSE, 1, s);
 	}
 	// nulterminate(cmd);
 	return cmd;
@@ -99,7 +100,7 @@ t_cmd *parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 	{
 		tok = get_token(ps, es, 0, 0);
 		if(get_token(ps, es, &q, &eq) != 'a')
-			reprompt(MISSING_REDIRECT);
+			reprompt(MISSING_REDIRECT, 1, s);
 		// make_filename(q, eq);
 		// cmd = redir_sw(cmd, tok, q, eq);
 		cmd = redir_sw(cmd, tok, ft_substr(q, 0, eq - q), s);
