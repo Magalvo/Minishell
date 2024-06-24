@@ -47,7 +47,7 @@ void exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
         if (fd_out != STDOUT_FILENO)
             close(fd_out);
 		waitpid(pid, &status, 0);
-		printf("REDIR-> %d\n", status);
+		//printf("REDIR-> %d\n", status);
 		if (WIFEXITED(status))
 			s->exit_stat = WEXITSTATUS(status);
 	}

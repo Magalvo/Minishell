@@ -62,6 +62,7 @@ int get_token(char **ps, char *es, char **q, char **eq)
 	int ret;
 	bool skip;
 
+	skip = false;
 	s = *ps;
 	while(s < es && ft_strchr(SPACES, *s))
 		s++;

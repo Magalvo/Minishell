@@ -31,6 +31,7 @@ t_cmd	*parse_input(char *input, t_ms *s)
 	// printf("%s\n", ppid);
 	// ppid = ft_getrnd_str();
 	// printf("%s\n", ppid);
+	free(xp_input);
 	return (ast);
 }
 
