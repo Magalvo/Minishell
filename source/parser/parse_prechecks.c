@@ -50,6 +50,75 @@ char	*expand_sw_vars(char *input, t_ms *s)
 	return(free(input), xp_input);
 }
 
+char	*expand_sw_tilde(char *input, t_ms *s)
+{
+	char	*pos;
+	char	*xp_input;
+	// char	*equal;
+
+	xp_input = ft_strdup(input);
+	pos = ft_strchr(xp_input, '~');
+	// equal = ft_strchr(xp_input, '=');
+// =~
+// ~:
+// ~/
+// ~+:
+// ~-/
+//  ~
+	while (pos)
+	{
+		if (is_quoted(xp_input, pos) == NONE)
+		{
+			if (ft_strnstr(input, "=~", ft_strlen(input)))
+				xp_input = expand_tilde_equal(xp_input, pos, s);
+			if (ft_strnstr(input, "~+", ft_strlen(input)))
+				xp_input = expand_tilde_pwd(xp_input, pos, false, s);
+			else if (ft_strnstr(input, "~-", ft_strlen(input)))
+				xp_input = expand_tilde_oldpwd(xp_input, pos, false, s);
+			else
+				xp_input = expand_tilde(xp_input, pos, false, s);
+		}
+
+		// if (ft_isspace(*(pos - 1)) || pos == input)
+		// {
+		// 	if (is_quoted(xp_input, pos) == NONE && *(pos + 1) == '+')
+		// 	else if (is_quoted(xp_input, pos) == NONE && *(pos + 1) == '-')
+		// 	else if (is_quoted(xp_input, pos) == NONE)
+		// 			xp_input = expand_tilde(xp_input, pos, s);
+		// }
+		// else if
+		// 	((pos - 1) == equal && strrchr_alpha_loop(input, pos - 1))
+		// 		xp_input = expand_tilde1(xp_input, pos, s);
+
+		// 	(*(pos + p) == ':' || *(pos + p) == '/' ||	ft_isspace(*(pos + p)))
+
+			// if (ft_isspace(*(pos - 1)) || pos == input)
+			// {
+				// if (*(pos + p) == ':') || (*(pos + p) == '/') || ft_isspace(*(pos + p))
+					// xp_input = expand_tilde(xp_input, pos, s);
+			// }
+		pos = ft_strchr(pos, '~');
+		}
+	return(free(input), xp_input);
+}
+
+/*
+	while (pos && *(pos + 1) != '\0')
+	{
+		if ((pos && *(pos + 1) == '+') || (pos && *(pos + 1) == '-'))
+			p = 2;
+		if (is_quoted(xp_input, pos) == NONE)
+		{
+			if (((pos - 1) == equal && strrchr_alpha_loop(input, pos - 1)) ||
+				(*(pos + p) == ':' &&
+				(ft_isspace(*(pos - 1)) || pos == input)) ||
+				(*(pos + p) == '/' && (ft_isspace(*(pos - 1)) || pos == input)))
+					xp_input = expand_tilde(xp_input, pos, s);
+		}
+		pos = ft_strchr(pos, '~');
+		p = 1;
+	}
+	*/
 /*
 // backup for reference
 char	*expand_vars_bak(char *input, t_ms *s)

@@ -157,13 +157,11 @@ void minishell(char **envp)
 
 		// ? regular readline function
 		input = readline(s.prompt);
-		if (input != NULL)
-			add_history(input);
+		// ! moved add_history(input); > inside parse_input,
+		// ! already a empty check there
 		if (input == NULL && s.modal == MAIN)
 			exit_minishell(&s, "exit\n");
 		s.ast = parse_input(input, &s); // ! WIP
-
-		// guardar input em env key _
 
 		// todo make this parse properly,
 		// ! ls > outfile | wc > otherfile
@@ -187,7 +185,6 @@ int main(int argc, char *argv[], char *envp[])
 {
 	(void)argv;
 
-	// printf("%s", ft_getrnd_str());
 	if (argc != 1)
 		return (ft_dprintf(STDERR_FILENO, \
 			"Minishell takes no arguments, Exiting.\n"));
