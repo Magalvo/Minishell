@@ -14,22 +14,26 @@ t_cmd	*parse_input(char *input, t_ms *s)
 {
 	char	*xp_input;
 	t_cmd	*ast;
-	// char	*ppid;
 
 	if (ft_strlen(input) == 0)
 		return (NULL);
-	// if (s.last_input != NULL)
-	// 	free(s.last_input);
-	// s.last_input = ft_strdup(input);
+
+	// TODO update _ with input
+	// ? set_key_val ( last_cmd = input)
+
 	if (!syntax_validation(input, s))
 		return (NULL);
 	xp_input = ft_strdup(input);
 	xp_input = expand_sw_vars(xp_input, s);
+
+	// ! if (xp_input != NULL)
+	// TODO update _ with input
+	// ? set_key_val ( last_cmd = xp_input)
+
 	// glue_str(input, NULL);
 	// unglue_str(input, NULL);
+
 	ast = parse_cmd(xp_input, s);
-	// ? should expanded_input be free() or pointed to _ (last command)
-	// free(expanded_input);
 	free(xp_input);
 	return (ast);
 }
@@ -39,8 +43,8 @@ t_cmd *parse_cmd(char *input, t_ms *s)
 	char	*end;
 	t_cmd	*cmd;
 
-
-
+	if (input == NULL)
+		return (NULL);
 	end = input + ft_strlen(input);
 	cmd = parse_line(&input, end, s);
 

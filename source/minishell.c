@@ -124,7 +124,6 @@ void	reset_ms(t_ms *s, char *input, int error)
 	if(error >= 0)
 		s->exit_stat = error;
 	free(input);
-	
 }
 
 // STATUS: signal caught, ctrl+\ shouldn't print to stdout
@@ -167,9 +166,9 @@ void minishell(char **envp)
 
 		// todo make this parse properly,
 		// ! ls > outfile | wc > otherfile
-		if (!s.bnf)
+		if (!s.bnf && s.ast != NULL)
 			exec_from_ast(&s);
-		else
+		else if (s.ast != NULL)
 		{
 			s.bnf = false;
 			print_ast(&s, s.ast, -1);
