@@ -35,7 +35,7 @@ char	*expand_sw_vars(char *input, t_ms *s)
 			else if (*(pos + 1) == '$')
 				xp_input = expand_pid(xp_input, pos, s);
 			else if (*(pos + 1) == '?')
-				xp_input = expand_exit_stat(xp_input, s);
+				xp_input = expand_exit_stat(xp_input, pos, s);
 			else if (*(pos + 1) == '_')
 				xp_input = expand_last_cmd(xp_input, s);
 			else if (*(pos + 1) == '0')
@@ -77,6 +77,7 @@ char	*expand_vars_bak(char *input, t_ms *s)
 		// input = expand_exit_stat(input, s); //$? = ft_itoa(s->exit_stat);
 		else if (*(pos + 1) == '?')
 			xp_input = expand_exit_stat(xp_input, s);
+
 		// expand $_;
 		// 	//input = expand_last(input, s); // _
 		else if (*(pos + 1) == '_')
@@ -84,6 +85,7 @@ char	*expand_vars_bak(char *input, t_ms *s)
 		// input = expand_self(input, s);		// $0	$SHELL
 		else if (*(pos + 1) == '0')
 			xp_input = expand_self(xp_input, s);
+
 		else
 			xp_input = expand_dolar(xp_input, s);
 		// else if (*(pos + 1) == '0')

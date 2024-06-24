@@ -66,7 +66,7 @@ char	*expand_dolar_loop(char *input, t_ms *s)
 	return(free(input), res);
 }
 
-
+// TODO check if inside {} is 0 ? _
 char	*expand_curly(char *input, char *ps, t_ms *s)
 {
 	// char	*start;
@@ -120,10 +120,21 @@ char	*expand_dolar(char *input, char *ps, t_ms *s)
 }
 
 
-char	*expand_exit_stat(char *input, t_ms *s)
+char	*expand_exit_stat(char *input, char *ps, t_ms *s)
 {
-	(void)s;
-	return(input);
+	char	*stat;
+	char	*res;
+
+	stat = ft_itoa(s->exit_stat);
+	if (get_token_a(&stat) == 'a')
+	{
+		res = get_expanded(input, ps, stat, ps + 2);
+		free(stat);
+		return(free(input), res);
+	}
+	return(reprompt(GETPID_ERROR), NULL);
+
+	// return(input);
 }
 
 char	*expand_last_cmd(char *input, t_ms *s)
