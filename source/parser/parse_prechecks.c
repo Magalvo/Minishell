@@ -37,9 +37,9 @@ char	*expand_sw_vars(char *input, t_ms *s)
 			else if (*(pos + 1) == '?')
 				xp_input = expand_exit_stat(xp_input, pos, s);
 			else if (*(pos + 1) == '_')
-				xp_input = expand_last_cmd(xp_input, s);
+				xp_input = expand_last_cmd(xp_input, pos, s);
 			else if (*(pos + 1) == '0')
-				xp_input = expand_self(xp_input, s);
+				xp_input = expand_self(xp_input, pos, s);
 			else
 				xp_input = expand_dolar(xp_input, pos, s);
 		}

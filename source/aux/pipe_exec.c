@@ -81,19 +81,22 @@ int exec_paria(t_ms *s, t_cmd *cmds)
 
 void	exec_from_ast(t_ms *s)
 {
+	char *key;
+
+	key = "_";
 	if (s->ast == NULL)
 		return ;
-
 	if (s->ast->type == EXEC)
 	{
-		update_key(s->env, ((char *)"_"), s->ast->argv[s->ast->argc]);
-		update_key(s->export, ((char *)"_"), s->ast->argv[s->ast->argc]);
+		update_key(s->env, key, s->ast->argv[s->ast->argc - 1]);
+		update_key(s->export, key, s->ast->argv[s->ast->argc - 1]);
 	}
 	else if (s->ast->type == REDIR || s->ast->type == HEREDOC)
 	{
-		update_key(s->env, ((char *)"_"), s->ast->cmd->argv[s->ast->cmd->argc]);
-		update_key(s->export, ((char *)"_"), s->ast->cmd->argv[s->ast->cmd->argc]);
+		update_key(s->env, key, s->ast->cmd->argv[s->ast->cmd->argc - 1]);
+		update_key(s->export, key, s->ast->cmd->argv[s->ast->cmd->argc - 1]);
 	}
+
 	if(!exec_paria(s, s->ast))
 		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
 }

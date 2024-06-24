@@ -10,8 +10,8 @@ t_cmd *parse_exec(char **ps, char *es, t_ms *s)
 	char	*q;
 	char	*eq;
 	char	*new_arg;
-	char	**_argv;
 	int		tok;
+	char	**_argv;
 	int		_argc;
 	t_cmd	*cmd;
 	t_cmd	*ret;
@@ -25,7 +25,7 @@ t_cmd *parse_exec(char **ps, char *es, t_ms *s)
 	_argc = 0;
 	while(!peek(ps, es, "|)&;"))
 	{
-		if((tok=get_token(ps, es, &q, &eq)) == 0)
+		if((tok = get_token(ps, es, &q, &eq)) == 0)
 			break;
 		if(tok != 'a')
 			reprompt(INVALID_TOKEN, 1, s);
@@ -38,7 +38,6 @@ t_cmd *parse_exec(char **ps, char *es, t_ms *s)
 	_argv[_argc] = 0;
 	cmd->argv = _argv;
 	cmd->argc = _argc;
-
 	return (ret);
 }
 
