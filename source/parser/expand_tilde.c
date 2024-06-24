@@ -2,41 +2,18 @@
 #include "../include/minishell.h"
 
 /*
-control operator
-A token that performs a control function.
-It is a newline or one of the following:
-'||', '&&', '&', ';', ';;', ';&', ';;&', '|', '|&', '(', or ')'.
+Tilde Expansion
+https://www.gnu.org/software/bash/manual/html_node/Tilde-Expansion.html
 
-metacharacter
-A character that, when unquoted, separates words.
-A metacharacter is a space, tab, newline, or one of the following characters:
-'|', '&', ';', '(', ')', '<', or '>'.
+rules:
+'~+' or '~-' or '~', expand to diferent things
+must be followed by (' ', ':', '/')
+if preceded by '=' is an assignment, must follow: isalpha() > = > ~(+-)
+everything else should not expand
 */
 
-/*
-https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html
-	// Brace Expansion -> dont implement except
-	expand -> ${parameter} only		// ! maybe
-	Tilde Expansion ~    ~+    ~-
-	https://www.gnu.org/software/bash/manual/html_node/Tilde-Expansion.html
-	Shell Parameter Expansion -> dont interpret -> {}
-	Command Substitution -> dont implement -> $(command)
-	Arithmetic Expansion -> dont implement -> $(( expression ))
-	Process Substitution -> dont implement -> <(list) >(list)  :named pipes
-	 Word Splitting
-	https://www.gnu.org/software/bash/manual/html_node/Word-Splitting.html
-	// Filename Expansion -> dont implement
-    Quote Removal
-*/
 
-	// ! glue quotes
-	// ! glue dquotes
-	// ? expand dolar
-	// ! expand tilde
-	// ! glue quotes
-	// ! glue dquotes
-	// ! parse_ast && //remove quotes
-
+// validate expansion on assign (VAR=~)
 char	*expand_tilde_equal(char *input, char *ps, t_ms *s)
 {
 	char	*res;
@@ -55,6 +32,7 @@ char	*expand_tilde_equal(char *input, char *ps, t_ms *s)
 	return(free(input), res);
 }
 
+// expands ~+ to PWD
 char	*expand_tilde_pwd(char *input, char *ps, bool check, t_ms *s)
 {
 	char	*val;
@@ -74,6 +52,7 @@ char	*expand_tilde_pwd(char *input, char *ps, bool check, t_ms *s)
 	return (input);
 }
 
+// expands ~- to OLDPWD
 char	*expand_tilde_oldpwd(char *input, char *ps, bool check, t_ms *s)
 {
 	char	*val;
@@ -93,6 +72,7 @@ char	*expand_tilde_oldpwd(char *input, char *ps, bool check, t_ms *s)
 	return (input);
 }
 
+// regular expansion
 char	*expand_tilde(char *input, char *ps, bool check, t_ms *s)
 {
 	char	*val;
@@ -111,34 +91,6 @@ char	*expand_tilde(char *input, char *ps, bool check, t_ms *s)
 	}
 	return (input);
 }
-
-/*
-char	*expand_tilde(char *input, char *ps, t_ms *s)
-{
-	char	*key;
-	char	*val;
-	char	*res;
-	// char	*end;
-
-	if (*(ps + 1) == '+')
-		key = "PWD";
-	else if (*(ps + 1) == '-')
-		key = "OLDPWD";
-	else
-		key = "HOME";
-	val = get_env_val(s->env, key, s);
-	if (val != NULL)
-	{
-		if ((*(ps + 1) == '+') || (*(ps + 1) == '-'))
-			res = get_expanded(input, ps, val, ps + 2);
-		else
-			res = get_expanded(input, ps, val, ps + 1);
-		free(val);
-		return(free(input), res);
-	}
-	return (input);
-}
-*/
 
 bool	strrchr_alpha_loop(const char *input, const char *pos)
 {
