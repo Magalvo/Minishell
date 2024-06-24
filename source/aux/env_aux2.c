@@ -28,7 +28,7 @@ int	here_doc(char *dli, t_ms *s, t_cmd *cmd)
 	return (in_file);
 }
 
-void	init_aux(t_env **head, t_env **tail, t_env *new_node)
+/* void	init_aux(t_env **head, t_env **tail, t_env *new_node)
 {
 	if (!*head)
 	{
@@ -39,6 +39,21 @@ void	init_aux(t_env **head, t_env **tail, t_env *new_node)
 	{
 		(*tail)->next = new_node;
 		new_node->prev = *tail;
+		*tail = new_node;
+	}
+} */
+
+void	init_aux(t_env **head, t_env **tail, t_env *new_node)
+{
+	if (*tail)
+	{
+		(*tail)->next = new_node;
+		new_node->prev = *tail;
+		*tail = new_node;
+	}
+	else
+	{
+		*head = new_node;
 		*tail = new_node;
 	}
 }
