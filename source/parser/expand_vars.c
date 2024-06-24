@@ -45,7 +45,6 @@ char	*expand_dolar(char *input, t_ms *s)
 	char	*key;
 	char	*res;
 
-
 	start = ft_strnstr(input, "$", ft_strlen(input));
 	while (start != NULL && (*(char *)start + 1 != '?' && *(char *)start + 1 != '0' &&
 		!ft_strchr(SPACES, *(char *)(start + 1))))
@@ -69,21 +68,40 @@ char	*expand_dolar(char *input, t_ms *s)
 
 }
 
-char	*expand_curly(char *input, t_ms *s)
+char	*expand_curly(char *input, char *ps, t_ms *s)
 {
-	char	*res;
 	// char	*start;
+	char	*res;
+	char	*key;
+	char	*end;
 	(void)s;
 
-	// start = ft_strnstr(input, "$", ft_strlen(input));
-	res = ft_strdup(input);
-	return(free(input), res);
+	end = ft_strchr(ps, '}');
+	key = ft_substr(input, ps - input + 2, end - ps - 2);
+	if (get_token_a(&key) == 'a')
+	{
+		res = get_expanded(input, ps, get_env_val(s->env, key, s), \
+					end + 1);
+		free(key);
+		return(free(input), res);
+	}
+	return(reprompt(EXPANSION_ERROR), NULL);
 }
 
-char	*expand_pid(char *input, t_ms *s)
+char	*expand_pid(char *input, char *ps, t_ms *s)
 {
 	(void)s;
-	return(input);
+	char	*pid;
+	char	*res;
+
+	pid = ft_getpid();
+	if (get_token_a(&pid) == 'a')
+	{
+		res = get_expanded(input, ps, pid, ps + 2);
+		free(pid);
+		return(free(input), res);
+	}
+	return(reprompt(GETPID_ERROR), NULL);
 }
 
 char	*expand_exit_stat(char *input, t_ms *s)

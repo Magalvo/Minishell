@@ -86,6 +86,22 @@ int get_token(char **ps, char *es, char **q, char **eq)
 	return (ret);
 }
 
+int get_token_a(char **ps)
+{
+	char *ptr;
+
+	ptr = *ps;
+	while(*ptr)
+	{
+		if (ft_isalnum(*ptr) || *ptr == '_')
+			ptr++;
+		else
+			return (-1);
+	}
+	return ('a');
+}
+
+
 // get token backup
 /*
 int gettoken(char **ps, char *es, char **q, char **eq)

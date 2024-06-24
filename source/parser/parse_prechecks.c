@@ -31,9 +31,9 @@ char	*expand_sw_vars(char *input, t_ms *s)
 		if (is_quoted(xp_input, pos) != EQUOTE)
 		{
 			if (*(pos + 1) == '{')
-				xp_input = expand_curly(xp_input, s);
+				xp_input = expand_curly(xp_input, pos, s);
 			else if (*(pos + 1) == '$')
-				xp_input = expand_pid(xp_input, s);
+				xp_input = expand_pid(xp_input, pos, s);
 			else if (*(pos + 1) == '?')
 				xp_input = expand_exit_stat(xp_input, s);
 			else if (*(pos + 1) == '_')
@@ -43,7 +43,9 @@ char	*expand_sw_vars(char *input, t_ms *s)
 			else
 				xp_input = expand_dolar(xp_input, s);
 		}
-		pos = ft_strchr(pos + 1, '$');
+		if (xp_input == NULL)
+			exit(-1);			// TODO proper exit condition
+		pos = ft_strchr(xp_input, '$');
 	}
 	return(free(input), xp_input);
 }
