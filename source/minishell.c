@@ -157,6 +157,9 @@ void minishell(char **envp)
 		if (input == NULL && s.modal == MAIN)
 			exit_minishell(&s, "exit\n");
 		s.ast = parse_input(input, &s); // ! WIP
+
+		// guardar input em env key _
+
 		// todo make this parse properly,
 		// ! ls > outfile | wc > otherfile
 		if (!s.bnf)
