@@ -84,7 +84,7 @@ char	*expand_curly(char *input, char *ps, t_ms *s)
 		free(key);
 		return(free(input), res);
 	}
-	return(reprompt(EXPANSION_ERROR), NULL);
+	return(reprompt(EXPANSION_ERROR, 1, s), NULL);
 }
 
 char	*expand_pid(char *input, char *ps, t_ms *s)
@@ -100,7 +100,7 @@ char	*expand_pid(char *input, char *ps, t_ms *s)
 		free(pid);
 		return(free(input), res);
 	}
-	return(reprompt(GETPID_ERROR), NULL);
+	return(reprompt(GETPID_ERROR, 1,s), NULL);
 }
 char	*expand_dolar(char *input, char *ps, t_ms *s)
 {
@@ -132,7 +132,7 @@ char	*expand_exit_stat(char *input, char *ps, t_ms *s)
 		free(stat);
 		return(free(input), res);
 	}
-	return(reprompt(GETPID_ERROR), NULL);
+	return(reprompt(EXPANSION_ERROR, 1, s), NULL);
 
 	// return(input);
 }
