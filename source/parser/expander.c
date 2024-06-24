@@ -37,34 +37,6 @@ https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html
 	// ! glue dquotes
 	// ! parse_ast && //remove quotes
 
-char	*expand_dolar(char *input, t_ms *s)
-{
-	char	*start;
-	char	*end;
-	char	*key;
-	char	*res;
-
-	start = ft_strnstr(input, "$", ft_strlen(input));
-	while (start != NULL && (*(char *)start + 1 != '?' && *(char *)start + 1 != '0' &&
-		!ft_strchr(SPACES, *(char *)(start + 1))))
-	{
-		if (start && !chr_betw(input, start, '\''))
-		{
-			end = start;
-			while (ft_isalpha(*++end) || *end == '_')
-				;
-			key = ft_substr(input, start - input, end - start);
-			res = get_expanded(input, start, get_env_val(s->env, key, s), \
-					start + (ft_strlen(key)));
-			free (key);
-			free (input);
-			input = res;
-		}
-		start = ft_strnstr(input, "$", ft_strlen(input));
-	}
-	res = ft_strdup(input);
-	return(free(input), res);
-}
 
 // due to limitations of subject. expansion in the form: ~username are not done
 // ~ expansion are optional, we choose to do them for PWD, OLDPWD, HOME
@@ -139,27 +111,4 @@ char	*get_expanded(char *input, char *cut, char *paste, char *remain)
 	ft_memcpy(expanded + first, paste, insert);
 	ft_memcpy(expanded + first + insert, remain, last);
 	return (expanded);
-}
-
-// ! delete me, maybe
-char	expand_braces(char *input)
-{
-	if ((ft_strcount(input, '{') && ft_strcount(input, '}')) &&
-		(ft_strcount(input, '{') == ft_strcount(input, '}')))
-	{
-		return ('a');
-	}
-	return ('a');
-}
-
-// stub
-char	*expand_words(char *input)
-{
-	return (input);
-}
-// TODO this
-char	*remove_quotes(char *input)
-{
-	// char 17
-	return (input);
 }

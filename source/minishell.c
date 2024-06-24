@@ -156,7 +156,6 @@ void minishell(char **envp)
 
 		if (input == NULL && s.modal == MAIN)
 			exit_minishell(&s, "exit\n");
-		// split_input(&s, input); // not needed
 		s.ast = parse_input(input, &s); // ! WIP
 		// todo make this parse properly,
 		// ! ls > outfile | wc > otherfile

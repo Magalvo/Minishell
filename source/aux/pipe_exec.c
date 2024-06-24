@@ -84,7 +84,7 @@ int exec_paria(t_ms *s, t_cmd *cmds)
 
 void	exec_from_ast(t_ms *s)
 {
-    if (s->ast == NULL)
+	if (s->ast == NULL)
 		return ;
 	if(!exec_paria(s, s->ast))
 		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);

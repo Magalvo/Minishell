@@ -21,7 +21,7 @@ t_cmd	*parse_input(char *input, t_ms *s)
 	if (!syntax_validation(input))
 		return (NULL);
 	xp_input = ft_strdup(input);
-	xp_input = expand_dolar(xp_input, s);
+	xp_input = expand_sw_vars(xp_input, s);
 	// glue_str(input, NULL);
 	// unglue_str(input, NULL);
 	ast = parse_cmd(xp_input, s);
