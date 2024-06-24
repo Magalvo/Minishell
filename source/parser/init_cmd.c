@@ -60,7 +60,7 @@ t_cmd *cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 
 void	expand_heredoc(t_ms *s, char *line, int fd_file, char *xp_line)
 {
-	xp_line = expand_dolar(line, s);
+	xp_line = expand_dolar_loop(line, s);
 	ft_putstr_fd(xp_line, fd_file);
 	ft_putchar_fd('\n', fd_file);
 	free(xp_line);

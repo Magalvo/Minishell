@@ -93,7 +93,8 @@ char	*expand_pid(char *input, char *ps, t_ms *s);
 char	*expand_exit_stat(char *input, t_ms *s);
 char	*expand_last_cmd(char *input, t_ms *s);
 char	*expand_self(char *input, t_ms *s);
-char	*expand_dolar(char *input, t_ms *s);
+char	*expand_dolar_loop(char *input, t_ms *s);
+char	*expand_dolar(char *input, char *ps, t_ms *s);
 
 int		is_quoted(const char *str, const char *totest);
 char	*expand_tilde(char *input, t_ms *s);
