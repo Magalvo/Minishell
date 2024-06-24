@@ -137,7 +137,7 @@ char	*expand_exit_stat(char *input, char *ps, t_ms *s)
 	// return(input);
 }
 
-char	*expand_last_cmd(char *input, t_ms *s)
+char	*expand_last_cmd(char *input, char *ps, t_ms *s)
 {
 	char	*val;
 	char	*res;
@@ -148,7 +148,7 @@ char	*expand_last_cmd(char *input, t_ms *s)
 	return(free(input), res);
 }
 
-char	*expand_self(char *input, t_ms *s)
+char	*expand_self(char *input, char *ps, t_ms *s)
 {
 	char	*val;
 	char	*res;
@@ -159,10 +159,7 @@ char	*expand_self(char *input, t_ms *s)
 	res = get_expanded(input, ps, val, ps + 2);
 	free(val);
 	return(free(input), res);
-
 }
-
-
 
 
 // stub
