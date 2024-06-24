@@ -1,13 +1,6 @@
 
 #include "../include/minishell.h"
 
-void	split_input(t_ms *s, char* input)
-{
-	/* if (s->cmd_temp)
-		ft_free_dptr(&s->cmd_temp); */
-	s->cmd_temp = ft_split(input, ' ');
-}
-
 void	reset_ms()
 {
 	// todo
@@ -45,6 +38,19 @@ int peek_nsp(char **ps, char *es, char *tokens)
 	*ps = s;
 	return *s && ft_strchr(tokens, *s);
 }
+
+// Helper function to check if a character is escaped
+/*
+bool is_escaped(const char *str, const char *pos) {
+	bool escaped = false;
+	while (pos > str && *(pos - 1) == '\\') {
+		escaped = !escaped;
+		pos--;
+	}
+	return escaped;
+}
+*/
+
 
 // // NUL-terminate all the counted strings.
 // t_cmd *nulterminate(t_cmd *cmd)

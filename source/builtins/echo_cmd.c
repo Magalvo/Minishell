@@ -43,17 +43,11 @@ int	echo_cmd_test(char **cmd, t_ms *s)
 		check = 1;
 		i++;
 	}
-	char tst = (char)17;
-	char tst2[1];
-	tst2[0] = tst;
 	while (cmd[i])
 	{
 		if (cmd[i][0] == '+' && cmd[i][1] == '+')
 			ft_putnbr_fd(s->exit_stat, 1);
-		if (i == 2)
-			ft_putstr_fd(tst2, 1);
-		else
-			ft_putstr_fd(cmd[i], 1);
+		ft_putstr_fd(cmd[i], 1);
 		if(cmd[i + 1])
 			ft_putstr_fd(" ", 1);
 		i++;

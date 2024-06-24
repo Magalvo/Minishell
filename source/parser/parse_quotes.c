@@ -17,69 +17,71 @@ Within double quotes, backslashes that are followed
 by one of these characters are removed
 */
 
+// enum s_quote_type { NONE 0, EQUOTE 1, EDQUOTE 2 };
+// # define QUOTE '		DQUOTE "
+// key[0] unused, key[1] for quote, key[2] for dquote
+// TODO too many lines // implement the XOR ^= trick here
 int syntax_quotes(const char *str)
 {
-	int key[3] = {NONE, NONE, NONE}; // key[0] unused, key[1] for single quote, key[2] for double quote
+	int key[3] = {NONE, NONE, NONE};
 
 	while (*str)
 	{
 		if (*str == QUOTE)
 		{
-			if (key[2] == NONE)
+			if (key[EDQUOTE] == NONE)
 			{
-				if (key[1] == NONE) // If single quote is not active
-					key[1] = EQUOTE; // Mark as active
-				else // If single quote is active
-					key[1] = NONE; // Mark as closed
+				if (key[EQUOTE] == NONE)	// implement the XOR ^= trick here
+					key[EQUOTE] = EQUOTE;
+				else
+					key[EQUOTE] = NONE;
 			}
 		}
 		else if (*str == DQUOTE)
 		{
-			if (key[1] == NONE)
+			if (key[EQUOTE] == NONE)
 			{
-				if (key[2] == NONE) // If double quote is not active
-					key[2] = EDQUOTE; // Mark as active
-				else // If double quote is active
-					key[2] = NONE; // Mark as closed
+				if (key[EDQUOTE] == NONE)
+					key[EDQUOTE] = EDQUOTE;
+				else
+					key[EDQUOTE] = NONE;
 			}
 		}
 		str++;
 	}
-	if (key[1] != NONE || key[2] != NONE)
-		return -1; // Indicate an unclosed quote block
-	else
-		return 0; // All quotes are closed
+	if (key[EQUOTE] != NONE || key[EDQUOTE] != NONE)
+		return (-1);
+	return (0);
 }
 
-// Main function to determine the quote context of a character in a string
-int syntax_quoted(const char *str, const char *totest)
+// check what type of quotes a ptr on a string has, if any
+int is_quoted(const char *str, const char *totest)
 {
-	int state;
+	int quote;
 
-	state = NONE;
+	quote = NONE;
 	if (totest == NULL)
 		return (-1);
-	// for (const totest *p = str; p < pos; ++p) {
 	while (str < totest)
 	{
 
 		if (*str == QUOTE)
 		{
-			if (state == NONE)
-				state = EQUOTE;
-			else if (state == EQUOTE)
-				state = NONE;
+			if (quote == NONE)
+				quote = EQUOTE;
+			else if (quote == EQUOTE)
+				quote = NONE;
 		}
 		else if (*str == DQUOTE)
 		{
-			if (state == NONE)
-				state = EDQUOTE;
-			else if (state == EDQUOTE)
-				state = NONE;
+			if (quote == NONE)
+				quote = EDQUOTE;
+			else if (quote == EDQUOTE)
+				quote = NONE;
 		}
 	str++;
 	}
-	return (state);
+	return (quote);
 }
 
 /*

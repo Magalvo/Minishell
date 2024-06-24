@@ -82,12 +82,20 @@ bool	chr_betw(char *input, char *totest, char tofind);
 bool	inside_quotes(char *input, char *totest);
 bool	syntax_validation(char *input);
 int		syntax_quotes(const char *str);
-int		syntax_quoted(const char *str, const char *totest);
 bool	syntax_pipes(const char *str, const char *end);
 bool	syntax_and_or(const char *str);
 bool	syntax_list(const char *str);
 bool	syntax_back(const char *str);
+bool	syntax_parenthesis(const char *str);
+char	*expand_sw_vars(char *input, t_ms *s);
+char	*expand_curly(char *input, t_ms *s);
+char	*expand_pid(char *input, t_ms *s);
+char	*expand_exit_stat(char *input, t_ms *s);
+char	*expand_last_cmd(char *input, t_ms *s);
+char	*expand_self(char *input, t_ms *s);
 char	*expand_dolar(char *input, t_ms *s);
+
+int		is_quoted(const char *str, const char *totest);
 char	*expand_tilde(char *input, t_ms *s);
 char	expand_braces(char *input);
 char	*expand_words(char *input);
@@ -121,6 +129,7 @@ t_cmd	*parse_exec(char **ps, char *es, t_ms *s);
 //*==================== AUX =======================*//
 void	print_ast(t_ms *s, t_cmd *ptr, int padding);
 void	print_2d(char **ptr, int padding);
+char	*empty(void);
 
 
 //*==================== AUX =======================*//

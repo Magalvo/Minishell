@@ -23,10 +23,11 @@ EXECUTOR =	executor.c ast.c \
 # EXECUTOR =	executor.c
 
 PARSER =	aux.c	init_cmd.c	tokens.c	parse.c	parse_exec.c	glue.c \
-			parse_quotes.c		validate.c	expander.c	syntax_tests.c
+			parse_quotes.c		parse_prechecks.c	expander.c	syntax_tests.c \
+			expand_vars.c
 
 AUX = aux1.c env_aux.c env_aux2.c pipe_exec.c redir_exec.c \
-		free.c	ft_getpid.c ft_getrnd_str.c env_aux3.c
+		free.c	ft_ms_aux.c env_aux3.c
 
 
 AST = ast_print.c
