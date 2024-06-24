@@ -163,6 +163,8 @@ void minishell(char **envp)
 			exit_minishell(&s, "exit\n");
 		s.ast = parse_input(input, &s); // ! WIP
 
+		// guardar input em env key _
+
 		// todo make this parse properly,
 		// ! ls > outfile | wc > otherfile
 		if (!s.bnf)

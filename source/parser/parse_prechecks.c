@@ -1,20 +1,20 @@
 
 #include "../include/minishell.h"
 
-bool	syntax_validation(char *input)
+bool	syntax_validation(char *input, t_ms *s)
 {
 	if (syntax_quotes(input))
-		return(reprompt(MISSING_QUOTE), NULL);
+		return(reprompt(MISSING_QUOTE, 1, s), NULL);
 	if (!syntax_and_or(input))
-		return(reprompt(LOGICAL_TOKEN), NULL);
+		return(reprompt(LOGICAL_TOKEN, 1, s), NULL);
 	if (!syntax_pipes(input, (char *)input + ft_strlen(input) - 1))
-		return(reprompt(PIPE_SYNTAX), NULL);
+		return(reprompt(PIPE_SYNTAX, 2, s), NULL);
 	if (!syntax_list(input))
-		return(reprompt(SEMICOLON), NULL);
+		return(reprompt(SEMICOLON, 1, s), NULL);
 	if (!syntax_back(input))
-		return(reprompt(SINGLE_AMPERSAND), NULL);
+		return(reprompt(SINGLE_AMPERSAND, 1, s), NULL);
 	if (!syntax_parenthesis(input))
-		return(reprompt(PARENTHESIS), NULL);
+		return(reprompt(PARENTHESIS, 1, s), NULL);
 	else
 		return (true);
 }

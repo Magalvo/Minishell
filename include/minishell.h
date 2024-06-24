@@ -74,13 +74,13 @@ t_env	*new_env_node(char *env_var);
 //*=================== PARSE ======================*//
 t_cmd	*parse_input(char *input, t_ms *s);
 char	**create_argv(int argc);
-int		count_argc(char **ps, char *es);
+int		count_argc(char **ps, char *es, t_ms *s);
 void	ft_strrep_range(char *start, char *end, char search, char replace);
 void	glue_str(char *start, char *end);
 void	unglue_str(char *start, char *end);
 bool	chr_betw(char *input, char *totest, char tofind);
 bool	inside_quotes(char *input, char *totest);
-bool	syntax_validation(char *input);
+bool	syntax_validation(char *input, t_ms *s);
 int		syntax_quotes(const char *str);
 bool	syntax_pipes(const char *str, const char *end);
 bool	syntax_and_or(const char *str);
@@ -109,7 +109,7 @@ int		exec_heredoc(char *dli, char *file, int expand, t_ms *s);
 
 // ! PARSE WIP
 // t_cmd	*nulterminate(t_cmd *cmd);
-void	reprompt(char *s);
+void	reprompt(char *str, int exit_stat, t_ms *s);
 int		peek(char **ps, char *es, char *toks);
 int		getcmd(char *buf, int nbuf);
 int		get_token(char **ps, char *es, char **q, char **eq);

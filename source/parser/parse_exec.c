@@ -21,14 +21,14 @@ t_cmd *parse_exec(char **ps, char *es, t_ms *s)
 	ret = cmd_exec();
 	cmd = ret;
 	ret = parse_redir(ret, ps, es, s);
-	_argv = create_argv(count_argc(ps, es));
+	_argv = create_argv(count_argc(ps, es, s));
 	_argc = 0;
 	while(!peek(ps, es, "|)&;"))
 	{
 		if((tok=get_token(ps, es, &q, &eq)) == 0)
 			break;
 		if(tok != 'a')
-			reprompt(INVALID_TOKEN);
+			reprompt(INVALID_TOKEN, 1, s);
 		new_arg = ft_calloc((eq - q) + 1, sizeof(char));
 		ft_memmove((void *)new_arg, (void *)q, (eq - q));
 		_argv[_argc] = new_arg;
@@ -49,7 +49,7 @@ char **create_argv(int nbr)
 	return (ft_calloc((nbr + 1), sizeof(char *)));
 }
 
-int	count_argc(char **ps, char *es)
+int	count_argc(char **ps, char *es, t_ms *s)
 {
 	char	*ps_cpy;
 	char	*es_cpy;
@@ -65,7 +65,7 @@ int	count_argc(char **ps, char *es)
 		if (tok == 0)
 			break;
 		if (tok != 'a')
-			reprompt("ARGC_COUNT");
+			reprompt("ARGC_COUNT", 1, s);
 		argc++;
 	}
 	*ps = ps_cpy;
