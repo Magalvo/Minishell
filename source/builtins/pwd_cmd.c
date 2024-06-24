@@ -22,5 +22,6 @@ int	pwd_cmd(t_ms *s)
 		printf ("%s\n", pwd);
 	else
 		printf("%s\n", get_env_val(s->env, "PWD", s));
+	free(pwd);
 	return (1);
 }

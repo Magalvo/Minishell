@@ -57,8 +57,12 @@ void	init_list(t_env **list, char **envp)
 	while (envp[i] != NULL)
 	{
 		new_node = new_env_node(envp[i]);
-		if (new_node)
-			init_aux(&head, &tail, new_node);
+		if (!new_node)
+		{
+			free_env_list(head);
+			return ;
+		}
+		init_aux(&head, &tail, new_node);
 		i++;
 	}
 	free_env_list(*list);

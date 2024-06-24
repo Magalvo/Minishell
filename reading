@@ -1,0 +1,87 @@
+==6488== 2 bytes in 1 blocks are still reachable in loss record 1 of 72
+==6488==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6488==    by 0x10F713: itoa_loop (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10F851: ft_itoa (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10EC9F: setting_value (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10AADC: new_env_node (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10B5DA: init_list (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x1095F2: init_minishell (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x109763: minishell (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x1098B8: main (in /home/dde-maga/Minishell/minishell)
+==6488== 
+==6488== 2 bytes in 1 blocks are still reachable in loss record 2 of 72
+==6488==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6488==    by 0x10F713: itoa_loop (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10F851: ft_itoa (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10EC9F: setting_value (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10AADC: new_env_node (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10B5DA: init_list (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x109609: init_minishell (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x109763: minishell (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x1098B8: main (in /home/dde-maga/Minishell/minishell)
+==6488== 
+==6488== 5 bytes in 1 blocks are definitely lost in loss record 4 of 72
+==6488==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6488==    by 0x10F5CB: ft_strdup (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10D498: expand_dolar (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10C818: parse_input (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x1097E1: minishell (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x1098B8: main (in /home/dde-maga/Minishell/minishell)
+==6488== 
+==6488== 1,511 bytes in 95 blocks are still reachable in loss record 39 of 72
+==6488==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6488==    by 0x10F656: ft_strndup (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10EC47: key_dup (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10AAA3: new_env_node (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10B5DA: init_list (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x1095F2: init_minishell (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x109763: minishell (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x1098B8: main (in /home/dde-maga/Minishell/minishell)
+==6488== 
+==6488== 1,511 bytes in 95 blocks are still reachable in loss record 40 of 72
+==6488==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6488==    by 0x10F656: ft_strndup (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10EC47: key_dup (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10AAA3: new_env_node (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10B5DA: init_list (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x109609: init_minishell (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x109763: minishell (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x1098B8: main (in /home/dde-maga/Minishell/minishell)
+==6488== 
+==6488== 3,040 bytes in 95 blocks are still reachable in loss record 45 of 72
+==6488==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6488==    by 0x10F561: ft_calloc (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10AA29: new_env_node (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10B5DA: init_list (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x1095F2: init_minishell (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x109763: minishell (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x1098B8: main (in /home/dde-maga/Minishell/minishell)
+==6488== 
+==6488== 3,040 bytes in 95 blocks are still reachable in loss record 46 of 72
+==6488==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6488==    by 0x10F561: ft_calloc (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10AA29: new_env_node (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10B5DA: init_list (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x109609: init_minishell (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x109763: minishell (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x1098B8: main (in /home/dde-maga/Minishell/minishell)
+==6488== 
+==6488== 3,530 bytes in 94 blocks are still reachable in loss record 47 of 72
+==6488==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6488==    by 0x10F5CB: ft_strdup (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10ECB9: setting_value (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10AADC: new_env_node (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10B5DA: init_list (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x1095F2: init_minishell (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x109763: minishell (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x1098B8: main (in /home/dde-maga/Minishell/minishell)
+==6488== 
+==6488== 3,530 bytes in 94 blocks are still reachable in loss record 48 of 72
+==6488==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6488==    by 0x10F5CB: ft_strdup (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10ECB9: setting_value (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10AADC: new_env_node (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x10B5DA: init_list (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x109609: init_minishell (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x109763: minishell (in /home/dde-maga/Minishell/minishell)
+==6488==    by 0x1098B8: main (in /home/dde-maga/Minishell/minishell)
