@@ -25,7 +25,7 @@ void	exec_one(t_ms *s, char **argv)
 			argv[0] = cmd_name;
 		}
 		execve(path, argv, s->env_tmp);
-		s->exit_stat = 126;
+		s->exit_stat = 127;
 		free(path);
 	}
 }

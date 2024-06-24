@@ -9,15 +9,15 @@ t_cmd *parse_exec(char **ps, char *es, t_ms *s)
 {
 	char	*q;
 	char	*eq;
+	char	*new_arg;
+	char	**_argv;
 	int		tok;
 	int		_argc;
 	t_cmd	*cmd;
 	t_cmd	*ret;
-	char	*new_arg;
-	char	**_argv;
 
-	// if(peek(ps, es, "("))
-	// 	return (parse_block(ps, es));
+	q = NULL;
+	eq = NULL;
 	ret = cmd_exec();
 	cmd = ret;
 	ret = parse_redir(ret, ps, es, s);
@@ -54,26 +54,20 @@ int	count_argc(char **ps, char *es)
 	char	*ps_cpy;
 	char	*es_cpy;
 	int		argc;
-	// t_cmd	*ret;
 	int		tok;
 
-	// char	*q;
-	// char	*eq;
 	argc = 0;
 	ps_cpy = *ps;
 	es_cpy = es;
-	// ret = cmd_exec();
-	while(!peek(ps, es, "|)&<>")){
-		// tok=get_token(ps, es, &q, &eq);
+	while(!peek(ps, es, "|)&<>"))
+	{
 		tok=get_token(ps, es, NULL, NULL);
 		if (tok == 0)
 			break;
 		if (tok != 'a')
 			reprompt("ARGC_COUNT");
 		argc++;
-		// ret = parse_redir(ret, ps, es);
 	}
-	// free(ret);
 	*ps = ps_cpy;
 	es = es_cpy;
 	return (argc);

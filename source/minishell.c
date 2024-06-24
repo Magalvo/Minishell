@@ -153,7 +153,7 @@ void minishell(char **envp)
 
 		// ? regular readline function
 		input = readline(s.prompt);
-
+		add_history(input);
 		if (input == NULL && s.modal == MAIN)
 			exit_minishell(&s, "exit\n");
 		s.ast = parse_input(input, &s); // ! WIP

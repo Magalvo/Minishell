@@ -19,7 +19,7 @@ int	pwd_cmd(t_ms *s)
 	pwd = NULL;
 	pwd = getcwd(pwd, FILENAME_MAX);
 	if (pwd != NULL)
-		printf ("%s\n", pwd);
+		printf("%s\n", pwd);
 	else
 		printf("%s\n", get_env_val(s->env, "PWD", s));
 	free(pwd);

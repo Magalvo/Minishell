@@ -14,5 +14,7 @@
 
 void	exit_cmd(t_ms *s)
 {
+/* 	if (cmd[2][0])
+		s->exit_stat = 1; */
 	exit_minishell(s, "exit\n");
 }
