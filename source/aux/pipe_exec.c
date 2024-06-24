@@ -84,13 +84,15 @@ void	exec_from_ast(t_ms *s)
 	if (s->ast == NULL)
 		return ;
 
-	if (s->ast->type != pipe $$ s->ast->type = EXEC)
-		set_key_val "_"; s->ast->argv[s->ast->argc]
-	else if (s->ast->type != pipe && \
-		(s->ast->type = REDIR || s->ast->type = HEREDOC))
-		set_key_val "_"; s->ast->cmd->argv[s->ast->cmd->argc]
-
-
+	if (s->ast->type != 3 && s->ast->type = 1)
+		update_key(s->env, ((char *)"_"), s->ast->argv[s->ast->argc]);
+		update_key(s->export, ((char *)"_"), s->ast->argv[s->ast->argc]);
+	else if (s->ast->type != 3 && \
+		(s->ast->type = 2 || s->ast->type = 4))
+	{
+		update_key (s->env, (char *)"_"); s->ast->cmd->argv[s->ast->cmd->argc];
+		update_key (s->export, (char *)"_"); s->ast->cmd->argv[s->ast->cmd->argc];
+	}
 	if(!exec_paria(s, s->ast))
 		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
 }

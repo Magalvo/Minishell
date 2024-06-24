@@ -142,7 +142,7 @@ char	*expand_last_cmd(char *input, t_ms *s)
 	char	*val;
 	char	*res;
 
-	val = get_env_val(s->env, "_", s)
+	val = get_env_val(s->env, "_", s);
 	res = get_expanded(input, ps, val, ps + 2);
 	free(val);
 	return(free(input), res);
@@ -153,7 +153,7 @@ char	*expand_self(char *input, t_ms *s)
 	char	*val;
 	char	*res;
 
-	val = get_env_val(s->env, "SHELL", s)
+	val = get_env_val(s->env, "SHELL", s);
 	if (!val)
 		val = "minishell";
 	res = get_expanded(input, ps, val, ps + 2);
