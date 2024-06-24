@@ -78,7 +78,7 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
         if (fd_out != STDOUT_FILENO)
             assist_file(fd_out, STDOUT_FILENO);
         exec_one(s, cmd->argv);
-        not_found(cmd->argv[0], 127, s);
+        not_found(cmd->argv[0], 126, s);
     }
     else
     {

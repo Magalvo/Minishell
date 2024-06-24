@@ -14,26 +14,32 @@
 
 static int	ft_flagged(char *s)
 {
-	int	i;
+	//int	i;
 
-	i = 0;
+	//i = 0;
 	if (s[0] != '-')
 		return (0);
-	i++;
+	if (s[0] == '-' && s[1] == 'n' && s[2] == '\0')
+		return (1);
+	else
+		return (0);
+	/* i++;
 	while (s[i])
 	{
 		if (s[i] != 'n')
 			return (0);
 		i++;
 	}
-	return (1);
+	return (0); */
 }
+
 
 int	echo_cmd_test(char **cmd, t_ms *s)
 {
 	int	i;
 	int	check;
 
+	(void)s;
 	i = 1;
 	check = 0;
 	while (cmd[i] != NULL && ft_flagged(cmd[i]) == 1)
@@ -43,11 +49,6 @@ int	echo_cmd_test(char **cmd, t_ms *s)
 	}
 	while (cmd[i])
 	{
-		if (cmd[i][0] == '+' && cmd[i][1] == '+' && cmd[i][2] == '\0')
-		{
-			ft_putnbr_fd(s->exit_stat, 1);
-			break;
-		}
 		ft_putstr_fd(cmd[i], 1);
 		if (cmd[i + 1])
 			ft_putstr_fd(" ", 1);

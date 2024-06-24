@@ -14,10 +14,7 @@ void	exec_one(t_ms *s, char **argv)
 	{
 		path = cmd_path(s->paths, argv[0], s);
 		if (!path)
-		{
-			ft_putstr_fd("cmd not found\n", 2);
-			return ;
-		}
+			not_found(argv[0], 127, s);
 		cmd_name = ft_strchr(path, '/');
 		if (cmd_name)
 		{
@@ -25,8 +22,8 @@ void	exec_one(t_ms *s, char **argv)
 			argv[0] = cmd_name;
 		}
 		execve(path, argv, s->env_tmp);
-		s->exit_stat = 127;
 		free(path);
+		set_exit(126, s);
 	}
 }
 
