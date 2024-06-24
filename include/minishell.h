@@ -95,9 +95,13 @@ char	*expand_last_cmd(char *input, char *ps, t_ms *s);
 char	*expand_self(char *input, char *ps, t_ms *s);
 char	*expand_dolar_loop(char *input, t_ms *s);
 char	*expand_dolar(char *input, char *ps, t_ms *s);
-
+char	*expand_sw_tilde(char *input, t_ms *s);
+char	*expand_tilde_equal(char *input, char *ps, t_ms *s);
+char	*expand_tilde_pwd(char *input, char *ps, bool check, t_ms *s);
+char	*expand_tilde_oldpwd(char *input, char *ps, bool check, t_ms *s);
+char	*expand_tilde(char *input, char *ps, bool check, t_ms *s);
+bool	strrchr_alpha_loop(const char *input, const char *pos);
 int		is_quoted(const char *str, const char *totest);
-char	*expand_tilde(char *input, t_ms *s);
 char	expand_braces(char *input);
 char	*expand_words(char *input);
 char	*remove_quotes(char *input);
@@ -126,6 +130,8 @@ t_cmd	*parse_redir(t_cmd *t_cmd, char **ps, char *es, t_ms *s);
 t_cmd	*redir_sw(t_cmd *cmd, int tok, char *filename, t_ms *s);
 // t_cmd	*parse_block(char **ps, char *es, t_ms *s);
 t_cmd	*parse_exec(char **ps, char *es, t_ms *s);
+void	parse_args(char **ps, char *es, t_d_cmd *cmds, t_ms *s);
+// void	parse_args(char **ps, char *es, t_cmd *cmd, t_cmd *ret);
 
 
 //*==================== AUX =======================*//
