@@ -119,6 +119,13 @@ void	init_t_ms(t_ms *s)
 	s->exit_stat = 0;
 }
 
+void	reset_ms(t_ms *s, char *input, int error)
+{
+	if(error >= 0)
+		s->exit_stat = error;
+	free(input);
+	
+}
 
 // STATUS: signal caught, ctrl+\ shouldn't print to stdout
 void minishell(char **envp)
@@ -127,8 +134,6 @@ void minishell(char **envp)
 
 	init_t_ms(&s);
 	char	*input;
-	// int		not_builtin;
-	// int i;
 
 	if (!init_minishell(&s, envp))
 		exit_minishell(&s, NULL);
@@ -157,6 +162,7 @@ void minishell(char **envp)
 		if (input == NULL && s.modal == MAIN)
 			exit_minishell(&s, "exit\n");
 		s.ast = parse_input(input, &s); // ! WIP
+
 		// todo make this parse properly,
 		// ! ls > outfile | wc > otherfile
 		if (!s.bnf)
