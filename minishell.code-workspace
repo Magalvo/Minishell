@@ -40,7 +40,8 @@
 			"libft_define.h": "c",
 			"signal.h": "c",
 			"sigaction.h": "c",
-			"minishell.h": "c"
+			"minishell.h": "c",
+			"compare": "c"
 		}
 	}
 }

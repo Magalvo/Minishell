@@ -44,7 +44,7 @@ char	*expand_sw_vars(char *input, t_ms *s)
 				xp_input = expand_dolar(xp_input, pos, s);
 		}
 		if (xp_input == NULL)
-			exit(-1);			// TODO proper exit condition
+			break ;			// TODO proper exit condition
 		pos = ft_strchr(xp_input, '$');
 	}
 	return(free(input), xp_input);

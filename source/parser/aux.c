@@ -1,20 +1,10 @@
 
 #include "../include/minishell.h"
 
-void	reset_ms()
-{
-	// todo
-	// new_line();
-	// free stuff
-	// back to prompt
-}
-
 void	reprompt(char *msg, int exit_stat, t_ms *s)
 {
 	ft_dprintf(STDERR_FILENO, "%s\n", msg);
 	s->exit_stat = exit_stat;
-	reset_ms();
-
 }
 
 // looks ahead of the string to find *tokens while skipping spaces
