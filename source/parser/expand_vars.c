@@ -37,8 +37,7 @@ https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html
 	// ! glue dquotes
 	// ! parse_ast && //remove quotes
 
-
-char	*expand_dolar(char *input, t_ms *s)
+char	*expand_dolar_loop(char *input, t_ms *s)
 {
 	char	*start;
 	char	*end;
@@ -65,8 +64,8 @@ char	*expand_dolar(char *input, t_ms *s)
 	}
 	res = ft_strdup(input);
 	return(free(input), res);
-
 }
+
 
 char	*expand_curly(char *input, char *ps, t_ms *s)
 {
@@ -103,6 +102,23 @@ char	*expand_pid(char *input, char *ps, t_ms *s)
 	}
 	return(reprompt(GETPID_ERROR), NULL);
 }
+char	*expand_dolar(char *input, char *ps, t_ms *s)
+{
+	// char	*start;
+	char	*end;
+	char	*key;
+	char	*res;
+
+	end = ps;
+	while (ft_isalpha(*++end) || *end == '_')
+		;
+	key = ft_substr(input, ps - input, end - ps);
+	res = get_expanded(input, ps, get_env_val(s->env, key, s), \
+			ps + (ft_strlen(key)));
+	free (key);
+	return(free(input), res);
+}
+
 
 char	*expand_exit_stat(char *input, t_ms *s)
 {
