@@ -14,7 +14,7 @@
 
 void	print_current_env(t_env *env)
 {
-	while(env)
+	while (env)
 	{
 		if (env->value != NULL)
 			printf("%s=%s\n", env->key, env->value);
@@ -24,26 +24,24 @@ void	print_current_env(t_env *env)
 
 int	execute_command(t_ms *s, char **cmds)
 {
-	char	*path;
 	int		id;
 
-	path = NULL;
 	id = fork();
-	if(id < 0)
-	{
+	if (id < 0)
 		exit_minishell(s, "error");
-		return (0);
-	}
 	if (id == 0)
 	{
-		path = cmd_path(s->paths, cmds[2], s);
+		cmds++;
+		cmds++;
+		exec_one(s, cmds);
+		/* path = cmd_path(s->paths, cmds[2], s);
 		if (!path)
 		{
 			ft_putstr_fd("command not found\n", 2);
 			set_exit(127, s);
 		}
 		execve(path, &cmds[2], s->env_tmp);
-		set_exit(127, s);
+		set_exit(127, s); */
 	}
 	else
 		waitpid(id, NULL, 0);
@@ -52,20 +50,20 @@ int	execute_command(t_ms *s, char **cmds)
 
 void	clear_env_handler(t_ms *s)
 {
-	if (s->env_tmp) 								
+	if (s->env_tmp)
 	{
 		clear_env(s->env_tmp);
 		s->env_tmp = NULL;
 	}
-	s->env_tmp = null_env_init();
+	s->env_tmp = null_env_init(s);
 }
 
 int	env_cmd(t_ms *s, char **cmds)
 {
-	if(cmds[1] && cmds[1][0] == '-' && cmds[1][1] == 'i' && cmds[1][2] == '\0')
+	if (cmds[1] && cmds[1][0] == '-' && cmds[1][1] == 'i' && cmds[1][2] == '\0')
 	{
 		clear_env_handler(s);
-		if(cmds[2])
+		if (cmds[2])
 			return (execute_command(s, cmds));
 	}
 	else
@@ -81,7 +79,7 @@ t_env	*new_env_node(char *env_var)
 
 	node = ft_calloc(sizeof(t_env), 1);
 	if (!node)
-		return(ft_putstr_fd("malloc (new env)", 2), NULL);
+		return (ft_putstr_fd("malloc (new env)", 2), NULL);
 	delimiter = ft_strchr(env_var, '=');
 	if (!delimiter)
 	{
@@ -212,7 +210,7 @@ t_env	*new_env_node(char *env_var)
 	{
 		new_node = new_env_node(envp[i]);
 		if (!new_node)
-			continue;
+			continue ;
 		if (new_node)
 			init_aux(&head, &tail, new_node);
 		i++;

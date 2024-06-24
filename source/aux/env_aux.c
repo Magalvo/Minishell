@@ -12,8 +12,8 @@ char	*find_cwd()
 	if (!getcwd(cwd, 1024))
 	{
 		free(cwd);
-		error_msg("getcwd");
-	}
+		return (NULL);
+	}	
 	return (cwd);
 }
 
