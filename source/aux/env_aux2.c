@@ -108,7 +108,8 @@ char	*get_env_val(t_env *env, char *key, t_ms *s)
 	{
 		while (env)
 		{
-			if (ft_strncmp(env->key, key, ft_strlen(key)) == 0)
+			if (ft_strncmp(env->key, key, ft_strlen(key)) == 0 && \
+				ft_strlen(env->key) == ft_strlen(key))
 				return (env->value);
 			env = env->next;
 		}
