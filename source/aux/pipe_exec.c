@@ -79,24 +79,43 @@ int exec_paria(t_ms *s, t_cmd *cmds)
 		return (0);
 }
 
+int	update_last(t_env *env, char *key, char *value)
+{
+	char *tmp;
+	while (env)
+	{
+		if (ft_sw_builtins(env->key, key) == 0 && ft_strlen(env->key) == ft_strlen(key))
+		{
+			if (env->value)
+			{
+				tmp = env->value;
+				env->value = ft_strdup(value);
+				free(tmp);
+			}
+			return (1);
+		}
+		env = env->next;
+	}
+	return (0);
+}
+
 void	exec_from_ast(t_ms *s)
 {
 	char *key;
 
 	key = "_";
+	if(!exec_paria(s, s->ast))
+		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
 	if (s->ast == NULL)
 		return ;
 	if (s->ast->type == EXEC)
 	{
-		update_key(s->env, key, s->ast->argv[s->ast->argc - 1]);
-		update_key(s->export, key, s->ast->argv[s->ast->argc - 1]);
+		update_last(s->env, key, s->ast->argv[s->ast->argc - 1]);
+		update_last(s->export, key, s->ast->argv[s->ast->argc - 1]);
 	}
 	else if (s->ast->type == REDIR || s->ast->type == HEREDOC)
 	{
-		update_key(s->env, key, s->ast->cmd->argv[s->ast->cmd->argc - 1]);
-		update_key(s->export, key, s->ast->cmd->argv[s->ast->cmd->argc - 1]);
+		update_last(s->env, key, s->ast->cmd->argv[s->ast->cmd->argc - 1]);
+		update_last(s->export, key, s->ast->cmd->argv[s->ast->cmd->argc - 1]);
 	}
-
-	if(!exec_paria(s, s->ast))
-		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
 }
