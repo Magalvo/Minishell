@@ -38,20 +38,7 @@ int	add_slash(char *slash, char **paths)
 //! Executar Builtins no processo pai a nao ser o printenv;
 // ? Talvez possa ser no filho segundo o Mindmap  D:  :')
 
-/* int	exec_input(t_ms *s)
-{
-	int	id;
 
-	ft_exec_builtins_chr(s, s->cmd_temp);
- 	id = fork();
-	if (id < 0)
-		return (exit_minishell(s,"error"), 0);
-	if (id == 0)
-		execve(s->cmd_temp[0], s->cmd_temp, s->env_tmp);
-	wait(NULL);
-	return (1);
-}
-*/
 
 int	ft_sw_builtins(const char *s1, const char *s2)
 {
@@ -102,13 +89,12 @@ int	ft_exec_builtins_chr(t_ms *s, char **cmds) //[{laskdl}{kjhalsd}{jakskdj}]
 	else if (ft_sw_builtins(cmds[0], "unset") == 0)
 		return (unset_cmd(s, cmds));
 	else if (ft_sw_builtins(cmds[0], "exit") == 0)
-		return (exit_cmd(s), 1);
+		return (exit_cmd(s, cmds), 0);
 	else if (ft_sw_builtins(cmds[0], "bnf") == 0)
 		return (s->bnf = true, ft_putstr_fd("bnf ON\n", 1), 1);
 	else
 		return (0);
 }
-
 /* int	ft_exec_buitltins(t_ms *s, char **cmds)
 {
 	int	i;

@@ -84,7 +84,7 @@ int	cd_cmd(t_ms *mini, char **path)
 		mini->exit_stat = 1;
 		return (cd_cmd_error("No such file or directory"));
 	}
-	update_key(env, "OLDPWD", get_env_val(env, "PWD", NULL));
+	export_update(env, "OLDPWD", get_env_val(env, "PWD", NULL));
 	export_update(mini->export, "OLDPWD", get_env_val(env, "PWD", NULL));
 	return (change_pwd(env, mini));
 }

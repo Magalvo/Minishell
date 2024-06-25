@@ -73,7 +73,8 @@ int	unset_cmd(t_ms *s, char **args)
 	current = s->env;
 	while (current && args[1])
 	{
-		if ((ft_sw_builtins(current->key, args[1]) == 0))
+		if ((ft_sw_builtins(current->key, args[1]) == 0) &&
+			ft_strncmp(current->key, "_", ft_strlen(current->key)))
 		{
 			if (current->prev == NULL)
 				unset_cmd_aux(s, &current);
@@ -88,7 +89,7 @@ int	unset_cmd(t_ms *s, char **args)
 	}
 	unset_cmd_export(s, args);
 	env_arr_update(s, args[1]);
-	if (ft_strncmp(args[1], "PATH", ft_strlen(args[1])) != 0)
-		env_paths(s, s->env_tmp);
+	//if (ft_strncmp(args[1], "PATH", ft_strlen(args[1])) != 0)
+	//env_paths(s, s->env_tmp);
 	return (1);
 }
