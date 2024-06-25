@@ -88,7 +88,12 @@ bool	syntax_and_or(const char *str);
 bool	syntax_list(const char *str);
 bool	syntax_back(const char *str);
 bool	syntax_parenthesis(const char *str);
+
 char	*expand_sw_vars(char *input, t_ms *s);
+char	*expand_sw_tilde(char *input, t_ms *s);
+char	*expand_sw_quotes(char *input);
+char	*get_first_quote(char *input);
+
 char	*expand_curly(char *input, char *ps, t_ms *s);
 char	*expand_pid(char *input, char *ps, t_ms *s);
 char	*expand_exit_stat(char *input, char *ps, t_ms *s);
@@ -96,11 +101,11 @@ char	*expand_last_cmd(char *input, char *ps, t_ms *s);
 char	*expand_self(char *input, char *ps, t_ms *s);
 char	*expand_dolar_loop(char *input, t_ms *s);
 char	*expand_dolar(char *input, char *ps, t_ms *s);
-char	*expand_sw_tilde(char *input, t_ms *s);
 char	*expand_tilde_equal(char *input, char *ps, t_ms *s);
 char	*expand_tilde_pwd(char *input, char *ps, bool check, t_ms *s);
 char	*expand_tilde_oldpwd(char *input, char *ps, bool check, t_ms *s);
 char	*expand_tilde(char *input, char *ps, bool check, t_ms *s);
+
 bool	strrchr_alpha_loop(const char *input, const char *pos);
 int		is_quoted(const char *str, const char *totest);
 char	expand_braces(char *input);
@@ -108,8 +113,12 @@ char	*expand_words(char *input);
 char	*remove_quotes(char *input);
 bool	check_valid_position(char *input);
 char	*get_expanded(char *input, char *cut, char *paste, char *remain);
-int		here_doc(char *dli, t_ms *s, t_cmd *cmd);
+
+// int		here_doc(char *dli, t_ms *s, t_cmd *cmd);
 int		exec_heredoc(char *dli, char *file, int expand, t_ms *s);
+void	expand_heredoc(t_ms *s, char *line, int expand, int fd_file);
+int		del_eof(int heredoc);
+int		open_fd(char *file, int mode);
 
 
 // ! PARSE WIP

@@ -31,8 +31,6 @@ https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html
 
 	// ! glue quotes
 	// ! glue dquotes
-	// ? expand dolar
-	// ! expand tilde
 	// ! glue quotes
 	// ! glue dquotes
 	// ! parse_ast && //remove quotes
