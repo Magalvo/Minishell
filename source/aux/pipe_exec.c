@@ -108,12 +108,13 @@ void	exec_from_ast(t_ms *s)
 		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
 	if (s->ast == NULL)
 		return ;
-	if (s->ast->type == EXEC)
+	if (s->ast->type == EXEC && s->ast->argv[s->ast->argc - 1] != NULL)
 	{
 		update_last(s->env, key, s->ast->argv[s->ast->argc - 1]);
 		update_last(s->export, key, s->ast->argv[s->ast->argc - 1]);
 	}
-	else if (s->ast->type == REDIR || s->ast->type == HEREDOC)
+	else if ((s->ast->type == REDIR || s->ast->type == HEREDOC) \
+		&& s->ast->argv[s->ast->argc - 1] != NULL)
 	{
 		update_last(s->env, key, s->ast->cmd->argv[s->ast->cmd->argc - 1]);
 		update_last(s->export, key, s->ast->cmd->argv[s->ast->cmd->argc - 1]);

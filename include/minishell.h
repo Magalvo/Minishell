@@ -156,6 +156,7 @@ void	free_node(t_env *node);
 char	*key_dup(char *env_var, size_t key_len);
 int		setting_value(t_env *node, char *delimiter);
 void	dup_and_close(int fd, int standard);
+int		fork1(void);
 
 
 //*================= EXEC =========================*//

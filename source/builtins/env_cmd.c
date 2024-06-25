@@ -22,30 +22,24 @@ void	print_current_env(t_env *env)
 	}
 }
 
-int	execute_command(t_ms *s, char **cmds)
+void	execute_command(t_ms *s, t_cmd *cmd, char **cmds)
 {
-	int		id;
+	pid_t	id;
 
+	check_signal(IGNORE);
 	id = fork();
 	if (id < 0)
 		exit_minishell(s, "error");
 	if (id == 0)
-	{
+    {
+        check_signal(CHILD);
 		cmds++;
 		cmds++;
 		exec_one(s, cmds);
-		/* path = cmd_path(s->paths, cmds[2], s);
-		if (!path)
-		{
-			ft_putstr_fd("command not found\n", 2);
-			set_exit(127, s);
-		}
-		execve(path, &cmds[2], s->env_tmp);
-		set_exit(127, s); */
-	}
+        not_found(cmd->argv[0], 126, s);
+    }
 	else
-		waitpid(id, NULL, 0);
-	return (1);
+		wait_till_end(s, id);
 }
 
 void	clear_env_handler(t_ms *s)
@@ -61,10 +55,12 @@ void	clear_env_handler(t_ms *s)
 int	env_cmd(t_ms *s, char **cmds)
 {
 	if (cmds[1] && cmds[1][0] == '-' && cmds[1][1] == 'i' && cmds[1][2] == '\0')
-	{
-		clear_env_handler(s);
+	{	
 		if (cmds[2])
-			return (execute_command(s, cmds));
+		{
+			clear_env_handler(s);
+			execute_command(s, s->ast, cmds);
+		}	
 	}
 	else
 		print_current_env(s->env);
