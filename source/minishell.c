@@ -17,20 +17,19 @@ void exit_minishell(t_ms *s, char *msg)
 
 	if (!s)
 		return ;
-
+	exiter = s->exit_stat;
+	if (msg)
+	{
+		ft_putstr_fd(msg, STDERR_FILENO);
+	}
 	close_fd(&(s->infile));
     close_fd(&(s->outfile));
-
  	if (s->env)
 		free_env_list(s->env);
 	if (s->export)
    		free_env_list(s->export);
 	if (s->ast != NULL)
 		free_ast(s->ast);
-	exiter = s->exit_stat;
-	if (msg)
-		ft_putstr_fd(msg, STDERR_FILENO);
-
 	cleanup_shell(s);
 	exit(exiter);
 }
