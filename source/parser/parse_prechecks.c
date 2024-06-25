@@ -70,7 +70,7 @@ char	*expand_sw_tilde(char *input, t_ms *s)
 			else
 				xp_input = expand_tilde(xp_input, pos, false, s);
 		}
-		pos = ft_strchr(pos, '~');
+		pos = ft_strchr(pos + 1, '~');
 		}
 	return(free(input), xp_input);
 }

@@ -18,6 +18,7 @@ char	*expand_tilde_equal(char *input, char *ps, t_ms *s)
 {
 	char	*res;
 
+	res = NULL;
 	if (strrchr_alpha_loop(input, ps - 1))
 	{
 		if (*(ps + 1) == '+')
@@ -38,15 +39,18 @@ char	*expand_tilde_pwd(char *input, char *ps, bool check, t_ms *s)
 	char	*val;
 	char	*res;
 
+	res = NULL;
 	if (ft_isspace(*(ps - 1)) || ps == input || check)
 	{
-		val = get_env_val(s->env, "PWD", s);
-		if (val != NULL)
+		if (ft_strchr(" :/", *(ps + 2)))
 		{
-			if (ft_strchr(" :/", *(ps + 2)))
+			val = get_env_val(s->env, "PWD", s);
+			if (val != NULL)
+			{
 				res = get_expanded(input, ps, val, ps + 2);
-			free(val);
-			return(free(input), res);
+				free(val);
+				return(free(input), res);
+			}
 		}
 	}
 	return (input);
@@ -58,15 +62,19 @@ char	*expand_tilde_oldpwd(char *input, char *ps, bool check, t_ms *s)
 	char	*val;
 	char	*res;
 
+	res = NULL;
 	if (ft_isspace(*(ps - 1)) || ps == input || check)
 	{
-		val = get_env_val(s->env, "OLDPWD", s);
-		if (val != NULL)
+		if (ft_strchr(" :/", *(ps + 2)))
 		{
-			if (ft_strchr(" :/", *(ps + 2)))
+			val = get_env_val(s->env, "OLDPWD", s);
+			if (val != NULL)
+			{
+				// if (ft_strchr(" :/", *(ps + 2)))
 				res = get_expanded(input, ps, val, ps + 2);
-			free(val);
-			return(free(input), res);
+				free(val);
+				return(free(input), res);
+			}
 		}
 	}
 	return (input);
@@ -78,15 +86,18 @@ char	*expand_tilde(char *input, char *ps, bool check, t_ms *s)
 	char	*val;
 	char	*res;
 
+	res = NULL;
 	if (ft_isspace(*(ps - 1)) || ps == input || check)
 	{
-		val = get_env_val(s->env, "HOME", s);
-		if (val != NULL)
+		if (ft_strchr(" :/", *(ps + 1)))
 		{
-			if (ft_strchr(" :/", *(ps + 1)))
-				res = get_expanded(input, ps, val, ps + 2);
-			free(val);
-			return(free(input), res);
+			val = get_env_val(s->env, "HOME", s);
+			if (val != NULL)
+			{
+				res = get_expanded(input, ps, val, ps + 1);
+				free(val);
+				return(free(input), res);
+			}
 		}
 	}
 	return (input);
