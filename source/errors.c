@@ -76,7 +76,12 @@ int	not_found(char *str, int status, t_ms *s)
 {
 	ft_putstr_fd(str, 2);
 	if(status == 127)
-		ft_putstr_fd(": command not found\n", 2);
+	{
+		if(str[0] == '.' || str[0] == '/')
+			ft_putstr_fd(": No such file or directory\n", 2);
+		else
+			ft_putstr_fd(": command not found\n", 2);
+	}	
 	if(status == 126)
 		ft_putstr_fd(": permission denied\n", 2);
 	ft_putnbr_fd(status, 2);

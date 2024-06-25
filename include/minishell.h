@@ -50,7 +50,7 @@ int		export_cmd(t_ms *s, char **cmd);
 int		update_key(t_env *env, char *key, char *value);
 int		unset_cmd(t_ms *s, char **args);
 int		print_exp(t_env *export);
-void	exit_cmd(t_ms *s);
+void	exit_cmd(t_ms *s, char **cmds);
 char	*get_env_val(t_env *env, char *key, t_ms *s);
 void	sort_env_list(t_env **head);
 int		print_export(t_env *env);
@@ -65,6 +65,7 @@ int		add_new_node(t_env *env, char *key, char *value);
 void	init_export(t_ms *ms, char **envp);
 int		add_slash(char *slash, char **paths);
 t_env	*new_env_node(char *env_var);
+int		update_last(t_env *env, char *key, char *value);
 
 
 
