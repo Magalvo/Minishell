@@ -17,20 +17,19 @@ void exit_minishell(t_ms *s, char *msg)
 
 	if (!s)
 		return ;
-
+	exiter = s->exit_stat;
+	if (msg)
+	{
+		ft_putstr_fd(msg, STDERR_FILENO);
+	}
 	close_fd(&(s->infile));
     close_fd(&(s->outfile));
-
  	if (s->env)
 		free_env_list(s->env);
 	if (s->export)
    		free_env_list(s->export);
 	if (s->ast != NULL)
 		free_ast(s->ast);
-	exiter = s->exit_stat;
-	if (msg)
-		ft_putstr_fd(msg, STDERR_FILENO);
-
 	cleanup_shell(s);
 	exit(exiter);
 }
@@ -157,13 +156,11 @@ void minishell(char **envp)
 
 		// ? regular readline function
 		input = readline(s.prompt);
-		if (input != NULL)
-			add_history(input);
+		// ! moved add_history(input); > inside parse_input,
+		// ! already a empty check there
 		if (input == NULL && s.modal == MAIN)
 			exit_minishell(&s, "exit\n");
 		s.ast = parse_input(input, &s); // ! WIP
-
-		// guardar input em env key _
 
 		// todo make this parse properly,
 		// ! ls > outfile | wc > otherfile
@@ -187,7 +184,6 @@ int main(int argc, char *argv[], char *envp[])
 {
 	(void)argv;
 
-	// printf("%s", ft_getrnd_str());
 	if (argc != 1)
 		return (ft_dprintf(STDERR_FILENO, \
 			"Minishell takes no arguments, Exiting.\n"));

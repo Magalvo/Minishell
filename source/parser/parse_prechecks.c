@@ -50,48 +50,119 @@ char	*expand_sw_vars(char *input, t_ms *s)
 	return(free(input), xp_input);
 }
 
-/*
-// backup for reference
-char	*expand_vars_bak(char *input, t_ms *s)
+char	*expand_sw_tilde(char *input, t_ms *s)
 {
-	(void)s;
 	char	*pos;
 	char	*xp_input;
 
-	pos = ft_strchr(input + 1, '$');
-	if (!pos)
-		return(input);
 	xp_input = ft_strdup(input);
-		if (is_quoted(xp_input, pos) != EQUOTE)
-	while (pos && *(pos + 1) != '\0')
+	pos = ft_strchr(xp_input, '~');
+	while (pos)
 	{
-
-		int is_quoted(const char *str, const char *totest);
-		// input = expand_braces(input, s);	// expand ${ -- bad substitition
-		if (*(pos + 1) == '{')
-			xp_input = expand_curly(input, s);
-		// input = expand_pid(input, s);		// $$
-		if (*(pos + 1) == '$')
-			xp_input = expand_pid(xp_input, s);
-		// //$? = ft_itoa(s->exit_stat);
-		// input = expand_exit_stat(input, s); //$? = ft_itoa(s->exit_stat);
-		else if (*(pos + 1) == '?')
-			xp_input = expand_exit_stat(xp_input, s);
-
-		// expand $_;
-		// 	//input = expand_last(input, s); // _
-		else if (*(pos + 1) == '_')
-			xp_input = expand_last_cmd(xp_input, s);
-		// input = expand_self(input, s);		// $0	$SHELL
-		else if (*(pos + 1) == '0')
-			xp_input = expand_self(xp_input, s);
-
-		else
-			xp_input = expand_dolar(xp_input, s);
-		// else if (*(pos + 1) == '0')
-			// xp_input = expand_dolar(xp_input, s);
-		pos = ft_strchr(pos + 1, '$');
-	}
+		if (is_quoted(xp_input, pos) == NONE)
+		{
+			if (ft_strnstr(input, "=~", ft_strlen(input)))
+				xp_input = expand_tilde_equal(xp_input, pos, s);
+			if (ft_strnstr(input, "~+", ft_strlen(input)))
+				xp_input = expand_tilde_pwd(xp_input, pos, false, s);
+			else if (ft_strnstr(input, "~-", ft_strlen(input)))
+				xp_input = expand_tilde_oldpwd(xp_input, pos, false, s);
+			else
+				xp_input = expand_tilde(xp_input, pos, false, s);
+		}
+		pos = ft_strchr(pos + 1, '~');
+		}
 	return(free(input), xp_input);
+}
+
+// }
+
+char	*expand_sw_quotes(char *input)
+{
+	char	*pos;
+	char	*end;
+
+	pos = NULL;
+	pos = get_first_quote(input);
+	while (pos != NULL)
+	{
+		if (*pos == QUOTE)
+		{
+			end = ft_strchr(pos + 1, '\'');
+			glue_str(pos, end);
+			// expand_sw_quotes(end + 1);
+		}
+		else if (*pos == DQUOTE)
+		{
+			end = ft_strchr(pos + 1, '"');
+			glue_str(pos, end);
+			// expand_sw_quotes(end + 1);
+		}
+		pos = get_first_quote(end + 1);
+	}
+	return (input);
+}
+
+char	*get_first_quote(char *input)
+{
+	char	*qt;
+	char	*dqt;
+	char	*pos;
+
+	pos = NULL;
+	qt = ft_strchr(input, '\'');
+	dqt = ft_strchr(input, '"');
+	if (qt && dqt)
+	{
+		pos = qt;
+		if (qt > dqt)
+			pos = dqt;
+	}
+	else if (qt)
+		pos = qt;
+	else if (dqt)
+		pos = dqt;
+	return (pos);
+}
+
+
+/* bak
+char	*expand_sw_quotes(char *input, t_ms *s)
+{
+	char	*pos;
+	char	*end;
+	// char	*qt;
+	// char	*dqt;
+
+	(void)s;
+	// qt = ft_strchr(input, '\'');
+	// dqt = ft_strchr(input, '"');
+	// if (qt && dqt)
+	if (ft_strchr(input, '\'') && ft_strchr(input, '"'))
+	{
+		pos = ft_strchr(input, '\'');
+		if (ft_strchr(input, '\'') > ft_strchr(input, '"'))
+			pos = ft_strchr(input, '"');
+	}
+	else if (qt)
+		pos = qt;
+	else if (dqt)
+		pos = dqt;
+	while (pos)
+	{
+		if (*pos == QUOTE)
+		{
+			end = ft_strchr(pos + 1, '\'');
+			glue_str(pos, end);
+			expand_sw_quotes(end + 1, s)
+		}
+		else if (*pos == DQUOTE)
+		{
+			end = ft_strchr(pos + 1, '"');
+			glue_str(pos, end);
+			expand_sw_quotes(end + 1, s)
+		}
+	}
+	return (input);
 }
 */

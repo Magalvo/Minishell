@@ -6,10 +6,12 @@ void	exec_one(t_ms *s, char **argv)
 	char	*path;
 	char	*cmd_name;
 
-	if (argv[0][0] == '/' && argv[0][1])
-		execve(argv[0], argv, s->env_tmp);
-	else if ( argv[0][0] == '.' && argv[0][1] == '/' && argv[0][2])
-		execve(argv[0], argv, s->env_tmp);
+	if ((argv[0][0] == '/' && argv[0][1]) || \
+		(argv[0][0] == '.' && argv[0][1] == '/' && argv[0][2]))
+    {
+        execve(argv[0], argv, s->env_tmp);
+		not_found(argv[0], 127, s);
+    }
 	else
 	{
 		path = cmd_path(s->paths, argv[0], s);
@@ -109,11 +111,12 @@ void	exec_from_ast(t_ms *s)
 	if (s->ast == NULL)
 		return ;
 	if (s->ast->type == EXEC && s->ast->argv[s->ast->argc - 1] != NULL)
+	if (s->ast->type == EXEC && s->ast->argv[s->ast->argc - 1] != NULL)
 	{
 		update_last(s->env, key, s->ast->argv[s->ast->argc - 1]);
 		update_last(s->export, key, s->ast->argv[s->ast->argc - 1]);
 	}
-	else if ((s->ast->type == REDIR || s->ast->type == HEREDOC) \
+	else if (((s->ast->type == REDIR || s->ast->type == HEREDOC) && s->ast->argv[s->ast->argc - 1] != NULL) \
 		&& s->ast->argv[s->ast->argc - 1] != NULL)
 	{
 		update_last(s->env, key, s->ast->cmd->argv[s->ast->cmd->argc - 1]);

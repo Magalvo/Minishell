@@ -12,7 +12,47 @@
 
 #include "../../include/minishell.h"
 
-void	exit_cmd(t_ms *s)
+int	aux_all(char *str)
 {
-	exit_minishell(s, "exit\n");
+	int	i;
+
+	i = 0;
+	if (str[0] == '-' || str[0] == '+')
+		i++;
+	while(str[i])
+	{
+		if(!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+void exit_cmd(t_ms *s, char **cmds)
+{
+    if (cmds[1] && !cmds[2])
+    {
+        if (aux_all(cmds[1]))
+        {
+            s->exit_stat = ft_atoi(cmds[1]);
+            if (s->exit_stat > 255)
+                s->exit_stat %= 256;  
+        }
+        else
+        {
+            s->exit_stat = 2;
+            ft_putstr_fd(cmds[1], STDERR_FILENO);
+            ft_putstr_fd(": numeric argument required\n", STDERR_FILENO);
+            exit_minishell(s, "exit\n");
+        }
+    }
+    else if (cmds[2] && cmds[2][0])
+    {
+        s->exit_stat = 1;
+        ft_putstr_fd(cmds[0], STDERR_FILENO);
+        ft_putstr_fd(" `: too many arguments\n", STDERR_FILENO);
+        exit_minishell(s, "exit\n");
+    }
+    else
+        exit_minishell(s, "exit\n"); 
 }

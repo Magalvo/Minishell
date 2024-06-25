@@ -26,7 +26,6 @@ void	ft_strrep_range(char *start, char *end, char search, char replace)
 			if (*ptr == search)
 				*ptr = replace;
 			ptr++;
-
 		}
 	}
 }
@@ -41,7 +40,6 @@ void	glue_str(char *start, char *end)
 		ft_strrep_range(start, end, SPACES[i], GLUE[i]);
 		i++;
 	}
-
 }
 
 void	unglue_str(char *start, char *end)

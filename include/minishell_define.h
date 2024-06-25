@@ -15,6 +15,7 @@ typedef struct	s_execution t_execution;		//TODO not defined, still used?
 typedef	enum	s_cmd_type e_cmd_type;
 typedef	enum	s_quote_type e_quote_type;
 typedef	struct	s_cmd t_cmd;
+typedef	struct	s_d_cmd t_d_cmd;
 typedef	struct	s_pids t_pids;
 
 enum s_signal
@@ -106,6 +107,12 @@ enum s_cmd_type
 // {
 // 	int type;
 // };
+
+struct	s_d_cmd
+{
+	t_cmd	*one;
+	t_cmd	*two;
+};
 
 struct	s_cmd
 {

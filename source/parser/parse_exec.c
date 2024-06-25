@@ -7,6 +7,51 @@
 // Algures neste ficheiro ele mete valor no ficheiro
 t_cmd *parse_exec(char **ps, char *es, t_ms *s)
 {
+	t_cmd	*cmd;
+	t_d_cmd	cmds;
+	t_cmd	*ret;
+
+	ret = cmd_exec();
+	cmd = ret;
+	ret = parse_redir(ret, ps, es, s);
+	cmd->argv = create_argv(count_argc(ps, es, s));
+	cmds.one = cmd;
+	cmds.two = ret;
+	parse_args(ps, es, &cmds, s);
+	cmd->argv[cmd->argc] = 0;
+	cmd = cmds.one;
+	ret = cmds.two;
+	return (ret);
+}
+
+void	parse_args(char **ps, char *es, t_d_cmd *cmds, t_ms *s)
+{
+	char	*q;
+	char	*eq;
+	char	*new_arg;
+	int		tok;
+
+	q = NULL;
+	eq = NULL;
+	while(!peek(ps, es, "|)&;"))
+	{
+		tok = get_token(ps, es, &q, &eq);
+		if (tok == 0)
+			break;
+		if(tok != 'a')
+			reprompt(INVALID_TOKEN, 1, s);
+		new_arg = ft_calloc((eq - q) + 1, sizeof(char));
+		ft_memmove((void *)new_arg, (void *)q, (eq - q));
+		cmds->one->argv[cmds->one->argc] = new_arg;
+		cmds->one->argc++;
+		cmds->two = parse_redir(cmds->two, ps, es, s);
+	}
+}
+
+
+/* // ! backup
+t_cmd *parse_exec(char **ps, char *es, t_ms *s)
+{
 	char	*q;
 	char	*eq;
 	char	*new_arg;
@@ -40,7 +85,7 @@ t_cmd *parse_exec(char **ps, char *es, t_ms *s)
 	cmd->argc = _argc;
 	return (ret);
 }
-
+*/
 // todo replace with generic function
 // returns a allocated 2d_arr
 char **create_argv(int nbr)

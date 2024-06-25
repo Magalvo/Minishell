@@ -17,7 +17,7 @@ t_cmd	*parse_input(char *input, t_ms *s)
 
 	if (ft_strlen(input) == 0)
 		return (NULL);
-
+	add_history(input);
 	// TODO update _ with input
 	// ? set_key_val ( last_cmd = input)
 
@@ -25,11 +25,11 @@ t_cmd	*parse_input(char *input, t_ms *s)
 		return (NULL);
 	xp_input = ft_strdup(input);
 	xp_input = expand_sw_vars(xp_input, s);
-
+	xp_input = expand_sw_tilde(xp_input, s);
+	xp_input = expand_sw_quotes(xp_input);
 	// ! if (xp_input != NULL)
 	// TODO update _ with input
 	// ? set_key_val ( last_cmd = xp_input)
-
 	// glue_str(input, NULL);
 	// unglue_str(input, NULL);
 
