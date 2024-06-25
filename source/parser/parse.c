@@ -26,6 +26,7 @@ t_cmd	*parse_input(char *input, t_ms *s)
 	xp_input = ft_strdup(input);
 	xp_input = expand_sw_vars(xp_input, s);
 	xp_input = expand_sw_tilde(xp_input, s);
+	xp_input = expand_sw_quotes(xp_input);
 	// ! if (xp_input != NULL)
 	// TODO update _ with input
 	// ? set_key_val ( last_cmd = xp_input)

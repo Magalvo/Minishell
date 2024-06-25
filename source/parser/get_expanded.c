@@ -58,7 +58,34 @@ char	*expand_tilde(char *input, t_ms *s)
 	// ~
 
 	start = ft_strnstr(input, ":~", ft_strlen(input));
-	start = ft_strnstr(input, "=~", ft_strlen(input));
+	start = ft_strnstr(input, "=~", ft_strlen(	char	*pos;
+	char	*qt;
+	char	*dqt:
+	char	*end;
+	char	*xp_input;
+
+	qt = ft_strchr(input, '\'');
+	dqt = ft_strchr(input, '"');
+	pos = qt;
+	if (qt > dqt)
+		pos = dqt;
+	while (true)
+	{
+		if (*pos == QUOTE)
+		{
+			end = ft_strchr(pos + 1, '"');
+			glue_str(pos, end)
+			pos = end + 1;
+		}
+		else (*pos == DQUOTE)
+		{
+			end = ft_strchr(pos + 1, '\'');
+			glue_str(pos, end)
+			pos = end + 1;
+		}
+		else
+			break;
+	}input));
 	start = ft_strnstr(input, "~", ft_strlen(input));
 	while (start != NULL)
 	{
