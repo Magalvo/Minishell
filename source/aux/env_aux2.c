@@ -1,5 +1,6 @@
 #include "../../include/minishell.h"
 
+/* moved to parser
 int	here_doc(char *dli, t_ms *s, t_cmd *cmd)
 {
 	int		file;
@@ -27,6 +28,7 @@ int	here_doc(char *dli, t_ms *s, t_cmd *cmd)
 		error_msg("opening here_doca");
 	return (in_file);
 }
+*/
 
 /* void	init_aux(t_env **head, t_env **tail, t_env *new_node)
 {
@@ -70,7 +72,7 @@ char	*env_paths(t_ms *ms, char **envp)
 	slash = NULL;
 	paths = NULL;
 	if (ms->paths)
-		free_all_paths(ms->paths); 
+		free_all_paths(ms->paths);
 	while (envp[++i] != NULL)
 	{
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)    //!HERE Removed '=' from PATH=
@@ -91,7 +93,7 @@ char	*get_env_val(t_env *env, char *key, t_ms *s)
 {
 	int i;
 
-	i = 0; 
+	i = 0;
 	if (key[0] == '$' && key[1] != '\0')
 			key = key + 1;
 	if (ft_strncmp(key, "PATH", 4) == 0)
@@ -114,5 +116,5 @@ char	*get_env_val(t_env *env, char *key, t_ms *s)
 			env = env->next;
 		}
 	}
-	return (NULL);	
+	return (NULL);
 }
