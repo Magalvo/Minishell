@@ -1,5 +1,26 @@
 #include "../include/minishell.h"
-										//s->ast
+
+void	aux_pipe_child(t_ms *s, t_cmd *cmd, int *pipefd, int fd_in)
+{
+	close(pipefd[0]);
+	if (fd_in != STDIN_FILENO)
+		dup2(fd_in, STDIN_FILENO);
+	if (pipefd[1] != STDOUT_FILENO)
+		dup2(pipefd[1], STDOUT_FILENO);
+	close(pipefd[1]);
+	exec_from_ast_recursive(s, cmd->left, fd_in, STDOUT_FILENO);
+	free_ast(cmd);
+	exit(s->exit_stat);
+}
+
+void	aux_pipe_parent(t_ms *s, pid_t pid, int *pipefd, int fd_out)
+{
+	close(pipefd[1]);
+	exec_from_ast_recursive(s, s->ast->right, pipefd[0], fd_out);
+	close(pipefd[0]);
+	wait_till_end(s, pid);
+}
+
 void exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	int     pipefd[2];
@@ -7,50 +28,43 @@ void exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	char	*key;
 
 	key = ft_strdup("_");
-    if (!cmd)
-        return;
-    if (cmd->type == EXEC)
-    {
-		//export_update(s->export, key, s->ast->argv[s->ast->argc - 1]);
-		handle_kv_update(s->env, key, s->ast->argv[s->ast->argc - 1], 1);
-        if (ft_exec_builtins_chr(s, cmd->argv))
+	if (!cmd)
+		return;
+	if (cmd->type == EXEC)
+	{
+		updating_cmds(s, key, cmd->argv[cmd->argc - 1]);
+		if (ft_exec_builtins_chr(s, cmd->argv))
 			s->exit_stat = 0;
 		else
 			single_exec(s, cmd, fd_in, fd_out);
-    }
-    else if (cmd->type == PIPE)
-    {
-        if (pipe(pipefd) == -1)
-            error_msg("pipe");
-        pid = fork();
-        if (pid == -1)
-            error_msg("fork");
-        else if (pid == 0)
-        {
-            close(pipefd[0]);
-            if (fd_in != STDIN_FILENO)
-                dup2(fd_in, STDIN_FILENO);
-            if (pipefd[1] != STDOUT_FILENO)
-                dup2(pipefd[1], STDOUT_FILENO);
-            close(pipefd[1]);
+	}
+	else if (cmd->type == PIPE)
+	{
+		if (pipe(pipefd) == -1)
+			error_msg("pipe");
+		pid = fork1();
+		if (pid == 0)
+		{
+			//aux_pipe_child(s, cmd, pipefd, fd_in);
+			close(pipefd[0]);
+			if (fd_in != STDIN_FILENO)
+				dup2(fd_in, STDIN_FILENO);
+			if (pipefd[1] != STDOUT_FILENO)
+				dup2(pipefd[1], STDOUT_FILENO);
+			close(pipefd[1]);
 			exec_from_ast_recursive(s, cmd->left, fd_in, STDOUT_FILENO);
-			free_ast(cmd); // Should I make a free here?
-            exit(s->exit_stat);
-        }
-        else
-        {
-            close(pipefd[1]);
-			exec_from_ast_recursive(s, cmd->right, pipefd[0], fd_out);
-            close(pipefd[0]);
-			wait_till_end(s, pid);
-        }
-    }
-    else if (cmd->type == REDIR || cmd->type == HEREDOC)
+			free_ast(cmd);
+			exit(s->exit_stat);
+		}
+		else
+			aux_pipe_parent(s, pid, pipefd, fd_out);
+	}
+	else if (cmd->type == REDIR || cmd->type == HEREDOC)
+	{
+		updating_cmds(s, key, cmd->cmd->argv[cmd->cmd->argc - 1]);
 		exec_redir(s, cmd, fd_in, fd_out);
+	}	
 }
-
-
-
 
 void	free_ast(t_cmd *cmd)
 {
