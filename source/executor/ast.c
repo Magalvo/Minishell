@@ -23,7 +23,7 @@
 	exec_from_ast_recursive(s, s->ast->right, pipefd[0], fd_out);
 	close(pipefd[0]);
 	wait_till_end(s, pid);
-}
+}*/
 
 void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
@@ -63,8 +63,7 @@ void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	{
 		updating_cmds(s, NULL);
 		exec_redir(s, cmd, fd_in, fd_out);
-	}
-		
+	}	
 }
 
 void	free_ast(t_cmd *cmd)
