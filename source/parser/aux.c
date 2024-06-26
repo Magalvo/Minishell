@@ -25,7 +25,7 @@ int peek_nsp(char **ps, char *es, char *tokens)
 	char *s;
 
 	s = *ps;
-	while(s < es && ft_strchr(SPACES, *s))
+	while(s < es && !ft_strchr(SPACES, *s))
 		s++;
 	*ps = s;
 	return *s && ft_strchr(tokens, *s);
