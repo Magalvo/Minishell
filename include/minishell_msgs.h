@@ -21,6 +21,8 @@
 # define 	INVALID_TOKEN		"invalid token found."
 # define 	INCOMPLETE_PARSE	"not parsed, double check parser."
 # define 	PIPE_SYNTAX			"syntax error, check pipes."
+# define 	REDIR_SYNTAX		"ambiguous redirect."
+
 
 
 #endif
