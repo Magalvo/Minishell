@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:12:38 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/26 18:16:06 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/26 19:37:36 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ void	print_2d(char **ptr, int padding)
 
 void	print_ast(t_ms *s, t_cmd *ptr, int padding)
 {
-	int	p;
-
-	p = 0;
 	if (s->ast == NULL)
 	{
 		printf("empty input, nothing to print");
