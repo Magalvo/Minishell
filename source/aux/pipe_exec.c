@@ -75,26 +75,26 @@ int exec_paria(t_ms *s, t_cmd *cmds)
 	key = ft_strdup("_");
 	if (!cmds || cmds->type != EXEC)
 		return (0);
-
 	if (ft_sw_builtins(cmds->argv[0], "export") == 0)
-		return (export_cmd(s, cmds->argv), 1);
+	{
+		export_cmd(s, cmds->argv);
+		export_update(s->export, key, s->ast->argv[s->ast->argc - 1]);
+		handle_kv_update(s->env, key, s->ast->argv[s->ast->argc - 1], 1);
+		return (1);
+	}
  	else if (ft_sw_builtins(cmds->argv[0], "echo") == 0)
 	{
 		echo_cmd_test(cmds->argv, s);
-	 	printf("ANTES: %s\n", get_env_val(s->env, "_", s));
-		//export_update(s->export, key, s->ast->argv[s->ast->argc - 1]);
+		export_update(s->export, key, s->ast->argv[s->ast->argc - 1]);
 		handle_kv_update(s->env, key, s->ast->argv[s->ast->argc - 1], 1);
-		printf("DEPOIS: %s\n", get_env_val(s->env, "_", s));
 		return (1);
 	}
 	else
-	{
 		free(key);
-		return (0);
-	}	
+	return (0);
 }
 
-int	update_last(t_env *env, char *key, char *value)
+/* int	update_last(t_env *env, char *key, char *value)
 {
 	char *tmp;
 	while (env)
@@ -113,8 +113,13 @@ int	update_last(t_env *env, char *key, char *value)
 		env = env->next;
 	}
 	return (0);
+} */
+void	updating_cmds(t_ms *s, char *key, char *value)
+{
+	export_update(s->export, key, value);
+	handle_kv_update(s->env, key, value, 1);
 }
-
+		
 void	exec_from_ast(t_ms *s)
 {
 /* 	char *key;
