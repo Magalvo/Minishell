@@ -70,28 +70,22 @@ void	exec_one(t_ms *s, char **argv)
 
 int exec_paria(t_ms *s, t_cmd *cmds)
 {
-	char *key;
-
-	key = ft_strdup("_");
 	if (!cmds || cmds->type != EXEC)
 		return (0);
 	if (ft_sw_builtins(cmds->argv[0], "export") == 0)
 	{
 		export_cmd(s, cmds->argv);
-		export_update(s->export, key, s->ast->argv[s->ast->argc - 1]);
-		handle_kv_update(s->env, key, s->ast->argv[s->ast->argc - 1], 1);
+		updating_cmds(s, s->ast->argv[s->ast->argc - 1]);
 		return (1);
 	}
  	else if (ft_sw_builtins(cmds->argv[0], "echo") == 0)
 	{
 		echo_cmd_test(cmds->argv, s);
-		export_update(s->export, key, s->ast->argv[s->ast->argc - 1]);
-		handle_kv_update(s->env, key, s->ast->argv[s->ast->argc - 1], 1);
+		updating_cmds(s, s->ast->argv[s->ast->argc - 1]);
 		return (1);
 	}
 	else
-		free(key);
-	return (0);
+		return (0);
 }
 
 /* int	update_last(t_env *env, char *key, char *value)
