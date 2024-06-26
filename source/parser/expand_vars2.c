@@ -39,7 +39,7 @@ char	*expand_dolar(char *input, char *ps, t_ms *s)
 	end = ps;
 	while (ft_isalpha(*++end) || *end == '_')
 		;
-	key = ft_substr(input, (ps + 1) - input, end - ps);
+	key = ft_substr(input, (ps + 1) - input, (end - 1) - ps);
 	res = get_expanded(input, ps, get_env_val(s->env, key, s), \
 			ps + (ft_strlen(key)));
 	free (key);
