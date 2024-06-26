@@ -89,10 +89,13 @@ char	*expand_last_cmd(char *input, char *ps, t_ms *s)
 {
 	char	*val;
 	char	*res;
+	char	*key;
 
-	val = get_env_val(s->env, "_", s);
+	key = ft_strdup("_");
+	val = get_env_val(s->env, key, s);
 	res = get_expanded(input, ps, val, ps + 2);
-	free(val);
+	//free(val);
+	free(key);
 	return(free(input), res);
 }
 
