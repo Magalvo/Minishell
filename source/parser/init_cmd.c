@@ -26,6 +26,7 @@ t_cmd *cmd_redir(t_cmd *subcmd, char *filename, int mode, int fd)
 	cmd = cmd_init();
 	cmd->type = REDIR;
 	cmd->cmd = subcmd;
+	unglue_str(filename, filename + ft_strlen(filename));
 	cmd->file = filename;
 	cmd->mode = mode;
 	cmd->fd = fd;
