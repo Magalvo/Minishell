@@ -25,9 +25,7 @@ void exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	int     pipefd[2];
 	pid_t   pid;
-	char	*key;
 
-	key = ft_strdup("_");
 	if (!cmd)
 		return;
 	if (cmd->type == EXEC)
@@ -44,7 +42,7 @@ void exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	}
 	else if (cmd->type == REDIR || cmd->type == HEREDOC)
 	{
-		updating_cmds(s, key, cmd->cmd->argv[cmd->cmd->argc - 1]);
+		updating_cmds(s, cmd->cmd->argv[cmd->cmd->argc - 1]);
 		exec_redir(s, cmd, fd_in, fd_out);
 	}
 }
