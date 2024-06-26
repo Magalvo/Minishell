@@ -119,7 +119,23 @@ void	updating_cmds(t_ms *s, char *key, char *value)
 	export_update(s->export, key, value);
 	handle_kv_update(s->env, key, value, 1);
 }
-		
+
+void aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+{
+	char	*key;
+
+	key = ft_strdup("_");
+	if(s->ast->type != 3)
+		updating_cmds(s, key, cmd->argv[cmd->argc - 1]);
+	else
+		free(key);
+    if (ft_exec_builtins_chr(s, cmd->argv))
+        s->exit_stat = 0;
+    else 
+        single_exec(s, cmd, fd_in, fd_out);
+}
+
+
 void	exec_from_ast(t_ms *s)
 {
 /* 	char *key;
