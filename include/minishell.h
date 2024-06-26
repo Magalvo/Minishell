@@ -180,6 +180,7 @@ void	dup_and_close(int fd, int standard);
 int		fork1(void);
 int		ft_strcmp(const char *s1, const char *s2);
 int		env_pos(t_env *env, char *value);
+char	*join_key_value(const char *key, const char *value);
 
 
 //*================= EXEC =========================*//
