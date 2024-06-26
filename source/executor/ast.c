@@ -4,14 +4,18 @@ void exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	int     pipefd[2];
 	pid_t   pid;
+	char	*key;
 
+	key = ft_strdup("_");
     if (!cmd)
         return;
     if (cmd->type == EXEC)
     {
+		//export_update(s->export, key, s->ast->argv[s->ast->argc - 1]);
+		handle_kv_update(s->env, key, s->ast->argv[s->ast->argc - 1], 1);
         if (ft_exec_builtins_chr(s, cmd->argv))
-            s->exit_stat = 0;
-        else
+			s->exit_stat = 0;
+		else
 			single_exec(s, cmd, fd_in, fd_out);
     }
     else if (cmd->type == PIPE)

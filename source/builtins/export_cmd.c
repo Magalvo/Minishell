@@ -36,16 +36,37 @@ char	*extract_key(const char *str, char *delimiter)
 	return (ft_substr(str, 0, key_len));
 }
 
+int	is_str_print(char *value)
+{
+	if (!value)
+		return 0;
+
+	while (*value)
+	{
+		if (!isprint((unsigned char)*value))
+			return (0);
+		value++;
+	}
+	return (1);
+}
+
+
 int	update_key(t_env *env, char *key, char *value)
 {
+	char *value_tmp;
+
+	value_tmp = NULL;
 	while (env)
 	{
 		if (ft_sw_builtins(env->key, key) == 0)
 		{
 			if (value)
 			{
+				if(ft_strcmp(value, env->value) == 0)
+					return (1);
+				value_tmp = ft_strdup(value);
 				free(env->value);
-				env->value = ft_strdup(value);
+				env->value = value_tmp;
 			}
 			return (1);
 		}
@@ -100,7 +121,7 @@ int	export_cmd(t_ms *s, char **str)
 		return (export_cmd_error("not a valid identifier"));
 	}
 	export_update(s->export, key, value);
-	handle_kv_update(s->env, key, value);
+	handle_kv_update(s->env, key, value, 1);
 	env_arr_update(s, NULL);
 	env_paths(s, s->env_tmp);
 	return (0);
