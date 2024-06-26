@@ -77,9 +77,9 @@ int	ft_exec_builtins_chr(t_ms *s, char **cmds) //[{laskdl}{kjhalsd}{jakskdj}]
 	/*  	if (s->ast->cmd->type != EXEC)
 		return (0); */
 	if (ft_sw_builtins(cmds[0], "echo") == 0)
-		return (echo_cmd_test(cmds, s));
-	else if (ft_sw_builtins(cmds[0], "cd") == 0)
 		return (1);
+	else if (ft_sw_builtins(cmds[0], "cd") == 0)
+		return (cd_cmd(s, cmds), 1);
 	else if (ft_sw_builtins(cmds[0], "env") == 0)
 		return (env_cmd(s, cmds));
 	else if (ft_sw_builtins(cmds[0], "pwd") == 0)
