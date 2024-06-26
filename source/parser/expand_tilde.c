@@ -49,7 +49,8 @@ char	*expand_tilde_pwd(char *input, char *ps, bool check, t_ms *s)
 			{
 				res = get_expanded(input, ps, val, ps + 2);
 				free(val);
-				return(free(input), res);
+				// return(free(input), res);
+				return(res);
 			}
 		}
 	}
@@ -73,7 +74,8 @@ char	*expand_tilde_oldpwd(char *input, char *ps, bool check, t_ms *s)
 				// if (ft_strchr(" :/", *(ps + 2)))
 				res = get_expanded(input, ps, val, ps + 2);
 				free(val);
-				return(free(input), res);
+				// return(free(input), res);
+				return(res);
 			}
 		}
 	}
@@ -96,7 +98,8 @@ char	*expand_tilde(char *input, char *ps, bool check, t_ms *s)
 			{
 				res = get_expanded(input, ps, val, ps + 1);
 				free(val);
-				return(free(input), res);
+				// return(free(input), res);
+				return(res);
 			}
 		}
 	}
@@ -108,7 +111,7 @@ bool	strrchr_alpha_loop(const char *input, const char *pos)
 	pos--;
 	if (!ft_isalpha(*pos))
 		return (false);
-	while (*pos < *input)
+	while (pos > input)
 	{
 		if (ft_isalpha(*pos))
 			pos--;
