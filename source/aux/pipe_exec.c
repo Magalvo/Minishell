@@ -114,21 +114,29 @@ int exec_paria(t_ms *s, t_cmd *cmds)
 	}
 	return (0);
 } */
-void	updating_cmds(t_ms *s, char *key, char *value)
+void	updating_cmds(t_ms *s, char *value)
 {
-	export_update(s->export, key, value);
-	handle_kv_update(s->env, key, value, 1);
-}
-
-void aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
-{
-	char	*key;
+	char *key;
 
 	key = ft_strdup("_");
 	if(s->ast->type != 3)
-		updating_cmds(s, key, cmd->argv[cmd->argc - 1]);
+	{
+		export_update(s->export, key, value);
+		handle_kv_update(s->env, key, value, 1);
+	}
 	else
 		free(key);
+}
+
+/* export X="ola ola"
+echo $X
+echo 1 > $X
+echo 1 > "$X" */
+
+
+void aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+{
+	updating_cmds(s, cmd->argv[cmd->argc - 1]);
     if (ft_exec_builtins_chr(s, cmd->argv))
         s->exit_stat = 0;
     else 

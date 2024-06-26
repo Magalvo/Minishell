@@ -190,7 +190,7 @@ void			exec_one(t_ms *s, char **argv);
 void			single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
 void			exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
 void			exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
-void			updating_cmds(t_ms *s, char *key, char *value);
+void			updating_cmds(t_ms *s, char *value);
 void			aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
 
 //*================= ERRORS =========================*//
