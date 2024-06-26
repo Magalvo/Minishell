@@ -43,7 +43,9 @@ void	parse_args(char **ps, char *es, t_d_cmd *cmds, t_ms *s)
 		new_arg = ft_calloc((eq - q) + 1, sizeof(char));
 		ft_memmove((void *)new_arg, (void *)q, (eq - q));
 		unglue_str(new_arg, new_arg + ft_strlen(new_arg));
-		cmds->one->argv[cmds->one->argc] = new_arg;
+
+		cmds->one->argv[cmds->one->argc] = remove_quotes(new_arg);
+		// cmds->one->argv[cmds->one->argc] = new_arg;
 		cmds->one->argc++;
 		cmds->two = parse_redir(cmds->two, ps, es, s);
 	}
