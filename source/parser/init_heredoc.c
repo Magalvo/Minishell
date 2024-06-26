@@ -6,25 +6,28 @@ t_cmd *cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 {
 	t_cmd	*cmd;
 	char	*filename;
+	bool	expand;
 
+	expand = (ft_strchr(delim, '\'') || ft_strchr(delim, '"'));
 	cmd = cmd_init();
 	cmd->type = HEREDOC;
 	cmd->cmd = subcmd;
 	cmd->mode = mode;
 	unglue_str(delim, delim + ft_strlen(delim));
-	cmd->delim = delim;
+	cmd->delim = remove_quotes(delim);
 	filename = ft_getrnd_str();
 	cmd->file = ft_strjoin("/tmp/", filename);
 	free(filename);
 	if (!cmd->file)
 		perror("strjoin null");
-	cmd->fd = exec_heredoc(cmd->delim, cmd->file, \
-		(ft_strchr(delim, '\'') || ft_strchr(delim, '"')), s);
+	// cmd->fd = exec_heredoc(cmd->delim, cmd->file,
+		// (ft_strchr(delim, '\'') || ft_strchr(delim, '"')), s);
+	cmd->fd = exec_heredoc(cmd->delim, cmd->file, expand, s);
 	if (cmd->fd == -1)
 	{
-		free(cmd->file);
-		free(cmd);
-		return (NULL);
+		// free(cmd->file);
+		// free(cmd);
+		return (free(cmd->file), free(cmd), NULL);
 	}
 	check_signal(MAIN);
 	return (cmd);
@@ -92,12 +95,16 @@ void	expand_heredoc(t_ms *s, char *line, int expand, int fd_file)
 
 	if (expand == 0)
 	{
-		xp_line = expand_dolar_loop(line, s);
+		// xp_line = expand_dolar_loop(line, s);
+		printf("expand: %s", line);
+		xp_line = expand_sw_vars(line, s);
+		printf("expand: %s", xp_line);
 		ft_putendl_fd(xp_line, fd_file);
 		free(xp_line);
 	}
 	else
 	{
+		printf("else");
 		ft_putendl_fd(line, fd_file);
 		free(line);
 	}
