@@ -111,7 +111,6 @@ void	exec_from_ast(t_ms *s)
 	if (s->ast == NULL)
 		return ;
 	if (s->ast->type == EXEC && s->ast->argv[s->ast->argc - 1] != NULL)
-	if (s->ast->type == EXEC && s->ast->argv[s->ast->argc - 1] != NULL)
 	{
 		update_last(s->env, key, s->ast->argv[s->ast->argc - 1]);
 		update_last(s->export, key, s->ast->argv[s->ast->argc - 1]);
