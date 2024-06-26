@@ -22,7 +22,7 @@ char	*get_value_from_str(const char *str)
 		return (NULL);
 }
 
-int	handle_kv_update(t_env *env, char *key, char *value)
+int	handle_kv_update(t_env *env, char *key, char *value, int tog)
 {
 	if (!is_valid_key(key))
 	{
@@ -44,7 +44,11 @@ int	handle_kv_update(t_env *env, char *key, char *value)
 		else if (value)
 			free(value);
 	}
-	free(key);
+	if (tog)
+	{
+		free(key);
+		key = NULL;
+	}	
 	return (1);
 }
 

@@ -40,3 +40,32 @@ void	dup_and_close(int fd, int standard)
 	dup2(fd, standard);
 	close(fd);
 }
+
+int ft_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 && (*s1 == *s2))
+	{
+		s1++;
+		s2++;
+	}
+	return (unsigned char)(*s1) - (unsigned char)(*s2);
+}
+
+int	env_pos(t_env *env, char *value)
+{
+	t_env	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = env;
+	while(tmp)
+	{
+		if(ft_strcmp(tmp->key, value) == 0)
+			return (i);
+		i++;
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+

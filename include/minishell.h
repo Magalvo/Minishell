@@ -58,7 +58,7 @@ int		ft_sw_builtins(const char *s1, const char *s2);
 int		is_valid_key(const char *key);
 char	*get_key_from_str(const char *str);
 char	*get_value_from_str(const char *str);
-int		handle_kv_update(t_env *env, char *key, char *value);
+int		handle_kv_update(t_env *env, char *key, char *value, int tog);
 int		export_update(t_env *export, char *key, char *value);
 char	*extract_key(const char *str, char *delimiter);
 int		add_new_node(t_env *env, char *key, char *value);
@@ -173,6 +173,8 @@ char	*key_dup(char *env_var, size_t key_len);
 int		setting_value(t_env *node, char *delimiter);
 void	dup_and_close(int fd, int standard);
 int		fork1(void);
+int		ft_strcmp(const char *s1, const char *s2);
+int		env_pos(t_env *env, char *value);
 
 
 //*================= EXEC =========================*//

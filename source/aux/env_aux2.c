@@ -119,3 +119,4 @@ char	*get_env_val(t_env *env, char *key, t_ms *s)
 	// }
 	return (NULL);
 }
+

@@ -70,15 +70,28 @@ void	exec_one(t_ms *s, char **argv)
 
 int exec_paria(t_ms *s, t_cmd *cmds)
 {
+	char *key;
+
+	key = ft_strdup("_");
 	if (!cmds || cmds->type != EXEC)
 		return (0);
 
 	if (ft_sw_builtins(cmds->argv[0], "export") == 0)
 		return (export_cmd(s, cmds->argv), 1);
-	else if (ft_sw_builtins(cmds->argv[0], "cd") == 0)
-		return (cd_cmd(s, cmds->argv), 1);
+ 	else if (ft_sw_builtins(cmds->argv[0], "echo") == 0)
+	{
+		echo_cmd_test(cmds->argv, s);
+	 	printf("ANTES: %s\n", get_env_val(s->env, "_", s));
+		//export_update(s->export, key, s->ast->argv[s->ast->argc - 1]);
+		handle_kv_update(s->env, key, s->ast->argv[s->ast->argc - 1], 1);
+		printf("DEPOIS: %s\n", get_env_val(s->env, "_", s));
+		return (1);
+	}
 	else
+	{
+		free(key);
 		return (0);
+	}	
 }
 
 int	update_last(t_env *env, char *key, char *value)
@@ -86,13 +99,14 @@ int	update_last(t_env *env, char *key, char *value)
 	char *tmp;
 	while (env)
 	{
-		if (ft_sw_builtins(env->key, key) == 0 && ft_strlen(env->key) == ft_strlen(key))
+		if (ft_sw_builtins(env->key, key) == 0 && ft_strcmp(env->key, key) == 0)
 		{
-			if (env->value)
+			if (env->value && value)
 			{
 				tmp = env->value;
+				free(env->value);
+				env->value = tmp;
 				env->value = ft_strdup(value);
-				free(tmp);
 			}
 			return (1);
 		}
@@ -103,11 +117,9 @@ int	update_last(t_env *env, char *key, char *value)
 
 void	exec_from_ast(t_ms *s)
 {
-	char *key;
+/* 	char *key;
 
-	key = "_";
-	if(!exec_paria(s, s->ast))
-		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
+	key = ft_strdup("_");
 	if (s->ast == NULL)
 		return ;
 	if (s->ast->type == EXEC && s->ast->argv[s->ast->argc - 1] != NULL)
@@ -121,4 +133,10 @@ void	exec_from_ast(t_ms *s)
 		update_last(s->env, key, s->ast->cmd->argv[s->ast->cmd->argc - 1]);
 		update_last(s->export, key, s->ast->cmd->argv[s->ast->cmd->argc - 1]);
 	}
+	free(key); */
+	if(!exec_paria(s, s->ast))
+		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
 }
+	
+	
+
