@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export_aux.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 17:23:29 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/06/26 17:23:30 by cjoao-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minishell.h"
 
 char	*get_key_from_str(const char *str)
@@ -48,7 +60,7 @@ int	handle_kv_update(t_env *env, char *key, char *value, int tog)
 	{
 		free(key);
 		key = NULL;
-	}	
+	}
 	return (1);
 }
 
@@ -83,7 +95,7 @@ void	init_list(t_env **list, char **envp)
 	t_env	*head;
 	t_env	*tail;
 	t_env 	*new_node;
-	
+
 	i = 0;
 	head = NULL;
 	tail = NULL;

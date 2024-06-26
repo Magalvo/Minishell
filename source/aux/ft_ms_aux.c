@@ -1,15 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_ms_aux.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 17:21:13 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/06/26 18:39:47 by cjoao-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 char	*ft_getrnd_str(void)
 {
-	int fd;
+	int		fd;
 	char	res[STR_SIZE + 1];
 	char	buf[1];
 	int		i;
 
 	i = 0;
-	// buf = '\0';
 	fd = open("/dev/urandom", O_RDONLY);
 	if (!fd)
 		return (NULL);

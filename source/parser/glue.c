@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   glue.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 17:12:40 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/06/26 17:12:53 by cjoao-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/minishell.h"
 
@@ -53,27 +64,3 @@ void	unglue_str(char *start, char *end)
 		i++;
 	}
 }
-
-
-// void	ft_get_strinterval()
-
-/*
-// before && after
-left && right
-type PIPE
-&& type AND
-( ) type AND
-(ls && wc) && ps
-
-AND
-BLOCK
-PIPE
-REDIR
-EXEC
-falta glue quotes and dquotes
-falta expand $var, excepto se dentro de quotes
-
-$PATH
-
-if (execve(s->cmdout, s->cmdout_args, envp) == -1)
-*/

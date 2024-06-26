@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expand_vars2.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 17:10:49 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/06/26 17:12:08 by cjoao-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+// TODO can delete?
+// ! no longer used
 char	*expand_dolar_loop(char *input, t_ms *s)
 {
 	char	*start;
@@ -51,36 +64,29 @@ char	*expand_dolar(char *input, char *ps, t_ms *s)
 	return(free(input), res);
 }
 
-// stub
-char	*expand_words(char *input)
-{
-	return (input);
-}
-// TODO this
 char	*remove_quotes(char *input)
 {
-	// char 17
-	char	*first_qt;
-	char	*last_qt;
+	char	*qt_pos;
 	char	*res1;
 	char	*res2;
 	bool	is_qt;
 
-	first_qt = get_first_quote(input);
-	if (!first_qt)
+	is_qt = false;
+	qt_pos = get_first_quote(input);
+	if (!qt_pos)
 		return (input);
-	if (*first_qt == QUOTE)
+	if (*qt_pos == QUOTE)
 		is_qt = true;
-	else if (*first_qt == DQUOTE)
+	else if (*qt_pos == DQUOTE)
 		is_qt = false;
 
-	res1 = get_expanded(input, first_qt, NULL, first_qt + 1);
+	res1 = get_expanded(input, qt_pos, NULL, qt_pos + 1);
 	free(input);
 	if (is_qt)
-		last_qt = ft_strchr(res1, QUOTE);
+		qt_pos = ft_strchr(res1, QUOTE);
 	else
-		last_qt = ft_strchr(res1, DQUOTE);
-	res2 = get_expanded(res1, last_qt, NULL, last_qt + 1);
+		qt_pos = ft_strchr(res1, DQUOTE);
+	res2 = get_expanded(res1, qt_pos, NULL, qt_pos + 1);
 	free(res1);
 	return (res2);
 }

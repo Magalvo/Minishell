@@ -1,4 +1,14 @@
-// header goes here
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   signals.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 17:25:28 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/06/26 17:25:37 by cjoao-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/minishell.h"
 
@@ -39,7 +49,7 @@ void	here_handler(int signal, siginfo_t *info, void *context)
 	{
 		printf("\n");
 		exit(130);
-	}	
+	}
 }
 
 void	check_signal(e_signal sig)

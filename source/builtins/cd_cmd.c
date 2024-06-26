@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_cmd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:15 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/27 15:55:50 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:47:48 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static int	change_pwd(t_env *env, t_ms *s)
 	if (!cmd)
 	{
 		s->exit_stat = 1;
-		return (ft_putstr_fd("Failed to change Dir\n", 2), 1); //!chaged
+		//!chaged
+		return (ft_putstr_fd("Failed to change Dir\n", 2), 1);
 	}
 	result = update_key(env, "PWD", cmd);
 	free(cmd);
@@ -67,7 +68,7 @@ static int	cd_cmd_minus(t_env *env)
 
 int	cd_cmd(t_ms *mini, char **path)
 {
-	t_env *env;
+	t_env	*env;
 
 	env = mini->env;
 	if (path[2])

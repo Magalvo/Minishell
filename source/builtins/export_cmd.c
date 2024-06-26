@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:59 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/27 15:10:09 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:54:34 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,9 @@ char	*extract_key(const char *str, char *delimiter)
 	return (ft_substr(str, 0, key_len));
 }
 
-int	is_str_print(char *value)
-{
-	if (!value)
-		return 0;
-
-	while (*value)
-	{
-		if (!isprint((unsigned char)*value))
-			return (0);
-		value++;
-	}
-	return (1);
-}
-
-
 int	update_key(t_env *env, char *key, char *value)
 {
-	char *value_tmp;
+	char	*value_tmp;
 
 	value_tmp = NULL;
 	while (env)
@@ -62,7 +47,7 @@ int	update_key(t_env *env, char *key, char *value)
 		{
 			if (value)
 			{
-				if(ft_strcmp(value, env->value) == 0)
+				if (ft_strcmp(value, env->value) == 0)
 					return (1);
 				value_tmp = ft_strdup(value);
 				free(env->value);
@@ -78,8 +63,8 @@ int	update_key(t_env *env, char *key, char *value)
 int	add_new_node(t_env *env, char *key, char *value)
 {
 	t_env	*env_cpy;
+	t_env	*new_node;
 
-	t_env *new_node; //= new_env_node(key,value);
 	new_node = (t_env *)malloc(sizeof(t_env));
 	if (!new_node)
 		error_msg("malloc (new env)");

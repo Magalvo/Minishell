@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_prechecks.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 17:15:00 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/06/26 17:15:03 by cjoao-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/minishell.h"
 
@@ -90,13 +101,11 @@ char	*expand_sw_quotes(char *input)
 		{
 			end = ft_strchr(pos + 1, '\'');
 			glue_str(pos, end);
-			// expand_sw_quotes(end + 1);
 		}
 		else if (*pos == DQUOTE)
 		{
 			end = ft_strchr(pos + 1, '"');
 			glue_str(pos, end);
-			// expand_sw_quotes(end + 1);
 		}
 		pos = get_first_quote(end + 1);
 	}
@@ -124,45 +133,3 @@ char	*get_first_quote(char *input)
 		pos = dqt;
 	return (pos);
 }
-
-
-/* bak
-char	*expand_sw_quotes(char *input, t_ms *s)
-{
-	char	*pos;
-	char	*end;
-	// char	*qt;
-	// char	*dqt;
-
-	(void)s;
-	// qt = ft_strchr(input, '\'');
-	// dqt = ft_strchr(input, '"');
-	// if (qt && dqt)
-	if (ft_strchr(input, '\'') && ft_strchr(input, '"'))
-	{
-		pos = ft_strchr(input, '\'');
-		if (ft_strchr(input, '\'') > ft_strchr(input, '"'))
-			pos = ft_strchr(input, '"');
-	}
-	else if (qt)
-		pos = qt;
-	else if (dqt)
-		pos = dqt;
-	while (pos)
-	{
-		if (*pos == QUOTE)
-		{
-			end = ft_strchr(pos + 1, '\'');
-			glue_str(pos, end);
-			expand_sw_quotes(end + 1, s)
-		}
-		else if (*pos == DQUOTE)
-		{
-			end = ft_strchr(pos + 1, '"');
-			glue_str(pos, end);
-			expand_sw_quotes(end + 1, s)
-		}
-	}
-	return (input);
-}
-*/

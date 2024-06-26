@@ -125,7 +125,7 @@ int		open_fd(char *file, int mode);
 // t_cmd	*nulterminate(t_cmd *cmd);
 void	reprompt(char *str, int exit_stat, t_ms *s);
 int		peek(char **ps, char *es, char *toks);
-int		peek_nsp(char **ps, char *es, char *toks);
+int		peek_nsp(const char *ps, char *es, char *toks);
 int		getcmd(char *buf, int nbuf);
 int		get_token(char **ps, char *es, char **q, char **eq);
 int		get_token_a(char **ps);
@@ -147,8 +147,12 @@ void	parse_args(char **ps, char *es, t_d_cmd *cmds, t_ms *s);
 
 //*==================== AUX =======================*//
 void	print_ast(t_ms *s, t_cmd *ptr, int padding);
+void	print_ast_exec(t_ms *s, t_cmd *ptr, int padding);
+void	print_ast_pipe(t_ms *s, t_cmd *ptr, int padding);
+void	print_ast_redir(t_ms *s, t_cmd *ptr, int padding);
+void	print_ast_heredoc(t_ms *s, t_cmd *ptr, int padding);
 void	print_2d(char **ptr, int padding);
-char	*empty(void);
+// char	*empty(void);
 
 
 //*==================== AUX =======================*//
@@ -191,7 +195,7 @@ void			exec_one(t_ms *s, char **argv);
 void			single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
 void			exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
 void			exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
-void			updating_cmds(t_ms *s, char *key, char *value);
+void			updating_cmds(t_ms *s, char *value);
 void			aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
 
 //*================= ERRORS =========================*//
