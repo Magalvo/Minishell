@@ -27,6 +27,8 @@ t_cmd *cmd_redir(t_cmd *subcmd, char *filename, int mode, int fd)
 	cmd->type = REDIR;
 	cmd->cmd = subcmd;
 	unglue_str(filename, filename + ft_strlen(filename));
+	if (peek_nsp(&filename, filename + ft_strlen(filename), SPACES))
+		printf("has spaces: %s", filename);
 	cmd->file = filename;
 	cmd->mode = mode;
 	cmd->fd = fd;
