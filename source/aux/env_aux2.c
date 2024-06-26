@@ -92,29 +92,31 @@ char	*env_paths(t_ms *ms, char **envp)
 char	*get_env_val(t_env *env, char *key, t_ms *s)
 {
 	(void)s;
-/* 	int i;
+	// int i;
 
-	i = 0;
-	if (key[0] == '$' && key[1] != '\0')
-			key = key + 1;
-	if (ft_strncmp(key, "PATH", 4) == 0)
-	{
-		while (s->paths && s->paths[i])
+	// i = 0;
+	// if (key[0] == '$' && key[1] != '\0')
+	// 		key = key + 1;
+	// if (ft_strncmp(key, "PATH", 4) == 0)
+	// {
+	// 	while (s->paths && s->paths[i])
+	// 	{
+	// 		ft_putstr_fd(s->paths[i], 1);
+	// 		if(s->paths[i + 1] != NULL)
+	// 			ft_putstr_fd(":", 1);
+	// 		i++;
+	// 	}
+	// }
+	// else
+	// {
+		while (env)
 		{
-			ft_putstr_fd(s->paths[i], 1);
-			if(s->paths[i + 1] != NULL)
-				ft_putstr_fd(":", 1);
-			i++;
+			if (ft_strncmp(env->key, key, ft_strlen(key)) == 0 && \
+				ft_strlen(env->key) == ft_strlen(key))
+				return (env->value);
+			env = env->next;
 		}
-	}
-	else
-	{ */
-	while (env)
-	{
-		if (ft_strcmp(env->key, key) == 0)
-			return (env->value);
-		env = env->next;
-	}
+	// }
 	return (NULL);
 }
 
