@@ -1,5 +1,16 @@
-#include "../../include/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipe_exec.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/06/26 18:44:37 by cjoao-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../../include/minishell.h"
 
 void	exec_one(t_ms *s, char **argv)
 {
@@ -8,10 +19,10 @@ void	exec_one(t_ms *s, char **argv)
 
 	if ((argv[0][0] == '/' && argv[0][1]) || \
 		(argv[0][0] == '.' && argv[0][1] == '/' && argv[0][2]))
-    {
-        execve(argv[0], argv, s->env_tmp);
+	{
+		execve(argv[0], argv, s->env_tmp);
 		not_found(argv[0], 127, s);
-    }
+	}
 	else
 	{
 		path = cmd_path(s->paths, argv[0], s);
@@ -68,7 +79,7 @@ void	exec_one(t_ms *s, char **argv)
 		single_exec(s, cmd, fd_in, fd_out);
 } */
 
-int exec_paria(t_ms *s, t_cmd *cmds)
+int	exec_paria(t_ms *s, t_cmd *cmds)
 {
 	if (!cmds || cmds->type != EXEC)
 		return (0);
@@ -78,7 +89,7 @@ int exec_paria(t_ms *s, t_cmd *cmds)
 		export_cmd(s, cmds->argv);
 		return (1);
 	}
- 	else if (ft_sw_builtins(cmds->argv[0], "echo") == 0)
+	else if (ft_sw_builtins(cmds->argv[0], "echo") == 0)
 	{
 		echo_cmd_test(cmds->argv, s);
 		//updating_cmds(s, s->ast->argv[s->ast->argc - 1]);
@@ -110,7 +121,7 @@ int exec_paria(t_ms *s, t_cmd *cmds)
 } */
 void	updating_cmds(t_ms *s, char *value)
 {
-	char *key;
+	char	*key;
 
 	key = NULL;
 	(void)value;
@@ -133,22 +144,35 @@ echo $X
 echo 1 > $X
 echo 1 > "$X" */
 
-
-void aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
-	updating_cmds(s, NULL);
+	updating_cmds(s, cmd->argv[cmd->argc - 1]);
     if (ft_exec_builtins_chr(s, cmd->argv))
-		s->exit_stat = 0;
-	else
-		single_exec(s, cmd, fd_in, fd_out);
+        s->exit_stat = 0;
+    else 
+        single_exec(s, cmd, fd_in, fd_out);
 }
-
 
 void	exec_from_ast(t_ms *s)
 {
+/* 	char *key;
+
+	key = ft_strdup("_");
+	if (s->ast == NULL)
+		return ;
+	if (s->ast->type == EXEC && s->ast->argv[s->ast->argc - 1] != NULL)
+	{
+		update_last(s->env, key, s->ast->argv[s->ast->argc - 1]);
+		update_last(s->export, key, s->ast->argv[s->ast->argc - 1]);
+	}
+	else if (((s->ast->type == REDIR || s->ast->type == HEREDOC) && s->ast->argv[s->ast->argc - 1] != NULL) \
+		&& s->ast->argv[s->ast->argc - 1] != NULL)
+	{
+		update_last(s->env, key, s->ast->cmd->argv[s->ast->cmd->argc - 1]);
+		update_last(s->export, key, s->ast->cmd->argv[s->ast->cmd->argc - 1]);
+	}
+	free(key); */
+	if (!exec_paria(s, s->ast))
 	if(!exec_paria(s, s->ast))
 		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
 }
-	
-	
-

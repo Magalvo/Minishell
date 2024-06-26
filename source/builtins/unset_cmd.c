@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:50 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/27 14:44:32 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/26 19:00:16 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ int	unset_cmd(t_ms *s, char **args)
 	current = s->env;
 	while (current && args[1])
 	{
-		if ((ft_sw_builtins(current->key, args[1]) == 0) &&
-			ft_strncmp(current->key, "_", ft_strlen(current->key)))
+		if ((ft_sw_builtins(current->key, args[1]) == 0)
+			&& ft_strncmp(current->key, "_", ft_strlen(current->key)))
 		{
 			if (current->prev == NULL)
 				unset_cmd_aux(s, &current);

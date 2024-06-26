@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:07 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/27 15:49:59 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:49:27 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ void	execute_command(t_ms *s, t_cmd *cmd, char **cmds)
 	if (id < 0)
 		exit_minishell(s, "error");
 	if (id == 0)
-    {
-        check_signal(CHILD);
+	{
+		check_signal(CHILD);
 		cmds++;
 		cmds++;
 		exec_one(s, cmds);
-        not_found(cmd->argv[0], 126, s);
-    }
+		not_found(cmd->argv[0], 126, s);
+	}
 	else
 		wait_till_end(s, id);
 }
@@ -55,12 +55,12 @@ void	clear_env_handler(t_ms *s)
 int	env_cmd(t_ms *s, char **cmds)
 {
 	if (cmds[1] && cmds[1][0] == '-' && cmds[1][1] == 'i' && cmds[1][2] == '\0')
-	{	
+	{
 		if (cmds[2])
 		{
 			clear_env_handler(s);
 			execute_command(s, s->ast, cmds);
-		}	
+		}
 	}
 	else
 		print_current_env(s->env);
@@ -99,7 +99,7 @@ t_env	*new_env_node(char *env_var)
 	return (node);
 }
 
-/* t_env *new_env_node(char *env_var) 
+/* t_env *new_env_node(char *env_var)
 {
 	t_env *node;
 	size_t key_len;
@@ -116,7 +116,7 @@ t_env	*new_env_node(char *env_var)
 	}
 	key_len = delimiter - env_var;
 	node->key = ft_strndup(env_var, key_len);
-	if (!node->key) 
+	if (!node->key)
 	{
 		free(node);
 		return (NULL);
@@ -153,7 +153,7 @@ t_env	*new_env_node(char *env_var)
 	path = NULL;
 	if (cmds[1] && cmds[1][0] == '-' && cmds[1][1] == 'i' && cmds[1][2] == '\0')
 	{
-		if (s->env_tmp) 								
+		if (s->env_tmp)
 		{
 				clear_env(s->env_tmp);
 				s->env_tmp = NULL;
@@ -181,7 +181,7 @@ t_env	*new_env_node(char *env_var)
 	}
 	else
 	{
-		env_cpy = s->env;											
+		env_cpy = s->env;
 		while (env_cpy)
 		{
 			if (env_cpy->value != NULL)
@@ -198,7 +198,7 @@ t_env	*new_env_node(char *env_var)
 	t_env	*tail;
 	t_env 	*new_node;
 	int i;
-	
+
 	i = 0;
 	head = NULL;
 	tail = NULL;

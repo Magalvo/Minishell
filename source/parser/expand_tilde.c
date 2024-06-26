@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expand_tilde.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 17:07:37 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/06/26 17:09:08 by cjoao-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/minishell.h"
 
@@ -11,7 +22,6 @@ must be followed by (' ', ':', '/')
 if preceded by '=' is an assignment, must follow: isalpha() > = > ~(+-)
 everything else should not expand
 */
-
 
 // validate expansion on assign (VAR=~)
 char	*expand_tilde_equal(char *input, char *ps, t_ms *s)

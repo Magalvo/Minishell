@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_heredoc.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/06/26 18:14:48 by cjoao-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/minishell.h"
 
@@ -95,16 +106,12 @@ void	expand_heredoc(t_ms *s, char *line, int expand, int fd_file)
 
 	if (expand == 0)
 	{
-		// xp_line = expand_dolar_loop(line, s);
-		printf("expand: %s", line);
 		xp_line = expand_sw_vars(line, s);
-		printf("expand: %s", xp_line);
 		ft_putendl_fd(xp_line, fd_file);
 		free(xp_line);
 	}
 	else
 	{
-		printf("else");
 		ft_putendl_fd(line, fd_file);
 		free(line);
 	}

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expand_vars.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 17:09:13 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/06/26 17:10:43 by cjoao-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/minishell.h"
 
@@ -28,12 +39,6 @@ https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html
 	// Filename Expansion -> dont implement
     Quote Removal
 */
-
-	// ! glue quotes
-	// ! glue dquotes
-	// ! glue quotes
-	// ! glue dquotes
-	// ! parse_ast && //remove quotes
 
 // TODO check if inside {} is 0 ? _
 char	*expand_curly(char *input, char *ps, t_ms *s)
@@ -94,7 +99,6 @@ char	*expand_last_cmd(char *input, char *ps, t_ms *s)
 	key = ft_strdup("_");
 	val = get_env_val(s->env, key, s);
 	res = get_expanded(input, ps, val, ps + 2);
-	//free(val);
 	free(key);
 	return(free(input), res);
 }

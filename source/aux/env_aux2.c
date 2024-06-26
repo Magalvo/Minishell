@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env_aux2.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 17:20:37 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/06/26 18:34:24 by cjoao-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minishell.h"
 
 /* moved to parser
@@ -75,11 +87,12 @@ char	*env_paths(t_ms *ms, char **envp)
 		free_all_paths(ms->paths);
 	while (envp[++i] != NULL)
 	{
-		if (ft_strncmp(envp[i], "PATH=", 5) == 0)    //!HERE Removed '=' from PATH=
+		//!HERE Removed '=' from PATH=
+		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
 		{
 			found = 1;
 			paths = ft_split(envp[i] + 5, ':');
-			break;
+			break ;
 		}
 	}
 	if (!found || !paths)
@@ -109,14 +122,84 @@ char	*get_env_val(t_env *env, char *key, t_ms *s)
 	// }
 	// else
 	// {
-		while (env)
-		{
-			if (ft_strncmp(env->key, key, ft_strlen(key)) == 0 && \
-				ft_strlen(env->key) == ft_strlen(key))
-				return (env->value);
-			env = env->next;
-		}
+	while (env)
+	{
+		if (ft_strncmp(env->key, key, ft_strlen(key)) == 0 && \
+			ft_strlen(env->key) == ft_strlen(key))
+			return (env->value);
+		env = env->next;
+	}
 	// }
 	return (NULL);
 }
 
+char	**env_convert(t_env *env)
+{
+	int		i;
+	int		ctd;
+	char	**env_array;
+	t_env	*current;
+
+	ctd = 0;
+	current = env;
+	while (current)
+	{
+		ctd++;
+		current = current->next;
+	}
+	env_array = (char **)malloc((ctd + 1) * sizeof(char *));
+	//env_array = create_argv(ctd);
+	if (!env_array)
+		error_msg ("malloc env array");
+	current = env;
+	i = 0;
+	while (i < ctd)
+	{
+		env_array[i] = join_key_value(current->key, current->value);
+		if (!env_array[i])
+		{
+			free_env_array(env_array);
+			error_msg("malloc join key value");
+			return (NULL);
+		}
+		current = current->next;
+		i++;
+	}
+	env_array[ctd] = NULL;
+	return (env_array);
+}
+
+void	env_arr_update(t_ms *s, char *str)
+{
+	(void)str;
+/* 	char **temp;
+ 	int i;
+	int j;
+
+	i = 0;
+	temp = s->env_tmp;
+ 	if (ft_strncmp(str, "PATH", 4) == 0 && ft_strlen(str) == 4)
+	{
+		while (temp[i])
+		{
+			if (ft_strncmp(temp[i], "PATH=", 5) == 0)
+			{
+				j = i;
+				while (temp[j])
+				{
+					temp[j] = temp[j + 1];
+					j++;
+				}
+				break;
+			}
+			i++;
+		} */
+	if (s->paths)
+	{
+		free_all_paths(s->paths);
+		s->paths = NULL;
+	}
+	free_env_array(s->env_tmp);
+	s->env_tmp = env_convert(s->env);
+}
+//! ==================================================================//

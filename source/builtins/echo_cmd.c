@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:11 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/04 12:28:56 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:48:22 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static int	ft_flagged(char *s)
 {
 	//int	i;
-
 	//i = 0;
 	if (s[0] != '-')
 		return (0);
@@ -32,7 +31,6 @@ static int	ft_flagged(char *s)
 	}
 	return (0); */
 }
-
 
 int	echo_cmd_test(char **cmd, t_ms *s)
 {

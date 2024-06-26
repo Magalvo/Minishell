@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 17:20:54 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/06/26 18:37:57 by cjoao-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minishell.h"
 
 void	clear_env(char **env)
 {
 	int	i;
+
 	i = 0;
 	if (env)
 	{
@@ -18,11 +31,11 @@ void	clear_cmd(t_cmd *cmd)
 	int	i;
 
 	i = 0;
-	if(!cmd)
+	if (!cmd)
 		return ;
 	if (cmd->argv)
 	{
-		while(cmd->argv[i])
+		while (cmd->argv[i])
 			free(cmd->argv[i++]);
 		free(cmd->argv);
 	}
@@ -37,10 +50,9 @@ void	clear_cmd(t_cmd *cmd)
 	free(cmd);
 }
 
-
 void free_env_list(t_env *list)
 {
-	t_env *temp;
+	t_env	*temp;
 
 	while (list != NULL)
 	{
@@ -50,7 +62,7 @@ void free_env_list(t_env *list)
 	}
 }
 
-void cleanup_shell(t_ms *s)
+void	cleanup_shell(t_ms *s)
 {
 	if (s->env_tmp)
 	{
@@ -75,7 +87,7 @@ void cleanup_shell(t_ms *s)
 }
 
 void	set_exit(int stat, t_ms *s)
-{	
+{
 	if (s)
 		s->exit_stat = stat;
 	exit(stat);

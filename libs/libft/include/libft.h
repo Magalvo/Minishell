@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 17:47:56 by pfelix-o          #+#    #+#             */
-/*   Updated: 2024/05/21 10:46:36 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:28:11 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int		ft_memcmp(const void *s1, const void *s2, size_t sz);
 void	*ft_calloc(size_t nmemb, size_t sz);
 char	*ft_strdup(const char *src);
 void	ft_free_dptr(char ***dptr);
-
 
 //strings
 size_t	ft_strlcpy(char *dst, const char *src, size_t sz);
