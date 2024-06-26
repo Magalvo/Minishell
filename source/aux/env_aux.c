@@ -89,6 +89,7 @@ void	initialize_env(char ***envp)
 //! ========================================================================//
 
 //! ========================== ENV_ARRAY_UPDATE ============================//
+
 char	*join_key_value(const char *key, const char *value)
 {
 	size_t	key_len;
