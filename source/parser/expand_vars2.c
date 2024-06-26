@@ -66,6 +66,7 @@ char	*remove_quotes(char *input)
 	char	*res2;
 	bool	is_qt;
 
+	
 	first_qt = get_first_quote(input);
 	if (!first_qt)
 		return (input);
