@@ -1,7 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/06/26 17:16:51 by cjoao-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-// ? OLD PARSER WITH BONUS STUBS
 /*
 ABOUT PARAMETERS NAMES
 char *input becomes **ptr_input (&input), so parsing position can be passed
@@ -18,21 +28,12 @@ t_cmd	*parse_input(char *input, t_ms *s)
 	if (ft_strlen(input) == 0)
 		return (NULL);
 	add_history(input);
-	// TODO update _ with input
-	// ? set_key_val ( last_cmd = input)
-
 	if (!syntax_validation(input, s))
 		return (NULL);
 	xp_input = ft_strdup(input);
 	xp_input = expand_sw_vars(xp_input, s);
 	xp_input = expand_sw_tilde(xp_input, s);
 	xp_input = expand_sw_quotes(xp_input);
-	// ! if (xp_input != NULL)
-	// TODO update _ with input
-	// ? set_key_val ( last_cmd = xp_input)
-	// glue_str(input, NULL);
-	// unglue_str(input, NULL);
-
 	ast = parse_cmd(xp_input, s);
 	free(xp_input);
 	return (ast);
@@ -53,7 +54,6 @@ t_cmd *parse_cmd(char *input, t_ms *s)
 		ft_dprintf(STDERR_FILENO, "\'%s\' ", input);
 		reprompt(INCOMPLETE_PARSE, 1, s);
 	}
-	// nulterminate(cmd);
 	return cmd;
 }
 
@@ -76,7 +76,6 @@ t_cmd *parse_line(char **ps, char *es, t_ms *s)
 	return cmd;
 }
 
-//
 // looks for pipes, if found runs recursively until no pipe found
 t_cmd *parse_pipe(char **ps, char *es, t_ms *s)
 {
@@ -129,21 +128,4 @@ t_cmd *redir_sw(t_cmd *cmd, int tok, char *filename, t_ms *s)
 	else if (tok == 'H') // todo check flags: (H) is here_doc
 		cmd = cmd_heredoc(cmd, filename, O_RDWR|O_CREAT|O_APPEND, s);
 	return (cmd);
-
 }
-
-
-// t_cmd *parse_block(char **ps, char *es)
-// {
-// 	t_cmd *cmd;
-
-// 	if(!peek(ps, es, "("))
-// 		reprompt(BLOCK_WTF);
-// 	get_token(ps, es, 0, 0);
-// 	cmd = parse_line(ps, es, s);
-// 	if(!peek(ps, es, ")"))
-// 		reprompt(BLOCK_UNCLOSED);
-// 	get_token(ps, es, 0, 0);
-// 	cmd = parse_redir(cmd, ps, es, s);
-// 	return cmd;
-// }

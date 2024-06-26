@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:04:53 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/22 17:43:04 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/26 19:07:09 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*cmd_path(char **paths, char *cmd, t_ms *s)
 
 	if (!paths || !cmd)
 		return (NULL);
-	if(chdir(cmd) != -1)
+	if (chdir(cmd) != -1)
 	{
 		printf("minishell: %s: is a directory\n", cmd);
 		set_exit(126, s);
@@ -50,7 +50,7 @@ void	new_line(void)
 }
 
 static void	assist_file(int fd, int standard)
-{	
+{
 	dup2 (fd, standard);
 	close(fd);
 }
@@ -59,7 +59,8 @@ int	fork1(void)
 {
 	pid_t	pid;
 
-	if((pid = fork()) == -1)
+	pid = fork();
+	if (pid == -1)
 		error_msg("fork");
 	return (pid);
 }
@@ -68,29 +69,27 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	pid_t	pid;
 
-    check_signal(IGNORE);
+	check_signal(IGNORE);
 	pid = fork1();
-    if (pid == 0)
-    {
-        check_signal(CHILD);
-        if (fd_in != STDIN_FILENO)
-            assist_file(fd_in, STDIN_FILENO);
-        if (fd_out != STDOUT_FILENO)
-            assist_file(fd_out, STDOUT_FILENO);
-        exec_one(s, cmd->argv);
-        not_found(cmd->argv[0], 126, s);
-    }
-    else
-    {
-        if (fd_in != STDIN_FILENO)
+	if (pid == 0)
+	{
+		check_signal(CHILD);
+		if (fd_in != STDIN_FILENO)
+			assist_file(fd_in, STDIN_FILENO);
+		if (fd_out != STDOUT_FILENO)
+			assist_file(fd_out, STDOUT_FILENO);
+		exec_one(s, cmd->argv);
+		not_found(cmd->argv[0], 126, s);
+	}
+	else
+	{
+		if (fd_in != STDIN_FILENO)
 			close (fd_in);
-        if (fd_out != STDOUT_FILENO)
-            close(fd_out);
+		if (fd_out != STDOUT_FILENO)
+			close(fd_out);
 		wait_till_end(s, pid);
-    }
+	}
 }
-
-
 
 /* int exec_input(t_ms *s)
 {
@@ -114,8 +113,6 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	}
 	return (1);
 } */
-
-
 
 /* char *search_path(char *command, char **paths)
 {
@@ -160,7 +157,7 @@ static void	ft_dup2(int zero, int first)
 			printf("Quit\n");
 		if (status == 2)
 		{
-			s->exit_stat = 130;	
+			s->exit_stat = 130;
 			printf("\n");
 		}
 		if (status > 255)

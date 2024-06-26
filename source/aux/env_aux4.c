@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcount.c                                      :+:      :+:    :+:   */
+/*   env_aux4.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 13:27:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/26 17:31:28 by cjoao-de         ###   ########.fr       */
+/*   Created: 2024/06/26 17:20:18 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/06/26 18:36:06 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../../include/minishell.h"
 
-// counts the number of times 'c' occurs on *str
-size_t	ft_strcount(const char *str, char c)
+int	env_pos(t_env *env, char *value)
 {
-	size_t	count;
+	t_env	*tmp;
+	int		i;
 
-	count = 0;
-	while (*str)
+	i = 0;
+	tmp = env;
+	while (tmp)
 	{
-		if (*str == c)
-			count++;
-		str++;
+		if (ft_strcmp(tmp->key, value) == 0)
+			return (i);
+		i++;
+		tmp = tmp->next;
 	}
-	return (count);
+	return (0);
 }

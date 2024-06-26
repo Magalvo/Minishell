@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export_update.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 17:24:02 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/06/26 18:58:55 by cjoao-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minishell.h"
 
 int	add_node_export(t_env *env, char *key, char *value)
@@ -39,6 +51,19 @@ int	export_update(t_env *export, char *key, char *value)
 	{
 		if (!add_node_export(export, key, value))
 			return (0);
+	}
+	return (1);
+}
+
+int	is_str_print(char *value)
+{
+	if (!value)
+		return (0);
+	while (*value)
+	{
+		if (!isprint((unsigned char)*value))
+			return (0);
+		value++;
 	}
 	return (1);
 }

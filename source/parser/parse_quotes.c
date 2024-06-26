@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_quotes.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 17:15:08 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/06/26 17:15:41 by cjoao-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/minishell.h"
-
 
 /*
 Enclosing characters in single quotes (') preserves the literal value
@@ -84,24 +94,6 @@ int is_quoted(const char *str, const char *totest)
 	return (quote);
 }
 
-/*
-//' "' 1 '" "'1'" '
-  | "1" "1" |
-'		0
-"		1
-last	"
-
-	bool to_xpnd
-
-
-	'"$VAR"' "'$goleft"'
-
-	int ' 1
-	int " 1
-	char last '
-	  ^				- totest
-*/
-
 // tests if pointer has char on sides of its position
 bool	chr_betw(char *input, char *totest, char tofind)
 {
@@ -116,14 +108,6 @@ bool	chr_betw(char *input, char *totest, char tofind)
 		return (true);		// char found on both sides
 	}
 	return (false);
-
-	// while (goright != input || *goright != '\0') //hmm, test is stupid!?!
-	// {
-	// 	if (ft_strchr(goleft, tofind) && ft_strrchr(goright, tofind))
-	// 		return (true);		// char found on both sides
-
-	// }
-	// return (false);
 }
 
 // tests if quotes, dquotes exists on both sides of pointer
@@ -150,19 +134,3 @@ bool	check_valid_position(char *input)
 		return true;
 	return false;
 }
-
-// char *find_first(char *input, char c)
-// {
-// 	char	*ptr;
-
-// 	ptr = ft_strchr(input, c);
-// 	if (ptr)
-// 	{
-// 		if (ft_strchr(ptr, c) < ptr)
-// 		{
-// 			ptr = ft_strchr(ptr, c);
-// 		}
-// 	}
-
-
-// }

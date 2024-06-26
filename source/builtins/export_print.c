@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export_print.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 17:23:48 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/06/26 18:59:19 by cjoao-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minishell.h"
 
 int	print_exp(t_env *export)
@@ -111,12 +123,12 @@ int	sort_list(t_env *list)
 		{
 			if (compare_func)
 			{
-				
+
 			}
 		}
 		list = list->next
 	}
-	
+
 } */
 /* int	envio_ex(t_env	*env)
 {

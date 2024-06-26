@@ -6,7 +6,7 @@
 #    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/06/25 14:32:48 by cjoao-de         ###   ########.fr        #
+#    Updated: 2024/06/26 18:28:46 by cjoao-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,10 @@ PARSER =	aux.c	init_cmd.c	tokens.c	parse.c	parse_exec.c	glue.c \
 			init_heredoc.c
 
 AUX = aux1.c env_aux.c env_aux2.c pipe_exec.c redir_exec.c \
-		free.c	ft_ms_aux.c env_aux3.c
+		free.c	ft_ms_aux.c env_aux3.c	env_aux4.c
 
 
-AST = ast_print.c
+AST = ast_print.c ast_print_types.c
 
 
 SRC_DIR = ./source/

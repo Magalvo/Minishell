@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   aux1.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 17:20:10 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/06/26 18:18:22 by cjoao-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minishell.h"
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 char	*get_env_expand(char *key)
 {
-	char *val;
+	char	*val;
+
 	if (key[0] == '$')
 		key = key + 1;
 	val = getenv(key);
@@ -18,6 +31,7 @@ int	export_cmd_error(char *msg)
 	ft_putstr_fd("\n", 2);
 	return (1);
 }
+
 void	wait_till_end(t_ms *s, pid_t pid)
 {
 	int	status;
