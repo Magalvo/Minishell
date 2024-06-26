@@ -125,6 +125,7 @@ int		open_fd(char *file, int mode);
 // t_cmd	*nulterminate(t_cmd *cmd);
 void	reprompt(char *str, int exit_stat, t_ms *s);
 int		peek(char **ps, char *es, char *toks);
+int		peek_nsp(const char *ps, char *es, char *toks);
 int		getcmd(char *buf, int nbuf);
 int		get_token(char **ps, char *es, char **q, char **eq);
 int		get_token_a(char **ps);
@@ -146,8 +147,12 @@ void	parse_args(char **ps, char *es, t_d_cmd *cmds, t_ms *s);
 
 //*==================== AUX =======================*//
 void	print_ast(t_ms *s, t_cmd *ptr, int padding);
+void	print_ast_exec(t_ms *s, t_cmd *ptr, int padding);
+void	print_ast_pipe(t_ms *s, t_cmd *ptr, int padding);
+void	print_ast_redir(t_ms *s, t_cmd *ptr, int padding);
+void	print_ast_heredoc(t_ms *s, t_cmd *ptr, int padding);
 void	print_2d(char **ptr, int padding);
-char	*empty(void);
+// char	*empty(void);
 
 
 //*==================== AUX =======================*//

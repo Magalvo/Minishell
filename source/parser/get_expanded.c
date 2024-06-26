@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_expanded.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 17:12:16 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/06/26 17:12:33 by cjoao-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/minishell.h"
 
@@ -28,15 +39,6 @@ https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html
 	// Filename Expansion -> dont implement
     Quote Removal
 */
-
-	// ! glue quotes
-	// ! glue dquotes
-	// ? expand dolar
-	// ! expand tilde
-	// ! glue quotes
-	// ! glue dquotes
-	// ! parse_ast && //remove quotes
-
 
 // due to limitations of subject. expansion in the form: ~username are not done
 // ~ expansion are optional, we choose to do them for PWD, OLDPWD, HOME

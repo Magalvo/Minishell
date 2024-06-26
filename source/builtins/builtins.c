@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:25 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/05 12:03:15 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:46:34 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ int	add_slash(char *slash, char **paths)
 
 //! Executar Builtins no processo pai a nao ser o printenv;
 // ? Talvez possa ser no filho segundo o Mindmap  D:  :')
-
-
 
 int	ft_sw_builtins(const char *s1, const char *s2)
 {

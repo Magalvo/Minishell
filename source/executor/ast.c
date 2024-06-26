@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ast.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 17:24:23 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/06/26 19:02:11 by cjoao-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 /* void	aux_pipe_child(t_ms *s, t_cmd *cmd, int *pipefd, int fd_in)
@@ -7,16 +19,19 @@
 
 /* void	aux_pipe_parent(t_ms *s, pid_t pid, int *pipefd, int fd_out)
 {
-	
-}  */
+	close(pipefd[1]);
+	exec_from_ast_recursive(s, s->ast->right, pipefd[0], fd_out);
+	close(pipefd[0]);
+	wait_till_end(s, pid);
+}
 
-void exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
-	int     pipefd[2];
-	pid_t   pid;
+	int		pipefd[2];
+	pid_t	pid;
 
     if (!cmd)
-        return;
+        return ;
     if (cmd->type == EXEC)
 		aux_rec_exec(s, cmd, fd_in, fd_out);
     else if (cmd->type == PIPE)
@@ -62,10 +77,10 @@ void	free_ast(t_cmd *cmd)
 	free_ast(cmd->left);
 	free_ast(cmd->right);
 	free_ast(cmd->cmd);
-	if(cmd->argv)
+	if (cmd->argv)
 	{
 		i = 0;
-		while(cmd->argv[i])
+		while (cmd->argv[i])
 			free(cmd->argv[i++]);
 		free(cmd->argv);
 	}
@@ -85,7 +100,7 @@ void	free_ast(t_cmd *cmd)
 
 void	reset_ast(t_ms *s)
 {
-	if(s->ast)
+	if (s->ast)
 	{
 		free_ast(s->ast);
 		s->ast = NULL;

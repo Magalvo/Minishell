@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 22:08:50 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/05/27 14:27:27 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:32:15 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	if (n == 0)
 		return (0);
-	return ((unsigned char) * s1 - (unsigned char) * s2);
+	return ((unsigned char) *s1 - (unsigned char) *s2);
 }
 /*
 int main() {
