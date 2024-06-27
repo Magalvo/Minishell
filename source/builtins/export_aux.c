@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:23:29 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/26 17:23:30 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:41:42 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ int	handle_kv_update(t_env *env, char *key, char *value, int tog)
 		free(key);
 		if (value)
 			free(value);
-		printf("invalid Var Name");
-		return (0);
+		return (printf("invalid Var Name"), 0);
 	}
 	if (!update_key(env, key, value))
 	{

@@ -6,13 +6,11 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:18 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/26 18:25:49 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:00:21 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-//! ========================== NULL_ENV_CREATION ===========================//
 
 char	*find_cwd(void)
 {
@@ -68,15 +66,6 @@ char	**null_env_init(void)
 		free(init_env);
 		error_msg("strdup");
 	}
-/* 	init_env[3] = ft_strdup("PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin");
-	if(!init_env[3])
-	{
-		free(init_env[0]);
-		free(init_env[1]);
-		free(init_env[2]);
-		free(init_env);
-		error_msg("strdup");
-	} */
 	init_env[3] = NULL;
 	return (init_env);
 }
@@ -86,9 +75,6 @@ void	initialize_env(char ***envp)
 	if (!(*envp) || !(*envp)[0])
 		*envp = null_env_init();
 }
-//! ========================================================================//
-
-//! ========================== ENV_ARRAY_UPDATE ============================//
 
 char	*join_key_value(const char *key, const char *value)
 {

@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/26 18:44:37 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 12:41:31 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,45 +40,6 @@ void	exec_one(t_ms *s, char **argv)
 	}
 }
 
-//! ===== Prototype for PIPE execution ======= !//
-/* void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
-{
-	int		pipefd[2];
-	pid_t	pid;
-	int		status;
-
-	if (cmd->type == PIPE)
-	{
-		if (pipe(pipefd) == -1)
-			error_msg("error on pipe");
-		if ((pid = fork()) == -1)
-			error_msg("error on pid");
-		else if (pid == 0)
-		{
-			close(pipefd[0]);
-			dup2(fd_in, STDIN_FILENO);
-			dup2(pipefd[1], STDOUT_FILENO);
-			close(pipefd[1]);
-			exec_one(s, cmd->left->argv);
-			exit(EXIT_SUCCESS);
-		}
-		else
-		{
-			close(pipefd[1]);
-			wait_till_end(s, pid);
-			 waitpid(pid, &status, 0);
-			printf("PIPE-> %d\n", status);
-			if (WIFEXITED(status))
-				s->exit_stat = WEXITSTATUS(status);
-			exec_pipe(s, cmd->right, pipefd[0], fd_out);
-		}
-	}
-	else if (cmd->type == REDIR || cmd->type == HEREDOC)
-		exec_redir(s, cmd, fd_in, fd_out);
-	else
-		single_exec(s, cmd, fd_in, fd_out);
-} */
-
 int	exec_paria(t_ms *s, t_cmd *cmds)
 {
 	if (!cmds || cmds->type != EXEC)
@@ -99,26 +60,6 @@ int	exec_paria(t_ms *s, t_cmd *cmds)
 		return (0);
 }
 
-/* int	update_last(t_env *env, char *key, char *value)
-{
-	char *tmp;
-	while (env)
-	{
-		if (ft_sw_builtins(env->key, key) == 0 && ft_strcmp(env->key, key) == 0)
-		{
-			if (env->value && value)
-			{
-				tmp = env->value;
-				free(env->value);
-				env->value = tmp;
-				env->value = ft_strdup(value);
-			}
-			return (1);
-		}
-		env = env->next;
-	}
-	return (0);
-} */
 void	updating_cmds(t_ms *s, char *value)
 {
 	char	*key;
@@ -139,39 +80,17 @@ void	updating_cmds(t_ms *s, char *value)
 	}
 }
 
-/* export X="ola ola"
-echo $X
-echo 1 > $X
-echo 1 > "$X" */
-
 void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	//updating_cmds(s, cmd->argv[cmd->argc - 1]);
-    if (ft_exec_builtins_chr(s, cmd->argv))
-        s->exit_stat = 0;
-    else 
-        single_exec(s, cmd, fd_in, fd_out);
+	if (ft_exec_builtins_chr(s, cmd->argv))
+		s->exit_stat = 0;
+	else
+		single_exec(s, cmd, fd_in, fd_out);
 }
 
 void	exec_from_ast(t_ms *s)
 {
-/* 	char *key;
-
-	key = ft_strdup("_");
-	if (s->ast == NULL)
-		return ;
-	if (s->ast->type == EXEC && s->ast->argv[s->ast->argc - 1] != NULL)
-	{
-		update_last(s->env, key, s->ast->argv[s->ast->argc - 1]);
-		update_last(s->export, key, s->ast->argv[s->ast->argc - 1]);
-	}
-	else if (((s->ast->type == REDIR || s->ast->type == HEREDOC) && s->ast->argv[s->ast->argc - 1] != NULL) \
-		&& s->ast->argv[s->ast->argc - 1] != NULL)
-	{
-		update_last(s->env, key, s->ast->cmd->argv[s->ast->cmd->argc - 1]);
-		update_last(s->export, key, s->ast->cmd->argv[s->ast->cmd->argc - 1]);
-	}
-	free(key); */
 	if(!exec_paria(s, s->ast))
 		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
 }

@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:07 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/26 18:49:27 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:46:48 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,7 @@ t_env	*new_env_node(char *env_var)
 		return (ft_putstr_fd("malloc (new env)", 2), NULL);
 	delimiter = ft_strchr(env_var, '=');
 	if (!delimiter)
-	{
-		free(node);
-		return (NULL);
-	}
+		return (free(node), NULL);
 	key_len = delimiter - env_var;
 	node->key = key_dup(env_var, key_len);
 	if (!node->key)

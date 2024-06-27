@@ -11,7 +11,7 @@ t_cmd *parse_exec(char **ps, char *es, t_ms *s)
 	ret = cmd_exec();
 	cmd = ret;
 	ret = parse_redir(ret, ps, es, s);
-	cmd->argv = create_argv(count_argc(ps, es, s));
+	cmd->argv = create_dptr(count_argc(ps, es, s));
 	cmds.one = cmd;
 	cmds.two = ret;
 	parse_args(ps, es, &cmds, s);
@@ -46,10 +46,7 @@ void	parse_args(char **ps, char *es, t_d_cmd *cmds, t_ms *s)
 	}
 }
 
-char **create_argv(int nbr)
-{
-	return (ft_calloc((nbr + 1), sizeof(char *)));
-}
+
 
 int	count_argc(char **ps, char *es, t_ms *s)
 {
