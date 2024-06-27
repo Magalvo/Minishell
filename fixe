@@ -1,9 +1,0 @@
-Debug: Initial cmd contents:
-cmd[0]: echo
-cmd[1]: dde-maga
-cmd[2]: oi
-Debug: After checking flags, starting at cmd[1]
-Debug: Processing cmd[1]: dde-maga
-dde-maga Debug: Processing cmd[2]: oi
-oi
-Debug: Finished echo_cmd_test

@@ -15,7 +15,7 @@ t_cmd *parse_exec(char **ps, char *es, t_ms *s)
 	cmds.one = cmd;
 	cmds.two = ret;
 	parse_args(ps, es, &cmds, s);
-	//cmd->argv[cmd->argc] = NULL;
+	cmd->argv[cmd->argc] = 0;
 	cmd = cmds.one;
 	ret = cmds.two;
 	return (ret);
@@ -30,7 +30,7 @@ void	parse_args(char **ps, char *es, t_d_cmd *cmds, t_ms *s)
 
 	q = NULL;
 	eq = NULL;
-	cmds->one->argc = 0;
+	//cmds->one->argc = 0;
 	while(!peek(ps, es, "|)&;"))
 	{
 		tok = get_token(ps, es, &q, &eq);

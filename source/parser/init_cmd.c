@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:06:42 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 16:30:04 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:47:39 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_cmd *cmd_exec(void)
 
 	cmd = cmd_init();
 	cmd->type = EXEC;
-	//cmd->argc = 0;
+	cmd->argc = 0;
 	cmd->argv = 0;
 	return (cmd);
 }
