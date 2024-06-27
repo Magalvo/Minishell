@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:54 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/26 18:37:57 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 12:34:23 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	clear_cmd(t_cmd *cmd)
 	free(cmd);
 }
 
-void free_env_list(t_env *list)
+void	free_env_list(t_env *list)
 {
 	t_env	*temp;
 
@@ -74,16 +74,6 @@ void	cleanup_shell(t_ms *s)
 		free_all_paths(s->paths);
 		s->paths = NULL;
 	}
-/* 	if (s->env)
-	{
-		free_env_list(s->env);
-		s->env = NULL;
-	} */
-/* 	if (s->ast)
-	{
-		clear_cmd(s->ast);
-		s->ast = NULL;
-	} */
 }
 
 void	set_exit(int stat, t_ms *s)

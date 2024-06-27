@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:00 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/26 17:15:03 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 11:17:12 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*expand_sw_vars(char *input, t_ms *s)
 	{
 		if (is_quoted(xp_input, pos) != EQUOTE)
 		{
-			if (*(pos + 1) == '{')
+			if (*(pos + 1) == '{')	//}
 				xp_input = expand_curly(xp_input, pos, s);
 			else if (*(pos + 1) == '$')
 				xp_input = expand_pid(xp_input, pos, s);

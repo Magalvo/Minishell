@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:06:42 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 13:35:58 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:30:04 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ t_cmd *cmd_redir(t_cmd *subcmd, char *filename, int mode, int fd)
 	cmd->type = REDIR;
 	cmd->cmd = subcmd;
 	unglue_str(filename, filename + ft_strlen(filename));
-	if (peek_nsp(filename, filename + ft_strlen(filename), SPACES))
-		printf("has spaces: %s", filename);
+	// if (peek_nsp(filename, filename + ft_strlen(filename), SPACES))
+		// printf("has spaces: %s", filename);
 	cmd->file = filename;
 	cmd->mode = mode;
 	cmd->fd = fd;
