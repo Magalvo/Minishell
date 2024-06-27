@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 14:01:44 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:49:03 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_cmd	*parse_input(char *input, t_ms *s)
 	xp_input = expand_sw_quotes(xp_input);
 	ast = parse_cmd(xp_input, s);
 	free(xp_input);
-	xp_input = NULL;
+	//xp_input = NULL;
 	return (ast);
 }
 
