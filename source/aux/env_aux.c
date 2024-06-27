@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_aux.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:18 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 15:04:47 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:31:32 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ char	*join_key_value(const char *key, const char *value)
 	else
 		value_len = 0;
 	total_len = key_len + value_len + 1;
-	join = (char *)malloc(total_len + 1);
+	join = ft_calloc(sizeof(char *),total_len + 1 );
 	if (!join)
 		return (NULL);
 	ft_strlcpy(join, key, key_len + 1);
