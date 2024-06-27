@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/26 18:44:37 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:53:58 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	exec_one(t_ms *s, char **argv)
 	char	*path;
 	char	*cmd_name;
 
-	if ((argv[0][0] == '/' && argv[0][1]) || \
-		(argv[0][0] == '.' && argv[0][1] == '/' && argv[0][2]))
+	if ((argv[0] && argv[0][0] == '/' && argv[0][1]) || \
+		(argv[0] && argv[0][0] == '.' && argv[0][1] == '/' && argv[0][2]))
 	{
 		execve(argv[0], argv, s->env_tmp);
 		not_found(argv[0], 127, s);
 	}
-	else
+	else if (argv && argv[0] != NULL)
 	{
 		path = cmd_path(s->paths, argv[0], s);
 		if (!path)
@@ -38,6 +38,7 @@ void	exec_one(t_ms *s, char **argv)
 		free(path);
 		set_exit(126, s);
 	}
+	set_exit(0, s);
 }
 
 //! ===== Prototype for PIPE execution ======= !//
@@ -147,8 +148,11 @@ echo 1 > "$X" */
 void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	//updating_cmds(s, cmd->argv[cmd->argc - 1]);
-    if (ft_exec_builtins_chr(s, cmd->argv))
-        s->exit_stat = 0;
+	if(cmd->argv && cmd->argv[0])
+	{
+		if (ft_exec_builtins_chr(s, cmd->argv))
+        	s->exit_stat = 0;
+	}
     else 
         single_exec(s, cmd, fd_in, fd_out);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/26 17:25:22 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:10:36 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ void exit_minishell(t_ms *s, char *msg)
 	if (s->export)
    		free_env_list(s->export);
 	if (s->ast != NULL)
+	{
 		free_ast(s->ast);
+		s->ast = NULL;
+	}
 	cleanup_shell(s);
 	exit(exiter);
 }

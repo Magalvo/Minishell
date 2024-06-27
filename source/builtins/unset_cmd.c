@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:50 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/26 19:00:16 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:06:13 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,17 @@
 void	unset_clean(t_env *current)
 {
 	if (current->value)
+	{
 		free(current->value);
+		current->value = NULL;
+	}
 	if (current->key)
+	{
 		free(current->key);
+		current->key = NULL;
+	}
 	free(current);
+	current = NULL;
 }
 
 void	unset_move(t_env *current)

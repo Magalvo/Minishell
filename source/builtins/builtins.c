@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:25 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/26 18:46:34 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:56:17 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ void	toggle_bnf(t_ms *s)
 
 int	ft_exec_builtins_chr(t_ms *s, char **cmds) //[{laskdl}{kjhalsd}{jakskdj}]
 {
-	/*  	if (s->ast->cmd->type != EXEC)
-		return (0); */
+	if (!cmds || !cmds[0])
+		return (0);
 	if (ft_sw_builtins(cmds[0], "echo") == 0)
 		return (echo_cmd_test(cmds, s), 1);
 	else if (ft_sw_builtins(cmds[0], "cd") == 0)
@@ -93,6 +93,7 @@ int	ft_exec_builtins_chr(t_ms *s, char **cmds) //[{laskdl}{kjhalsd}{jakskdj}]
 	else
 		return (0);
 }
+
 /* int	ft_exec_buitltins(t_ms *s, char **cmds)
 {
 	int	i;
