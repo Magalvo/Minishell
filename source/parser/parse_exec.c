@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_exec.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/27 18:28:53 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/06/27 18:29:31 by cjoao-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 // checks input for tokens and calls appropiate function
-t_cmd *parse_exec(char **ps, char *es, t_ms *s)
+t_cmd	*parse_exec(char **ps, char *es, t_ms *s)
 {
 	t_cmd	*cmd;
 	t_d_cmd	cmds;

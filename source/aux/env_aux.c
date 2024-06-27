@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_aux.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:18 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 17:31:32 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:48:11 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ void	free_and_error(char *one, char *two, char **three)
 	error_msg("strdup");
 }
 
-
-
 void	initialize_env(char ***envp)
 {
 	if (!(*envp) || !(*envp)[0])
@@ -115,19 +113,4 @@ char	*join_key_value(const char *key, const char *value)
 	else
 		join[key_len] = '\0';
 	return (join);
-}
-
-void	free_env_array(char **env_array)
-{
-	int	i;
-
-	i = 0;
-	if (!env_array)
-		return ;
-	while (env_array[i])
-	{
-		free(env_array[i]);
-		i++;
-	}
-	free(env_array);
 }

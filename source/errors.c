@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:40:06 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/27 17:37:21 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:50:07 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ void	error_msg(char *str)
 		perror("ERROR :(");
 	exit(EXIT_FAILURE);
 }
+
 int	free_export(char *key, char *value)
 {
-		free(key);
-		free(value);
-		return (error_msg("failed to create new node"), 0);
+	free(key);
+	free(value);
+	return (error_msg("failed to create new node"), 0);
 }
 
 void	free_paths(char **paths, int i)
@@ -48,9 +49,9 @@ void	free_all_paths(char **paths)
 	int	i;
 
 	i = 0;
-	if(!paths)
+	if (!paths)
 		return ;
-	while(paths[i])
+	while (paths[i])
 	{
 		free(paths[i]);
 		i++;
@@ -69,5 +70,5 @@ int	free_export_p(t_env *env_copy, t_env *new_node)
 		free(new_node->value);
 		free(new_node);
 	}
-	return(0);
+	return (0);
 }

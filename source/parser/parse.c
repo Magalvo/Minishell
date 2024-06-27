@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 16:49:03 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:47:41 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,14 @@ t_cmd	*parse_input(char *input, t_ms *s)
 		return (NULL);
 	xp_input = ft_strdup(input);
 	xp_input = expand_sw_vars(xp_input, s);
+	if (xp_input == NULL)
+		return (NULL);
 	xp_input = expand_sw_tilde(xp_input, s);
+	if (xp_input == NULL)
+		return (NULL);
 	xp_input = expand_sw_quotes(xp_input);
+	if (xp_input == NULL)
+		return (NULL);
 	ast = parse_cmd(xp_input, s);
 	free(xp_input);
 	//xp_input = NULL;

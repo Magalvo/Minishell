@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:45 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/26 18:35:36 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:11:20 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,17 @@ void	dup_and_close(int fd, int standard)
 	close(fd);
 }
 
-int	ft_strcmp(const char *s1, const char *s2)
+void	free_env_array(char **env_array)
 {
-	while (*s1 && (*s1 == *s2))
+	int	i;
+
+	i = 0;
+	if (!env_array)
+		return ;
+	while (env_array[i])
 	{
-		s1++;
-		s2++;
+		free(env_array[i]);
+		i++;
 	}
-	return ((unsigned char)(*s1) - (unsigned char)(*s2));
+	free(env_array);
 }
