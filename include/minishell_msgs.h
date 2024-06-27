@@ -7,6 +7,7 @@
 # define 	SINGLE_AMPERSAND	"background tasks not implemented."
 # define 	SEMICOLON			"command list not implemented."
 # define 	EXPANSION_ERROR		"could not expand variable." // ! needed?
+# define 	CURLY_ERROR			"could not expand variable." // ! needed?
 # define 	GETPID_ERROR		"Who am I? What I'm doing here?" // ! needed?
 # define 	PARENTHESIS			"blocks (parenthesis) not implemented."
 # define 	BLOCK_MISSING		"missing parenthesis."
