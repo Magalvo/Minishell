@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:15 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/26 18:47:48 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:44:39 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static int	change_pwd(t_env *env, t_ms *s)
 	if (!cmd)
 	{
 		s->exit_stat = 1;
-		//!chaged
 		return (ft_putstr_fd("Failed to change Dir\n", 2), 1);
 	}
 	result = update_key(env, "PWD", cmd);

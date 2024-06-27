@@ -74,7 +74,7 @@ int		update_last(t_env *env, char *key, char *value);
 
 //*=================== PARSE ======================*//
 t_cmd	*parse_input(char *input, t_ms *s);
-char	**create_argv(int argc);
+char	**create_dptr(int argc);
 int		count_argc(char **ps, char *es, t_ms *s);
 void	ft_strrep_range(char *start, char *end, char search, char replace);
 void	glue_str(char *start, char *end);
@@ -162,6 +162,7 @@ void	env_arr_update(t_ms *s, char *str);
 void	initialize_env(char ***envp);
 char	**null_env_init();
 char	**env_convert(t_env *env);
+char	**create_env_array(t_env *env, int *ctd);
 void	free_env_list(t_env *env);
 void 	cleanup_shell(t_ms *s);
 void	clear_cmd(t_cmd *cmd);
