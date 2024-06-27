@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:40:06 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/05/27 12:48:31 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:37:21 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,4 @@ int	free_export_p(t_env *env_copy, t_env *new_node)
 		free(new_node);
 	}
 	return(0);
-}
-
-int	not_found(char *str, int status, t_ms *s)
-{
-	ft_putstr_fd(str, 2);
-	if(status == 127)
-	{
-		if(str[0] == '.' || str[0] == '/')
-			ft_putstr_fd(": No such file or directory\n", 2);
-		else
-			ft_putstr_fd(": command not found\n", 2);
-	}	
-	if(status == 126)
-		ft_putstr_fd(": permission denied\n", 2);
-	ft_putnbr_fd(status, 2);
-	ft_putstr_fd("\n", 2);
-	return(set_exit(status, s), 1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:59 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/26 18:54:34 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:41:21 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	add_new_node(t_env *env, char *key, char *value)
 	t_env	*env_cpy;
 	t_env	*new_node;
 
-	new_node = (t_env *)malloc(sizeof(t_env));
+	new_node = ft_calloc(sizeof(t_env *), 1);
 	if (!new_node)
 		error_msg("malloc (new env)");
 	new_node->key = ft_strdup(key);
