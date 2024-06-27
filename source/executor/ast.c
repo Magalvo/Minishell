@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:23 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/26 19:02:11 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 11:24:46 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
                 dup2(pipefd[1], STDOUT_FILENO);
             close(pipefd[1]);
 			exec_from_ast_recursive(s, cmd->left, fd_in, STDOUT_FILENO);
-			free_ast(cmd);
+			//free_ast(cmd);
             exit(s->exit_stat);
         }
         else
@@ -61,7 +61,7 @@ void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
     }
     else if (cmd->type == REDIR || cmd->type == HEREDOC)
 	{
-		updating_cmds(s, NULL);
+		//updating_cmds(s, NULL);
 		exec_redir(s, cmd, fd_in, fd_out);
 	}	
 }
@@ -87,13 +87,6 @@ void	free_ast(t_cmd *cmd)
 		free(cmd->file);
 	if (cmd->delim)
 		free(cmd->delim);
-	if (cmd->temp)
-	{
-		i = 0;
-		while (cmd->temp[i])
-			free(cmd->temp[i++]);
-		free(cmd->temp);
-	}
 	free(cmd);
 }
 

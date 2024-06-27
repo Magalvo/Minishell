@@ -26,6 +26,7 @@ t_cmd *cmd_exec(void)
 
 	cmd = cmd_init();
 	cmd->type = EXEC;
+	//cmd->argc = 1;
 	cmd->argv = 0;
 	return (cmd);
 }
