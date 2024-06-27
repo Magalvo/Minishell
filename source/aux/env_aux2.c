@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:37 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 12:58:54 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:26:43 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ char	*env_paths(t_ms *ms, char **envp)
 		free_all_paths(ms->paths);
 	while (envp[++i] != NULL)
 	{
-		//!HERE Removed '=' from PATH=
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
 		{
 			found = 1;
@@ -96,7 +95,7 @@ char	*env_paths(t_ms *ms, char **envp)
 		}
 	}
 	if (!found || !paths)
-		paths = ft_split("/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin", ':');
+		paths = ft_split(MIN_PATH, ':');
 	add_slash(slash, paths);
 	ms->paths = paths;
 	return (NULL);
@@ -138,6 +137,65 @@ char	**env_convert(t_env *env)
 	t_env	*current;
 
 	ctd = 0;
+	// current = env;
+	// while (current)
+	// {
+	// 	ctd++;
+	// 	current = current->next;
+	// }
+	// // env_array = (char **)malloc((ctd + 1) * sizeof(char *));
+	env_array = create_env_array(env, &ctd);
+	// if (!env_array)
+	// 	error_msg ("malloc env array");
+	current = env;
+	i = 0;
+	while (i < ctd)
+	{
+		env_array[i] = join_key_value(current->key, current->value);
+		if (!env_array[i])
+		{
+			free_env_array(env_array);
+			error_msg("malloc join key value");
+		}
+		current = current->next;
+		i++;
+	}
+	env_array[ctd] = NULL;
+	return (env_array);
+}
+
+char	**create_env_array(t_env *env, int *ctd_ptr)
+{
+	t_env	*current;
+	int		ctd;
+	char	**env_array;
+
+	(void)ctd_ptr;
+	ctd = 0;
+	current = env;
+	while (current)
+	{
+		ctd++;
+		current = current->next;
+	}
+	// printf("%i", (int)ctd);
+	env_array = create_dptr(ctd + 1);
+	if (!env_array)
+		error_msg ("malloc env array");
+	ctd_ptr = &ctd;
+	return (env_array);
+}
+
+
+/* bak
+char	**env_convert(t_env *env)
+{
+	int		i;
+	int		ctd;
+	char	**env_array;
+	t_env	*current;
+
+	ctd = 0;
 	current = env;
 	while (current)
 	{
@@ -145,7 +203,6 @@ char	**env_convert(t_env *env)
 		current = current->next;
 	}
 	env_array = (char **)malloc((ctd + 1) * sizeof(char *));
-	//env_array = create_argv(ctd);
 	if (!env_array)
 		error_msg ("malloc env array");
 	current = env;
@@ -157,7 +214,7 @@ char	**env_convert(t_env *env)
 		{
 			free_env_array(env_array);
 			error_msg("malloc join key value");
-			return (NULL);
+			// return (NULL);
 		}
 		current = current->next;
 		i++;
@@ -165,38 +222,4 @@ char	**env_convert(t_env *env)
 	env_array[ctd] = NULL;
 	return (env_array);
 }
-
-void	env_arr_update(t_ms *s, char *str)
-{
-	(void)str;
-/* 	char **temp;
- 	int i;
-	int j;
-
-	i = 0;
-	temp = s->env_tmp;
- 	if (ft_strncmp(str, "PATH", 4) == 0 && ft_strlen(str) == 4)
-	{
-		while (temp[i])
-		{
-			if (ft_strncmp(temp[i], "PATH=", 5) == 0)
-			{
-				j = i;
-				while (temp[j])
-				{
-					temp[j] = temp[j + 1];
-					j++;
-				}
-				break;
-			}
-			i++;
-		} */
-	if (s->paths)
-	{
-		free_all_paths(s->paths);
-		s->paths = NULL;
-	}
-	free_env_array(s->env_tmp);
-	s->env_tmp = env_convert(s->env);
-}
-//! ==================================================================//
+*/

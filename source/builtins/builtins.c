@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:25 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/27 14:56:17 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:29:00 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	ft_sw_builtins(const char *s1, const char *s2)
 	{
 		return (ft_abs(s1_len - s2_len));
 	}
-	// return (ft_strncmp(s1, s2, s1_len));
 	if (ft_ismax(s1_len, s2_len))
 		return (ft_strncmp(s1, s2, s2_len));
 	else
@@ -70,10 +69,8 @@ void	toggle_bnf(t_ms *s)
 	}
 }
 
-int	ft_exec_builtins_chr(t_ms *s, char **cmds) //[{laskdl}{kjhalsd}{jakskdj}]
+int	ft_exec_builtins_chr(t_ms *s, char **cmds)
 {
-	if (!cmds || !cmds[0])
-		return (0);
 	if (ft_sw_builtins(cmds[0], "echo") == 0)
 		return (echo_cmd_test(cmds, s), 1);
 	else if (ft_sw_builtins(cmds[0], "cd") == 0)

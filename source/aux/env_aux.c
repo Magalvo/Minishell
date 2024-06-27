@@ -6,13 +6,11 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:18 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/26 18:25:49 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:04:47 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-//! ========================== NULL_ENV_CREATION ===========================//
 
 char	*find_cwd(void)
 {
@@ -36,59 +34,61 @@ char	**null_env_init(void)
 	size_t	key_len;
 	size_t	cwd_len;
 
-	init_env = malloc(sizeof(char *) * 5);
+	init_env = ft_calloc(5, sizeof(char *));
 	if (!init_env)
 		error_msg("malloc nulla");
 	cwd = find_cwd();
 	key_len = ft_strlen("PWD=");
 	cwd_len = ft_strlen(cwd);
-	init_env[0] = malloc(key_len + cwd_len + 1);
+	init_env[0] = ft_calloc(key_len + cwd_len + 1, sizeof(char));
 	if (!init_env[0])
-	{
-		free(cwd);
-		error_msg("malloc");
-	}
+		return (free(cwd), error_msg("malloc"), init_env);
 	ft_strlcpy(init_env[0], "PWD=", key_len + 1);
 	ft_strlcpy(init_env[0] + key_len, cwd, cwd_len + 1);
 	free(cwd);
-	// TODO * Break Func Here
 	init_env[1] = ft_strdup("SHLVL=1");
 	if (!init_env[1])
-	{
-		free(init_env[0]);
-		free(init_env);
-		error_msg("strdup");
-	}
-	// TODO * Break Func Here
+		free_and_error(init_env[0], NULL, init_env);
 	init_env[2] = ft_strdup("_=/usr/bin/env");
 	if (!init_env[2])
-	{
-		free(init_env[0]);
-		free(init_env[1]);
-		free(init_env);
-		error_msg("strdup");
-	}
-/* 	init_env[3] = ft_strdup("PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin");
-	if(!init_env[3])
-	{
-		free(init_env[0]);
-		free(init_env[1]);
-		free(init_env[2]);
-		free(init_env);
-		error_msg("strdup");
-	} */
+		free_and_error(init_env[0], init_env[1], init_env);
 	init_env[3] = NULL;
 	return (init_env);
 }
+
+	// if (!init_env[1])
+	// {
+	// 	free_and_error(init_env[0], init_env[1], NULL)
+	// 	// free(init_env[0]);
+	// 	// free(init_env);
+	// 	// error_msg("strdup");
+	// }
+	// // TODO * Break Func Here
+	// init_env[2] = ft_strdup("_=/usr/bin/env");
+	// if (!init_env[2])
+	// {
+	// 	free_and_error(init_env[0], init_env[1], init_env)
+	// 	// free(init_env[0]);
+	// 	// free(init_env[1]);
+	// 	// free(init_env);
+	// 	// error_msg("strdup");
+	// }
+
+void	free_and_error(char *one, char *two, char **three)
+{
+	free(one);
+	free(two);
+	free(three);
+	error_msg("strdup");
+}
+
+
 
 void	initialize_env(char ***envp)
 {
 	if (!(*envp) || !(*envp)[0])
 		*envp = null_env_init();
 }
-//! ========================================================================//
-
-//! ========================== ENV_ARRAY_UPDATE ============================//
 
 char	*join_key_value(const char *key, const char *value)
 {

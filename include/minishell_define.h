@@ -3,6 +3,7 @@
 
 # define STR_SIZE 16
 # define MAX_PIDS 1024
+# define MIN_PATH "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 //*======================= STRUCTS ====================== *//
 typedef	enum	s_signal e_signal;
