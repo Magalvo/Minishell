@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:04 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/26 18:49:56 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:16:44 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	exit_cmd(t_ms *s, char **cmds)
 			exit_minishell(s, "exit\n");
 		}
 	}
-	else if (cmds[2] && cmds[2][0])
+	else if (cmds[2]) //&& cmds[2][0]
 	{
 		s->exit_stat = 1;
 		ft_putstr_fd(cmds[0], STDERR_FILENO);

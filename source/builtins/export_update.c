@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:02 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 17:40:58 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/27 20:02:55 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	add_node_export(t_env *env, char *key, char *value)
 	t_env	*new_node;
 	t_env	*export;
 
-	new_node = ft_calloc(sizeof(t_env *), 1);
+	new_node = (t_env *)malloc(sizeof(t_env));
 	if (!new_node)
 		error_msg("malloc (new env)");
 	new_node->key = ft_strdup(key);

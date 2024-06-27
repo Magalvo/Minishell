@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:11 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/27 16:39:57 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:46:51 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,18 @@
 
 static int	ft_flagged(char *s)
 {
-	//int	i;
-	//i = 0;
+	int i;
+	i = 0;
 	if (s[0] != '-')
 		return (0);
-	if (s[0] == '-' && s[1] == 'n' && s[2] == '\0')
-		return (1);
-	else
-		return (0);
-	/* i++;
+	i++;
 	while (s[i])
 	{
 		if (s[i] != 'n')
 			return (0);
 		i++;
 	}
-	return (0); */
+	return (1);
 }
 
 int	echo_cmd_test(char **cmd, t_ms *s)
