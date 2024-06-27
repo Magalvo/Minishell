@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/26 18:14:48 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:01:07 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,13 @@ void	expand_heredoc(t_ms *s, char *line, int expand, int fd_file)
 		xp_line = expand_sw_vars(line, s);
 		ft_putendl_fd(xp_line, fd_file);
 		free(xp_line);
+		xp_line = NULL;
 	}
 	else
 	{
 		ft_putendl_fd(line, fd_file);
 		free(line);
+		line = NULL;
 	}
 }
 

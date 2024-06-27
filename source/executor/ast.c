@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:23 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 11:24:46 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:11:10 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,21 +73,33 @@ void	free_ast(t_cmd *cmd)
 	i = 0;
 	if (!cmd)
 		return ;
-	free_ast(cmd->left);
-	free_ast(cmd->right);
-	free_ast(cmd->cmd);
+	if(cmd->left)
+		free_ast(cmd->left);
+	if(cmd->right)
+		free_ast(cmd->right);
+	if(cmd->cmd)
+		free_ast(cmd->cmd);
 	if (cmd->argv)
 	{
 		i = 0;
-		while (cmd->argv[i])
-			free(cmd->argv[i++]);
+		while (cmd->argv && cmd->argv[i] && cmd->argv[i + 1] != NULL)
+		{
+			free(cmd->argv[i]);
+			cmd->argv[i] = NULL;
+			i++;
+		}	
 		free(cmd->argv);
+		cmd->argv = NULL;
 	}
 	if (cmd->file)
+	{
 		free(cmd->file);
+		cmd->file = NULL;
+	}	
 	if (cmd->delim)
 		free(cmd->delim);
 	free(cmd);
+	cmd = NULL;
 }
 
 void	reset_ast(t_ms *s)

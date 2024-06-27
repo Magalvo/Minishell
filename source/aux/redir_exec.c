@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:22:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/26 18:45:51 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:22:41 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		if (fd_out != STDOUT_FILENO)
 			close(fd_out);
 		waitpid(pid, &status, 0);
-		printf("REDIR-> %d\n", status);
+		//printf("REDIR-> %d\n", status);
 		if (WIFEXITED(status))
 			s->exit_stat = WEXITSTATUS(status);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:06:42 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/26 19:35:58 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:35:58 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_cmd *cmd_exec(void)
 
 	cmd = cmd_init();
 	cmd->type = EXEC;
-	//cmd->argc = 1;
+	//cmd->argc = 0;
 	cmd->argv = 0;
 	return (cmd);
 }

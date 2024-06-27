@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_aux2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:37 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/26 18:34:24 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 12:58:54 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,32 +104,29 @@ char	*env_paths(t_ms *ms, char **envp)
 
 char	*get_env_val(t_env *env, char *key, t_ms *s)
 {
-	(void)s;
-	// int i;
+	int i;
 
-	// i = 0;
-	// if (key[0] == '$' && key[1] != '\0')
-	// 		key = key + 1;
-	// if (ft_strncmp(key, "PATH", 4) == 0)
-	// {
-	// 	while (s->paths && s->paths[i])
-	// 	{
-	// 		ft_putstr_fd(s->paths[i], 1);
-	// 		if(s->paths[i + 1] != NULL)
-	// 			ft_putstr_fd(":", 1);
-	// 		i++;
-	// 	}
-	// }
-	// else
-	// {
-	while (env)
+	i = 0;
+	if (ft_strncmp(key, "PATH", 4) == 0)
 	{
-		if (ft_strncmp(env->key, key, ft_strlen(key)) == 0 && \
-			ft_strlen(env->key) == ft_strlen(key))
-			return (env->value);
-		env = env->next;
+		while (s->paths && s->paths[i])
+		{
+			ft_putstr_fd(s->paths[i], 1);
+			if(s->paths[i + 1] != NULL)
+				ft_putstr_fd(":", 1);
+			i++;
+		}
 	}
-	// }
+	else
+	{
+		while (env)
+		{
+			if (ft_strncmp(env->key, key, ft_strlen(key)) == 0 && \
+				ft_strlen(env->key) == ft_strlen(key))
+				return (env->value);
+			env = env->next;
+		}
+	}
 	return (NULL);
 }
 

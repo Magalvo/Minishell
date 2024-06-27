@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_vars.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:09:13 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/26 17:10:43 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:03:25 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,6 @@ char	*expand_self(char *input, char *ps, t_ms *s)
 	if (!val)
 		val = "minishell";
 	res = get_expanded(input, ps, val, ps + 2);
-	free(val);
+	//free(val);
 	return(free(input), res);
 }

@@ -6,7 +6,7 @@
 #    By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/06/27 11:28:06 by dde-maga         ###   ########.fr        #
+#    Updated: 2024/06/27 12:27:07 by dde-maga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ MAKEFLAGS += --no-print-directory #  --silent
 .SILENT: $(OBJ) $(NAME) clean fclean
 ARFLAGS = rvs
 RM = rm -rf
-CC = cc					#gcc -ggdb -fsanitize=address -fno-omit-frame-pointer
+CC = cc #-ggdb -fsanitize=address -fno-omit-frame-pointer
 # AR = ar
 
 
