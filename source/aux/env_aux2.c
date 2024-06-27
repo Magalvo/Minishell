@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_aux2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:37 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 16:26:43 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:49:51 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ char	*env_paths(t_ms *ms, char **envp)
 
 char	*get_env_val(t_env *env, char *key, t_ms *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (ft_strncmp(key, "PATH", 4) == 0)
@@ -111,7 +111,7 @@ char	*get_env_val(t_env *env, char *key, t_ms *s)
 		while (s->paths && s->paths[i])
 		{
 			ft_putstr_fd(s->paths[i], 1);
-			if(s->paths[i + 1] != NULL)
+			if (s->paths[i + 1] != NULL)
 				ft_putstr_fd(":", 1);
 			i++;
 		}
@@ -137,16 +137,7 @@ char	**env_convert(t_env *env)
 	t_env	*current;
 
 	ctd = 0;
-	// current = env;
-	// while (current)
-	// {
-	// 	ctd++;
-	// 	current = current->next;
-	// }
-	// // env_array = (char **)malloc((ctd + 1) * sizeof(char *));
 	env_array = create_env_array(env, &ctd);
-	// if (!env_array)
-	// 	error_msg ("malloc env array");
 	current = env;
 	i = 0;
 	while (i < ctd)
@@ -167,59 +158,17 @@ char	**env_convert(t_env *env)
 char	**create_env_array(t_env *env, int *ctd_ptr)
 {
 	t_env	*current;
-	int		ctd;
 	char	**env_array;
 
-	(void)ctd_ptr;
-	ctd = 0;
+	*ctd_ptr = 0;
 	current = env;
 	while (current)
 	{
-		ctd++;
+		(*ctd_ptr)++;
 		current = current->next;
 	}
-	// printf("%i", (int)ctd);
-	env_array = create_dptr(ctd + 1);
+	env_array = create_dptr(*ctd_ptr);
 	if (!env_array)
 		error_msg ("malloc env array");
-	ctd_ptr = &ctd;
 	return (env_array);
 }
-
-
-/* bak
-char	**env_convert(t_env *env)
-{
-	int		i;
-	int		ctd;
-	char	**env_array;
-	t_env	*current;
-
-	ctd = 0;
-	current = env;
-	while (current)
-	{
-		ctd++;
-		current = current->next;
-	}
-	env_array = (char **)malloc((ctd + 1) * sizeof(char *));
-	if (!env_array)
-		error_msg ("malloc env array");
-	current = env;
-	i = 0;
-	while (i < ctd)
-	{
-		env_array[i] = join_key_value(current->key, current->value);
-		if (!env_array[i])
-		{
-			free_env_array(env_array);
-			error_msg("malloc join key value");
-			// return (NULL);
-		}
-		current = current->next;
-		i++;
-	}
-	env_array[ctd] = NULL;
-	return (env_array);
-}
-*/

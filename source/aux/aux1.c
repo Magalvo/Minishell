@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:10 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/26 18:18:22 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:16:06 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,23 @@ void	wait_till_end(t_ms *s, pid_t pid)
 	}
 	if (s->exit_stat > 255)
 		s->exit_stat /= 256;
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 && (*s1 == *s2))
+	{
+		s1++;
+		s2++;
+	}
+	return ((unsigned char)(*s1) - (unsigned char)(*s2));
+}
+
+void	close_fd(int *fd)
+{
+	if (*fd >= 0)
+	{
+		close(*fd);
+		*fd = -1;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:18 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 13:08:02 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:58:35 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	env_pos(t_env *env, char *value)
 void	env_arr_update(t_ms *s, char *str)
 {
 	(void)str;
-
 	if (s->paths)
 	{
 		free_all_paths(s->paths);

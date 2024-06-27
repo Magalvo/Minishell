@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:07:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 13:11:02 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:40:38 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,11 @@ int peek(char **ps, char *es, char *tokens)
 	return *s && ft_strchr(tokens, *s);
 }
 
-// looks ahead of the string to find *tokens while skipping spaces
+// looks ahead of the string to find spaces
 int peek_nsp(const char *ps, char *es, char *tokens)
 {
-	// char *s;
-
-	// s = ps;
 	while(ps < es && !ft_strchr(SPACES, *ps))
 		ps++;
-	// *ps = s;
 	return *ps && ft_strchr(tokens, *ps);
 }
 

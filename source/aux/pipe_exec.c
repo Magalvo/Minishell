@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 16:28:02 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:01:31 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,18 @@ void	updating_cmds(t_ms *s, char *value)
 
 	key = NULL;
 	(void)value;
-	if(s->ast->type == 1)
+	if (s->ast->type == 1)
 	{
 		key = ft_strdup("_");
 		export_update(s->export, key, s->ast->argv[s->ast->argc - 1]);
 		handle_kv_update(s->env, key, s->ast->argv[s->ast->argc - 1], 1);
 	}
-	else if(s->ast->type == 2 || s->ast->type == 4)
+	else if (s->ast->type == 2 || s->ast->type == 4)
 	{
 		key = ft_strdup("_");
 		export_update(s->export, key, s->ast->cmd->argv[s->ast->cmd->argc - 1]);
-		handle_kv_update(s->env, key, s->ast->cmd->argv[s->ast->cmd->argc - 1], 1);
+		handle_kv_update(s->env, key, \
+			s->ast->cmd->argv[s->ast->cmd->argc - 1], 1);
 	}
 }
 
@@ -92,6 +93,6 @@ void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 
 void	exec_from_ast(t_ms *s)
 {
-	if(!exec_paria(s, s->ast))
+	if (!exec_paria(s, s->ast))
 		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
 }

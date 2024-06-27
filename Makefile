@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+         #
+#    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/06/27 12:27:07 by dde-maga         ###   ########.fr        #
+#    Updated: 2024/06/27 18:26:35 by cjoao-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ PARSER =	aux.c	init_cmd.c	tokens.c	parse.c	parse_exec.c	glue.c \
 AUX = aux1.c env_aux.c env_aux2.c pipe_exec.c redir_exec.c \
 		free.c	ft_ms_aux.c env_aux3.c	env_aux4.c
 
+SIG = signals.c	signals_type.c
 
 AST = ast_print.c ast_print_types.c
 
@@ -40,16 +41,18 @@ EXECUTOR_DIR = $(SRC_DIR)executor/
 PARSER_DIR 	= $(SRC_DIR)parser/
 AUX_DIR 	= $(SRC_DIR)aux/
 AST_DIR 	= $(SRC_DIR)ast/
+SIG_DIR 	= $(SRC_DIR)signals/
 
 
 SRC = 	$(SRC_DIR)minishell.c \
-		$(SRC_DIR)signals.c \
+		$(SRC_DIR)minishell_aux.c \
 		$(SRC_DIR)errors.c \
 		$(addprefix $(BUILTINS_DIR), $(BUILTINS)) \
 		$(addprefix $(EXECUTOR_DIR), $(EXECUTOR)) \
 		$(addprefix $(PARSER_DIR), $(PARSER)) \
 		$(addprefix $(AUX_DIR), $(AUX)) \
 		$(addprefix $(AST_DIR), $(AST)) \
+		$(addprefix $(SIG_DIR), $(SIG)) \
 
 OBJ_DIR = ./object/
 OBJ = $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)

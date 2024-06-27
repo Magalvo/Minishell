@@ -21,9 +21,11 @@
 
 //*=============== minishell.c =====================*//
 
-int		init_minishell(t_ms *s, char **ep);
-void	exit_minishell(t_ms *s, char *msg);
 void	minishell(char **envp);
+void	exit_minishell(t_ms *s, char *msg);
+int		init_minishell(t_ms *s, char **ep);
+void	init_t_ms(t_ms *s);
+void	reset_ms(t_ms *s, char *input, int error);
 //void	exit_minishell(t_ms *s); // changed parameters
 //void	handle_signal(int sign);
 
@@ -31,8 +33,13 @@ void	minishell(char **envp);
 signals.c
 */
 //void	check_signal(t_ms *s);
-void	check_signal(e_signal sig);
 void	handler(int signo, siginfo_t *info, void *ptr);
+void	sig_ignore(struct sigaction *sa, int signal);
+void	here_handler(int signal, siginfo_t *info, void *context);
+void	check_signal(e_signal sig);
+void	signal_main(struct sigaction sa);
+void	signal_child(struct sigaction sa);
+void	signal_heredoc(struct sigaction sa);
 void	new_line(void);
 void	reset_ast(t_ms *s);
 void	free_ast(t_cmd *cmd);
