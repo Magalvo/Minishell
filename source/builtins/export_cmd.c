@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:59 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/27 17:41:21 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/27 20:10:49 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*extract_key(const char *str, char *delimiter)
 	key_len = delimiter - str;
 	return (ft_substr(str, 0, key_len));
 }
-
+//!! AQUI
 int	update_key(t_env *env, char *key, char *value)
 {
 	char	*value_tmp;
@@ -65,7 +65,7 @@ int	add_new_node(t_env *env, char *key, char *value)
 	t_env	*env_cpy;
 	t_env	*new_node;
 
-	new_node = ft_calloc(sizeof(t_env *), 1);
+	new_node = (t_env *)malloc(sizeof(t_env));
 	if (!new_node)
 		error_msg("malloc (new env)");
 	new_node->key = ft_strdup(key);
