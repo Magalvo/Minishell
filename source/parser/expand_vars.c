@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_vars.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:09:13 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 14:03:25 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:40:25 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*expand_curly(char *input, char *ps, t_ms *s)
 		free(key);
 		return(free(input), res);
 	}
-	return(reprompt(EXPANSION_ERROR, 1, s), NULL);
+	return(reprompt(CURLY_ERROR, 1, s), NULL);
 }
 
 char	*expand_pid(char *input, char *ps, t_ms *s)
