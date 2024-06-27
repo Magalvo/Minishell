@@ -146,7 +146,7 @@ echo 1 > "$X" */
 
 void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
-	updating_cmds(s, cmd->argv[cmd->argc - 1]);
+	//updating_cmds(s, cmd->argv[cmd->argc - 1]);
     if (ft_exec_builtins_chr(s, cmd->argv))
         s->exit_stat = 0;
     else 
@@ -172,7 +172,6 @@ void	exec_from_ast(t_ms *s)
 		update_last(s->export, key, s->ast->cmd->argv[s->ast->cmd->argc - 1]);
 	}
 	free(key); */
-	if (!exec_paria(s, s->ast))
 	if(!exec_paria(s, s->ast))
 		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
 }
