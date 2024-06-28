@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 13:15:41 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/01/29 17:17:56 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:47:51 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,22 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	}
 	dst[dst_len + i] = '\0';
 	return (src_len + dst_len);
+}
+
+char	*ft_strcat(char *dst, const char *src)
+{
+	size_t	i;
+	size_t	dst_size;
+
+	i = 0;
+	dst_size = ft_strlen(dst);
+	while (src[i])
+	{
+		dst[dst_size + i] = src[i];
+		i++;
+	}
+	dst[dst_size + i] = '\0';
+	return (dst);
 }
 
 /*

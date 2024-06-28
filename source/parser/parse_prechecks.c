@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:00 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 11:17:12 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/28 14:05:36 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,38 +34,32 @@ char	*expand_sw_vars(char *input, t_ms *s)
 {
 	char	*pos;
 	char	*xp_input;
-	// int		i;
 
-	// i = 0;
 	xp_input = ft_strdup(input);
 	pos = ft_strchr(xp_input, '$');
-	while (pos && *(pos + 1) != '\0')
+	while (pos)
 	{
 		if (is_quoted(xp_input, pos) != E_QUOTE)
 		{
-			if (*(pos + 1) == '{')	//}
-				xp_input = expand_curly(xp_input, pos, s);
-			else if (*(pos + 1) == '$')
-				xp_input = expand_pid(xp_input, pos, s);
-			else if (*(pos + 1) == '?')
-				xp_input = expand_exit_stat(xp_input, pos, s);
-			else if (*(pos + 1) == '_')
-				xp_input = expand_last_cmd(xp_input, pos, s);
-			else if (*(pos + 1) == '0')
-				xp_input = expand_self(xp_input, pos, s);
-			else
-				xp_input = expand_dolar(xp_input, pos, s);
-			// if (pos == ft_strchr(xp_input, '$'))
-			// 	i++;
+			// if (*(pos + 1) == '{')	//}
+			// 	xp_input = expand_curly(xp_input, pos, s);
+			// else if (*(pos + 1) == '$')
+			// 	xp_input = expand_pid(xp_input, pos, s);
+			// else if (*(pos + 1) == '?')
+			// 	xp_input = expand_exit_stat(xp_input, pos, s);
+			// else if (*(pos + 1) == '_')
+			// 	xp_input = expand_last_cmd(xp_input, pos, s);
+			// else if (*(pos + 1) == '0')
+			// 	xp_input = expand_self(xp_input, pos, s);
+			// else
+			// 	xp_input = expand_dolar(xp_input, pos, s);
+			xp_input = vars_sw(xp_input, pos, s);
 			pos = ft_strchr(xp_input, '$');
 			if (pos && *(pos - 1) == '"' && *(pos + 1) == '"')
 				*(pos) = 17;
 		}
-		// ft_strrep_range(start, end, (char)17, '"');
 		else
 			pos = ft_strchr(pos + 1, '$');
-		// if (xp_input == NULL)
-		// 	break ;			// TODO proper exit condition
 	}
 	return(free(input), xp_input);
 }
@@ -95,8 +89,6 @@ char	*expand_sw_tilde(char *input, t_ms *s)
 	return(free(input), xp_input);
 }
 
-// }
-
 char	*expand_sw_quotes(char *input)
 {
 	char	*pos;
@@ -119,26 +111,4 @@ char	*expand_sw_quotes(char *input)
 		pos = get_first_quote(end + 1);
 	}
 	return (input);
-}
-
-char	*get_first_quote(char *input)
-{
-	char	*qt;
-	char	*dqt;
-	char	*pos;
-
-	pos = NULL;
-	qt = ft_strchr(input, '\'');
-	dqt = ft_strchr(input, '"');
-	if (qt && dqt)
-	{
-		pos = qt;
-		if (qt > dqt)
-			pos = dqt;
-	}
-	else if (qt)
-		pos = qt;
-	else if (dqt)
-		pos = dqt;
-	return (pos);
 }

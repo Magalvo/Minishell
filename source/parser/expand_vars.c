@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_vars.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:09:13 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 16:40:25 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:08:22 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,16 @@ char	*expand_curly(char *input, char *ps, t_ms *s)
 	char	*res;
 	char	*key;
 	char	*end;
+	char	*val;
 
 	end = ft_strchr(ps, '}');
 	key = ft_substr(input, ps - input + 2, end - ps - 2);
 	if (get_token_a(&key) == 'a')
 	{
-		res = get_expanded(input, ps, get_env_val(s->env, key, s), \
-					end + 1);
+		val = get_env_val(s->env, key, s);
+		res = get_expanded(input, ps, val, end + 1);
 		free(key);
+		free(val);
 		return(free(input), res);
 	}
 	return(reprompt(CURLY_ERROR, 1, s), NULL);
@@ -100,6 +102,7 @@ char	*expand_last_cmd(char *input, char *ps, t_ms *s)
 	val = get_env_val(s->env, key, s);
 	res = get_expanded(input, ps, val, ps + 2);
 	free(key);
+	free(val);
 	return(free(input), res);
 }
 
@@ -112,6 +115,6 @@ char	*expand_self(char *input, char *ps, t_ms *s)
 	if (!val)
 		val = "minishell";
 	res = get_expanded(input, ps, val, ps + 2);
-	//free(val);
+	free(val);
 	return(free(input), res);
 }

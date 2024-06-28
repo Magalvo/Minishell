@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 17:47:41 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/28 13:43:22 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_cmd	*parse_input(char *input, t_ms *s)
 	if (ft_strlen(input) == 0)
 		return (NULL);
 	add_history(input);
+	s->input = input;
 	if (!syntax_validation(input, s))
 		return (NULL);
 	xp_input = ft_strdup(input);
@@ -71,6 +72,7 @@ t_cmd *parse_line(char **ps, char *es, t_ms *s)
 {
 	t_cmd *cmd;
 
+	ft_strrep_range(*ps, es, (char)17, '$');
 	cmd = parse_pipe(ps, es, s);
 	return cmd;
 }

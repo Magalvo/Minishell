@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:04:53 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/26 19:07:09 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:22:01 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		if (fd_out != STDOUT_FILENO)
 			assist_file(fd_out, STDOUT_FILENO);
 		exec_one(s, cmd->argv);
-		not_found(cmd->argv[0], 126, s);
+		set_exit(127, s);
 	}
 	else
 	{
