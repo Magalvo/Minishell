@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 17:01:31 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:41:06 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	exec_one(t_ms *s, char **argv)
 		path = cmd_path(s->paths, argv[0], s);
 		if (!path)
 			not_found(argv[0], 127, s);
-		cmd_name = ft_strchr(path, '/');
+		cmd_name = ft_strchr(argv[0], '/');
 		if (cmd_name)
 		{
 			cmd_name++;
@@ -38,7 +38,6 @@ void	exec_one(t_ms *s, char **argv)
 		free(path);
 		set_exit(126, s);
 	}
-	set_exit(0, s);
 }
 
 int	exec_paria(t_ms *s, t_cmd *cmds)
@@ -47,14 +46,14 @@ int	exec_paria(t_ms *s, t_cmd *cmds)
 		return (0);
 	if (ft_sw_builtins(cmds->argv[0], "export") == 0)
 	{
-		//updating_cmds(s, s->ast->argv[s->ast->argc - 1]);
+		updating_cmds(s, s->ast->argv[s->ast->argc - 1]);
 		export_cmd(s, cmds->argv);
 		return (1);
 	}
 	else if (ft_sw_builtins(cmds->argv[0], "echo") == 0)
 	{
 		echo_cmd_test(cmds->argv, s);
-		//updating_cmds(s, s->ast->argv[s->ast->argc - 1]);
+		updating_cmds(s, s->ast->argv[s->ast->argc - 1]);
 		return (1);
 	}
 	else
@@ -84,7 +83,7 @@ void	updating_cmds(t_ms *s, char *value)
 
 void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
-	//updating_cmds(s, cmd->argv[cmd->argc - 1]);
+	updating_cmds(s, cmd->argv[cmd->argc - 1]);
 	if (ft_exec_builtins_chr(s, cmd->argv))
 		s->exit_stat = 0;
 	else

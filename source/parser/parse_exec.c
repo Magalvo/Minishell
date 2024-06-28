@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:28:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 18:29:31 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/28 13:59:57 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,13 @@ void	parse_args(char **ps, char *es, t_d_cmd *cmds, t_ms *s)
 
 	q = NULL;
 	eq = NULL;
-	//cmds->one->argc = 0;
-	while(!peek(ps, es, "|)&;"))
+	while(!peek(ps, es, "|"))
 	{
 		tok = get_token(ps, es, &q, &eq);
 		if (tok == 0)
 			break;
 		if(tok != 'a')
-			reprompt(INVALID_TOKEN, 1, s);
+			reprompt(NOT_A_VALID_TOKEN, 1, s);
 		new_arg = ft_calloc((eq - q) + 1, sizeof(char));
 		ft_memmove((void *)new_arg, (void *)q, (eq - q));
 		unglue_str(new_arg, new_arg + ft_strlen(new_arg));
@@ -57,7 +56,6 @@ void	parse_args(char **ps, char *es, t_d_cmd *cmds, t_ms *s)
 		cmds->one->argc++;
 		cmds->two = parse_redir(cmds->two, ps, es, s);
 	}
-	//cmds->one->argv[cmds->one->argc] = NULL;
 }
 
 
@@ -72,7 +70,7 @@ int	count_argc(char **ps, char *es, t_ms *s)
 	argc = 0;
 	ps_cpy = *ps;
 	es_cpy = es;
-	while(!peek(ps, es, "|)&<>"))
+	while(!peek(ps, es, TOKENS))
 	{
 		tok=get_token(ps, es, NULL, NULL);
 		if (tok == 0)

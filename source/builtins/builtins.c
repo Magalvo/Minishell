@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:25 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/27 16:29:00 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/28 12:28:54 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	ft_exec_builtins_chr(t_ms *s, char **cmds)
 	else if (ft_sw_builtins(cmds[0], "pwd") == 0)
 		return (pwd_cmd(s));
 	else if (ft_sw_builtins(cmds[0], "export") == 0)
-		return (1);
+		return (export_cmd(s, cmds));
 	else if (ft_sw_builtins(cmds[0], "unset") == 0)
 		return (unset_cmd(s, cmds));
 	else if (ft_sw_builtins(cmds[0], "exit") == 0)
