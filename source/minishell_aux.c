@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 18:24:26 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/28 13:56:28 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	init_minishell(t_ms *s, char **ep)
 			printf("%s\n", ep[i]);
 			i++;
 		}
-		//exit_minishell(s, NULL);
 	}
 	init_list(&s->env, ep);
 	init_list(&s->export, ep);
@@ -57,9 +56,7 @@ int	init_minishell(t_ms *s, char **ep)
 	s->env_tmp = env_convert(s->export);
 	s->modal = MAIN;
 	s->cmd_temp = NULL;
-	s->prompt = "\e[3;33mnanoshell\e[0m\e[1;97m -> \e[0m";  // v alpha
-	// s->prompt = "\e[3;33mnanoshell\e[0m\e[1;97m -> \e[0m";    // v beta
-	// s->prompt = "\e[3;33mminishell\e[0m\e[1;97m -> \e[0m";     // v gold
+	s->prompt = "nanoshell -> ";
 	return (true);
 }
 
@@ -71,6 +68,9 @@ void	init_t_ms(t_ms *s)
 	s->modal = -1;
 	s->infile = -1;
 	s->outfile = -1;
+	s->exit_stat = 0;
+	s->input = NULL;
+	s->one_dolar = false;
 	s->input_empty = false;
 	s->bnf = false;
 	s->env_tmp = NULL;
@@ -78,7 +78,6 @@ void	init_t_ms(t_ms *s)
 	s->ast = NULL;
 	s->env = NULL;
 	s->export = NULL;
-	s->exit_stat = 0;
 }
 
 void	reset_ms(t_ms *s, char *input, int error)

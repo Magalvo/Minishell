@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:08 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/26 17:15:41 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/28 12:39:26 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,43 +94,92 @@ int is_quoted(const char *str, const char *totest)
 	return (quote);
 }
 
-// tests if pointer has char on sides of its position
-bool	chr_betw(char *input, char *totest, char tofind)
+char	*get_first_quote(char *input)
 {
-	char *goleft;
-	char *goright;
+	char	*qt;
+	char	*dqt;
+	char	*pos;
 
-	goleft = totest;
-	goright = totest;
-	if (ft_strchr(input, tofind) < goleft)
+	pos = NULL;
+	qt = ft_strchr(input, '\'');
+	dqt = ft_strchr(input, '"');
+	if (qt && dqt)
 	{
-		if (ft_strrchr(input, tofind) > goright)
-		return (true);		// char found on both sides
+		pos = qt;
+		if (qt > dqt)
+			pos = dqt;
 	}
-	return (false);
+	else if (qt)
+		pos = qt;
+	else if (dqt)
+		pos = dqt;
+	return (pos);
 }
 
-// tests if quotes, dquotes exists on both sides of pointer
-bool	inside_quotes(char *input, char *totest)
+char	*remove_quotes(char *input, char *pos)
 {
-	char quote;
-	char dquote;
+	char	*qt_pos;
+	char	*res1;
+	char	*res2;
+	int		offset;
+	bool	is_qt;
 
-	quote = '\'';
-	dquote = '"';
-	if (chr_betw(input, totest, quote) || chr_betw(input, totest, dquote))
-		return (true);		// char found on both sides
-	return (false);
+	is_qt = false;
+	qt_pos = get_first_quote(pos);
+	if (!qt_pos)
+		return (input);
+	if (*qt_pos == QUOTE)
+		is_qt = true;
+	res1 = get_expanded(input, qt_pos, NULL, qt_pos + 1);
+	free(input);
+	if (is_qt)
+		qt_pos = ft_strchr(res1, QUOTE);
+	else
+		qt_pos = ft_strchr(res1, DQUOTE);
+	res2 = get_expanded(res1, qt_pos, NULL, qt_pos + 1);
+	offset = qt_pos - res1;
+	free(res1);
+	remove_quotes(res2, res2 + offset);
+	return (res2);
 }
 
-// does nothing for now
-bool	check_valid_position(char *input)
-{
+// tests if pointer has char on sides of its position
+// bool	chr_betw(char *input, char *totest, char tofind)
+// {
+// 	char *goleft;
+// 	char *goright;
 
-	char *ptr;
+// 	goleft = totest;
+// 	goright = totest;
+// 	if (ft_strchr(input, tofind) < goleft)
+// 	{
+// 		if (ft_strrchr(input, tofind) > goright)
+// 		return (true);		// char found on both sides
+// 	}
+// 	return (false);
+// }
 
-	ptr = ft_strchr(input, ')');
-	if (inside_quotes(input, ptr))
-		return true;
-	return false;
-}
+// // tests if quotes, dquotes exists on both sides of pointer
+// bool	inside_quotes(char *input, char *totest)
+// {
+// 	char quote;
+// 	char dquote;
+
+// 	quote = '\'';
+// 	dquote = '"';
+// 	if (chr_betw(input, totest, quote) || chr_betw(input, totest, dquote))
+// 		return (true);		// char found on both sides
+// 	return (false);
+// }
+
+// // does nothing for now
+// bool	check_valid_position(char *input)
+// {
+
+// 	char *ptr;
+
+// 	ptr = ft_strchr(input, ')');
+// 	if (inside_quotes(input, ptr))
+// 		return true;
+// 	return false;
+// }

@@ -6,13 +6,13 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:28 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 18:12:14 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/28 12:28:27 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	check_signal(e_signal sig)
+void	check_signal(t_signal sig)
 {
 	static struct sigaction	sa;
 
