@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:59 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/27 20:10:49 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/28 14:01:53 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	update_key(t_env *env, char *key, char *value)
 {
 	char	*value_tmp;
 
-	value_tmp = NULL;
 	while (env)
 	{
 		if (ft_sw_builtins(env->key, key) == 0)
@@ -50,6 +49,8 @@ int	update_key(t_env *env, char *key, char *value)
 				if (ft_strcmp(value, env->value) == 0)
 					return (1);
 				value_tmp = ft_strdup(value);
+				if (!value_tmp)
+					return (0);
 				free(env->value);
 				env->value = value_tmp;
 			}
@@ -88,26 +89,30 @@ int	add_new_node(t_env *env, char *key, char *value)
 	return (0);
 }
 
-int	export_cmd(t_ms *s, char **str)
+int export_cmd(t_ms *s, char **str)
 {
-	char	*key;
-	char	*value;
+    char *key;
+    char *value;
 
-	if (str[1] == NULL)
-	{
-		sort_env_list(&s->export);
-		return (print_export(s->export));
-	}
-	key = get_key_from_str(str[1]);
-	value = get_value_from_str(str[1]);
-	if (!key || !is_valid_key(key))
-	{
-		s->exit_stat = 1;
-		return (export_cmd_error("not a valid identifier"));
-	}
-	export_update(s->export, key, value);
-	handle_kv_update(s->env, key, value, 1);
-	env_arr_update(s, NULL);
-	env_paths(s, s->env_tmp);
-	return (0);
+    if (str[1] == NULL)
+        return((sort_env_list(&s->export)), print_export(s->export));
+    key = get_key_from_str(str[1]);
+    if (!key || !is_valid_key(key))
+    {
+        s->exit_stat = 1;
+        export_cmd_error("not a valid identifier");
+        free(key); 
+        return 1; 
+    }
+    value = get_value_from_str(str[1]);
+    if (!value)
+        return(free(key), 1); 
+    export_update(s->export, key, value);
+    handle_kv_update(s->env, key, value, 1);
+    env_arr_update(s, NULL);
+    env_paths(s, s->env_tmp);
+    free(key); 
+    free(value); 
+    return 0;
 }
+

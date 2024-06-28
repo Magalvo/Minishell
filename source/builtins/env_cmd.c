@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:07 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/27 16:29:04 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:25:44 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,27 +70,19 @@ int	env_cmd(t_ms *s, char **cmds)
 t_env	*new_env_node(char *env_var)
 {
 	t_env	*node;
-	size_t	key_len;
 	char	*delimiter;
 
-	node = ft_calloc(sizeof(t_env), 1);
+	node = ft_calloc(1, sizeof(t_env));
 	if (!node)
 		return (ft_putstr_fd("malloc (new env)", 2), NULL);
 	delimiter = ft_strchr(env_var, '=');
 	if (!delimiter)
 		return (free(node), NULL);
-	key_len = delimiter - env_var;
-	node->key = key_dup(env_var, key_len);
+	node->key = key_dup(env_var, delimiter - env_var);
 	if (!node->key)
-	{
-		free(node);
-		return (NULL);
-	}
-	if (!setting_value(node, delimiter))
-	{
-		free_node(node);
-		return (NULL);
-	}
+		return(free(node), NULL);
+	if (!setting_value(node, delimiter + 1))     //!!! ADDED + 1
+		return (free_node(node), NULL);
 	node->prev = NULL;
 	node->next = NULL;
 	return (node);

@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:23:29 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 16:29:31 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/28 13:53:22 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	handle_kv_update(t_env *env, char *key, char *value, int tog)
 {
 	if (!is_valid_key(key))
 	{
+		ft_putstr_fd("invalid var name\n", 2);
 		free(key);
 		if (value)
 			free(value);

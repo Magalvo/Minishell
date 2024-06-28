@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:23 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 19:29:09 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/28 10:54:06 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ void	free_ast(t_cmd *cmd)
 	}
 	if (cmd->delim)
 		free(cmd->delim);
-	/* free(cmd);
-		cmd = NULL; */
+	free(cmd);
+		cmd = NULL;
 }
 
 void	reset_ast(t_ms *s)

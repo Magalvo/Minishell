@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:10:49 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 16:49:50 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/28 14:20:46 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ char	*expand_dolar(char *input, char *ps, t_ms *s)
 		glue_str(val, val + ft_strlen(val));
 	}
 	if (*(ps + 1) == '"' && is_quoted(input, ps) == E_DQUOTE)
-		return (input);
+		return (free(val), input);
 		// return (*(ps + 1) = (char)17, input);
 	res = get_expanded(input, ps, val, ps + keylen);
 	free (key);
-	//free (val);
+	free (val);
 	return(free(input), res);
 }
 
