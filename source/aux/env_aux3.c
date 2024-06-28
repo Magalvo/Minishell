@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:45 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/28 16:27:51 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/28 19:27:51 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,11 @@ void	free_node(t_env *node)
 
 void	dup_and_close(int fd, int standard)
 {
-	dup2(fd, standard);
+	if (dup2(fd, standard) == -1)
+	{
+		perror("dup2");
+		exit(EXIT_FAILURE);
+	}
 	close(fd);
 }
 
