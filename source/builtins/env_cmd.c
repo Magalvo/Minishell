@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:07 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/28 16:25:44 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/28 17:23:00 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_env	*new_env_node(char *env_var)
 	node->key = key_dup(env_var, delimiter - env_var);
 	if (!node->key)
 		return(free(node), NULL);
-	if (!setting_value(node, delimiter + 1))     //!!! ADDED + 1
+	if (!setting_value(node, delimiter))     //!!! ADDED + 1
 		return (free_node(node), NULL);
 	node->prev = NULL;
 	node->next = NULL;
