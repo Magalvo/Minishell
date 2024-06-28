@@ -27,7 +27,7 @@ Within double quotes, backslashes that are followed
 by one of these characters are removed
 */
 
-// enum s_quote_type { NONE 0, EQUOTE 1, EDQUOTE 2 };
+// enum s_quote_type { NONE 0, E_QUOTE 1, E_DQUOTE 2 };
 // # define QUOTE '		DQUOTE "
 // key[0] unused, key[1] for quote, key[2] for dquote
 // TODO too many lines // implement the XOR ^= trick here
@@ -39,27 +39,27 @@ int syntax_quotes(const char *str)
 	{
 		if (*str == QUOTE)
 		{
-			if (key[EDQUOTE] == NONE)
+			if (key[E_DQUOTE] == NONE)
 			{
-				if (key[EQUOTE] == NONE)	// implement the XOR ^= trick here
-					key[EQUOTE] = EQUOTE;
+				if (key[E_QUOTE] == NONE)	// implement the XOR ^= trick here
+					key[E_QUOTE] = E_QUOTE;
 				else
-					key[EQUOTE] = NONE;
+					key[E_QUOTE] = NONE;
 			}
 		}
 		else if (*str == DQUOTE)
 		{
-			if (key[EQUOTE] == NONE)
+			if (key[E_QUOTE] == NONE)
 			{
-				if (key[EDQUOTE] == NONE)
-					key[EDQUOTE] = EDQUOTE;
+				if (key[E_DQUOTE] == NONE)
+					key[E_DQUOTE] = E_DQUOTE;
 				else
-					key[EDQUOTE] = NONE;
+					key[E_DQUOTE] = NONE;
 			}
 		}
 		str++;
 	}
-	if (key[EQUOTE] != NONE || key[EDQUOTE] != NONE)
+	if (key[E_QUOTE] != NONE || key[E_DQUOTE] != NONE)
 		return (-1);
 	return (0);
 }
@@ -78,15 +78,15 @@ int is_quoted(const char *str, const char *totest)
 		if (*str == QUOTE)
 		{
 			if (quote == NONE)
-				quote = EQUOTE;
-			else if (quote == EQUOTE)
+				quote = E_QUOTE;
+			else if (quote == E_QUOTE)
 				quote = NONE;
 		}
 		else if (*str == DQUOTE)
 		{
 			if (quote == NONE)
-				quote = EDQUOTE;
-			else if (quote == EDQUOTE)
+				quote = E_DQUOTE;
+			else if (quote == E_DQUOTE)
 				quote = NONE;
 		}
 	str++;

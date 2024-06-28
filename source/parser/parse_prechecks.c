@@ -34,12 +34,14 @@ char	*expand_sw_vars(char *input, t_ms *s)
 {
 	char	*pos;
 	char	*xp_input;
+	// int		i;
 
+	// i = 0;
 	xp_input = ft_strdup(input);
 	pos = ft_strchr(xp_input, '$');
 	while (pos && *(pos + 1) != '\0')
 	{
-		if (is_quoted(xp_input, pos) != EQUOTE)
+		if (is_quoted(xp_input, pos) != E_QUOTE)
 		{
 			if (*(pos + 1) == '{')	//}
 				xp_input = expand_curly(xp_input, pos, s);
@@ -53,10 +55,17 @@ char	*expand_sw_vars(char *input, t_ms *s)
 				xp_input = expand_self(xp_input, pos, s);
 			else
 				xp_input = expand_dolar(xp_input, pos, s);
+			// if (pos == ft_strchr(xp_input, '$'))
+			// 	i++;
+			pos = ft_strchr(xp_input, '$');
+			if (pos && *(pos - 1) == '"' && *(pos + 1) == '"')
+				*(pos) = 17;
 		}
-		if (xp_input == NULL)
-			break ;			// TODO proper exit condition
-		pos = ft_strchr(xp_input, '$');
+		// ft_strrep_range(start, end, (char)17, '"');
+		else
+			pos = ft_strchr(pos + 1, '$');
+		// if (xp_input == NULL)
+		// 	break ;			// TODO proper exit condition
 	}
 	return(free(input), xp_input);
 }

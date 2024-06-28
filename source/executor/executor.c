@@ -61,7 +61,7 @@ int	fork1(void)
 
 	pid = fork();
 	if (pid == -1)
-		error_msg("fork");
+		error_msg("minishell: fork error");
 	return (pid);
 }
 
