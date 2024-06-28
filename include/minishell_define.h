@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell_define.h                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/06/28 12:25:48 by cjoao-de         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_DEFINE_H
 # define MINISHELL_DEFINE_H
 
@@ -6,20 +18,20 @@
 # define MIN_PATH "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 //*======================= STRUCTS ====================== *//
-typedef	enum	s_signal e_signal;
-typedef struct	s_env t_env;
-typedef struct	s_ms t_ms;
-typedef struct	s_builtin t_builtin;
-typedef struct	s_execution t_execution;		//TODO not defined, still used?
+typedef enum e_signal		t_signal;
+typedef struct s_env		t_env;
+typedef struct s_ms			t_ms;
+typedef struct s_builtin	t_builtin;
+typedef struct s_execution	t_execution;		//TODO not defined, still used?
 
 /* parser structs */
-typedef	enum	s_cmd_type e_cmd_type;
-typedef	enum	s_quote_type e_quote_type;
-typedef	struct	s_cmd t_cmd;
-typedef	struct	s_d_cmd t_d_cmd;
-typedef	struct	s_pids t_pids;
+typedef enum e_cmd_type		t_cmd_type;
+typedef enum e_quote_type	t_quote_type;
+typedef struct s_cmd		t_cmd;
+typedef struct s_d_cmd		t_d_cmd;
+typedef struct s_pids		t_pids;
 
-enum s_signal
+enum e_signal
 {
 	MAIN,
 	CHILD,
@@ -29,28 +41,31 @@ enum s_signal
 
 struct s_pids
 {
-	pid_t pids[MAX_PIDS];
-	int pid_count;
+	pid_t	pids[MAX_PIDS];
+	int		pid_count;
 };
 
 struct	s_env
 {
-	char			*key;  //*Eg.: PATH=
-	char			*value;//*Eg.: /usr/bin (...)
+	char	*key;	//*Eg.: PATH=
+	char	*value;	//*Eg.: /usr/bin (...)
 	t_env	*prev;
 	t_env	*next;
-	//token			//* 1 -> ENV Originals  2 ->No Value  3 ->Exported with Export
+	//token
+	//* 1 -> ENV Originals  2 ->No Value  3 ->Exported with Export
 };
 
 struct s_ms
 {
 	char	*prompt;	//* ARGV
-	char	**paths;   	//* PATH dir
+	char	**paths;		//* PATH dir
 	char	*username;	//* Current User // ? needed?
 	int		modal;		//* MAIN / CHILD / HERE_DOC / IGNORE
 	int		infile;		//* Redirect Infile
 	int		outfile;	//* Redirect Outfile
 	int		exit_stat;	//* Exit Status
+	char	*input;
+	bool	one_dolar;
 	bool	input_empty;
 	bool	bnf;
 	char	**env_tmp;	//* Temp env;
@@ -71,7 +86,7 @@ struct s_builtin
 	int		(*func)(t_cmd *cmd);
 };
 
-enum s_quote_type
+enum e_quote_type
 {
 	NONE,
 	E_QUOTE,
@@ -97,7 +112,7 @@ enum s_quote_type
 // # define CREATE		O_WRONLY|O_CREAT
 // # define APPEND		O_WRONLY|O_CREAT|O_APPEND
 
-enum s_cmd_type
+enum e_cmd_type
 {
 	EXEC	= 1,
 	REDIR	= 2,
