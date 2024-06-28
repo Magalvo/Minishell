@@ -22,10 +22,11 @@ EXECUTOR =	executor.c ast.c \
 
 # EXECUTOR =	executor.c
 
-PARSER =	aux.c	init_cmd.c	tokens.c	parse.c	parse_exec.c	glue.c \
-			parse_quotes.c		parse_prechecks.c	get_expanded.c \
-			syntax_tests.c		expand_vars.c	expand_vars2.c	expand_tilde.c \
-			init_heredoc.c
+PARSER =	aux.c	expand_tilde.c	expand_vars.c	expand_vars2.c \
+			get_expanded.c	init_cmd.c	init_heredoc.c	init_heredoc_aux.c \
+			parse_exec.c	parse_prechecks.c	parse_quotes.c	parse_redir.c \
+			parse.c	syntax_tests.c	tokens.c
+
 
 AUX = aux1.c env_aux.c env_aux2.c pipe_exec.c redir_exec.c \
 		free.c	ft_ms_aux.c env_aux3.c	env_aux4.c

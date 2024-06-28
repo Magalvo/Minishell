@@ -3,6 +3,7 @@
 
 /* define error messages*/
 # define 	MISSING_REDIRECT	"redirect without file"
+# define 	INVALID_TOKEN		"syntax error: unexpected token"
 # define 	MISSING_QUOTE		"missing quote or double quote"
 # define 	SINGLE_AMPERSAND	"background tasks not implemented"
 # define 	SEMICOLON			"command list not implemented"
@@ -19,7 +20,7 @@
 # define 	FORK_FAIL			"error creating fork"
 # define 	CD_FAIL				"cannot change directory"
 # define 	LOGICAL_TOKEN		"logic operators (&& ||) not implemented"
-# define 	INVALID_TOKEN		"invalid token found"
+// # define 	INVALID_TOKEN		"invalid token found"
 # define 	INCOMPLETE_PARSE	"not parsed, double check parser"
 # define 	PIPE_SYNTAX			"syntax error, check pipes"
 # define 	REDIR_SYNTAX		"ambiguous redirect"

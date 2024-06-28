@@ -117,13 +117,14 @@ bool	strrchr_alpha_loop(const char *input, const char *pos);
 int		is_quoted(const char *str, const char *totest);
 char	expand_braces(char *input);
 char	*expand_words(char *input);
-char	*remove_quotes(char *input);
+char	*remove_quotes(char *input, char *pos);
 bool	check_valid_position(char *input);
 char	*get_expanded(char *input, char *cut, char *paste, char *remain);
 
 // int		here_doc(char *dli, t_ms *s, t_cmd *cmd);
 int		exec_heredoc(char *dli, char *file, int expand, t_ms *s);
 void	expand_heredoc(t_ms *s, char *line, int expand, int fd_file);
+void	heredoc_child(char *dli, int fd_file, int expand, t_ms *s);
 int		del_eof(int heredoc);
 int		open_fd(char *file, int mode);
 

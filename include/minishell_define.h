@@ -74,8 +74,8 @@ struct s_builtin
 enum s_quote_type
 {
 	NONE,
-	EQUOTE,
-	EDQUOTE
+	E_QUOTE,
+	E_DQUOTE
 };
 
 # define QUOTE '\''
@@ -91,6 +91,7 @@ enum s_quote_type
 # define SPACES		"\t\n\v\f\r "
 # define GLUE		"\1\2\3\4\5\6"
 # define SYMBOLS	"|&()<>" // { } $ @ ' " \ / * ;
+# define TOKENS		"|<>" // { } $ @ ' " \ / * ;
 // # define RDONLY		O_RDONLY
 // # define TRUNC		O_WRONLY|O_CREAT|O_TRUNC
 // # define CREATE		O_WRONLY|O_CREAT
