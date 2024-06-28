@@ -171,7 +171,7 @@ void	initialize_env(char ***envp);
 char	**null_env_init();
 void	free_and_error(char *one, char *two, char **three);
 char	**env_convert(t_env *env);
-char	**create_env_array(t_env *env, int *ctd);
+char	**create_env_array(int ctd_ptr);
 void	free_env_list(t_env *env);
 void 	cleanup_shell(t_ms *s);
 void	clear_cmd(t_cmd *cmd);

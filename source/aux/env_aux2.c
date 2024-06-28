@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_aux2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:37 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 18:49:51 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/28 14:52:16 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ char	*env_paths(t_ms *ms, char **envp)
 	return (NULL);
 }
 
-char	*get_env_val(t_env *env, char *key, t_ms *s)
+/* char	*get_env_val(t_env *env, char *key, t_ms *s)
 {
 	int	i;
 
@@ -127,9 +127,57 @@ char	*get_env_val(t_env *env, char *key, t_ms *s)
 		}
 	}
 	return (NULL);
+} */
+
+char	*get_env_val(t_env *env, char *key, t_ms *s)
+{
+	int		i;
+	int		total_len;
+	char	*value;
+	char	*result;
+
+	i = 0;
+	if (ft_strncmp(key, "PATH", 4) == 0)
+	{
+		total_len = 0;
+		while (s->paths && s->paths[i])
+		{
+			total_len += ft_strlen(s->paths[i]);
+			if (s->paths[i + 1] != NULL)
+				total_len++;
+			i++;
+		}
+		result = (char *)ft_calloc(total_len + 1, sizeof(char));
+		if (!result)
+			return (NULL);
+		i = 0;
+		while (s->paths && s->paths[i])
+		{
+			ft_strcat(result, s->paths[i]);
+			if (s->paths[i + 1] != NULL)
+				ft_strcat(result, ":");
+			i++;
+		}
+		return (result);
+	}
+	else
+	{
+		while (env)
+		{
+			if (ft_strncmp(env->key, key, ft_strlen(key)) == 0 && \
+				ft_strlen(env->key) == ft_strlen(key))
+			{
+				value = env->value;
+				result = ft_strdup(value);
+				return (result);
+			}
+			env = env->next;
+		}
+	}
+	return (NULL);
 }
 
-char	**env_convert(t_env *env)
+/* char	**env_convert(t_env *env)
 {
 	int		i;
 	int		ctd;
@@ -153,22 +201,53 @@ char	**env_convert(t_env *env)
 	}
 	env_array[ctd] = NULL;
 	return (env_array);
-}
+} */
 
-char	**create_env_array(t_env *env, int *ctd_ptr)
+char	**create_env_array(int ctd_ptr)
 {
-	t_env	*current;
 	char	**env_array;
-
-	*ctd_ptr = 0;
-	current = env;
-	while (current)
-	{
-		(*ctd_ptr)++;
-		current = current->next;
-	}
-	env_array = create_dptr(*ctd_ptr);
+	
+	env_array = ft_calloc(sizeof(char **), (ctd_ptr + 1));
 	if (!env_array)
-		error_msg ("malloc env array");
+	{
+		ft_putstr_fd("env_arr", 2);
+		return (NULL);
+	}
 	return (env_array);
 }
+
+char	**env_convert(t_env *env)
+{
+	int		i;
+	int		ctd;
+	char	**env_array;
+	t_env	*current;
+
+	ctd = 0;
+	current = env;
+	i = 0;
+	while (current)
+	{
+		ctd++;
+		current = current->next;
+	}
+	env_array = create_env_array(ctd);
+	current = env;
+	i = 0;
+	while (current && i < ctd)
+	{
+		env_array[i] = join_key_value(current->key, current->value);
+		if (!env_array[i])
+		{
+			free_env_array(env_array);
+			printf("DEU MAU");
+			return (NULL);
+		}
+		current = current->next;
+		i++;
+	}
+	env_array[i] = NULL;
+	return (env_array);
+}
+
+

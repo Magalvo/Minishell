@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:18 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 20:02:07 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/28 14:50:44 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ char	*join_key_value(const char *key, const char *value)
 		value_len = ft_strlen(value);
 	else
 		value_len = 0;
-	total_len = key_len + value_len + 1;
+	total_len = key_len + value_len + 2;
 	join = (char *)malloc(total_len + 1);
 	if (!join)
 		return (NULL);
