@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:17:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/26 17:17:39 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/28 14:15:35 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,14 @@ int get_token(char **ps, char *es, char **q, char **eq)
 	if(q)
 		*q = s;
 	ret = *s;
-	if (ft_strchr("|()", *s) && *s != 0)
+	if (ft_strchr("|", *s) && *s != 0)
 	{
 		s++;
 		skip = true;
 	}
 	else
 		ret = sw_get_token(&s);
-	while(s < es && !ft_strchr(SPACES, *s) && !ft_strchr(SYMBOLS, *s) \
+	while(s < es && !ft_strchr(SPACES, *s) && !ft_strchr(TOKENS, *s) \
 		&& !skip && ret == 'a')
 		s++;
 	if(eq)

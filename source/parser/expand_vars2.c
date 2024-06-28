@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_vars2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:10:49 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 16:49:50 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/28 14:07:53 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,39 +32,31 @@ char	*expand_dolar(char *input, char *ps, t_ms *s)
 		val = get_env_val(s->env, key, s);
 		glue_str(val, val + ft_strlen(val));
 	}
+	if ((*(ps + 1) == '"' && is_quoted(input, ps) == E_DQUOTE)
+		|| ft_strlen(key) == 0)
+		return (*(ps) = 17, s->one_dolar = true, input);
+	// if (*(ps + 1) == '"' && is_quoted(input, ps) == E_DQUOTE)
+	// 	return (*(ps) = 17, input);
 	if (*(ps + 1) == '"' && is_quoted(input, ps) == E_DQUOTE)
-		return (input);
-		// return (*(ps + 1) = (char)17, input);
+		return (*(ps) = 17, input);
 	res = get_expanded(input, ps, val, ps + keylen);
 	free (key);
-	//free (val);
-	return(free(input), res);
+	return (free(input), res);
 }
 
-char	*remove_quotes(char *input, char *pos)
+char	*vars_sw(char *xp_input, char *pos, t_ms *s)
 {
-	char	*qt_pos;
-	char	*res1;
-	char	*res2;
-	bool	is_qt;
-
-	is_qt = false;
-	qt_pos = get_first_quote(pos);
-	if (!qt_pos)
-		return (input);
-	if (*qt_pos == QUOTE)
-		is_qt = true;
-	// else if (*qt_pos == DQUOTE)
-		// is_qt = false;
-	res1 = get_expanded(input, qt_pos, NULL, qt_pos + 1);
-	free(input);
-	if (is_qt)
-		qt_pos = ft_strchr(res1, QUOTE);
+	if (*(pos + 1) == '{')	//}
+		xp_input = expand_curly(xp_input, pos, s);
+	else if (*(pos + 1) == '$')
+		xp_input = expand_pid(xp_input, pos, s);
+	else if (*(pos + 1) == '?')
+		xp_input = expand_exit_stat(xp_input, pos, s);
+	else if (*(pos + 1) == '_')
+		xp_input = expand_last_cmd(xp_input, pos, s);
+	else if (*(pos + 1) == '0')
+		xp_input = expand_self(xp_input, pos, s);
 	else
-		qt_pos = ft_strchr(res1, DQUOTE);
-	res2 = get_expanded(res1, qt_pos, NULL, qt_pos + 1);
-	int offset = qt_pos - res1;
-	free(res1);
-	remove_quotes(res2, res2 + offset);
-	return (res2);
+		xp_input = expand_dolar(xp_input, pos, s);
+	return (xp_input);
 }
