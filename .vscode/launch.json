@@ -5,18 +5,16 @@
 	// https://code.visualstudio.com/docs/editor/variables-reference
 	"version": "0.2.0",
 	"configurations": [
-	// this launch option runs the executable but before executes "preLaunchTask": "gcc build" (see tasks.json)
-	// "program": "${workspaceFolder}/ballons.out" can be replaced by a variable expanded on launch
-	// we also setup args[] to 99, this executes "ballons.out 99" setting the argv of the program
+		// this launch option runs the executable but before executes "preLaunchTask": "gcc build" (see tasks.json)
+		// "program": "${workspaceFolder}/ballons.out" can be replaced by a variable expanded on launch
+		// we also setup args[] to 99, this executes "ballons.out 99" setting the argv of the program
 		{
 			"name": "GCC & Launch",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${fileDirname}/${fileBasenameNoExtension}.out",
-			"args": [
-
-			],
-			"stopAtEntry": true,			//optional, if true debugger always stop at first instruction
+			"args": [],
+			"stopAtEntry": true, //optional, if true debugger always stop at first instruction
 			"cwd": "${fileDirname}",
 			"environment": [],
 			"externalConsole": false,
@@ -35,7 +33,6 @@
 				}
 			]
 		},
-
 		// this launch option runs the executable but before executes "Makefile": "gcc build" (see tasks.json)
 		{
 			"name": "Makefile & Launch",
@@ -43,9 +40,7 @@
 			"request": "launch",
 			// "console": "internalConsole",
 			"program": "${workspaceFolder}/minishell",
-			"args": [
-
-			],
+			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
 			"environment": [],
@@ -70,7 +65,7 @@
 				},
 				{
 					"description": "The new process is debugged after a fork. The parent process runs unimpeded.",
-					"text": "-gdb-set follow-fork-mode child",
+					"text": "-gdb-set follow-fork-mode parent",
 					"ignoreFailures": true
 				}
 			]
@@ -81,8 +76,9 @@
 			"request": "launch",
 			// "console": "internalConsole",
 			"program": "/usr/bin/env",
-			"args": [ "-i", "${workspaceFolder}/minishell",
-
+			"args": [
+				"-i",
+				"${workspaceFolder}/minishell",
 			],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
@@ -108,7 +104,7 @@
 				},
 				{
 					"description": "The new process is debugged after a fork. The parent process runs unimpeded.",
-					"text": "-gdb-set follow-fork-mode parent",
+					"text": "-gdb-set follow-fork-mode child",
 					"ignoreFailures": true
 				}
 			]
@@ -119,9 +115,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/minishell",
-			"args": [
-
-			],
+			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
 			"environment": [],
@@ -150,6 +144,5 @@
 				}
 			]
 		},
-
 	]
 }
