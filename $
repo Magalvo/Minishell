@@ -1,0 +1,15 @@
+$
+42_minishell_tester
+g.sh
+include
+libs
+Makefile
+minishell
+minishell.code-workspace
+minishell_tester
+object
+readline.supp
+README.md
+reference
+source
+workspaceState.state.json
