@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/28 15:41:06 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:59:11 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	exec_one(t_ms *s, char **argv)
 		path = cmd_path(s->paths, argv[0], s);
 		if (!path)
 			not_found(argv[0], 127, s);
-		cmd_name = ft_strchr(argv[0], '/');
+		cmd_name = ft_strchr(path, '/');
 		if (cmd_name)
 		{
 			cmd_name++;
