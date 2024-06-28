@@ -36,7 +36,7 @@ signals.c
 void	handler(int signo, siginfo_t *info, void *ptr);
 void	sig_ignore(struct sigaction *sa, int signal);
 void	here_handler(int signal, siginfo_t *info, void *context);
-void	check_signal(e_signal sig);
+void	check_signal(t_signal sig);
 void	signal_main(struct sigaction sa);
 void	signal_child(struct sigaction sa);
 void	signal_heredoc(struct sigaction sa);
@@ -100,7 +100,7 @@ char	*expand_sw_vars(char *input, t_ms *s);
 char	*expand_sw_tilde(char *input, t_ms *s);
 char	*expand_sw_quotes(char *input);
 char	*get_first_quote(char *input);
-
+char	*vars_sw(char *input, char *ps, t_ms *s);
 char	*expand_curly(char *input, char *ps, t_ms *s);
 char	*expand_pid(char *input, char *ps, t_ms *s);
 char	*expand_exit_stat(char *input, char *ps, t_ms *s);
