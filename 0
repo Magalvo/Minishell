@@ -1,0 +1,6 @@
+0x45cb80 "echo \"exit_code\006->0\006
+user\006->kajo\006
+home\006->\006/home/kajo\""
+
+
+echo "exit_code ->$? user ->$USER home -> $HOME"

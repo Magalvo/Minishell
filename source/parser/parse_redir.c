@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/28 14:14:27 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/29 14:41:45 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,27 @@ t_cmd *redir_sw(t_cmd *cmd, int tok, char *filename, t_ms *s)
 	else if (tok == 'H') // todo check flags: (H) is here_doc
 		cmd = cmd_heredoc(cmd, filename, O_RDWR|O_CREAT|O_APPEND, s);
 	return (cmd);
+}
+
+void	parse_fake_redir(char **ps, char *es, t_ms *s)
+{
+	int		tok;
+	char	*q;
+	char	*eq;
+
+	while(peek(ps, es, "<>"))
+	{
+		tok = get_token(ps, es, 0, 0);
+		if (peek(ps, es, TOKENS))
+		{
+			reprompt(INVALID_TOKEN, 1, s);
+			while (peek(ps, es, TOKENS))
+				get_token(ps, es, 0, 0);
+			return ;
+		}
+		if(get_token(ps, es, &q, &eq) != 'a')
+			return ;
+	}
+	(void)tok;
+	return ;
 }

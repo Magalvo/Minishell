@@ -1,0 +1,349 @@
+  🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+  🚀                                MANDATORY                                   🚀
+  🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+  # **************************************************************************** #
+  #                                   BUILTINS                                   #
+  # **************************************************************************** #
+  1:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:7
+  2:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:9
+  3:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:11
+  4:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:13
+  5:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:15
+  6:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:17
+  7:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:19
+  8:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:21
+  9:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:23
+  10:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:25
+  11:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:27
+  12:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:29
+  13:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:31
+  14:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:33
+  15:	42_minishell_tester/tester.sh: line 217: 253354 Done                    echo -n "$INPUT"
+     253355 Segmentation fault      (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(139)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:35
+  16:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:37
+  17:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:39
+  18:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:41
+  19:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:43
+  20:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:45
+  21:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:47
+  22:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:49
+  23:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:51
+  24:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:53
+  25:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:55
+  26:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:57
+  27:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:59
+  28:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:61
+  29:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:63
+  30:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:65
+  31:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:67
+  32:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:69
+  33:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:71
+  34:	42_minishell_tester/tester.sh: line 217: 253536 Done                    echo -n "$INPUT"
+     253537 Segmentation fault      (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(139)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:73
+  35:	42_minishell_tester/tester.sh: line 217: 253555 Done                    echo -n "$INPUT"
+     253556 Segmentation fault      (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(139)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:75
+  36:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:77
+  37:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:79
+  38:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:81
+  39:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:83
+  40:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:85
+  41:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:87
+  42:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:89
+  43:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:91
+  44:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:93
+  45:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:95
+  46:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:97
+  47:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:99
+  48:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:101
+  49:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:103
+  50:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:105
+  51:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:107
+  52:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:109
+  53:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:111
+  54:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:113
+  55:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:115
+  56:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:117
+  57:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:119
+  58:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:121
+  59:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:123
+  60:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:125
+  61:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:127
+  62:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:129
+  63:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:131
+  64:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:134
+  65:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:136
+  66:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:138
+  67:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:140
+  68:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:142
+  69:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:144
+  70:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:146
+  71:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:148
+  72:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:150
+  73:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:152
+  74:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:155
+  75:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:157
+  76:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:159
+  77:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:161
+  78:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:163
+  79:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:165
+  80:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:167
+  81:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:169
+  82:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:171
+  83:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:173
+  84:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:175
+  85:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:177
+  86:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:179
+  87:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:181
+  88:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:183
+  89:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:185
+  90:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:187
+  91:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:190
+  92:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:194
+  93:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:198
+  94:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:201
+  95:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:205
+  96:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:209
+  97:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:213
+  98:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:217
+  99:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:221
+  100:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:225
+  101:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:229
+  102:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:233
+  103:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:235
+  104:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:237
+  105:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(0)  bash(1) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:239
+  106:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:241
+  107:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(0)  bash(1) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:243
+  108:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(0)  bash(1) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:245
+  109:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(0)  bash(1) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:247
+  110:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(0)  bash(1) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:249
+  111:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(0)  bash(1) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:251
+  112:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(0)  bash(1) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:253
+  113:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:255
+  114:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:257
+  115:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:261
+  116:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:265
+  117:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:269
+  118:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:273
+  119:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:278
+  120:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:282
+  121:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:286
+  122:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:290
+  123:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:294
+  124:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:298
+  125:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:302
+  126:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:306
+  127:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:310
+  128:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:314
+  129:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:320
+  130:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:324
+  131:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:328
+  132:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:333
+  133:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:337
+  134:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:342
+  135:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:347
+  136:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(0)  bash(1) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:352
+  137:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:354
+  138:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:356
+  139:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:358
+  140:	STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(0)  bash(127) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:360
+  141:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:363
+  142:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:365
+  143:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:367
+  144:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:369
+  145:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:371
+  146:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:373
+  147:	42_minishell_tester/tester.sh: line 217: 254372 Done                    echo -n "$INPUT"
+     254373 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(134)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:376
+  148:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:382
+  149:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:388
+  150:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:390
+  151:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:392
+  152:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:394
+  153:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:396
+  154:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:398
+  155:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:400
+  156:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:402
+  157:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:404
+  158:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:406
+  159:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:408
+  160:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:410
+  161:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:412
+  162:	42_minishell_tester/tester.sh: line 217: 254509 Done                    echo -n "$INPUT"
+     254510 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(134)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:414
+  163:	42_minishell_tester/tester.sh: line 217: 254536 Done                    echo -n "$INPUT"
+     254537 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(134)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:416
+  164:	42_minishell_tester/tester.sh: line 217: 254557 Done                    echo -n "$INPUT"
+     254558 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(134)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:418
+  165:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(2) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:420
+  166:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:422
+  167:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:424
+  168:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:426
+  169:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:428
+  170:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(2) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:430
+  171:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:432
+  172:	42_minishell_tester/tester.sh: line 217: 254636 Done                    echo -n "$INPUT"
+     254637 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(134)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:434
+  173:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:436
+  174:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:438
+  175:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:440
+  176:	42_minishell_tester/tester.sh: line 217: 254681 Done                    echo -n "$INPUT"
+     254682 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(134)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:442
+  177:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:444
+  178:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:446
+  179:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:448
+  180:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:450
+  181:	42_minishell_tester/tester.sh: line 217: 254737 Done                    echo -n "$INPUT"
+     254738 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(134)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:452
+  182:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:454
+  183:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:456
+  184:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:458
+  185:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(2) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:460
+  186:	42_minishell_tester/tester.sh: line 217: 254789 Done                    echo -n "$INPUT"
+     254790 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(134)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:462
+  187:	42_minishell_tester/tester.sh: line 217: 254809 Done                    echo -n "$INPUT"
+     254810 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(134)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:464
+  188:	42_minishell_tester/tester.sh: line 217: 254837 Done                    echo -n "$INPUT"
+     254838 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(134)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:466
+  189:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:468
+  190:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:470
+  191:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:472
+  192:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:474
+  193:	42_minishell_tester/tester.sh: line 217: 254891 Done                    echo -n "$INPUT"
+     254892 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(134)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:476
+  194:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:478
+  195:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:480
+  196:	42_minishell_tester/tester.sh: line 217: 254924 Done                    echo -n "$INPUT"
+     254925 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(134)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:482
+  197:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:484
+  198:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:486
+  199:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:488
+  200:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:490
+  201:	42_minishell_tester/tester.sh: line 217: 254977 Done                    echo -n "$INPUT"
+     254978 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(134)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:492
+  202:	42_minishell_tester/tester.sh: line 217: 255012 Done                    echo -n "$INPUT"
+     255013 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(134)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:496
+  203:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:501
+  204:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:505
+  205:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:509
+  206:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:516
+  207:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:518
+  208:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:520
+  209:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:522
+  210:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:524
+  211:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:526
+  212:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:528
+  213:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:530
+  214:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:532
+  215:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:534
+  216:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:536
+  217:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:538
+  218:	42_minishell_tester/tester.sh: line 217: 255177 Done                    echo -n "$INPUT"
+     255178 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(134)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:540
+  219:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:542
+  220:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:544
+  221:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:546
+  222:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:548
+  223:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:550
+  224:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(127) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:552
+  225:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:554
+  226:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:556
+  227:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:558
+  228:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:560
+  229:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:562
+  230:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:564
+  231:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(0)  bash(2) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:566
+  232:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:568
+  233:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:570
+  234:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:572
+  235:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:574
+  236:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:576
+  237:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:578
+  238:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:580
+  239:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:582
+  240:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:584
+  241:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:586
+  242:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:588
+  243:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:590
+  244:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:592
+  245:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:594
+  246:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:596
+  247:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:598
+  248:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:600
+  249:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:602
+  250:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:604
+  251:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:606
+  252:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:608
+  253:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:612
+  254:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:616
+  255:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:622
+  256:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(127)  bash(255) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:631
+  257:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(2) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:633
+  258:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:635
+  259:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:637
+  260:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(127)  bash(2) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:639
+  261:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(127)  bash(100) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:641
+  262:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(127)  bash(156) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:643
+  263:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(127)  bash(3) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:645
+  264:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(127)  bash(0) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:647
+  265:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(127)  bash(10) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:649
+  266:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(127)  bash(42) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:651
+  267:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(127)  bash(1) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:653
+  268:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:655
+  269:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:657
+  270:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(127)  bash(1) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:659
+  271:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:661
+  272:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:663
+  273:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:665
+  274:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:667
+  275:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(127)  bash(255) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:669
+  276:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:671
+  277:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(127)  bash(240) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:673
+  278:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:675
+  279:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(127)  bash(255) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:677
+  280:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:679
+  281:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:681
+  282:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:683
+  283:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(2) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:685
+  284:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:687
+  285:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:689
+  286:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:691
+  287:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(127)  bash(1) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:693
+  288:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(127)  bash(1) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:695
+  289:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(127)  bash(1) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:697
+  290:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:699
+  291:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:701
+  292:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:703
+  293:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:705
+  294:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:707
+  295:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:709
+  296:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:711
+  297:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(2) ]  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:713
+  298:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:715
+  299:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /home/kajo/42/minishell/42_minishell_tester/cmds/mand/1_builtins.sh:717
+🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
+🏁                                    RESULT                                    🏁
+🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
+             TOTAL TEST COUNT: 299  TESTS PASSED: 75  LEAKING: 0
+                     STD_OUT: 23  STD_ERR: 203  EXIT_CODE: 55
+                         TOTAL FAILED AND PASSED CASES:
+                                     ❌ 281
+                                     ✅ 616
