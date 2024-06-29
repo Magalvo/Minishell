@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/28 12:25:48 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/29 14:47:52 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,26 @@
 # define MAX_PIDS 1024
 # define MIN_PATH "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
+# define QUOTE '\''
+# define DQUOTE '\"'
+# define SPACES		"\t\n\v\f\r "
+# define GLUE		"\x01\x02\x03\x04\x05\x06"
+# define SYMBOLS	"|&()<>" // { } $ @ ' " \ / * ;
+# define TOKENS		"|<>" // { } $ @ ' " \ / * ;
+# define UNTOKENS	"\x12\x13\x14" // { } $ @ ' " \ / * ;
+// # define EMPTY_ARG 17
+
 //*======================= STRUCTS ====================== *//
-typedef enum e_signal		t_signal;
 typedef struct s_env		t_env;
 typedef struct s_ms			t_ms;
 typedef struct s_builtin	t_builtin;
 typedef struct s_execution	t_execution;		//TODO not defined, still used?
-
-/* parser structs */
+typedef struct s_cmd		t_cmd;
+typedef struct s_d_cmd		t_d_cmd;			// two t_cmd pointers
+typedef struct s_pids		t_pids;
+typedef enum e_signal		t_signal;
 typedef enum e_cmd_type		t_cmd_type;
 typedef enum e_quote_type	t_quote_type;
-typedef struct s_cmd		t_cmd;
-typedef struct s_d_cmd		t_d_cmd;
-typedef struct s_pids		t_pids;
-
-enum e_signal
-{
-	MAIN,
-	CHILD,
-	HERE_DOC,
-	IGNORE
-};
 
 struct s_pids
 {
@@ -86,31 +85,6 @@ struct s_builtin
 	int		(*func)(t_cmd *cmd);
 };
 
-enum e_quote_type
-{
-	NONE,
-	E_QUOTE,
-	E_DQUOTE
-};
-
-# define QUOTE '\''
-# define DQUOTE '\"'
-// # define EMPTY_ARG 17
-
-// struct s_pid
-// {
-// 	char *env_arg[6];
-// };
-
-/*	structs for AST starts here */
-# define SPACES		"\t\n\v\f\r "
-# define GLUE		"\1\2\3\4\5\6"
-# define SYMBOLS	"|&()<>" // { } $ @ ' " \ / * ;
-# define TOKENS		"|<>" // { } $ @ ' " \ / * ;
-// # define RDONLY		O_RDONLY
-// # define TRUNC		O_WRONLY|O_CREAT|O_TRUNC
-// # define CREATE		O_WRONLY|O_CREAT
-// # define APPEND		O_WRONLY|O_CREAT|O_APPEND
 
 enum e_cmd_type
 {
@@ -144,14 +118,23 @@ struct	s_cmd
 	char	*delim;
 	int		mode;
 	int		fd;
-	char	**temp;
-	// char	*argv[MAXARGS];
-	// char	*eargv[MAXARGS];
-	// char	*efile;
+	char	**temp;			// ! used?
 };
 
-//* Integer codes para o tipo de node na ASTree
-//* Minuto 4:30 (https://youtu.be/ubt-UjcQUYg?si=ASMMiMFCAmSs3qzx)
+enum e_signal
+{
+	MAIN,
+	CHILD,
+	HERE_DOC,
+	IGNORE
+};
+
+enum e_quote_type
+{
+	NONE,
+	E_QUOTE,
+	E_DQUOTE
+};
 
 #endif
 

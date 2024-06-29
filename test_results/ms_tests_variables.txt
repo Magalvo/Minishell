@@ -1,0 +1,123 @@
+  🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+  🚀                                MANDATORY                                   🚀
+  🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+  # **************************************************************************** #
+  #                                  VARIABLES                                   #
+  # **************************************************************************** #
+  1:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:6
+  2:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:8
+  3:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:10
+  4:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:12
+  5:	42_minishell_tester/tester.sh: line 217: 234969 Done                    echo -n "$INPUT"
+     234970 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:14
+  6:	42_minishell_tester/tester.sh: line 217: 234988 Done                    echo -n "$INPUT"
+     234989 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:16
+  7:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:18
+  8:	42_minishell_tester/tester.sh: line 217: 235014 Done                    echo -n "$INPUT"
+     235015 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:20
+  9:	42_minishell_tester/tester.sh: line 217: 235031 Done                    echo -n "$INPUT"
+     235032 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:23
+  10:	42_minishell_tester/tester.sh: line 217: 235052 Done                    echo -n "$INPUT"
+     235053 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:26
+  11:	42_minishell_tester/tester.sh: line 217: 235101 Done                    echo -n "$INPUT"
+     235102 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:29
+  12:	42_minishell_tester/tester.sh: line 217: 235122 Done                    echo -n "$INPUT"
+     235123 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:32
+  13:	42_minishell_tester/tester.sh: line 217: 235143 Done                    echo -n "$INPUT"
+     235144 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:35
+  14:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:38
+  15:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:40
+  16:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:42
+  17:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:44
+  18:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:46
+  19:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:48
+  20:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:50
+  21:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:52
+  22:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:54
+  23:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:56
+  24:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:58
+  25:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:60
+  26:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:62
+  27:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:64
+  28:	STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:66
+  29:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:68
+  30:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:70
+  31:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:72
+  32:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:74
+  33:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:76
+  34:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:78
+  35:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:80
+  36:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ minishell(0)  bash(1)  tester/cmds/mand/1_variables.sh:82
+  37:	STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:84
+  38:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:89
+  39:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:91
+  40:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:97
+  41:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:103
+  42:	STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  tester/cmds/mand/1_variables.sh:111
+  43:	42_minishell_tester/tester.sh: line 217: 235509 Done                    echo -n "$INPUT"
+     235510 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:120
+  44:	42_minishell_tester/tester.sh: line 217: 235536 Done                    echo -n "$INPUT"
+     235537 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ minishell(134)  bash(127)  tester/cmds/mand/1_variables.sh:126
+  45:	42_minishell_tester/tester.sh: line 217: 235554 Done                    echo -n "$INPUT"
+     235555 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:130
+  46:	42_minishell_tester/tester.sh: line 217: 235588 Done                    echo -n "$INPUT"
+     235589 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:133
+  47:	42_minishell_tester/tester.sh: line 217: 235611 Done                    echo -n "$INPUT"
+     235612 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:136
+  48:	42_minishell_tester/tester.sh: line 217: 235658 Done                    echo -n "$INPUT"
+     235659 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:139
+  49:	42_minishell_tester/tester.sh: line 217: 235680 Done                    echo -n "$INPUT"
+     235681 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:142
+  50:	42_minishell_tester/tester.sh: line 217: 235715 Done                    echo -n "$INPUT"
+     235716 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:145
+  51:	42_minishell_tester/tester.sh: line 217: 235738 Done                    echo -n "$INPUT"
+     235739 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:148
+  52:	42_minishell_tester/tester.sh: line 217: 235779 Done                    echo -n "$INPUT"
+     235780 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:151
+  53:	42_minishell_tester/tester.sh: line 217: 235809 Done                    echo -n "$INPUT"
+     235810 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:154
+  54:	42_minishell_tester/tester.sh: line 217: 235844 Done                    echo -n "$INPUT"
+     235845 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:157
+  55:	42_minishell_tester/tester.sh: line 217: 235863 Done                    echo -n "$INPUT"
+     235864 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:160
+  56:	42_minishell_tester/tester.sh: line 217: 235903 Done                    echo -n "$INPUT"
+     235904 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:163
+  57:	42_minishell_tester/tester.sh: line 217: 235942 Done                    echo -n "$INPUT"
+     235943 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:166
+  58:	42_minishell_tester/tester.sh: line 217: 235969 Done                    echo -n "$INPUT"
+     235970 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:169
+  59:	42_minishell_tester/tester.sh: line 217: 235992 Done                    echo -n "$INPUT"
+     235993 Aborted                 (core dumped) | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ❌ minishell(134)  bash(0)  tester/cmds/mand/1_variables.sh:172
+🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
+🏁                                    ;31mRESULT                                    🏁
+🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
+             TOTAL TEST COUNT: 59 ;32m TESTS PASSED: 1 ;32m LEAKING: 0
+                     STD_OUT: ;31m24  STD_ERR: ;31m56  EXIT_CODE: ;31m26
+                         TOTAL FAILED AND PASSED CASES:
+;31m                                     ❌ 106
+;32m                                     ✅ 71

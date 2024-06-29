@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:07:37 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 18:43:15 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/29 10:55:55 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ bool	strrchr_alpha_loop(const char *input, const char *pos)
 		return (false);
 	while (pos > input)
 	{
-		if (ft_isalpha(*pos))
+		if (ft_isalpha(*pos) || *pos == '_')
 			pos--;
 		else if (ft_isspace(*pos))
 			return (true);

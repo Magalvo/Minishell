@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 14:01:07 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/29 15:14:53 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_cmd *cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 	cmd->cmd = subcmd;
 	cmd->mode = mode;
 	unglue_str(delim, delim + ft_strlen(delim));
+	ft_strrep_range(delim, NULL, (char)17, '$');
+	retokenizer(delim, delim + ft_strlen(delim));
 	cmd->delim = remove_quotes(delim, delim);
 	filename = ft_getrnd_str();
 	cmd->file = ft_strjoin("/tmp/", filename);

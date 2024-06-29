@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:08 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/28 12:39:26 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/29 14:26:02 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ char	*get_first_quote(char *input)
 	char	*pos;
 
 	pos = NULL;
+	if (!input)
+		return (pos);
 	qt = ft_strchr(input, '\'');
 	dqt = ft_strchr(input, '"');
 	if (qt && dqt)

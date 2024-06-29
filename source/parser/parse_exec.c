@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:28:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/28 13:59:57 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/29 11:51:59 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,17 @@ t_cmd	*parse_exec(char **ps, char *es, t_ms *s)
 	t_cmd	*cmd;
 	t_d_cmd	cmds;
 	t_cmd	*ret;
+	int		argc;
 
 	ret = cmd_exec();
 	cmd = ret;
 	ret = parse_redir(ret, ps, es, s);
-	cmd->argv = create_dptr(count_argc(ps, es, s));
+	argc = count_argc(ps, es, s);
+	cmd->argv = create_dptr(argc);
 	cmds.one = cmd;
 	cmds.two = ret;
 	parse_args(ps, es, &cmds, s);
-	cmd->argv[cmd->argc] = 0;
+	cmd->argv[cmd->argc] = NULL;
 	cmd = cmds.one;
 	ret = cmds.two;
 	return (ret);
@@ -52,13 +54,12 @@ void	parse_args(char **ps, char *es, t_d_cmd *cmds, t_ms *s)
 		ft_memmove((void *)new_arg, (void *)q, (eq - q));
 		unglue_str(new_arg, new_arg + ft_strlen(new_arg));
 		ft_strrep_range(new_arg, NULL, (char)17, '$');
+		retokenizer(new_arg, new_arg + ft_strlen(new_arg));
 		cmds->one->argv[cmds->one->argc] = remove_quotes(new_arg, new_arg);
 		cmds->one->argc++;
 		cmds->two = parse_redir(cmds->two, ps, es, s);
 	}
 }
-
-
 
 int	count_argc(char **ps, char *es, t_ms *s)
 {
@@ -78,6 +79,7 @@ int	count_argc(char **ps, char *es, t_ms *s)
 		if (tok != 'a')
 			reprompt("ARGC_COUNT", 1, s);
 		argc++;
+		parse_fake_redir(ps, es, s);
 	}
 	*ps = ps_cpy;
 	es = es_cpy;

@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/28 12:59:55 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/06/29 08:42:52 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,23 @@ void	minishell(char **envp)
 		check_signal(MAIN);
 
 		// ? test loop
-		// if (isatty(fileno(stdin)))
-		// {
-		// 	input = readline(s.prompt);
-		// 	// shell->prompt = readline(shell->terminal_prompt);
-		// }
-		// else
-		// {
-		// 	char *line;
-		// 	line = get_next_line(fileno(stdin));
-		// 	input = ft_strtrim(line, "\n");
-		// 	free(line);
-		// }
+		if (isatty(fileno(stdin)))
+		{
+			input = readline(s.prompt);
+			// shell->prompt = readline(shell->terminal_prompt);
+		}
+		else
+		{
+			char *line;
+			line = get_next_line(fileno(stdin));
+			input = ft_strtrim(line, "\n");
+			free(line);
+		}
 		// ! end test loop
 
 		// ? regular readline function
-		input = readline(s.prompt);
+		// input = readline(s.prompt);
+
 		if (input == NULL && s.modal == MAIN)
 			exit_minishell(&s, "exit\n");
 		s.ast = parse_input(input, &s);

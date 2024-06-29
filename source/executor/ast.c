@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:23 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/28 10:54:06 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/29 10:28:39 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	free_ast(t_cmd *cmd)
 	{
 		i = 0;
 		while (cmd->argv[i])
+		// while (i < cmd->argc)
 		{
 			free(cmd->argv[i]);
 			cmd->argv[i] = NULL;
@@ -113,7 +114,8 @@ int	not_found(char *str, int status, t_ms *s)
 	}
 	if(status == 126)
 		ft_putstr_fd(": permission denied\n", 2);
-	ft_putnbr_fd(status, 2);
-	ft_putstr_fd("\n", 2);
+	// TODO commented out
+	// ft_putnbr_fd(status, 2);
+	// ft_putstr_fd("\n", 2);
 	return(set_exit(status, s), 1);
 }

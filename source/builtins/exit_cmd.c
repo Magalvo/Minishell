@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:04 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/27 19:16:44 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/06/29 01:34:34 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	aux_all(char *str)
 
 void	exit_cmd(t_ms *s, char **cmds)
 {
-	if (cmds[1] && !cmds[2])
+	if (cmds[1] && cmds[2] == NULL)
 	{
 		if (aux_all(cmds[1]))
 		{
