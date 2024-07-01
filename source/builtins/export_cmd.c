@@ -39,14 +39,16 @@ char	*extract_key(const char *str, char *delimiter)
 int	update_key(t_env *env, char *key, char *value)
 {
 	char	*value_tmp;
+	t_env	*env_hold;
 
+	env_hold = env;
 	while (env)
 	{
 		if (ft_sw_builtins(env->key, key) == 0)
 		{
 			if (value)
 			{
-				if (ft_strcmp(value, env->value) == 0)
+				if (env->value != NULL && ft_strcmp(value, env->value) == 0)
 					return (1);
 				value_tmp = ft_strdup(value);
 				if (!value_tmp)
@@ -58,6 +60,7 @@ int	update_key(t_env *env, char *key, char *value)
 		}
 		env = env->next;
 	}
+	env = env_hold;
 	return (0);
 }
 
@@ -104,15 +107,15 @@ int export_cmd(t_ms *s, char **str)
         free(key); 
         return 1; 
     }
-    value = get_value_from_str(str[1]);
-    if (!value)
-        return(free(key), 1); 
+    value = get_value_from_str(str[1]); 
     export_update(s->export, key, value);
     handle_kv_update(s->env, key, value, 1);
     env_arr_update(s, NULL);
     env_paths(s, s->env_tmp);
-    free(key); 
-    free(value); 
+/* 	if (key != NULL)
+    	free(key); */
+	if (value != NULL)
+   		free(value); 
     return 0;
 }
 

@@ -101,7 +101,7 @@ char	*join_key_value(const char *key, const char *value)
 	else
 		value_len = 0;
 	total_len = key_len + value_len + 2;
-	join = (char *)malloc(total_len + 1);
+	join = ft_calloc(sizeof(char *), (total_len + 1));
 	if (!join)
 		return (NULL);
 	ft_strlcpy(join, key, key_len + 1);

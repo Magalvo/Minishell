@@ -38,7 +38,6 @@ int	handle_kv_update(t_env *env, char *key, char *value, int tog)
 {
 	if (!is_valid_key(key))
 	{
-		ft_putstr_fd("invalid var name\n", 2);
 		free(key);
 		if (value)
 			free(value);
@@ -85,7 +84,8 @@ void	init_list(t_env **list, char **envp)
 		init_aux(&head, &tail, new_node);
 		i++;
 	}
-	free_env_list(*list);
+	if (*list)
+		free_env_list(*list);
 	*list = head;
 }
 
