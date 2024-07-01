@@ -67,6 +67,7 @@ static int	cd_cmd_home(t_env *env)
 	if (chdir(home) == -1)
 	{
 		free(home);
+		printf("VACA");
 		return(ft_putstr_fd("No such file or directory\n", 2), 1);
 	}
 	result = update_key(env, "PWD", home);
@@ -122,7 +123,8 @@ int	cd_cmd(t_ms *mini, char **path)
 	if (chdir(path[1]) == -1)
 	{
 		mini->exit_stat = 1;
-		return (cd_cmd_error("No such file or directory")); // Return after error
+		printf("BOI");
+		return (cd_cmd_error("No such file or directory")); 
 	}
 	val = get_env_val(env, "PWD", NULL);
 	if (val)

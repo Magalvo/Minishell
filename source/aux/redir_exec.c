@@ -12,10 +12,12 @@
 
 #include "../../include/minishell.h"
 
-void	fd_errors(t_ms *s)
+void	fd_errors(t_ms *s, t_cmd *cmd)
 {
+    (void)cmd;
+   // printf("%s\n", s->ast->cmd->argv[0]);
 	s->exit_stat = 1;
-	perror("open");
+	perror(s->ast->cmd->argv[0]);
 	return ;
 }
 
@@ -25,15 +27,16 @@ void	fd_unlock(t_cmd *cmd, t_ms *s, int *fd, int rd_only)
 	{
 		*fd = open(cmd->file, O_RDONLY);
 		if (*fd < 0)
-			fd_errors(s);
+            fd_errors(s, cmd);
 	}
 	else
 	{
 		*fd = open(cmd->file, cmd->mode, 0666);
 		if (*fd < 0)
-			fd_errors(s);
+        {
+            fd_errors(s, cmd);
+        }
 	}
-		
 }
 
 void exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
@@ -71,9 +74,9 @@ void exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
     if (pid == 0)
     {
         if (fd_in != STDIN_FILENO)
-            dup_and_close(fd_in, STDIN_FILENO);
+            dup_and_close(s, fd_in, STDIN_FILENO);
         if (fd_out != STDOUT_FILENO)
-            dup_and_close(fd_out, STDOUT_FILENO);
+            dup_and_close(s, fd_out, STDOUT_FILENO);
         if (cmd->type == EXEC)
             exec_from_ast_recursive(s, cmd, STDIN_FILENO, STDOUT_FILENO);
         else

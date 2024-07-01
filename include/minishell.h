@@ -189,7 +189,7 @@ char	*ft_getrnd_str(void);
 void	free_node(t_env *node);
 char	*key_dup(char *env_var, size_t key_len);
 int		setting_value(t_env *node, char *delimiter);
-void	dup_and_close(int fd, int standard);
+void	dup_and_close(t_ms *s, int fd, int standard);
 int		fork1(void);
 int		ft_strcmp(const char *s1, const char *s2);
 int		env_pos(t_env *env, char *value);

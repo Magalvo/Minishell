@@ -51,7 +51,11 @@ void	new_line(void)
 
 static void	assist_file(int fd, int standard)
 {
-	dup2 (fd, standard);
+	if (dup2 (fd, standard) == -1)
+	{
+		perror("dup2");
+		exit(EXIT_FAILURE);
+	}
 	close(fd);
 }
 

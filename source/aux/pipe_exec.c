@@ -28,7 +28,7 @@ void	exec_one(t_ms *s, char **argv)
 		path = cmd_path(s->paths, argv[0], s);
 		if (!path)
 			not_found(argv[0], 127, s);
-		cmd_name = ft_strchr(path, '/');
+		cmd_name = ft_strchr(argv[0], '/');
 		if (cmd_name)
 		{
 			cmd_name++;
