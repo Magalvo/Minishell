@@ -47,12 +47,11 @@ void	free_node(t_env *node)
 	}
 }
 
-void	dup_and_close(int fd, int standard)
+void	dup_and_close(t_ms *s, int fd, int standard)
 {
 	if (dup2(fd, standard) == -1)
 	{
-		perror("dup2");
-		exit(EXIT_FAILURE);
+		set_exit(1, s);
 	}
 	close(fd);
 }
