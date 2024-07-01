@@ -30,7 +30,7 @@ int	aux_all(char *str)
 
 void	exit_cmd(t_ms *s, char **cmds)
 {
-	if (cmds[1] && cmds[2] == NULL)
+	if (s->ast->argc == 2)
 	{
 		if (aux_all(cmds[1]))
 		{
@@ -46,7 +46,7 @@ void	exit_cmd(t_ms *s, char **cmds)
 			exit_minishell(s, "exit\n");
 		}
 	}
-	else if (cmds[2]) //&& cmds[2][0]
+	else if (s->ast->argc > 2) //&& cmds[2][0]
 	{
 		s->exit_stat = 1;
 		ft_putstr_fd(cmds[0], STDERR_FILENO);

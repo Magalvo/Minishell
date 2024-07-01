@@ -19,8 +19,12 @@ void	clear_env(char **env)
 	i = 0;
 	if (env)
 	{
-		while (env && env[i])
-			free(env[i++]);
+		while (env[i] != NULL)
+		{
+			free(env[i]);
+			env[i] = NULL;
+			i++;
+		}
 		free(env);
 	}
 	env = NULL;

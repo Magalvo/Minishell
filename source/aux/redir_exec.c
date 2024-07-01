@@ -12,74 +12,85 @@
 
 #include "../../include/minishell.h"
 
+void	fd_errors(t_ms *s)
+{
+	s->exit_stat = 1;
+	perror("open");
+	return ;
+}
+
+void	fd_unlock(t_cmd *cmd, t_ms *s, int *fd, int rd_only)
+{
+	if (rd_only == 1)
+	{
+		*fd = open(cmd->file, O_RDONLY);
+		if (*fd < 0)
+			fd_errors(s);
+	}
+	else
+	{
+		*fd = open(cmd->file, cmd->mode, 0666);
+		if (*fd < 0)
+			fd_errors(s);
+	}
+		
+}
+
 void exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
-    t_cmd *current = cmd;
-
-    while (current && current->type != EXEC)
+    while (cmd->type == REDIR || cmd->type == HEREDOC)
     {
-        if (current->type == HEREDOC)
-        {
-            fd_in = current->fd;
-        }
-        else if ((current->mode & O_WRONLY) || (current->mode & O_RDWR))
-        {
-            fd_out = open(current->file, current->mode, 0666);
-            if (fd_out < 0)
-            {
-                s->exit_stat = 1;
-                perror("open");
-                return;
-            }
-        }
-        else if (current->file)
-        {
-            fd_in = open(current->file, O_RDONLY);
-            if (fd_in < 0)
-            {
-                s->exit_stat = 1;
-                perror("open");
-                return;
-            }
-        }
-        current = current->cmd; // Move to the nested command
-    }
+		int	temp_fd;
 
-    if (current && current->type == EXEC)
-    {
-        exec_redir_fork(s, current, fd_in, fd_out);
+		temp_fd = -1;
+        if (cmd->type == HEREDOC)
+            fd_in = cmd->fd;
+        else if (cmd->mode & O_WRONLY || cmd->mode & O_RDWR)
+        {
+            if (fd_out == STDOUT_FILENO)
+				fd_unlock(cmd, s, &fd_out, 0);
+            else
+			{
+				fd_unlock(cmd, s, &temp_fd, 0);
+				close(temp_fd);
+			}
+        }
+        else if (cmd->file)
+			fd_unlock(cmd, s, &fd_in, 1);
+        cmd = cmd->cmd;
     }
+    updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
+    exec_redir_fork(s, cmd, fd_in, fd_out);
 }
 
 void exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
     pid_t pid;
-    int status;
 
-    pid = fork();
+    pid = fork1();
     if (pid == 0)
     {
         if (fd_in != STDIN_FILENO)
             dup_and_close(fd_in, STDIN_FILENO);
         if (fd_out != STDOUT_FILENO)
             dup_and_close(fd_out, STDOUT_FILENO);
-
-        exec_from_ast_recursive(s, cmd, STDIN_FILENO, STDOUT_FILENO);
+        if (cmd->type == EXEC)
+            exec_from_ast_recursive(s, cmd, STDIN_FILENO, STDOUT_FILENO);
+        else
+            exec_from_ast_recursive(s, cmd, STDIN_FILENO, fd_out);
         exit(s->exit_stat);
     }
     else
     {
         close_two_fd(cmd, fd_in, fd_out);
-        waitpid(pid, &status, 0);
-        if (WIFEXITED(status))
-            s->exit_stat = WEXITSTATUS(status);
+		wait_till_end(s, pid);
     }
 }
 
 void	close_two_fd(t_cmd *cmd, int fd_in, int fd_out)
 {
 	(void)cmd;
-	if (fd_in != STDIN_FILENO)    //!! && cmd->file
+	if (fd_in != STDIN_FILENO)
 		close(fd_in);
 	if (fd_out != STDOUT_FILENO)
 		close(fd_out);

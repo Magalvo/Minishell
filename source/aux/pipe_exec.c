@@ -46,44 +46,44 @@ int	exec_paria(t_ms *s, t_cmd *cmds)
 		return (0);
 	if (ft_sw_builtins(cmds->argv[0], "export") == 0)
 	{
-		updating_cmds(s, s->ast->argv[s->ast->argc - 1]);
+		updating_cmds(s, cmds, s->ast->argv[s->ast->argc - 1]);
 		export_cmd(s, cmds->argv);
 		return (1);
 	}
 	else if (ft_sw_builtins(cmds->argv[0], "echo") == 0)
 	{
 		echo_cmd_test(cmds->argv, s);
-		updating_cmds(s, s->ast->argv[s->ast->argc - 1]);
+		updating_cmds(s, cmds, s->ast->argv[s->ast->argc - 1]);
 		return (1);
 	}
 	else
 		return (0);
 }
 
-void	updating_cmds(t_ms *s, char *value)
+void	updating_cmds(t_ms *s, t_cmd *cmd, char *value)
 {
 	char	*key;
 
 	key = NULL;
 	(void)value;
+	(void)cmd;
 	if (s->ast->type == 1)
 	{
 		key = ft_strdup("_");
-		export_update(s->export, key, s->ast->argv[s->ast->argc - 1]);
-		handle_kv_update(s->env, key, s->ast->argv[s->ast->argc - 1], 1);
+		export_update(s->export, key, value);
+		handle_kv_update(s->env, key, value, 1);
 	}
 	else if (s->ast->type == 2 || s->ast->type == 4)
 	{
 		key = ft_strdup("_");
-		export_update(s->export, key, s->ast->cmd->argv[s->ast->cmd->argc - 1]);
-		handle_kv_update(s->env, key, \
-			s->ast->cmd->argv[s->ast->cmd->argc - 1], 1);
+		export_update(s->export, key, value);
+		handle_kv_update(s->env, key, value, 1);
 	}
 }
 
 void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
-	updating_cmds(s, cmd->argv[cmd->argc - 1]);
+	updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
 	if (ft_exec_builtins_chr(s, cmd->argv))
 		s->exit_stat = 0;
 	else

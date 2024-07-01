@@ -10,7 +10,10 @@ use 'make debug' instead of 'make re' (won't recompile libft, and adds -g flag)
    
 ## dde-maga notes:
    
+cat << EOF > /dev/stdout
    
+
+
 ### VSCODE
 disable 42 Header extension for this workspace   
     (select extension, click the down arrow next to disable, select workspace)   

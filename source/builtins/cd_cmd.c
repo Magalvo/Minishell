@@ -110,10 +110,10 @@ int	cd_cmd(t_ms *mini, char **path)
 	char	*val;
 
 	env = mini->env;
-	if (path[2])
+	if (mini->ast->argc > 2)
 	{
 		mini->exit_stat = 1;
-		return cd_cmd_error("too many arguments"); // Return after error
+		return (cd_cmd_error("too many arguments")); // Return after error
 	}
 	if (!path[1] || (path[1][0] == '~' && path[1][1] == '\0'))
 		return (cd_cmd_home(env));
@@ -129,7 +129,7 @@ int	cd_cmd(t_ms *mini, char **path)
 	{
 		export_update(env, "OLDPWD", val);
 		export_update(mini->export, "OLDPWD", val);
-		free(val); // Free val after use
+		free(val);
 	}
 	return (change_pwd(env, mini));
 }
