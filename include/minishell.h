@@ -43,6 +43,7 @@ void	signal_heredoc(struct sigaction sa);
 void	new_line(void);
 void	reset_ast(t_ms *s);
 void	free_ast(t_cmd *cmd);
+void	free_dptr_ast(t_cmd **cmd);
 void	close_fd(int *fd);
 
 //*================ BUILTINS =====================*//

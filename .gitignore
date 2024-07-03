@@ -19,6 +19,7 @@
 # Libraries
 *.lib
 *.a
+*.a
 *.la
 *.lo
 
@@ -69,3 +70,4 @@ libs/libft/Makefile
 .DS_Store
 settings.json
 minishell
+vgcore.*

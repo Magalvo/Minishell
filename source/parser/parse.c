@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/03 16:18:05 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/03 19:59:02 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ t_cmd *parse_pipe(char **ps, char *es, t_ms *s)
 	t_cmd *cmd;
 
 	cmd = parse_exec(ps, es, s);
-	if(peek(ps, es, "|"))
+	if(cmd != NULL && peek(ps, es, "|"))
 	{
 		get_token(ps, es, 0, 0);
 		cmd = cmd_pipe(cmd, parse_pipe(ps, es, s));

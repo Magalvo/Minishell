@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:28:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/03 16:58:51 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/03 19:58:04 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,16 @@ t_cmd	*parse_exec(char **ps, char *es, t_ms *s)
 	ret = cmd_exec();
 	cmd = ret;
 	ret = parse_redir(ret, ps, es, s);
-	if (!ret)
-		return (NULL);
+	if (ret == NULL)
+		return (free_ast(cmd), ret);
 	argc = count_argc(ps, es, s);
 	cmd->argv = create_dptr(argc);
 	cmds.one = cmd;
 	cmds.two = ret;
 	parse_args(ps, es, &cmds, s);
-	if(cmd->argv)
-		cmd->argv[cmd->argc] = NULL;
+	if (cmds.two == NULL)
+		return (free_dptr_ast(&cmd), NULL);
+	cmd->argv[cmd->argc] = NULL;
 	cmd = cmds.one;
 	ret = cmds.two;
 	return (ret);
