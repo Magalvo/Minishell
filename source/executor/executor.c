@@ -20,10 +20,12 @@ char	*cmd_path(char **paths, char *cmd, t_ms *s)
 
 	if (!paths || !cmd)
 		return (NULL);
-	if (chdir(cmd) != -1)
+	if (chdir(cmd) == 0 && (cmd[0] == '.' || cmd[0] == '/'))
 	{
-		printf("minishell: %s: is a directory\n", cmd);
-		set_exit(126, s);
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(cmd, 2);
+		ft_putstr_fd(" : Is a directory\n", 2);
+		return(set_exit(126, s), NULL);
 	}
 	while (*paths)
 	{
@@ -54,7 +56,7 @@ static void	assist_file(int fd, int standard)
 	if (dup2 (fd, standard) == -1)
 	{
 		perror("dup2");
-		exit(EXIT_FAILURE);
+		exit(1);
 	}
 	close(fd);
 }
@@ -83,7 +85,7 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		if (fd_out != STDOUT_FILENO)
 			assist_file(fd_out, STDOUT_FILENO);
 		exec_one(s, cmd->argv);
-		set_exit(127, s);
+		set_exit(0, s);
 	}
 	else
 	{
@@ -95,74 +97,3 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	}
 }
 
-/* int exec_input(t_ms *s)
-{
-	char	*path;
-	int		id;
-
-	if (s->ast == NULL)
-		return (new_line(), 1);
-	if (ft_exec_builtins_chr(s, s->ast->argv))
-		return (1);
-	else
-	{
-		if(s->ast->type == EXEC)
-			exec_one(s, s->ast->argv);
-		else if(s->ast->type == PIPE)
-			exec_pipe(s, s->ast);
-		else if(s->ast->type == REDIR);
-		{
-
-		}
-	}
-	return (1);
-} */
-
-/* char *search_path(char *command, char **paths)
-{
-	char *full_path;
-	char *temp_path;
-	int i;
-
-	if (!paths)
-		return NULL;
-	i = 0;
-	while (paths[i]) {
-		full_path = ft_strjoin(paths[i], "/");
-		temp_path = full_path;
-		full_path = ft_strjoin(full_path, command);
-		free(temp_path);  								//! Free the intermediate string
-		if (access(full_path, X_OK) == 0)
-			return full_path;  							//!Found executable path
-		free(full_path);  								//! Free if not executable
-		i++;
-	}
-	return NULL;
-} */
-
-/* void	child_dump(t_ms d)
-{
-	pipe_msg(d.cmd_args[0]);
-	child_free(&d);
-	pipe_close(&d);
-	free_parent(&d);
-	exit(EXIT_FAILURE);
-}
-
-static void	ft_dup2(int zero, int first)
-{
-	dup2(zero, 0);
-	dup2(first, 1);
-} */
-
-//!!FONTE
-/* 		s->exit_stat = status;
-		if (status == 131)
-			printf("Quit\n");
-		if (status == 2)
-		{
-			s->exit_stat = 130;
-			printf("\n");
-		}
-		if (status > 255)
-			status /= 256; */

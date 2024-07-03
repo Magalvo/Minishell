@@ -235,7 +235,7 @@ void	wait_till_end(t_ms *s, pid_t pid);
 //! Temporary //
 
 //int		exec_input(t_ms *s);
-int		ft_exec_builtins_chr(t_ms *s, char **cmds);
-int		echo_cmd_test(char **cmd, t_ms *s);
+int		ft_exec_builtins_chr(t_ms *s, char **cmds, int fd_in, int fd_out);
+int		echo_cmd_test(char **cmd, t_ms *s, int fd_in, int fd_out);
 //int		export_cmd_test(t_ms *s, char **cmds);
 //int		unset_cmd_test(t_ms *s, char **cmds);

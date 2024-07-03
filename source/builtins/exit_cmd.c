@@ -12,6 +12,16 @@
 
 #include "../../include/minishell.h"
 
+void	print_exit(t_ms *s, char *cmds, char *str, int status)
+{
+	s->exit_stat = status;
+	ft_putstr_fd("exit\n", STDERR_FILENO);
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	ft_putstr_fd(cmds, STDERR_FILENO);
+	ft_putstr_fd(str, STDERR_FILENO);
+	exit_minishell(s, NULL);
+}
+
 int	aux_all(char *str)
 {
 	int	i;
@@ -35,23 +45,18 @@ void	exit_cmd(t_ms *s, char **cmds)
 		if (aux_all(cmds[1]))
 		{
 			s->exit_stat = ft_atoi(cmds[1]);
-			if (s->exit_stat > 255)
-				s->exit_stat %= 256;
+			/* if (s->exit_stat > 255)
+				s->exit_stat %= 256; */
+			exit_minishell(s, "exit\n");
 		}
 		else
 		{
-			s->exit_stat = 2;
-			ft_putstr_fd(cmds[1], STDERR_FILENO);
-			ft_putstr_fd(": numeric argument required\n", STDERR_FILENO);
-			exit_minishell(s, "exit\n");
+			print_exit(s, cmds[0], ": numeric argument required\n", 2);
 		}
 	}
-	else if (s->ast->argc > 2) //&& cmds[2][0]
+	else if (s->ast->argc > 3)
 	{
-		s->exit_stat = 1;
-		ft_putstr_fd(cmds[0], STDERR_FILENO);
-		ft_putstr_fd(" `: too many arguments\n", STDERR_FILENO);
-		exit_minishell(s, "exit\n");
+		print_exit(s, cmds[0],  " : Too many arguments\n", 1);
 	}
 	else
 		exit_minishell(s, "exit\n");

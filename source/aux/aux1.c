@@ -37,9 +37,9 @@ void	wait_till_end(t_ms *s, pid_t pid)
 	int	status;
 
 	waitpid(pid, &status, 0);
-	if (status == 13)
-		s->exit_stat = s->exit_stat;
-	else if (WIFEXITED(status))
+/* 	if (status == 13)
+		s->exit_stat = s->exit_stat; */
+	if (WIFEXITED(status))
 		s->exit_stat = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status))
 	{

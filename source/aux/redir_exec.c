@@ -12,56 +12,61 @@
 
 #include "../../include/minishell.h"
 
-void	fd_errors(t_ms *s, t_cmd *cmd)
+void fd_errors(t_ms *s, t_cmd *cmd)
 {
     (void)cmd;
-   // printf("%s\n", s->ast->cmd->argv[0]);
-	s->exit_stat = 1;
-	perror(s->ast->cmd->argv[0]);
-	return ;
+    s->exit_stat = 1;
+    perror(cmd->file);
 }
 
-void	fd_unlock(t_cmd *cmd, t_ms *s, int *fd, int rd_only)
+void fd_unlock(t_cmd *cmd, t_ms *s, int *fd, int rd_only)
 {
-	if (rd_only == 1)
-	{
-		*fd = open(cmd->file, O_RDONLY);
-		if (*fd < 0)
-            fd_errors(s, cmd);
-	}
-	else
-	{
-		*fd = open(cmd->file, cmd->mode, 0666);
-		if (*fd < 0)
-        {
-            fd_errors(s, cmd);
-        }
-	}
+    if (rd_only == 1)
+    {
+        *fd = open(cmd->file, O_RDONLY);
+        if (*fd < 0)
+            return(fd_errors(s, cmd));
+    }
+    else
+    {
+        *fd = open(cmd->file, cmd->mode, 0666);
+        if (*fd < 0)
+             return(fd_errors(s, cmd));
+    }
 }
 
 void exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
+    int temp_fd;
+
+    temp_fd = -1;
     while (cmd->type == REDIR || cmd->type == HEREDOC)
     {
-		int	temp_fd;
-
-		temp_fd = -1;
         if (cmd->type == HEREDOC)
+        {
             fd_in = cmd->fd;
+        }
         else if (cmd->mode & O_WRONLY || cmd->mode & O_RDWR)
         {
             if (fd_out == STDOUT_FILENO)
-				fd_unlock(cmd, s, &fd_out, 0);
+            {
+                fd_unlock(cmd, s, &fd_out, 0);
+            }
             else
-			{
-				fd_unlock(cmd, s, &temp_fd, 0);
-				close(temp_fd);
-			}
+            {
+                fd_unlock(cmd, s, &temp_fd, 0);
+                close(temp_fd);
+            }
         }
         else if (cmd->file)
-			fd_unlock(cmd, s, &fd_in, 1);
+        {
+            fd_unlock(cmd, s, &fd_in, 1);
+        }
+        if (s->exit_stat != 0)
+            return ;
         cmd = cmd->cmd;
     }
+    s->exit_stat = 0;
     updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
     exec_redir_fork(s, cmd, fd_in, fd_out);
 }
@@ -77,24 +82,27 @@ void exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
             dup_and_close(s, fd_in, STDIN_FILENO);
         if (fd_out != STDOUT_FILENO)
             dup_and_close(s, fd_out, STDOUT_FILENO);
+
         if (cmd->type == EXEC)
             exec_from_ast_recursive(s, cmd, STDIN_FILENO, STDOUT_FILENO);
         else
             exec_from_ast_recursive(s, cmd, STDIN_FILENO, fd_out);
+
         exit(s->exit_stat);
     }
     else
     {
         close_two_fd(cmd, fd_in, fd_out);
-		wait_till_end(s, pid);
+        wait_till_end(s, pid);
     }
 }
 
-void	close_two_fd(t_cmd *cmd, int fd_in, int fd_out)
+void close_two_fd(t_cmd *cmd, int fd_in, int fd_out)
 {
-	(void)cmd;
-	if (fd_in != STDIN_FILENO)
-		close(fd_in);
-	if (fd_out != STDOUT_FILENO)
-		close(fd_out);
+    (void)cmd;
+    if (fd_in != STDIN_FILENO)
+        close(fd_in);
+    if (fd_out != STDOUT_FILENO)
+        close(fd_out);
 }
+
