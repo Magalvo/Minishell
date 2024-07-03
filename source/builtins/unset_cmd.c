@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:50 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/27 19:35:22 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/03 22:26:08 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,28 @@ void	unset_clean(t_env *current)
 
 void	unset_move(t_env *current)
 {
-	current->prev->next = current->next;
-	current->next->prev = current->prev;
+	if (current->prev)
+		current->prev->next = current->next;
+	if(current->next)
+		current->next->prev = current->prev;
 }
 
-//! If the node to remove is the head
-//! If the node to remove is the tail
-//! If the node to remove is in the middle
-void	unset_cmd_export(t_ms *s, char **args)
+
+void	unset_cmd_export(t_ms *s, char *args)
 {
 	t_env	*current;
+	t_env	*tmp;
 
 	current = s->export;
-	while (current && args[1])
+	while (current)
 	{
-		if ((ft_sw_builtins(current->key, args[1]) == 0))
+		tmp = current->next;
+		if ((ft_sw_builtins(current->key, args) == 0))
 		{
 			if (current->prev == NULL)
 			{
 				s->export = current->next;
-				if (current->next != NULL)
+				if (current->next)
 					current->next->prev = NULL;
 			}
 			else if (current->next == NULL)
@@ -57,46 +59,53 @@ void	unset_cmd_export(t_ms *s, char **args)
 			else
 				unset_move(current);
 			unset_clean(current);
-			return ;
+			break ;
 		}
-		current = current->next;
+		current = tmp;
 	}
 }
 
-void	unset_cmd_aux(t_ms *s, t_env **current)
+void	unset_cmd_aux(t_ms *s, t_env *current)
 {
-	s->env = (*current)->next;
-	if ((*current)->next != NULL)
-		(*current)->next->prev = NULL;
+	s->env = current->next;
+	if (current->next != NULL)
+		current->next->prev = NULL;
 }
 
-//! If the node to remove is the head
-//! If the node to remove is the tail
-//! If the node to remove is in the middle
 int	unset_cmd(t_ms *s, char **args)
 {
 	t_env	*current;
+	t_env	*tmp;
+	int		i;
 
-	current = s->env;
-	while (current && args[1])
+	i = 1;
+	while(args[i])
 	{
-		if ((ft_sw_builtins(current->key, args[1]) == 0)
-			&& ft_strncmp(current->key, "_", ft_strlen(current->key)))
+		current = s->env;
+		while (current && args[i])
 		{
-			if (current->prev == NULL)
-				unset_cmd_aux(s, &current);
-			else if (current->next == NULL)
-				current->prev->next = NULL;
-			else
-				unset_move(current);
-			unset_clean(current);
-			break ;
+			tmp = current->next;
+			if ((ft_sw_builtins(current->key, args[i]) == 0) \
+				&& ft_strcmp(current->key, "_") != 0)
+			{
+				if (current->prev == NULL)
+					unset_cmd_aux(s, current);
+				else if (current->next == NULL)
+					current->prev->next = NULL;
+				else
+					unset_move(current);
+				unset_clean(current);
+				break ;
+			}
+			current = tmp;
 		}
-		current = current->next;
+		unset_cmd_export(s, args[i]);
+		env_arr_update(s, args[i]);
+		i++;
 	}
-	unset_cmd_export(s, args);
-	env_arr_update(s, args[1]);
-	//if (ft_strncmp(args[1], "PATH", ft_strlen(args[1])) != 0)
-	//env_paths(s, s->env_tmp);
 	return (1);
 }
+
+
+//if (ft_strncmp(args[1], "PATH", ft_strlen(args[1])) != 0)
+//env_paths(s, s->env_tmp);

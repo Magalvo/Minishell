@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_heredoc.c                                     :+:      :+:    :+:   */
+/*   init_heredoc_aux.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 14:01:07 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:56:39 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	heredoc_child(char *dli, int fd_file, int expand, t_ms *s)
 		line = readline("> ");
 		if (!line)
 			exit(del_eof(fd_file));
-		if ((ft_strncmp(dli, line, ft_strlen(dli)) == 0 && !empty_dli)
+		if ((ft_strcmp(dli, line) == 0 && !empty_dli)
 			|| (empty_dli && line[0] == '\0'))
 			break;
 		expand_heredoc(s, line, expand, fd_file);

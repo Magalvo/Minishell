@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/29 14:26:11 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:18:05 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_cmd	*parse_input(char *input, t_ms *s)
 	// ast = parse_cmd(xp_input, s);
 	ast = parse_cmd(xp_input, s);
 	free(xp_input);
-	//xp_input = NULL;
+	xp_input = NULL;
 	return (ast);
 }
 
@@ -119,7 +119,7 @@ t_cmd *parse_cmd(char *input, t_ms *s)
 // 	return cmd;
 // }
 
-// looks for pipes, if found runs recursively until no pipe found
+//? looks for pipes, if found runs recursively until no pipe found
 t_cmd *parse_pipe(char **ps, char *es, t_ms *s)
 {
 	t_cmd *cmd;

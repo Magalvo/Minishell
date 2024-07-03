@@ -62,7 +62,7 @@ char	*get_env_val(t_env *env, char *key, t_ms *s);
 void	sort_env_list(t_env **head);
 int		print_export(t_env *env);
 int		ft_sw_builtins(const char *s1, const char *s2);
-int		is_valid_key(const char *key);
+int		is_valid_key(char *key);
 char	*get_key_from_str(const char *str);
 char	*get_value_from_str(const char *str);
 int		handle_kv_update(t_env *env, char *key, char *value, int tog);
@@ -223,7 +223,7 @@ void	free_all_paths(char **paths);
 void	clear_env(char **env);
 int		free_export_p(t_env *env_copy, t_env *new_node);
 int		not_found(char *str, int status, t_ms *s);
-int		export_cmd_error(char *msg);
+int		export_cmd_error(t_ms *s, char *msg, char *key);
 
 
 //!! To be sorted//

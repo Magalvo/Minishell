@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:28:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/29 11:51:59 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:58:51 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,19 @@ t_cmd	*parse_exec(char **ps, char *es, t_ms *s)
 	t_cmd	*ret;
 	int		argc;
 
+	cmd = NULL;
 	ret = cmd_exec();
 	cmd = ret;
 	ret = parse_redir(ret, ps, es, s);
+	if (!ret)
+		return (NULL);
 	argc = count_argc(ps, es, s);
 	cmd->argv = create_dptr(argc);
 	cmds.one = cmd;
 	cmds.two = ret;
 	parse_args(ps, es, &cmds, s);
-	cmd->argv[cmd->argc] = NULL;
+	if(cmd->argv)
+		cmd->argv[cmd->argc] = NULL;
 	cmd = cmds.one;
 	ret = cmds.two;
 	return (ret);

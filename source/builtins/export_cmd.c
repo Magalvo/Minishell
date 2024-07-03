@@ -6,23 +6,23 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:59 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/28 14:01:53 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/03 21:55:53 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	is_valid_key(const char *key)
+int	is_valid_key(char *key)
 {
 	int	i;
 
 	i = 1;
 	if (!ft_isalpha(key[0]) && key[0] != '_')
-		return (0);
+		return (free(key), 0);
 	while (key[i] != '\0')
 	{
 		if (!ft_isalnum(key[i]) && key[i] != '_')
-			return (0);
+			return (free(key), 0);
 		i++;
 	}
 	return (1);
@@ -94,28 +94,29 @@ int	add_new_node(t_env *env, char *key, char *value)
 
 int export_cmd(t_ms *s, char **str)
 {
-    char *key;
-    char *value;
+	char	*key;
+	char	*value;
+	int		i;
 
-    if (str[1] == NULL)
-        return((sort_env_list(&s->export)), print_export(s->export));
-    key = get_key_from_str(str[1]);
-    if (!key || !is_valid_key(key))
-    {
-        s->exit_stat = 1;
-        export_cmd_error("not a valid identifier");
-        free(key); 
-        return 1; 
-    }
-    value = get_value_from_str(str[1]); 
-    export_update(s->export, key, value);
-    handle_kv_update(s->env, key, value, 1);
-    env_arr_update(s, NULL);
-    env_paths(s, s->env_tmp);
-/* 	if (key != NULL)
-    	free(key); */
-	if (value != NULL)
-   		free(value); 
-    return 0;
+	i = 0;
+	if (str[1] == NULL)
+		return((sort_env_list(&s->export)), print_export(s->export));
+	while (str[++i])
+	{
+		key = NULL;
+		value = NULL;
+		key = get_key_from_str(str[i]);
+		if (!key || !is_valid_key(key))
+			export_cmd_error(s, " not a valid identifier", key);
+		else
+		{
+			value = get_value_from_str(str[i]); 
+			export_update(s->export, key, value);
+			handle_kv_update(s->env, key, value, 1);
+			env_arr_update(s, NULL);
+			env_paths(s, s->env_tmp);
+		}	
+	}
+	return (0);
 }
 

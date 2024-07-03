@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:10 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 18:16:06 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/03 21:55:19 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ char	*get_env_expand(char *key)
 }
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-int	export_cmd_error(char *msg)
+int	export_cmd_error(t_ms *s, char *msg, char *key)
 {
+	(void)key;
+	s->exit_stat = 1;
 	ft_putstr_fd("minishell: export: ", 2);
 	ft_putstr_fd(msg, 2);
 	ft_putstr_fd("\n", 2);
