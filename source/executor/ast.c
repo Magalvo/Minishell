@@ -14,18 +14,18 @@
 
 void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
-	if (!cmd)
-		return ;
-	if (cmd->type == EXEC)
-		aux_rec_exec(s, cmd, fd_in, fd_out);
-	else if (cmd->type == PIPE)
-	{
-		exec_pipe(s, cmd, fd_in, fd_out);
-	}
-	else if (cmd->type == REDIR || cmd->type == HEREDOC)
-	{
-		exec_redir(s, cmd, fd_in, fd_out);
-	}
+		if (!cmd)
+			return ;
+		if (cmd->type == EXEC)
+			aux_rec_exec(s, cmd, fd_in, fd_out);
+		else if (cmd->type == PIPE)
+		{
+			exec_pipe(s, cmd, fd_in, fd_out);
+		}
+		else if (cmd->type == REDIR || cmd->type == HEREDOC)
+		{
+			exec_redir(s, cmd, fd_in, fd_out);
+		}
 }
 
 void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
@@ -45,7 +45,7 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			dup2(pipefd[1], STDOUT_FILENO);
 		close(pipefd[1]);
 		exec_from_ast_recursive(s, cmd->left, fd_in, STDOUT_FILENO);
-		exit(s->exit_stat);
+		exit(0);
 	}
 	else
 	{
@@ -103,19 +103,31 @@ void	reset_ast(t_ms *s)
 }
 
 int	not_found(char *str, int status, t_ms *s)
-{
-	ft_putstr_fd(str, 2);
+{	
+	char *temp;
+
+	temp = str;
+	if (temp)
+		ft_putstr_fd(temp, 2);
 	if(status == 127)
 	{
 		if(str[0] == '.' || str[0] == '/')
-			ft_putstr_fd(": No such file or directory\n", 2);
+		{
+			if (chdir(str) == 1)
+			{
+				s->exit_stat = 126;
+				ft_putstr_fd(": Is a directory\n", 2);
+			}
+			else if (chdir(str) == -1)
+				ft_putstr_fd(": No such file or directory\n", 2);
+		}	
 		else
 			ft_putstr_fd(": command not found\n", 2);
 	}
-	if(status == 126)
-		ft_putstr_fd(": permission denied\n", 2);
+	else if(status == 126)
+		ft_putstr_fd(": Permission denied\n", 2);
 	// TODO commented out
-	// ft_putnbr_fd(status, 2);
-	// ft_putstr_fd("\n", 2);
+/* 	ft_putnbr_fd(status, 2);
+	ft_putstr_fd("\n", 2); */
 	return(set_exit(status, s), 1);
 }

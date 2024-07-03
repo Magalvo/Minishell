@@ -12,7 +12,7 @@
 
 #include "../include/minishell.h"
 
-void	minishell(char **envp)
+/* void	minishell(char **envp)
 {
 	t_ms	s;
 	char	*input;
@@ -24,11 +24,11 @@ void	minishell(char **envp)
 	{
 		check_signal(MAIN);
 
-		// ? test loop
+		test loop
 		if (isatty(fileno(stdin)))
 		{
 			input = readline(s.prompt);
-			// shell->prompt = readline(shell->terminal_prompt);
+			shell->prompt = readline(shell->terminal_prompt);
 		}
 		else
 		{
@@ -37,11 +37,11 @@ void	minishell(char **envp)
 			input = ft_strtrim(line, "\n");
 			free(line);
 		}
-		// ! end test loop
+		end test loop
 
-		// ? regular readline function
-		// input = readline(s.prompt);
-
+		regular readline function
+		input = readline(s.prompt);
+		tster ??? input = ft_strtrim(line, "\n");
 		if (input == NULL && s.modal == MAIN)
 			exit_minishell(&s, "exit\n");
 		s.ast = parse_input(input, &s);
@@ -56,7 +56,54 @@ void	minishell(char **envp)
 		reset_ast(&s);
 	}
 	exit_minishell(&s, NULL);
+} */
+
+
+void minishell(char **envp)
+{
+	t_ms s;
+	char *input;
+
+	init_t_ms(&s);
+	if (!init_minishell(&s, envp))
+		exit_minishell(&s, NULL);
+	while (true)
+	{
+		check_signal(MAIN);
+		// Test loop
+		if (isatty(fileno(stdin)))
+		{
+			input = readline(s.prompt);
+		}
+		else
+		{
+			char *line;
+			line = get_next_line(fileno(stdin));
+			input = ft_strtrim(line, "\n");
+			free(line);
+		}
+		if (input == NULL && s.modal == MAIN)
+		{
+			// Ensure proper exit code is set before exiting
+			exit_minishell(&s, "exit\n");
+			// Ensure exit with code 0 if this point is reached
+		}
+		s.ast = parse_input(input, &s);
+		if (!s.bnf && s.ast != NULL)
+		{
+			exec_from_ast(&s);
+		}
+		else if (s.ast != NULL)
+		{
+			s.bnf = false;
+			print_ast(&s, s.ast, -1);
+		}
+		free(input);
+		reset_ast(&s);
+	}
+	exit_minishell(&s, NULL);
 }
+
 
 int main(int argc, char *argv[], char *envp[])
 {

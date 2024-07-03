@@ -14,14 +14,15 @@
 
 void	exit_minishell(t_ms *s, char *msg)
 {
-	int	exiter;
+	int				exiter;
+	unsigned char	res;
 
 	if (!s)
 		return ;
 	exiter = s->exit_stat;
 	if (msg)
 	{
-		ft_putstr_fd(msg, STDERR_FILENO);
+		ft_putstr_fd(msg, 1);
 	}
 	close_fd(&(s->infile));
 	close_fd(&(s->outfile));
@@ -35,7 +36,8 @@ void	exit_minishell(t_ms *s, char *msg)
 		s->ast = NULL;
 	}
 	cleanup_shell(s);
-	exit(exiter);
+	res = (unsigned char)exiter;
+	exit(res);
 }
 
 int	init_minishell(t_ms *s, char **ep)
@@ -56,7 +58,7 @@ int	init_minishell(t_ms *s, char **ep)
 	s->env_tmp = env_convert(s->export);
 	s->modal = MAIN;
 	s->cmd_temp = NULL;
-	s->prompt = "nanoshell -> ";
+	s->prompt = "minishell> ";
 	return (true);
 }
 

@@ -17,13 +17,16 @@ void	exec_one(t_ms *s, char **argv)
 	char	*path;
 	char	*cmd_name;
 
-	if ((argv[0] && argv[0][0] == '/' && argv[0][1]) || \
-		(argv[0] && argv[0][0] == '.' && argv[0][1] == '/' && argv[0][2]))
+	if ((argv[0] && argv[0][0] == '.' && argv[0][1] == '/' && argv[0][2]))
 	{
-		execve(argv[0], argv, s->env_tmp);
-		not_found(argv[0], 127, s);
+		if (access(argv[0], F_OK) != 0)
+			not_found(argv[0], 127, s);
+		if (access(argv[0], X_OK) != 0)
+			not_found(argv[0], 126, s);
+		if(!execve(argv[0], argv, s->env_tmp))
+			exit(EXIT_FAILURE);
 	}
-	else if (argv && argv[0] != NULL)
+	if (argv && argv[0] != NULL)
 	{
 		path = cmd_path(s->paths, argv[0], s);
 		if (!path)
@@ -36,8 +39,9 @@ void	exec_one(t_ms *s, char **argv)
 		}
 		execve(path, argv, s->env_tmp);
 		free(path);
-		set_exit(126, s);
+		//set_exit(127, s);
 	}
+	//set_exit(0, s);
 }
 
 int	exec_paria(t_ms *s, t_cmd *cmds)
@@ -52,7 +56,7 @@ int	exec_paria(t_ms *s, t_cmd *cmds)
 	}
 	else if (ft_sw_builtins(cmds->argv[0], "echo") == 0)
 	{
-		echo_cmd_test(cmds->argv, s);
+		echo_cmd_test(cmds->argv, s, STDIN_FILENO, STDOUT_FILENO);
 		updating_cmds(s, cmds, s->ast->argv[s->ast->argc - 1]);
 		return (1);
 	}
@@ -83,15 +87,14 @@ void	updating_cmds(t_ms *s, t_cmd *cmd, char *value)
 
 void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
-	updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
-	if (ft_exec_builtins_chr(s, cmd->argv))
-		s->exit_stat = 0;
-	else
+	if (s->ast && s->ast->argc > 0)
+		updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
+	if (!ft_exec_builtins_chr(s, cmd->argv, fd_in, fd_out))
 		single_exec(s, cmd, fd_in, fd_out);
 }
 
 void	exec_from_ast(t_ms *s)
-{
+{	
 	if (!exec_paria(s, s->ast))
 		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
 }

@@ -69,10 +69,10 @@ void	toggle_bnf(t_ms *s)
 	}
 }
 
-int	ft_exec_builtins_chr(t_ms *s, char **cmds)
+int	ft_exec_builtins_chr(t_ms *s, char **cmds, int fd_in, int fd_out)
 {
 	if (ft_sw_builtins(cmds[0], "echo") == 0)
-		return (echo_cmd_test(cmds, s), 1);
+		return (echo_cmd_test(cmds, s, fd_in, fd_out), 1);
 	else if (ft_sw_builtins(cmds[0], "cd") == 0)
 		return (cd_cmd(s, cmds), 1);
 	else if (ft_sw_builtins(cmds[0], "env") == 0)
@@ -84,7 +84,7 @@ int	ft_exec_builtins_chr(t_ms *s, char **cmds)
 	else if (ft_sw_builtins(cmds[0], "unset") == 0)
 		return (unset_cmd(s, cmds));
 	else if (ft_sw_builtins(cmds[0], "exit") == 0)
-		return (exit_cmd(s, cmds), 0);
+		return (exit_cmd(s, cmds), 1);
 	else if (ft_sw_builtins(cmds[0], "bnf") == 0)
 		return (s->bnf = true, ft_putstr_fd("bnf ON\n", 1), 1);
 	else
