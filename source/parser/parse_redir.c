@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/29 14:41:45 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/03 19:12:24 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ t_cmd *parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 		tok = get_token(ps, es, 0, 0);
 		if (peek(ps, es, TOKENS))
 		{
+			free_dptr_ast(&cmd);
+			// cmd = NULL;
+			return (reprompt(INVALID_TOKEN, 1, s), NULL);
+			// return (reprompt(INVALID_TOKEN, 1, s), NULL);
 			reprompt(INVALID_TOKEN, 1, s);
 			while (peek(ps, es, TOKENS))
 				get_token(ps, es, 0, 0);
@@ -34,7 +38,11 @@ t_cmd *parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 		}
 		// if(get_token(ps, es, &q, &eq) != 'a' && !s->one_dolar)
 		if(get_token(ps, es, &q, &eq) != 'a')
+		{
+			free_dptr_ast(&cmd);
+			// cmd = NULL;
 			return (reprompt(MISSING_REDIRECT, 1, s), NULL);
+		}
 		// {
 			// reprompt(MISSING_REDIRECT, 1, s);
 		// }
@@ -67,12 +75,13 @@ void	parse_fake_redir(char **ps, char *es, t_ms *s)
 	char	*q;
 	char	*eq;
 
+	(void)s;
 	while(peek(ps, es, "<>"))
 	{
 		tok = get_token(ps, es, 0, 0);
 		if (peek(ps, es, TOKENS))
 		{
-			reprompt(INVALID_TOKEN, 1, s);
+			// reprompt(INVALID_TOKEN, 1, s);
 			while (peek(ps, es, TOKENS))
 				get_token(ps, es, 0, 0);
 			return ;
