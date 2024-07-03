@@ -124,7 +124,7 @@ char	*expand_words(char *input);
 char	*remove_quotes(char *input, char *pos);
 bool	check_valid_position(char *input);
 char	*get_expanded(char *input, char *cut, char *paste, char *remain);
-
+void	get_shrinked(char *input, char *move);
 // int		here_doc(char *dli, t_ms *s, t_cmd *cmd);
 int		exec_heredoc(char *dli, char *file, int expand, t_ms *s);
 void	expand_heredoc(t_ms *s, char *line, int expand, int fd_file);

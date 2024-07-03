@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:04 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/29 01:34:34 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/03 23:24:28 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void	exit_cmd(t_ms *s, char **cmds)
 	}
 	else if (s->ast->argc > 3)
 	{
-		print_exit(s, cmds[0],  " : Too many arguments\n", 1);
+		// TODO should not exit, if following bash
+		print_exit(s, cmds[0],  " : too many arguments\n", 1);
 	}
 	else
 		exit_minishell(s, "exit\n");

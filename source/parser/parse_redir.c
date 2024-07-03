@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/03 19:58:53 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/03 23:01:08 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,14 @@ t_cmd *parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 		tok = get_token(ps, es, 0, 0);
 		if (peek(ps, es, TOKENS))
 		{
-			free_dptr_ast(&cmd);
-			// cmd = NULL;
-			return (reprompt(INVALID_TOKEN, 1, s), NULL);
-			// return (reprompt(INVALID_TOKEN, 1, s), NULL);
+			return (free_dptr_ast(&cmd), reprompt(INVALID_TOKEN, 1, s), NULL);
 			reprompt(INVALID_TOKEN, 1, s);
 			while (peek(ps, es, TOKENS))
 				get_token(ps, es, 0, 0);
 			return (NULL);
 		}
-		// if(get_token(ps, es, &q, &eq) != 'a' && !s->one_dolar)
 		if(get_token(ps, es, &q, &eq) != 'a')
-		{
-			free_dptr_ast(&cmd);
-			// cmd = NULL;
-			return (reprompt(MISSING_REDIRECT, 1, s), NULL);
-		}
-		// {
-			// reprompt(MISSING_REDIRECT, 1, s);
-		// }
-		// else if(get_token(ps, es, &q, &eq) != 'a' && s->one_dolar)
-		// 	cmd = redir_sw(cmd, tok, "$", s);
-		// {
-		// }
+			return (free_dptr_ast(&cmd), reprompt(MISSING_REDIRECT, 1, s), NULL);
 		cmd = redir_sw(cmd, tok, ft_substr(q, 0, eq - q), s);
 	}
 	return (cmd);

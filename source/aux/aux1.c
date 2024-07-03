@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:10 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 18:16:06 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/03 23:28:27 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ void	wait_till_end(t_ms *s, pid_t pid)
 	}
 	if (s->exit_stat == 131)
 		printf("Quit\n");
+	// TODO penso que esteja invbertido, seguindo os testes.
+	// Test  58: ❌ grep hi "<infile" <         ./test_files/infile
+	// mini exit code = 130
+	// bash exit code = 2
 	if (s->exit_stat == 130)
 		printf("\n");
 	if (s->exit_stat == 2)
