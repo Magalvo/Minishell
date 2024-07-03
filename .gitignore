@@ -69,3 +69,4 @@ libs/libft/Makefile
 .DS_Store
 settings.json
 minishell
+vgcore.*
