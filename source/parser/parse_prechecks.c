@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:00 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/28 14:05:36 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:51:32 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool	syntax_validation(char *input, t_ms *s)
 		return(reprompt(MISSING_QUOTE, 1, s), NULL);
 	if (!syntax_and_or(input))
 		return(reprompt(LOGICAL_TOKEN, 1, s), NULL);
-	if (!syntax_pipes(input, (char *)input + ft_strlen(input) - 1))
+	if (!syntax_pipes(input, (char *)input + ft_strlen(input)))
 		return(reprompt(PIPE_SYNTAX, 2, s), NULL);
 	if (!syntax_list(input))
 		return(reprompt(SEMICOLON, 1, s), NULL);

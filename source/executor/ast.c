@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:23 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/29 10:28:39 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/03 18:40:46 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,54 +56,9 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	}
 }
 
-void	free_ast(t_cmd *cmd)
-{
-	int	i;
-
-	i = 0;
-	if (!cmd)
-		return ;
-	if (cmd->left)
-		free_ast(cmd->left);
-	if (cmd->right)
-		free_ast(cmd->right);
-	if (cmd->cmd)
-		free_ast(cmd->cmd);
-	if (cmd->argv)
-	{
-		i = 0;
-		while (cmd->argv[i])
-		// while (i < cmd->argc)
-		{
-			free(cmd->argv[i]);
-			cmd->argv[i] = NULL;
-			i++;
-		}
-		free(cmd->argv);
-		cmd->argv = NULL;
-	}
-	if (cmd->file)
-	{
-		free(cmd->file);
-		cmd->file = NULL;
-	}
-	if (cmd->delim)
-		free(cmd->delim);
-	free(cmd);
-		cmd = NULL;
-}
-
-void	reset_ast(t_ms *s)
-{
-	if (s->ast)
-	{
-		free_ast(s->ast);
-		s->ast = NULL;
-	}
-}
 
 int	not_found(char *str, int status, t_ms *s)
-{	
+{
 	char *temp;
 
 	temp = str;
@@ -120,7 +75,7 @@ int	not_found(char *str, int status, t_ms *s)
 			}
 			else if (chdir(str) == -1)
 				ft_putstr_fd(": No such file or directory\n", 2);
-		}	
+		}
 		else
 			ft_putstr_fd(": command not found\n", 2);
 	}
