@@ -172,7 +172,7 @@ void	split_input(t_ms *s, char* input);
 char	*get_env_expand(char *key);
 void	env_arr_update(t_ms *s, char *str);
 void	initialize_env(char ***envp);
-char	**null_env_init();
+char	**null_env_init(void);
 void	free_and_error(char *one, char *two, char **three);
 char	**env_convert(t_env *env);
 char	**create_env_array(int ctd_ptr);

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   aux1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:10 by cjoao-de          #+#    #+#             */
 /*   Updated: 2024/07/04 16:56:12 by dde-maga         ###   ########.fr       */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/04 17:54:31 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/04 01:06:48 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,49 +77,7 @@ t_cmd *parse_cmd(char *input, t_ms *s)
 	return cmd;
 }
 
-//
-// t_cmd *parse_cmd(char *input, t_ms *s)
-// 	// char **ps, char *es, t_ms *s)
-// {
-// 	char	*end;
-// 	t_cmd *cmd;
-
-
-// 	cmd = parse_pipe(ps, es, s);
-// 	return (cmd);
-
-// }
-
-// t_cmd *parse_cmd(char *input, t_ms *s)
-// {
-// 	char	*end;
-// 	t_cmd	*cmd;
-
-// 	if (input == NULL)
-// 		return (NULL);
-// 	end = input + ft_strlen(input);
-// 	cmd = parse_line(&input, end, s);
-
-// 	peek(&input, end, "");
-// 	if(input != end){
-// 		ft_dprintf(STDERR_FILENO, "\'%s\' ", input);
-// 		reprompt(INCOMPLETE_PARSE, 1, s);
-// 	}
-
-// 	return cmd;
-// }
-
-// //
-// t_cmd *parse_line(char **ps, char *es, t_ms *s)
-// {
-// 	t_cmd *cmd;
-
-// 	ft_strrep_range(*ps, es, (char)17, '$');
-// 	cmd = parse_pipe(ps, es, s);
-// 	return cmd;
-// }
-
-//? looks for pipes, if found runs recursively until no pipe found
+// looks for pipes, if found runs recursively until no pipe found
 t_cmd *parse_pipe(char **ps, char *es, t_ms *s)
 {
 	t_cmd *cmd;

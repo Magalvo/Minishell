@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:07 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/03 17:23:40 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/04 15:03:59 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	clear_env_handler(t_ms *s)
 		clear_env(s->env_tmp);
 		s->env_tmp = NULL;
 	}
-	s->env_tmp = null_env_init(s);
+	// s->env_tmp = null_env_init(s); // TODO altered prototype and removed arg
+	s->env_tmp = null_env_init();
 }
 
 int	env_cmd(t_ms *s, char **cmds)
