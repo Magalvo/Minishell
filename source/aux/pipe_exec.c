@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/28 16:59:11 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:53:04 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	exec_one(t_ms *s, char **argv)
 	char	*path;
 	char	*cmd_name;
 
-	if ((argv[0] && argv[0][0] == '.' && argv[0][1] == '/' && argv[0][2]))
+	if ((argv[0] && argv[0][0] == '.' && argv[0][1] == '/' && argv[0][2]) || \
+		(argv[0][0] == '/' && argv[0][1]))
 	{
 		if (access(argv[0], F_OK) != 0)
 			not_found(argv[0], 127, s);

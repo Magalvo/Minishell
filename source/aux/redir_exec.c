@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:22:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/03 17:12:19 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/04 18:17:55 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,19 @@ void close_two_fd(t_cmd *cmd, int fd_in, int fd_out)
 void fd_errors(t_ms *s, t_cmd *cmd)
 {
 	(void)cmd;
-	s->exit_stat = 1;
+	if(access(cmd->file, F_OK) == -1)
+		s->exit_stat = 2;
+	else
+		s->exit_stat = 1;
 	perror(cmd->file);
 }
 
 void fd_unlock(t_cmd *cmd, t_ms *s, int *fd, int rd_only)
 {
-	if (rd_only == 1)
-	{
-		*fd = open(cmd->file, O_RDONLY);
-		if (*fd < 0)
-			fd_errors(s, cmd);
-	}
-	else
-	{
-		*fd = open(cmd->file, cmd->mode, 0666);
-		if (*fd < 0)
-			 fd_errors(s, cmd);
-	}
+	(void)rd_only;
+	*fd = open(cmd->file, cmd->mode, 0666);
+	if (*fd < 0)
+		 fd_errors(s, cmd);
 }
 
 void exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
@@ -82,7 +77,7 @@ void exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		cmd = cmd->cmd;
 	}
 	close_fd(&temp_fd);
-	//updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
+	updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
 	exec_redir_fork(s, cmd, fd_in, fd_out);
 }
 
@@ -97,13 +92,9 @@ void exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			dup_and_close(s, fd_in, STDIN_FILENO);
 		if (fd_out != STDOUT_FILENO)
 			dup_and_close(s, fd_out, STDOUT_FILENO);
-
-/* 		if (cmd->type != EXEC) */
 		exec_from_ast_recursive(s, cmd, STDIN_FILENO, STDOUT_FILENO);
-/* 		else if (cmd->type == EXEC)
-			exec_from_ast_recursive(s, cmd, STDIN_FILENO, fd_out); */
-			
-		exit(s->exit_stat);
+		s->exit_stat = 0;
+		exit_minishell(s, NULL);
 	}
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:02 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/28 13:48:37 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/04 18:01:03 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	export_update(t_env *export, char *key, char *value)
 {
 	if (!is_valid_key(key))
 	{
-		printf("invalid Var Name");
+		printf("not a valid identifier");
 		return (0);
 	}
 	if (!update_key(export, key, value))

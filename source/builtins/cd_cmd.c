@@ -86,8 +86,10 @@ static int	cd_cmd_home(t_env *env)
 static int	cd_cmd_minus(t_env *env)
 {
 	char	*old;
+	char	*current_pwd;
 	int		result;
 
+	current_pwd = get_env_val(env, "PWD", NULL);
 	old = get_env_val(env, "OLDPWD", NULL);
 	if (!old)
 		return (cd_cmd_error("OLDPWD not set"), 1);
@@ -95,12 +97,15 @@ static int	cd_cmd_minus(t_env *env)
 	{
 		ft_putstr_fd("Failed to change directory\n", 2);
 		free(old);
+		free(current_pwd);
 		return(0);
 	}
 	ft_putstr_fd(old, 1);
 	write(1, "\n", 1);
+	update_key(env, "OLDPWD", current_pwd);
 	result = update_key(env, "PWD", old);
 	free(old);
+	free(current_pwd);
 	return (result);
 }
 
