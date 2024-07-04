@@ -51,6 +51,8 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	else
 	{
 		close(pipefd[1]);
+		if (fd_in != STDIN_FILENO)
+			close_fd(&fd_in);
 		exec_from_ast_recursive(s, cmd->right, pipefd[0], fd_out);
 		close(pipefd[0]);
 		wait_till_end(s, pid);
