@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/04 01:06:48 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/04 22:23:19 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_cmd	*parse_input(char *input, t_ms *s)
 	if (!syntax_validation(input, s))
 		return (NULL);
 	xp_input = ft_strdup(input);
-	xp_input = expand_sw_vars(xp_input, s);
+	// xp_input = expand_sw_vars(xp_input, s);
 	if (xp_input == NULL)
 		return (NULL);
 	xp_input = expand_sw_tilde(xp_input, s);

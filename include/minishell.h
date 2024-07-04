@@ -101,6 +101,7 @@ bool	syntax_back(const char *str);
 bool	syntax_parenthesis(const char *str);
 
 char	*expand_sw_vars(char *input, t_ms *s);
+char	*expand_var(char *input, t_ms *s);
 char	*expand_sw_tilde(char *input, t_ms *s);
 char	*expand_sw_quotes(char *input);
 char	*get_first_quote(char *input);

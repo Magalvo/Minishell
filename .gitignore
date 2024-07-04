@@ -59,6 +59,12 @@ dkms.conf
 # .vscode/*
 .temp/*
 .stuff/*
+reference/docker
+reference/docker/*
+.github
+.github/*
+.devcontainer
+.devcontainer/*
 
 # Compliance with 42 rules
 # *.pdf

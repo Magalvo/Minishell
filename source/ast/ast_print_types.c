@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:12:30 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/29 09:15:48 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/04 23:04:56 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,12 @@ void	print_ast_redir(t_ms *s, t_cmd *ptr, int padding)
 		while (p++ < padding)
 			printf("\t");
 		p = 0;
-		printf("type REDIR, \n");
+		if (ptr->mode == 577)
+			printf("type REDIR > TRUNC, \n");
+		else if (ptr->mode == 1089)
+			printf("type REDIR > APPEND, \n");
+		else if (ptr->mode == 0)
+			printf("type REDIR < RDONLY, \n");
 		while (p++ < padding)
 			printf("\t");
 		p = 0;

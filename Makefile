@@ -6,7 +6,7 @@
 #    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/07/04 15:59:19 by cjoao-de         ###   ########.fr        #
+#    Updated: 2024/07/04 16:03:51 by cjoao-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,9 +90,9 @@ MAKEFLAGS += --no-print-directory #  --silent
 ARFLAGS = rvs
 RM = rm -rf
 CC = cc #-ggdb -fsanitize=address -fno-omit-frame-pointer
-# ifeq ($(shell hostname), fedora)
-# 	CC = clang
-# endif
+ifeq ($(shell hostname), fedora)
+	CC = clang
+endif
 # HOST=$(shell hostname)
 # CC = cc #-ggdb -fsanitize=address -fno-omit-frame-pointer
 # AR = ar
