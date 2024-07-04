@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/03 19:23:55 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/03 23:01:29 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,7 @@ void	free_dptr_ast(t_cmd **cmd)
 	if ((*cmd)->argv)
 	{
 		i = 0;
-		// todo segfaulkt here
 		while ((*cmd)->argv[i])
-		// while (i < (*cmd)->argc)
 		{
 			free((*cmd)->argv[i]);
 			(*cmd)->argv[i] = NULL;
@@ -68,7 +66,6 @@ void	free_ast(t_cmd *cmd)
 	{
 		i = 0;
 		while (cmd->argv[i])
-		// while (i < cmd->argc)
 		{
 			free(cmd->argv[i]);
 			cmd->argv[i] = NULL;

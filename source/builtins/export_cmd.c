@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:59 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/03 21:55:53 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:05:18 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int	is_valid_key(char *key)
 
 	i = 1;
 	if (!ft_isalpha(key[0]) && key[0] != '_')
-		return (free(key), 0);
+		return (0);
 	while (key[i] != '\0')
 	{
 		if (!ft_isalnum(key[i]) && key[i] != '_')
-			return (free(key), 0);
+			return (0);
 		i++;
 	}
 	return (1);
@@ -107,7 +107,7 @@ int export_cmd(t_ms *s, char **str)
 		value = NULL;
 		key = get_key_from_str(str[i]);
 		if (!key || !is_valid_key(key))
-			export_cmd_error(s, " not a valid identifier", key);
+			export_cmd_error(s, "':not a valid identifier", key);
 		else
 		{
 			value = get_value_from_str(str[i]); 

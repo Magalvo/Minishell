@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:37 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/03 17:49:05 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:59:27 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,7 +243,6 @@ char	**env_convert(t_env *env)
 		if (!env_array[i])
 		{
 			free_env_array(env_array);
-			printf("DEU MAU");
 			return (NULL);
 		}
 		current = current->next;

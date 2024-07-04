@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_cmd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:15 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/28 11:41:02 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/03 23:18:35 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,10 @@ static int	cd_cmd_home(t_env *env)
 static int	cd_cmd_minus(t_env *env)
 {
 	char	*old;
+	char	*current_pwd;
 	int		result;
 
+	current_pwd = get_env_val(env, "PWD", NULL);
 	old = get_env_val(env, "OLDPWD", NULL);
 	if (!old)
 		return (cd_cmd_error("OLDPWD not set"), 1);
@@ -95,12 +97,15 @@ static int	cd_cmd_minus(t_env *env)
 	{
 		ft_putstr_fd("Failed to change directory\n", 2);
 		free(old);
+		free(current_pwd);
 		return(0);
 	}
 	ft_putstr_fd(old, 1);
 	write(1, "\n", 1);
+	update_key(env, "OLDPWD", current_pwd);
 	result = update_key(env, "PWD", old);
 	free(old);
+	free(current_pwd);
 	return (result);
 }
 
@@ -113,7 +118,7 @@ int	cd_cmd(t_ms *mini, char **path)
 	if (mini->ast->argc > 2)
 	{
 		mini->exit_stat = 1;
-		return (cd_cmd_error("Too many arguments"));
+		return (cd_cmd_error("too many arguments"));
 	}
 	if (!path[1] || (path[1][0] == '~' && path[1][1] == '\0'))
 		return (cd_cmd_home(env));
@@ -122,7 +127,7 @@ int	cd_cmd(t_ms *mini, char **path)
 	if (chdir(path[1]) == -1)
 	{
 		mini->exit_stat = 1;
-		return (cd_cmd_error("Not a directory")); 
+		return (cd_cmd_error("No such file or directory"));
 	}
 	val = get_env_val(env, "PWD", NULL);
 	if (val)
@@ -133,4 +138,3 @@ int	cd_cmd(t_ms *mini, char **path)
 	}
 	return (change_pwd(env, mini));
 }
-

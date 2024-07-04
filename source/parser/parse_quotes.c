@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:08 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/29 14:26:02 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/04 00:21:09 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,8 @@ char	*get_first_quote(char *input)
 char	*remove_quotes(char *input, char *pos)
 {
 	char	*qt_pos;
-	char	*res1;
-	char	*res2;
+	// char	*res1;
+	// char	*res2;
 	int		offset;
 	bool	is_qt;
 
@@ -132,17 +132,19 @@ char	*remove_quotes(char *input, char *pos)
 		return (input);
 	if (*qt_pos == QUOTE)
 		is_qt = true;
-	res1 = get_expanded(input, qt_pos, NULL, qt_pos + 1);
-	free(input);
+	// res1 = get_expanded(input, qt_pos, NULL, qt_pos + 1);
+	get_shrinked(input, qt_pos);
+	// free(input);
 	if (is_qt)
-		qt_pos = ft_strchr(res1, QUOTE);
+		qt_pos = ft_strchr(input, QUOTE);
 	else
-		qt_pos = ft_strchr(res1, DQUOTE);
-	res2 = get_expanded(res1, qt_pos, NULL, qt_pos + 1);
-	offset = qt_pos - res1;
-	free(res1);
-	remove_quotes(res2, res2 + offset);
-	return (res2);
+		qt_pos = ft_strchr(input, DQUOTE);
+	// res2 = get_expanded(res1, qt_pos, NULL, qt_pos + 1);
+	get_shrinked(input, qt_pos);
+	offset = qt_pos - input;
+	// free(res1);
+	remove_quotes(input, input + offset);
+	return (input);
 }
 
 // tests if pointer has char on sides of its position

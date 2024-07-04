@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:23 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/03 18:51:05 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/04 19:00:36 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			dup2(pipefd[1], STDOUT_FILENO);
 		close(pipefd[1]);
 		exec_from_ast_recursive(s, cmd->left, fd_in, STDOUT_FILENO);
-		exit(0);
+		s->exit_stat = 0;
+		exit_minishell(s, NULL);
 	}
 	else
 	{

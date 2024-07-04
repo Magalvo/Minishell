@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_expanded.c                                     :+:      :+:    :+:   */
+/*   get_newstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:12:16 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/29 10:59:28 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/04 00:24:45 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,17 @@ char	*get_expanded(char *input, char *cut, char *paste, char *remain)
 	ft_memcpy(expanded + first, paste, insert);
 	ft_memcpy(expanded + first + insert, remain, last);
 	return (expanded);
+}
+
+// shrinks input string by the diference of input prt and move ptr
+void	get_shrinked(char *input, char *move)
+{
+	size_t	move_len;
+	// size_t	to_zero;
+
+	(void)input;
+	move_len = ft_strlen(move);
+	// to_zero = ft_strlen(input) - move_len;
+	ft_memmove(move, move + 1, move_len);
+	// ft_bzero(input + move_len, to_zero);
 }
