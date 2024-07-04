@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:10 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/03 23:28:27 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/04 00:54:52 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ char	*get_env_expand(char *key)
 }
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-int	export_cmd_error(char *msg)
+int	export_cmd_error(t_ms *s, char *msg, char *key)
 {
+	(void)key;
+	s->exit_stat = 1;
 	ft_putstr_fd("minishell: export: ", 2);
 	ft_putstr_fd(msg, 2);
 	ft_putstr_fd("\n", 2);

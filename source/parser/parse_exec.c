@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parse_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:28:53 by cjoao-de          #+#    #+#             */
 /*   Updated: 2024/07/03 22:59:48 by cjoao-de         ###   ########.fr       */
@@ -20,6 +20,7 @@ t_cmd	*parse_exec(char **ps, char *es, t_ms *s)
 	t_cmd	*ret;
 	int		argc;
 
+	cmd = NULL;
 	ret = cmd_exec();
 	cmd = ret;
 	ret = parse_redir(ret, ps, es, s);

@@ -6,7 +6,7 @@
 #    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/07/03 23:56:15 by cjoao-de         ###   ########.fr        #
+#    Updated: 2024/07/04 00:55:21 by cjoao-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -149,7 +149,7 @@ fclean: clean
 	@printf "$(RED)[All binaries deleted]    $(RST)\n"
 
 valgrind: $(NAME)
-	valgrind -s --suppressions=readline.supp --trace-children=yes --leak-check=full --track-fds=yes --track-origins=yes --show-leak-kinds=all ./${NAME}
+	valgrind --suppressions=readline.supp --trace-children=yes --leak-check=full --track-fds=yes --track-origins=yes --show-leak-kinds=all ./${NAME}
 #valgrind -s --suppressions=readline.supp --tool=memcheck --tool=callgrind  --track-fds=yes ./${NAME}
 
 

@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:37 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/28 14:52:16 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/03 17:49:05 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ char	*get_env_val(t_env *env, char *key, t_ms *s)
 	int		total_len;
 	char	*value;
 	char	*result;
+	t_env	*tmp_env;
 
 	i = 0;
 	if (ft_strncmp(key, "PATH", 4) == 0)
@@ -147,7 +148,7 @@ char	*get_env_val(t_env *env, char *key, t_ms *s)
 				total_len++;
 			i++;
 		}
-		result = (char *)ft_calloc(total_len + 1, sizeof(char));
+		result = ft_calloc(total_len + 1, sizeof(char *));
 		if (!result)
 			return (NULL);
 		i = 0;
@@ -162,6 +163,7 @@ char	*get_env_val(t_env *env, char *key, t_ms *s)
 	}
 	else
 	{
+		tmp_env = env;
 		while (env)
 		{
 			if (ft_strncmp(env->key, key, ft_strlen(key)) == 0 && \
@@ -173,6 +175,7 @@ char	*get_env_val(t_env *env, char *key, t_ms *s)
 			}
 			env = env->next;
 		}
+		env = tmp_env;
 	}
 	return (NULL);
 }
@@ -207,7 +210,7 @@ char	**create_env_array(int ctd_ptr)
 {
 	char	**env_array;
 	
-	env_array = ft_calloc(sizeof(char **), (ctd_ptr + 1));
+	env_array = (char **)ft_calloc((ctd_ptr + 1), sizeof(char *));
 	if (!env_array)
 	{
 		ft_putstr_fd("env_arr", 2);

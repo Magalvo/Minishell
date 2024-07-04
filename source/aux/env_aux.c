@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:18 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/28 14:50:44 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/03 17:27:41 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ char	*join_key_value(const char *key, const char *value)
 	else
 		value_len = 0;
 	total_len = key_len + value_len + 2;
-	join = ft_calloc(sizeof(char *), (total_len + 1));
+	join = ft_calloc((total_len + 1), sizeof(char));
 	if (!join)
 		return (NULL);
 	ft_strlcpy(join, key, key_len + 1);

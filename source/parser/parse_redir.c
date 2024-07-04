@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parse_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
 /*   Updated: 2024/07/03 23:01:08 by cjoao-de         ###   ########.fr       */
@@ -22,6 +22,8 @@ t_cmd *parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 	char	*q;
 	char	*eq;
 
+	eq = NULL;
+	q = NULL;
 	while(peek(ps, es, "<>"))
 	{
 		tok = get_token(ps, es, 0, 0);
