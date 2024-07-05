@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:12:16 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/04 00:24:45 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/05 19:16:55 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html
 // nip_tuck_input: creates new input *char replacing with expanded parts
 char	*get_expanded(char *input, char *cut, char *paste, char *remain)
 {
-	char *expanded;
-	size_t first;
-	size_t insert;
-	size_t last;
+	char	*expanded;
+	size_t	first;
+	size_t	insert;
+	size_t	last;
 
 	first = ft_strlen(input) - ft_strlen(cut);
 	if (paste == NULL)
@@ -68,11 +68,8 @@ char	*get_expanded(char *input, char *cut, char *paste, char *remain)
 void	get_shrinked(char *input, char *move)
 {
 	size_t	move_len;
-	// size_t	to_zero;
 
 	(void)input;
 	move_len = ft_strlen(move);
-	// to_zero = ft_strlen(input) - move_len;
 	ft_memmove(move, move + 1, move_len);
-	// ft_bzero(input + move_len, to_zero);
 }

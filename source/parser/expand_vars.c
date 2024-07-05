@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_vars.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:09:13 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/28 11:08:22 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/05 19:31:31 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,25 +56,25 @@ char	*expand_curly(char *input, char *ps, t_ms *s)
 		res = get_expanded(input, ps, val, end + 1);
 		free(key);
 		free(val);
-		return(free(input), res);
+		return (free(input), res);
 	}
-	return(reprompt(CURLY_ERROR, 1, s), NULL);
+	return (reprompt(CURLY_ERROR, 1, s), NULL);
 }
 
 char	*expand_pid(char *input, char *ps, t_ms *s)
 {
-	(void)s;
 	char	*pid;
 	char	*res;
 
+	(void)s;
 	pid = ft_getpid();
 	if (get_token_a(&pid) == 'a')
 	{
 		res = get_expanded(input, ps, pid, ps + 2);
 		free(pid);
-		return(free(input), res);
+		return (free(input), res);
 	}
-	return(reprompt(GETPID_ERROR, 1,s), NULL);
+	return (reprompt(GETPID_ERROR, 1, s), NULL);
 }
 
 char	*expand_exit_stat(char *input, char *ps, t_ms *s)
@@ -87,9 +87,9 @@ char	*expand_exit_stat(char *input, char *ps, t_ms *s)
 	{
 		res = get_expanded(input, ps, stat, ps + 2);
 		free(stat);
-		return(free(input), res);
+		return (free(input), res);
 	}
-	return(reprompt(EXPANSION_ERROR, 1, s), NULL);
+	return (reprompt(EXPANSION_ERROR, 1, s), NULL);
 }
 
 char	*expand_last_cmd(char *input, char *ps, t_ms *s)
@@ -103,7 +103,7 @@ char	*expand_last_cmd(char *input, char *ps, t_ms *s)
 	res = get_expanded(input, ps, val, ps + 2);
 	free(key);
 	free(val);
-	return(free(input), res);
+	return (free(input), res);
 }
 
 char	*expand_self(char *input, char *ps, t_ms *s)
@@ -116,5 +116,5 @@ char	*expand_self(char *input, char *ps, t_ms *s)
 		val = "minishell";
 	res = get_expanded(input, ps, val, ps + 2);
 	free(val);
-	return(free(input), res);
+	return (free(input), res);
 }

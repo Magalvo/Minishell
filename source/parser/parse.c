@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/04 22:23:19 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/05 19:33:15 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,13 @@ t_cmd	*parse_input(char *input, t_ms *s)
 	xp_input = expand_sw_quotes(xp_input);
 	if (xp_input == NULL)
 		return (NULL);
-	// ast = parse_cmd(xp_input, s);
 	ast = parse_cmd(xp_input, s);
 	free(xp_input);
 	xp_input = NULL;
 	return (ast);
 }
 
-t_cmd *parse_cmd(char *input, t_ms *s)
+t_cmd	*parse_cmd(char *input, t_ms *s)
 {
 	char	*end;
 	t_cmd	*cmd;
@@ -57,9 +56,10 @@ t_cmd *parse_cmd(char *input, t_ms *s)
 	if (input == NULL)
 		return (NULL);
 	ft_strrep_range(input, NULL, (char)17, '$');
+	end = NULL;
 	end = input;
-	while(true)
-	{	// TODO SEGFAULT HERE
+	while (true)
+	{
 		quote = get_first_quote(end);
 		if (quote == NULL)
 			break ;
@@ -70,23 +70,24 @@ t_cmd *parse_cmd(char *input, t_ms *s)
 	end = input + ft_strlen(input);
 	cmd = parse_pipe(&input, end, s);
 	peek(&input, end, "");
-	if(input != end){
+	if (input != end)
+	{
 		ft_dprintf(STDERR_FILENO, "\'%s\' ", input);
 		reprompt(INCOMPLETE_PARSE, 1, s);
 	}
-	return cmd;
+	return (cmd);
 }
 
 // looks for pipes, if found runs recursively until no pipe found
-t_cmd *parse_pipe(char **ps, char *es, t_ms *s)
+t_cmd	*parse_pipe(char **ps, char *es, t_ms *s)
 {
-	t_cmd *cmd;
+	t_cmd	*cmd;
 
 	cmd = parse_exec(ps, es, s);
-	if(cmd != NULL && peek(ps, es, "|"))
+	if (cmd != NULL && peek(ps, es, "|"))
 	{
 		get_token(ps, es, 0, 0);
 		cmd = cmd_pipe(cmd, parse_pipe(ps, es, s));
 	}
-	return cmd;
+	return (cmd);
 }

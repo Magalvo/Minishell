@@ -43,7 +43,7 @@ void	signal_heredoc(struct sigaction sa);
 void	new_line(void);
 void	reset_ast(t_ms *s);
 void	free_ast(t_cmd *cmd);
-void	free_dptr_ast(t_cmd **cmd);
+void	free_ast2(t_cmd **cmd);
 void	close_fd(int *fd);
 
 //*================ BUILTINS =====================*//
@@ -90,10 +90,12 @@ void	glue_str(char *start, char *end);
 void	unglue_str(char *start, char *end);
 void	untokenizer(char *start, char *end);
 void	retokenizer(char *start, char *end);
-bool	chr_betw(char *input, char *totest, char tofind);
-bool	inside_quotes(char *input, char *totest);
+void	unquoter(char *start, char *end);
+void	requoter(char *start, char *end);
+char	*reassemble_input(char *start);
 bool	syntax_validation(char *input, t_ms *s);
 int		syntax_quotes(const char *str);
+int		*magic_key(void);
 bool	syntax_pipes(const char *str, const char *end);
 bool	syntax_and_or(const char *str);
 bool	syntax_list(const char *str);

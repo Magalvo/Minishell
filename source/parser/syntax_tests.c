@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:17:00 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/04 23:28:02 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/05 19:29:00 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ bool	syntax_pipes(const char *str, const char *end)
 		return (false);
 	return (true);
 }
+
 // < g.sh wc |
 bool	syntax_and_or(const char *str)
 {

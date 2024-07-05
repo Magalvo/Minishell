@@ -66,21 +66,24 @@ echo $?
 MS: 1
 bash: 2
 
+## SEGFAULT
+    >> '$USER'
+    segfault em ft_strcmp l70
+    update_key l51
+    export_update l56
+    updating_cmds
+    exec_redir
+    exec_from_ast_recursive
+    exec_from_ast
+>> SEGFAULT
 
-
-## segfault WIP
-/bin/echo '$USER' "$USER" "text  ' text"
 
 ## parsing not working
 
-export T="echo segfault | grep segfault"
-minishell> echo $T
-bash: echo segfault | grep segfault
-ms: grep segfault: command not found
-
  '''''''''''''''' echo ok
+ echo ok
 bash: : command not found
-minishell: just new prompt
+minishell: prints first arg of PATH. WTF?
 
 
 ### VSCODE

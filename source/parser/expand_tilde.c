@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:07:37 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/29 10:55:55 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/05 19:13:12 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*expand_tilde_equal(char *input, char *ps, t_ms *s)
 	}
 	if (res == input)
 		return (input);
-	return(free(input), res);
+	return (free(input), res);
 }
 
 // expands ~+ to PWD
@@ -59,7 +59,7 @@ char	*expand_tilde_pwd(char *input, char *ps, bool check, t_ms *s)
 			{
 				res = get_expanded(input, ps, val, ps + 2);
 				free(val);
-				return(res);
+				return (res);
 			}
 		}
 	}
@@ -82,7 +82,7 @@ char	*expand_tilde_oldpwd(char *input, char *ps, bool check, t_ms *s)
 			{
 				res = get_expanded(input, ps, val, ps + 2);
 				free(val);
-				return(res);
+				return (res);
 			}
 		}
 	}
@@ -105,7 +105,7 @@ char	*expand_tilde(char *input, char *ps, bool check, t_ms *s)
 			{
 				res = get_expanded(input, ps, val, ps + 1);
 				free(val);
-				return(res);
+				return (res);
 			}
 		}
 	}
