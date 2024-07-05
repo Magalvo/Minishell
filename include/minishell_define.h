@@ -65,6 +65,7 @@ struct s_ms
 	int		infile;		//* Redirect Infile
 	int		outfile;	//* Redirect Outfile
 	int		exit_stat;	//* Exit Status
+	int		wait;		//*temp for waitpid		
 	char	*input;
 	bool	one_dolar;
 	bool	input_empty;

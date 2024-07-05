@@ -36,33 +36,37 @@ int	export_cmd_error(t_ms *s, char *msg, char *key)
 	return (1);
 }
 
-void	wait_till_end(t_ms *s, pid_t pid)
+void	wait_till_end(t_ms *s, pid_t pid, t_cmd *cmd)
 {
 	int	status;
 
+	(void)cmd;
 	waitpid(pid, &status, 0);
-
 	if (WIFEXITED(status))
-		s->exit_stat = WEXITSTATUS(status);
+	{
+		if(s->wait == 0)
+			s->exit_stat = WEXITSTATUS(status);
+		/* printf("STATUS: -> %d\n", status);
+		printf("EXIT: -> %d\n", s->exit_stat); */
+	}
 	else if (WIFSIGNALED(status))
 	{
-		s->exit_stat = 128 + WTERMSIG(status);
+		//printf("Entrou no IF");
+		if(s->wait == 0)
+			s->exit_stat = 128 + WTERMSIG(status);
+		if (s->exit_stat == 131 && s->wait == 0)
+			printf("Quit\n");
+		if (s->exit_stat == 130 && s->wait == 0)
+			printf("\n");
+/* 		if (s->exit_stat == 141 && s->wait == 0)
+			s->exit_stat = 0; */
+/* 		printf("STATUS: -> %d\n", status);
+		printf("EXIT: -> %d\n", s->exit_stat); */
 	}
-	if (s->exit_stat == 131)
-		printf("Quit\n");
-	// TODO penso que esteja invbertido, seguindo os testes.
-	// Test  58: ❌ grep hi "<infile" <         ./test_files/infile
-	// mini exit code = 130
-	// bash exit code = 2
-	if (s->exit_stat == 130)
-		printf("\n");
-/* 	if (s->exit_stat == 2)
-	{
-		s->exit_stat = 130;
-		printf("\n");
-	} */
-	if (s->exit_stat > 255)
+	if (s->exit_stat > 255 && s->wait == 0)
 		s->exit_stat /= 256;
+	//printf("%d\n", s->wait);
+	s->wait += 1;
 }
 
 int	ft_strcmp(const char *s1, const char *s2)

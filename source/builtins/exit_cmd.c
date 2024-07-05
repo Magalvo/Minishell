@@ -19,7 +19,6 @@ void	print_exit(t_ms *s, char *cmds, char *str, int status)
 	ft_putstr_fd("minishell: ", STDERR_FILENO);
 	ft_putstr_fd(cmds, STDERR_FILENO);
 	ft_putstr_fd(str, STDERR_FILENO);
-	//exit_minishell(s, NULL);
 }
 
 int	aux_all(char *str)
@@ -40,26 +39,33 @@ int	aux_all(char *str)
 
 void	exit_cmd(t_ms *s, char **cmds)
 {
-	if (s->ast->argc == 2)
+	if (s->ast->argc >= 3)
 	{
 		if (aux_all(cmds[1]))
 		{
+			s->exit_stat = 1;
+			return(print_exit(s, cmds[0],  " : too many arguments\n", 1));
+		}	
+	}
+	if (s->ast->argc >= 2)
+	{
+		if (cmds[1][0] != '\0' && aux_all(cmds[1]))
+		{
 			s->exit_stat = ft_atoi(cmds[1]);
-			/* if (s->exit_stat > 255)
-				s->exit_stat %= 256; */
 			exit_minishell(s, "exit\n");
 		}
 		else
 		{
-			print_exit(s, cmds[0], ": numeric argument required\n", 2);
+			s->exit_stat = 2; 
+			print_exit(s, cmds[1], ": numeric argument required\n", 2);
+			exit_minishell(s, NULL);
 		}
-	}
-	else if (s->ast->argc >= 3)
-	{
-		// TODO should not exit, if following bash
-		//SOLVED
-		print_exit(s, cmds[0],  " : too many arguments\n", 1);
 	}
 	else
 		exit_minishell(s, "exit\n");
 }
+
+
+
+			/* if (s->exit_stat > 255)
+				s->exit_stat %= 256; */

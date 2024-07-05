@@ -19,26 +19,31 @@ como e que o echo no bash desaparece????
 
 ## dde-maga notes:
   
-  
+//WIP
 ## BUILTINS
 export TEST+=100
 export TEST+=100  
     expected "100100"
 
+//DONE
 export test=42 | echo 99
 99
 export: command not found  // nao devia aparecer
 
+
+//DONE
 exit ""
 exit
 bash: exit: : numeric argument required
 minishell just exits
 
+//DONE
 exit 1 2
 exit
 bash: exit: too many arguments // nao da exit
 minishell: nao da erro e faz exit
 
+//DONE
 exit A 2 3
 exit
 bash: exit: A: numeric argument required

@@ -232,7 +232,7 @@ int		export_cmd_error(t_ms *s, char *msg, char *key);
 
 //!! To be sorted//
 void	set_exit(int stat, t_ms *s);
-void	wait_till_end(t_ms *s, pid_t pid);
+void	wait_till_end(t_ms *s, pid_t pid, t_cmd *cmd);
 
 #endif
 

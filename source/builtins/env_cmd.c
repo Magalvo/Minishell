@@ -39,7 +39,7 @@ void	execute_command(t_ms *s, t_cmd *cmd, char **cmds)
 		not_found(cmd->argv[0], 126, s);
 	}
 	else
-		wait_till_end(s, id);
+		wait_till_end(s, id, cmd);
 }
 
 void	clear_env_handler(t_ms *s)

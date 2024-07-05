@@ -99,7 +99,7 @@ void exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	else
 	{
 		close_two_fd(cmd, fd_in, fd_out);
-		wait_till_end(s, pid);
+		wait_till_end(s, pid, cmd);
 	}
 }
 

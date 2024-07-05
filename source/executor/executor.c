@@ -85,7 +85,7 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		if (fd_out != STDOUT_FILENO)
 			assist_file(fd_out, STDOUT_FILENO);
 		exec_one(s, cmd->argv);
-		set_exit(0, s);
+		exit_minishell(s, NULL);
 	}
 	else
 	{
@@ -93,7 +93,7 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			close (fd_in);
 		if (fd_out != STDOUT_FILENO)
 			close(fd_out);
-		wait_till_end(s, pid);
+		wait_till_end(s, pid, cmd);
 	}
 }
 

@@ -98,4 +98,5 @@ void	exec_from_ast(t_ms *s)
 {	
 	if (!exec_paria(s, s->ast))
 		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
+	s->wait = 0;
 }

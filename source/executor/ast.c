@@ -45,7 +45,7 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			dup2(pipefd[1], STDOUT_FILENO);
 		close(pipefd[1]);
 		exec_from_ast_recursive(s, cmd->left, fd_in, STDOUT_FILENO);
-		s->exit_stat = 0;
+		//wait_till_end(s, pid, cmd);
 		exit_minishell(s, NULL);
 	}
 	else
@@ -55,7 +55,7 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			close_fd(&fd_in);
 		exec_from_ast_recursive(s, cmd->right, pipefd[0], fd_out);
 		close(pipefd[0]);
-		wait_till_end(s, pid);
+		wait_till_end(s, pid, cmd);
 	}
 }
 
