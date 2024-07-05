@@ -72,6 +72,7 @@ void	init_t_ms(t_ms *s)
 	s->outfile = -1;
 	s->exit_stat = 0;
 	s->input = NULL;
+	s->wait = 0;
 	s->one_dolar = false;
 	s->input_empty = false;
 	s->bnf = false;

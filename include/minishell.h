@@ -101,6 +101,7 @@ bool	syntax_back(const char *str);
 bool	syntax_parenthesis(const char *str);
 
 char	*expand_sw_vars(char *input, t_ms *s);
+char	*expand_var(char *input, t_ms *s);
 char	*expand_sw_tilde(char *input, t_ms *s);
 char	*expand_sw_quotes(char *input);
 char	*get_first_quote(char *input);
@@ -229,7 +230,7 @@ int		export_cmd_error(t_ms *s, char *msg, char *key);
 
 //!! To be sorted//
 void	set_exit(int stat, t_ms *s);
-void	wait_till_end(t_ms *s, pid_t pid);
+void	wait_till_end(t_ms *s, pid_t pid, t_cmd *cmd);
 
 #endif
 

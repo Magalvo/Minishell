@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:00 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/03 19:58:20 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/04 22:24:07 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,28 @@ char	*expand_sw_vars(char *input, t_ms *s)
 	{
 		if (is_quoted(xp_input, pos) != E_QUOTE)
 		{
-			// if (*(pos + 1) == '{')	//}
-			// 	xp_input = expand_curly(xp_input, pos, s);
-			// else if (*(pos + 1) == '$')
-			// 	xp_input = expand_pid(xp_input, pos, s);
-			// else if (*(pos + 1) == '?')
-			// 	xp_input = expand_exit_stat(xp_input, pos, s);
-			// else if (*(pos + 1) == '_')
-			// 	xp_input = expand_last_cmd(xp_input, pos, s);
-			// else if (*(pos + 1) == '0')
-			// 	xp_input = expand_self(xp_input, pos, s);
-			// else
-			// 	xp_input = expand_dolar(xp_input, pos, s);
+			xp_input = vars_sw(xp_input, pos, s);
+			pos = ft_strchr(xp_input, '$');
+			if (pos && *(pos - 1) == '"' && *(pos + 1) == '"')
+				*(pos) = 17;
+		}
+		else
+			pos = ft_strchr(pos + 1, '$');
+	}
+	return(free(input), xp_input);
+}
+
+char	*expand_var(char *input, t_ms *s)
+{
+	char	*pos;
+	char	*xp_input;
+
+	xp_input = ft_strdup(input);
+	pos = ft_strchr(xp_input, '$');
+	while (pos)
+	{
+		if (is_quoted(xp_input, pos) != E_QUOTE)
+		{
 			xp_input = vars_sw(xp_input, pos, s);
 			pos = ft_strchr(xp_input, '$');
 			if (pos && *(pos - 1) == '"' && *(pos + 1) == '"')

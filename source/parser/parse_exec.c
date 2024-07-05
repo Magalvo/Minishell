@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:28:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/03 22:59:48 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/04 23:13:37 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,10 @@ void	parse_args(char **ps, char *es, t_d_cmd *cmds, t_ms *s)
 		new_arg = ft_calloc((eq - q) + 1, sizeof(char));
 		ft_memmove((void *)new_arg, (void *)q, (eq - q));
 		unglue_str(new_arg, new_arg + ft_strlen(new_arg));
+		new_arg = expand_sw_vars(new_arg, s);
 		ft_strrep_range(new_arg, NULL, (char)17, '$');
 		retokenizer(new_arg, new_arg + ft_strlen(new_arg));
+		unglue_str(new_arg, new_arg + ft_strlen(new_arg));
 		cmds->one->argv[cmds->one->argc] = remove_quotes(new_arg, new_arg);
 		cmds->one->argc++;
 		cmds->two = parse_redir(cmds->two, ps, es, s);
