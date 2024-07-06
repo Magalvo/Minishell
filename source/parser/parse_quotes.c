@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:08 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/04 00:21:09 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/05 20:19:45 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,50 +31,55 @@ by one of these characters are removed
 // # define QUOTE '		DQUOTE "
 // key[0] unused, key[1] for quote, key[2] for dquote
 // TODO too many lines // implement the XOR ^= trick here
-int syntax_quotes(const char *str)
-{
-	int key[3] = {NONE, NONE, NONE};
 
+int	*magic_key(void)
+{
+	int	*key;
+
+	key = malloc(3 * sizeof(int));
+	if (key != NULL)
+	{
+		key[0] = NONE;
+		key[1] = NONE;
+		key[2] = NONE;
+	}
+	return (key);
+}
+
+int	syntax_quotes(const char *str)
+{
+	int	*key;
+
+	key = magic_key();
 	while (*str)
 	{
 		if (*str == QUOTE)
 		{
 			if (key[E_DQUOTE] == NONE)
-			{
-				if (key[E_QUOTE] == NONE)	// implement the XOR ^= trick here
-					key[E_QUOTE] = E_QUOTE;
-				else
-					key[E_QUOTE] = NONE;
-			}
+				(key[E_QUOTE] ^= E_QUOTE);
 		}
 		else if (*str == DQUOTE)
 		{
 			if (key[E_QUOTE] == NONE)
-			{
-				if (key[E_DQUOTE] == NONE)
-					key[E_DQUOTE] = E_DQUOTE;
-				else
-					key[E_DQUOTE] = NONE;
-			}
+				(key[E_DQUOTE] ^= E_DQUOTE);
 		}
 		str++;
 	}
 	if (key[E_QUOTE] != NONE || key[E_DQUOTE] != NONE)
-		return (-1);
-	return (0);
+		return (free(key), -1);
+	return (free(key), 0);
 }
 
 // check what type of quotes a ptr on a string has, if any
-int is_quoted(const char *str, const char *totest)
+int	is_quoted(const char *str, const char *totest)
 {
-	int quote;
+	int	quote;
 
 	quote = NONE;
 	if (totest == NULL)
 		return (-1);
 	while (str < totest)
 	{
-
 		if (*str == QUOTE)
 		{
 			if (quote == NONE)
@@ -89,7 +94,7 @@ int is_quoted(const char *str, const char *totest)
 			else if (quote == E_DQUOTE)
 				quote = NONE;
 		}
-	str++;
+		str++;
 	}
 	return (quote);
 }
@@ -121,8 +126,6 @@ char	*get_first_quote(char *input)
 char	*remove_quotes(char *input, char *pos)
 {
 	char	*qt_pos;
-	// char	*res1;
-	// char	*res2;
 	int		offset;
 	bool	is_qt;
 
@@ -132,58 +135,13 @@ char	*remove_quotes(char *input, char *pos)
 		return (input);
 	if (*qt_pos == QUOTE)
 		is_qt = true;
-	// res1 = get_expanded(input, qt_pos, NULL, qt_pos + 1);
 	get_shrinked(input, qt_pos);
-	// free(input);
 	if (is_qt)
 		qt_pos = ft_strchr(input, QUOTE);
 	else
 		qt_pos = ft_strchr(input, DQUOTE);
-	// res2 = get_expanded(res1, qt_pos, NULL, qt_pos + 1);
 	get_shrinked(input, qt_pos);
 	offset = qt_pos - input;
-	// free(res1);
 	remove_quotes(input, input + offset);
 	return (input);
 }
-
-// tests if pointer has char on sides of its position
-// bool	chr_betw(char *input, char *totest, char tofind)
-// {
-// 	char *goleft;
-// 	char *goright;
-
-// 	goleft = totest;
-// 	goright = totest;
-// 	if (ft_strchr(input, tofind) < goleft)
-// 	{
-// 		if (ft_strrchr(input, tofind) > goright)
-// 		return (true);		// char found on both sides
-// 	}
-// 	return (false);
-// }
-
-// // tests if quotes, dquotes exists on both sides of pointer
-// bool	inside_quotes(char *input, char *totest)
-// {
-// 	char quote;
-// 	char dquote;
-
-// 	quote = '\'';
-// 	dquote = '"';
-// 	if (chr_betw(input, totest, quote) || chr_betw(input, totest, dquote))
-// 		return (true);		// char found on both sides
-// 	return (false);
-// }
-
-// // does nothing for now
-// bool	check_valid_position(char *input)
-// {
-
-// 	char *ptr;
-
-// 	ptr = ft_strchr(input, ')');
-// 	if (inside_quotes(input, ptr))
-// 		return true;
-// 	return false;
-// }

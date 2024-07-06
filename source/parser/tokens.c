@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:17:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/29 11:18:03 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/05 20:02:42 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	sw_get_token(char **str)
 	return (0);
 }
 
-int get_token(char **ps, char *es, char **q, char **eq)
+int	get_token(char **ps, char *es, char **q, char **eq)
 {
 	char	*str;
 	int		ret;
@@ -70,9 +70,9 @@ int get_token(char **ps, char *es, char **q, char **eq)
 
 	skip = false;
 	str = *ps;
-	while(str < es && ft_strchr(SPACES, *str))
+	while (str < es && ft_strchr(SPACES, *str))
 		str++;
-	if(q)
+	if (q)
 		*q = str;
 	ret = *str;
 	if (ft_strchr("|", *str) && *str != 0)
@@ -82,23 +82,23 @@ int get_token(char **ps, char *es, char **q, char **eq)
 	}
 	else
 		ret = sw_get_token(&str);
-	while(str < es && !ft_strchr(SPACES, *str) && !ft_strchr(TOKENS, *str) \
+	while (str < es && !ft_strchr(SPACES, *str) && !ft_strchr(TOKENS, *str) \
 		&& !skip && ret == 'a')
 		str++;
-	if(eq)
+	if (eq)
 		*eq = str;
-	while(str < es && ft_strchr(SPACES, *str))
+	while (str < es && ft_strchr(SPACES, *str))
 		str++;
 	*ps = str;
 	return (ret);
 }
 
-int get_token_a(char **ps)
+int	get_token_a(char **ps)
 {
-	char *ptr;
+	char	*ptr;
 
 	ptr = *ps;
-	while(*ptr)
+	while (*ptr)
 	{
 		if (ft_isalnum(*ptr) || *ptr == '_')
 			ptr++;

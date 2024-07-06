@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:00 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/04 22:24:07 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/05 19:24:18 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 bool	syntax_validation(char *input, t_ms *s)
 {
 	if (syntax_quotes(input))
-		return(reprompt(MISSING_QUOTE, 1, s), NULL);
+		return (reprompt(MISSING_QUOTE, 1, s), NULL);
 	if (!syntax_and_or(input))
-		return(reprompt(LOGICAL_TOKEN, 1, s), NULL);
+		return (reprompt(LOGICAL_TOKEN, 1, s), NULL);
 	if (!syntax_pipes(input, (char *)input + ft_strlen(input)))
-		return(reprompt(PIPE_SYNTAX, 2, s), NULL);
+		return (reprompt(PIPE_SYNTAX, 2, s), NULL);
 	if (!syntax_list(input))
-		return(reprompt(SEMICOLON, 1, s), NULL);
+		return (reprompt(SEMICOLON, 1, s), NULL);
 	if (!syntax_back(input))
-		return(reprompt(SINGLE_AMPERSAND, 1, s), NULL);
+		return (reprompt(SINGLE_AMPERSAND, 1, s), NULL);
 	if (!syntax_parenthesis(input))
-		return(reprompt(PARENTHESIS, 1, s), NULL);
+		return (reprompt(PARENTHESIS, 1, s), NULL);
 	else
 		return (true);
 }
@@ -49,7 +49,7 @@ char	*expand_sw_vars(char *input, t_ms *s)
 		else
 			pos = ft_strchr(pos + 1, '$');
 	}
-	return(free(input), xp_input);
+	return (free(input), xp_input);
 }
 
 char	*expand_var(char *input, t_ms *s)
@@ -71,7 +71,7 @@ char	*expand_var(char *input, t_ms *s)
 		else
 			pos = ft_strchr(pos + 1, '$');
 	}
-	return(free(input), xp_input);
+	return (free(input), xp_input);
 }
 
 char	*expand_sw_tilde(char *input, t_ms *s)
@@ -95,8 +95,8 @@ char	*expand_sw_tilde(char *input, t_ms *s)
 				xp_input = expand_tilde(xp_input, pos, false, s);
 		}
 		pos = ft_strchr(pos + 1, '~');
-		}
-	return(free(input), xp_input);
+	}
+	return (free(input), xp_input);
 }
 
 char	*expand_sw_quotes(char *input)
@@ -112,11 +112,13 @@ char	*expand_sw_quotes(char *input)
 		{
 			end = ft_strchr(pos + 1, '\'');
 			glue_str(pos, end);
+			unquoter(pos + 1, end);
 		}
 		else if (*pos == DQUOTE)
 		{
 			end = ft_strchr(pos + 1, '"');
 			glue_str(pos, end);
+			unquoter(pos + 1, end);
 		}
 		pos = get_first_quote(end + 1);
 	}

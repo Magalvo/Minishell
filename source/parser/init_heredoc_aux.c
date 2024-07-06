@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_heredoc_aux.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/03 15:56:39 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/05 19:20:38 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	heredoc_child(char *dli, int fd_file, int expand, t_ms *s)
 			exit(del_eof(fd_file));
 		if ((ft_strcmp(dli, line) == 0 && !empty_dli)
 			|| (empty_dli && line[0] == '\0'))
-			break;
+			break ;
 		expand_heredoc(s, line, expand, fd_file);
 	}
 	free(line);
@@ -47,7 +47,6 @@ void	heredoc_child(char *dli, int fd_file, int expand, t_ms *s)
 // 			return(-1);
 // 	}
 // }
-
 
 int	open_fd(char *file, int mode)
 {

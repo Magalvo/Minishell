@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_vars2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:10:49 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/28 16:54:31 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/05 19:16:27 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,15 @@ char	*expand_dolar(char *input, char *ps, t_ms *s)
 	if ((*(ps + 1) == '"' && is_quoted(input, ps) == E_DQUOTE)
 		|| ft_strlen(key) == 0)
 		return (*(ps) = 17, s->one_dolar = true, input);
-	// if (*(ps + 1) == '"' && is_quoted(input, ps) == E_DQUOTE)
-	// 	return (*(ps) = 17, input);
 	if (*(ps + 1) == '"' && is_quoted(input, ps) == E_DQUOTE)
 		return (*(ps) = 17, input);
 	res = get_expanded(input, ps, val, ps + keylen);
-	free (key);
-	free (val);
-	return(free(input), res);
+	return (free (key), free (val), free(input), res);
 }
 
 char	*vars_sw(char *xp_input, char *pos, t_ms *s)
 {
-	if (*(pos + 1) == '{')	//}
+	if (*(pos + 1) == '{')
 		xp_input = expand_curly(xp_input, pos, s);
 	else if (*(pos + 1) == '$')
 		xp_input = expand_pid(xp_input, pos, s);
