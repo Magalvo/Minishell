@@ -50,7 +50,7 @@ int	export_update(t_env *export, char *key, char *value)
 {
 	if (!is_valid_key(key))
 	{
-		printf("not a valid identifier");
+		ft_putstr_fd(" not a valid identifier", 2);
 		return (0);
 	}
 	if (!update_key(export, key, value))

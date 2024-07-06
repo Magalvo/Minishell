@@ -29,8 +29,8 @@ t_cmd *parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 		tok = get_token(ps, es, 0, 0);
 		if (peek(ps, es, TOKENS))
 		{
-			return (free_dptr_ast(&cmd), reprompt(INVALID_TOKEN, 1, s), NULL);
-			reprompt(INVALID_TOKEN, 1, s);
+			return (free_dptr_ast(&cmd), reprompt(INVALID_TOKEN, 2, s), NULL);
+			reprompt(INVALID_TOKEN, 2, s);
 			while (peek(ps, es, TOKENS))
 				get_token(ps, es, 0, 0);
 			return (NULL);

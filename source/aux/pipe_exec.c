@@ -18,7 +18,7 @@ void	exec_one(t_ms *s, char **argv)
 	char	*cmd_name;
 
 	if ((argv[0] && argv[0][0] == '.' && argv[0][1] == '/' && argv[0][2]) || \
-		(argv[0][0] == '/' && argv[0][1]))
+		(argv[0] && argv[0][0] == '/' && argv[0][1]))
 	{
 		if (access(argv[0], F_OK) != 0)
 			not_found(argv[0], 127, s);
@@ -49,6 +49,8 @@ int	exec_paria(t_ms *s, t_cmd *cmds)
 {
 	if (!cmds || cmds->type != EXEC)
 		return (0);
+	if(!(*s->ast->argv))
+		return (1);
 	if (ft_sw_builtins(cmds->argv[0], "export") == 0)
 	{
 		updating_cmds(s, cmds, s->ast->argv[s->ast->argc - 1]);
@@ -70,7 +72,8 @@ void	updating_cmds(t_ms *s, t_cmd *cmd, char *value)
 	char	*key;
 
 	key = NULL;
-	(void)value;
+	if (!value)
+		value = NULL;
 	(void)cmd;
 	if (s->ast->type == 1)
 	{
@@ -96,7 +99,18 @@ void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 
 void	exec_from_ast(t_ms *s)
 {	
+	char	**original;
+
+	if (!s->ast)
+		return ;
+	original = s->ast->argv;
+	if (s->ast->type == EXEC && s->ast->argv[0][0] == '\0')
+	{
+		while (*s->ast->argv && **s->ast->argv == '\0')
+			s->ast->argv++;
+	}
 	if (!exec_paria(s, s->ast))
 		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
+	s->ast->argv = original;
 	s->wait = 0;
 }

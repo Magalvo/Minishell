@@ -25,30 +25,31 @@ export TEST+=100
 export TEST+=100  
     expected "100100"
 
-//DONE
+## DONE
 export test=42 | echo 99
 99
 export: command not found  // nao devia aparecer
 
 
-//DONE
+## DONE
 exit ""
 exit
 bash: exit: : numeric argument required
 minishell just exits
 
-//DONE
+## DONE
 exit 1 2
 exit
 bash: exit: too many arguments // nao da exit
 minishell: nao da erro e faz exit
 
-//DONE
+## DONE
 exit A 2 3
 exit
 bash: exit: A: numeric argument required
 minishell: exit : too many arguments
 
+## DONE
 echo "         |       "  | echo maybe          // or
 echo "|"  | echo maybe                          // or
 echo '|'  | echo maybe
@@ -62,6 +63,7 @@ minishell: cd: No such file or directory
 
 
 ## mixed   //DUNNO
+## DONE
 <| echo ok
 minishell>
  syntax error: unexpected token

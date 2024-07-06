@@ -30,6 +30,7 @@ int	export_cmd_error(t_ms *s, char *msg, char *key)
 	s->exit_stat = 1;
 	ft_putstr_fd("minishell: export: `", 2);
 	ft_putstr_fd(key, 2);
+	ft_putstr_fd("'", 2);
 	ft_putstr_fd(msg, 2);
 	ft_putstr_fd("\n", 2);
 	free(key);
@@ -42,12 +43,14 @@ void	wait_till_end(t_ms *s, pid_t pid, t_cmd *cmd)
 
 	(void)cmd;
 	waitpid(pid, &status, 0);
+	if (s->ast->type == 2 && s->exit_stat == 1)
+		return ;
+/* 	printf("ANTES STATUS: -> %d\n", status);
+	printf("EXIT: -> %d\n\n", s->exit_stat); */
 	if (WIFEXITED(status))
 	{
 		if(s->wait == 0)
 			s->exit_stat = WEXITSTATUS(status);
-		/* printf("STATUS: -> %d\n", status);
-		printf("EXIT: -> %d\n", s->exit_stat); */
 	}
 	else if (WIFSIGNALED(status))
 	{
@@ -58,14 +61,18 @@ void	wait_till_end(t_ms *s, pid_t pid, t_cmd *cmd)
 			printf("Quit\n");
 		if (s->exit_stat == 130 && s->wait == 0)
 			printf("\n");
-/* 		if (s->exit_stat == 141 && s->wait == 0)
-			s->exit_stat = 0; */
-/* 		printf("STATUS: -> %d\n", status);
-		printf("EXIT: -> %d\n", s->exit_stat); */
+		if (s->exit_stat == 141 && s->wait == 0)
+			s->exit_stat = 0;
+/* 		printf("CMD: -> %d\n", s->ast->type);
+		printf("STATUS: -> %d\n", status);
+		printf("EXIT: -> %d\n\n", s->exit_stat); */
 	}
 	if (s->exit_stat > 255 && s->wait == 0)
 		s->exit_stat /= 256;
-	//printf("%d\n", s->wait);
+/* 	printf("CMD: -> %d\n", s->ast->type);
+	printf("DEPOIS STATUS: -> %d\n", status);
+	printf("EXIT: -> %d\n\n", s->exit_stat);
+	printf("WAIT ->%d\n", s->wait); */
 	s->wait += 1;
 }
 
@@ -93,3 +100,8 @@ void	close_fd(int *fd)
 	printf("EXIT: %d\n", s->exit_stat); */
 	/* 	if (status == 13)
 		s->exit_stat = s->exit_stat; */
+
+
+/* 		printf("CMD: -> %s\n", cmd->argv[0]);
+		printf("STATUS: -> %d\n", status);
+		printf("EXIT: -> %d\n\n", s->exit_stat); */

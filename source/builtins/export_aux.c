@@ -41,7 +41,7 @@ int	handle_kv_update(t_env *env, char *key, char *value, int tog)
 		free(key);
 		if (value)
 			free(value);
-		return (printf("not a valid identifier"), 0);
+		return (printf(" not a valid identifier"), 0);
 	}
 	if (!update_key(env, key, value))
 	{

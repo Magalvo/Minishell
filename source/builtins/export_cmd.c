@@ -107,7 +107,7 @@ int export_cmd(t_ms *s, char **str)
 		value = NULL;
 		key = get_key_from_str(str[i]);
 		if (!key || !is_valid_key(key))
-			export_cmd_error(s, "':not a valid identifier", key);
+			export_cmd_error(s, ": not a valid identifier", key);
 		else
 		{
 			value = get_value_from_str(str[i]); 

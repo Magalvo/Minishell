@@ -72,7 +72,7 @@ t_cmd *parse_cmd(char *input, t_ms *s)
 	peek(&input, end, "");
 	if(input != end){
 		ft_dprintf(STDERR_FILENO, "\'%s\' ", input);
-		reprompt(INCOMPLETE_PARSE, 1, s);
+		reprompt(INCOMPLETE_PARSE, 2, s);
 	}
 	return cmd;
 }
