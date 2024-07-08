@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_aux2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:37 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/04 17:59:27 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/08 18:33:41 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,7 @@ char	*get_env_val(t_env *env, char *key, t_ms *s)
 char	**create_env_array(int ctd_ptr)
 {
 	char	**env_array;
-	
+
 	env_array = (char **)ft_calloc((ctd_ptr + 1), sizeof(char *));
 	if (!env_array)
 	{
@@ -239,17 +239,11 @@ char	**env_convert(t_env *env)
 	i = 0;
 	while (current && i < ctd)
 	{
-		env_array[i] = join_key_value(current->key, current->value);
-		if (!env_array[i])
-		{
-			free_env_array(env_array);
-			return (NULL);
-		}
+		env_array[i++] = join_key_value(current->key, current->value);
+		if (!env_array[i - 1])
+			return (free_env_array(env_array), NULL);
 		current = current->next;
-		i++;
 	}
 	env_array[i] = NULL;
 	return (env_array);
 }
-
-

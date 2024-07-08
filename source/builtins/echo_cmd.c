@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:11 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/29 01:12:35 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:15:46 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static int	ft_flagged(char *s)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	if (s[0] != '-')
 		return (0);

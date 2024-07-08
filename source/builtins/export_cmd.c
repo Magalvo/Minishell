@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:59 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/04 16:05:18 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:14:40 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char	*extract_key(const char *str, char *delimiter)
 	key_len = delimiter - str;
 	return (ft_substr(str, 0, key_len));
 }
+
 //!! AQUI
 int	update_key(t_env *env, char *key, char *value)
 {
@@ -92,7 +93,7 @@ int	add_new_node(t_env *env, char *key, char *value)
 	return (0);
 }
 
-int export_cmd(t_ms *s, char **str)
+int	export_cmd(t_ms *s, char **str)
 {
 	char	*key;
 	char	*value;
@@ -100,7 +101,7 @@ int export_cmd(t_ms *s, char **str)
 
 	i = 0;
 	if (str[1] == NULL)
-		return((sort_env_list(&s->export)), print_export(s->export));
+		return ((sort_env_list(&s->export)), print_export(s->export));
 	while (str[++i])
 	{
 		key = NULL;
@@ -110,13 +111,12 @@ int export_cmd(t_ms *s, char **str)
 			export_cmd_error(s, ": not a valid identifier", key);
 		else
 		{
-			value = get_value_from_str(str[i]); 
+			value = get_value_from_str(str[i]);
 			export_update(s->export, key, value);
 			handle_kv_update(s->env, key, value, 1);
 			env_arr_update(s, NULL);
 			env_paths(s, s->env_tmp);
-		}	
+		}
 	}
 	return (0);
 }
-

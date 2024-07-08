@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:10 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/04 16:56:12 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/08 18:34:57 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ void	wait_till_end(t_ms *s, pid_t pid, t_cmd *cmd)
 	printf("EXIT: -> %d\n\n", s->exit_stat); */
 	if (WIFEXITED(status))
 	{
-		if(s->wait == 0)
+		if (s->wait == 0)
 			s->exit_stat = WEXITSTATUS(status);
 	}
 	else if (WIFSIGNALED(status))
 	{
 		//printf("Entrou no IF");
-		if(s->wait == 0)
+		if (s->wait == 0)
 			s->exit_stat = 128 + WTERMSIG(status);
 		if (s->exit_stat == 131 && s->wait == 0)
 			printf("Quit\n");
@@ -95,12 +95,10 @@ void	close_fd(int *fd)
 	}
 }
 
-
 /* 	printf("STATUS: %d\n", status);
 	printf("EXIT: %d\n", s->exit_stat); */
 	/* 	if (status == 13)
 		s->exit_stat = s->exit_stat; */
-
 
 /* 		printf("CMD: -> %s\n", cmd->argv[0]);
 		printf("STATUS: -> %d\n", status);

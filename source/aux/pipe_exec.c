@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/04 17:53:04 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/08 18:43:51 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,36 @@ void	exec_one(t_ms *s, char **argv)
 			not_found(argv[0], 127, s);
 		if (access(argv[0], X_OK) != 0)
 			not_found(argv[0], 126, s);
-		if(!execve(argv[0], argv, s->env_tmp))
+		if (!execve(argv[0], argv, s->env_tmp))
+			exit(EXIT_FAILURE);
+	}
+	if (argv && argv[0] != NULL)
+	{
+		path = cmd_path(s->paths, argv[0], s);
+		if (!path)
+			not_found(argv[0], 127, s);
+		cmd_name = ft_strchr(argv[0], '/');
+		if (cmd_name)
+			argv[0] = ++cmd_name;
+		execve(path, argv, s->env_tmp);
+		free(path);
+	}
+}
+
+/*	backup b4 norminette
+void	exec_one(t_ms *s, char **argv)
+{
+	char	*path;
+	char	*cmd_name;
+
+	if ((argv[0] && argv[0][0] == '.' && argv[0][1] == '/' && argv[0][2]) || \
+		(argv[0] && argv[0][0] == '/' && argv[0][1]))
+	{
+		if (access(argv[0], F_OK) != 0)
+			not_found(argv[0], 127, s);
+		if (access(argv[0], X_OK) != 0)
+			not_found(argv[0], 126, s);
+		if (!execve(argv[0], argv, s->env_tmp))
 			exit(EXIT_FAILURE);
 	}
 	if (argv && argv[0] != NULL)
@@ -44,12 +73,13 @@ void	exec_one(t_ms *s, char **argv)
 	}
 	//set_exit(0, s);
 }
+*/
 
 int	exec_paria(t_ms *s, t_cmd *cmds)
 {
 	if (!cmds || cmds->type != EXEC)
 		return (0);
-	if(!(*s->ast->argv))
+	if (!(*s->ast->argv))
 		return (1);
 	if (ft_sw_builtins(cmds->argv[0], "export") == 0)
 	{
@@ -98,7 +128,7 @@ void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 }
 
 void	exec_from_ast(t_ms *s)
-{	
+{
 	char	**original;
 
 	if (!s->ast)

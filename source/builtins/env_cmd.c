@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:07 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/04 15:03:59 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:12:16 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_env	*new_env_node(char *env_var)
 		return (free(node), NULL);
 	node->key = key_dup(env_var, delimiter - env_var);
 	if (!node->key)
-		return(free(node), NULL);
+		return (free(node), NULL);
 	if (!setting_value(node, delimiter))     //!!! ADDED + 1
 		return (free_node(node), NULL);
 	node->prev = NULL;

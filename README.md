@@ -94,22 +94,15 @@ minishell: prints first arg of PATH. WTF?
 
 
 ## leaks
-echo $"42$"
+>> multiple on one line
+export T=e E=c S=h L=o L=ok
+export L=amazing L=ok L=cool
 
+export T=hello
+export T=world
 
-~
-==110700== 2 bytes in 1 blocks are definitely lost in loss record 1 of 79
-==110700==    at 0x4842866: malloc (vg_replace_malloc.c:446)
-==110700==    by 0x40A1DD: ft_strdup (in /home/kajo/42/minishell/minishell)
-==110700==    by 0x405D78: expand_sw_tilde (source/parser/parse_prechecks.c:82)
-==110700==    by 0x406718: parse_input (source/parser/parse.c:38)
-==110700==    by 0x401345: minishell (source/minishell.c:87)
-==110700==    by 0x40146E: main (source/minishell.c:120)
-
-
-
-
-
+export PATH
+export PATH=1
 
 
 

@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/08 17:22:02 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:31:53 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ t_cmd	*parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 	return (cmd);
 }
 
-// t_cmd *redir_sw(t_cmd *cmd, int tok, char *file, char *efile)
 t_cmd	*redir_sw(t_cmd *cmd, int tok, char *filename, t_ms *s)
 {
 	if (tok == '<')

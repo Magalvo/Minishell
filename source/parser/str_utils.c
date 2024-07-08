@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:12:16 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/05 19:28:40 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:40:31 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@ char	*reassemble_input(char *input)
 	unglue_str(input, input + input_len);
 	requoter(input + 1, input + input_len);
 	return (remove_quotes(input, input));
+}
+
+void	skip_spaces(char *str, char *es)
+{
+	while (str < es && ft_strchr(SPACES, *str))
+		str++;
 }
 
 void	glue_str(char *start, char *end)
