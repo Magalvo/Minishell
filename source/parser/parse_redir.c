@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/05 19:39:41 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:22:02 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,15 @@ t_cmd	*parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 		if (peek(ps, es, TOKENS))
 		{
 			return (free_ast2(&cmd), reprompt(INVALID_TOKEN, 1, s), NULL);
-			reprompt(INVALID_TOKEN, 1, s);
-			while (peek(ps, es, TOKENS))
-				get_token(ps, es, 0, 0);
-			return (NULL);
+			// reprompt(INVALID_TOKEN, 1, s);
+			// while (peek(ps, es, TOKENS))
+			// 	get_token(ps, es, 0, 0);
+			// return (NULL);
 		}
 		if (get_token(ps, es, &q, &eq) != 'a')
+		{
 			return (free_ast2(&cmd), reprompt(MISSING_REDIRECT, 1, s), NULL);
+		}
 		cmd = redir_sw(cmd, tok, ft_substr(q, 0, eq - q), s);
 	}
 	return (cmd);
@@ -46,11 +48,11 @@ t_cmd	*parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 t_cmd	*redir_sw(t_cmd *cmd, int tok, char *filename, t_ms *s)
 {
 	if (tok == '<')
-		cmd = cmd_redir(cmd, filename, O_RDONLY, 0);
+		cmd = cmd_redir_in(cmd, filename, O_RDONLY, s);
 	else if (tok == '>')
-		cmd = cmd_redir(cmd, filename, O_WRONLY | O_CREAT | O_TRUNC, 1);
+		cmd = cmd_redir_out(cmd, filename, O_WRONLY | O_CREAT | O_TRUNC, s);
 	else if (tok == '+')
-		cmd = cmd_redir(cmd, filename, O_WRONLY | O_CREAT | O_APPEND, 1);
+		cmd = cmd_redir_out(cmd, filename, O_WRONLY | O_CREAT | O_APPEND, s);
 	else if (tok == 'H')
 		cmd = cmd_heredoc(cmd, filename, O_RDWR | O_CREAT | O_APPEND, s);
 	return (cmd);

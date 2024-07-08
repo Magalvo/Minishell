@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:07:37 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/05 19:13:12 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:53:46 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ char	*expand_tilde(char *input, char *ps, bool check, t_ms *s)
 			{
 				res = get_expanded(input, ps, val, ps + 1);
 				free(val);
+				free(input);
 				return (res);
 			}
 		}

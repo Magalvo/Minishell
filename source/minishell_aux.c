@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_aux.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/04 16:51:35 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:15:59 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	init_t_ms(t_ms *s)
 	s->exit_stat = 0;
 	s->input = NULL;
 	s->wait = 0;
-	s->one_dolar = false;
+	s->error = false;
 	s->input_empty = false;
 	s->bnf = false;
 	s->env_tmp = NULL;

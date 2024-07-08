@@ -93,6 +93,26 @@ bash: : command not found
 minishell: prints first arg of PATH. WTF?
 
 
+## leaks
+echo $"42$"
+
+
+~
+==110700== 2 bytes in 1 blocks are definitely lost in loss record 1 of 79
+==110700==    at 0x4842866: malloc (vg_replace_malloc.c:446)
+==110700==    by 0x40A1DD: ft_strdup (in /home/kajo/42/minishell/minishell)
+==110700==    by 0x405D78: expand_sw_tilde (source/parser/parse_prechecks.c:82)
+==110700==    by 0x406718: parse_input (source/parser/parse.c:38)
+==110700==    by 0x401345: minishell (source/minishell.c:87)
+==110700==    by 0x40146E: main (source/minishell.c:120)
+
+
+
+
+
+
+
+
 ### VSCODE
 disable 42 Header extension for this workspace   
     (select extension, click the down arrow next to disable, select workspace)   

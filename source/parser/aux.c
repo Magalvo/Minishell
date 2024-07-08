@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:07:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/05 19:31:05 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:20:31 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	reprompt(char *msg, int exit_stat, t_ms *s)
 {
+	s->error = true;
 	ft_dprintf(STDERR_FILENO, "%s\n", msg);
 	s->exit_stat = exit_stat;
 }

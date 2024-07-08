@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/05 17:53:29 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:15:07 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ struct s_ms
 	int		infile;		//* Redirect Infile
 	int		outfile;	//* Redirect Outfile
 	int		exit_stat;	//* Exit Status
-	int		wait;		//*temp for waitpid		
+	int		wait;		//*temp for waitpid
 	char	*input;
-	bool	one_dolar;
+	bool	error;
 	bool	input_empty;
 	bool	bnf;
 	char	**env_tmp;	//* Temp env;
