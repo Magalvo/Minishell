@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:04 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/08 15:26:42 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/09 00:08:03 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	exit_cmd(t_ms *s, char **cmds)
 		if (aux_all(cmds[1]))
 		{
 			s->exit_stat = 1;
-			return(print_exit(s, cmds[0],  " : too many arguments\n", 1));
-		}	
+			return (print_exit(s, cmds[0], " : too many arguments\n", 1));
+		}
 	}
 	if (s->ast->argc >= 2)
 	{
@@ -64,8 +64,6 @@ void	exit_cmd(t_ms *s, char **cmds)
 	else
 		exit_minishell(s, "exit\n");
 }
-
-
 
 			/* if (s->exit_stat > 255)
 				s->exit_stat %= 256; */

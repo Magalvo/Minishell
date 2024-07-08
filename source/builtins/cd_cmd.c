@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:15 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/08 17:45:08 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/09 00:07:41 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ static int	cd_cmd_home(t_env *env)
 	char	*pwd;
 	int		result;
 
-	oldpwd = get_env_val(env , "OLDPWD", NULL);
-	if(!oldpwd)
+	oldpwd = get_env_val(env, "OLDPWD", NULL);
+	if (!oldpwd)
 	{
 		pwd = get_env_val(env, "PWD", NULL);
 		if (pwd)
@@ -66,13 +66,9 @@ static int	cd_cmd_home(t_env *env)
 	if (!home)
 		return (ft_putstr_fd("Err on env\n", 2), 1);
 	if (chdir(home) == -1)
-	{
-		free(home);
-		return(ft_putstr_fd("No such file or directory\n", 2), 1);
-	}
+		return (free(home), ft_putstr_fd("No such file or directory\n", 2), 1);
 	result = update_key(env, "PWD", home);
-	free(home);
-	return (result);
+	return (free(home), result);
 	/* if (!get_env_val(env, "OLDPWD", NULL))
 		add_new_node(env, "OLDPWD", get_env_val(env, "PWD", NULL));
 	update_key(env, "OLDPWD", get_env_val(env, "PWD", NULL));
@@ -99,7 +95,7 @@ static int	cd_cmd_minus(t_env *env)
 		ft_putstr_fd("Failed to change directory\n", 2);
 		free(old);
 		free(current_pwd);
-		return(0);
+		return (0);
 	}
 	ft_putstr_fd(old, 1);
 	write(1, "\n", 1);

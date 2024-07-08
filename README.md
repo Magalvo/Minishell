@@ -109,6 +109,19 @@ bash: : command not found
 minishell: prints first arg of PATH. WTF?
 
 
+## leaks
+>> multiple on one line
+export T=e E=c S=h L=o L=ok
+export L=amazing L=ok L=cool
+
+export T=hello
+export T=world
+
+export PATH
+export PATH=1
+
+
+
 ### VSCODE
 disable 42 Header extension for this workspace   
     (select extension, click the down arrow next to disable, select workspace)   

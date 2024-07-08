@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:23 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/08 19:41:01 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/09 00:08:07 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
-		if (!cmd)
-			return ;
-		if (cmd->type == EXEC)
-			aux_rec_exec(s, cmd, fd_in, fd_out);
-		else if (cmd->type == PIPE)
-		{
-			exec_pipe(s, cmd, fd_in, fd_out);
-		}
-		else if (cmd->type == REDIR || cmd->type == HEREDOC)
-		{
-			exec_redir(s, cmd, fd_in, fd_out);
-		}
+	if (!cmd)
+		return ;
+	if (cmd->type == EXEC)
+		aux_rec_exec(s, cmd, fd_in, fd_out);
+	else if (cmd->type == PIPE)
+	{
+		exec_pipe(s, cmd, fd_in, fd_out);
+	}
+	else if (cmd->type == REDIR || cmd->type == HEREDOC)
+	{
+		exec_redir(s, cmd, fd_in, fd_out);
+	}
 }
 
 void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
@@ -59,17 +59,16 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	}
 }
 
-
 int	not_found(char *str, int status, t_ms *s)
 {
-	char *temp;
+	char	*temp;
 
 	temp = str;
 	if (temp)
 		ft_putstr_fd(temp, 2);
-	if(status == 127)
+	if (status == 127)
 	{
-		if(str[0] == '.' || str[0] == '/')
+		if (str[0] == '.' || str[0] == '/')
 		{
 			if (chdir(str) == 1)
 			{
@@ -82,10 +81,10 @@ int	not_found(char *str, int status, t_ms *s)
 		else
 			ft_putstr_fd(": command not found\n", 2);
 	}
-	else if(status == 126)
+	else if (status == 126)
 		ft_putstr_fd(": Permission denied\n", 2);
 	// TODO commented out
 /* 	ft_putnbr_fd(status, 2);
 	ft_putstr_fd("\n", 2); */
-	return(set_exit(status, s), 1);
+	return (set_exit(status, s), 1);
 }

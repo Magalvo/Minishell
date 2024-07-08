@@ -6,13 +6,11 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:04:53 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/08 17:45:18 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/09 00:08:16 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-//! exec prototype, (MIGHT GO KABUM!)
 
 char	*cmd_path(char **paths, char *cmd, t_ms *s)
 {
@@ -22,10 +20,8 @@ char	*cmd_path(char **paths, char *cmd, t_ms *s)
 		return (NULL);
 	if (chdir(cmd) == 0 && (cmd[0] == '.' || cmd[0] == '/'))
 	{
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(cmd, 2);
-		ft_putstr_fd(" : Is a directory\n", 2);
-		return(set_exit(126, s), NULL);
+		ft_dprintf(2, "minishell: %s : Is a directory\n", cmd);
+		return (set_exit(126, s), NULL);
 	}
 	while (*paths)
 	{
@@ -96,4 +92,3 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		wait_till_end(s, pid, cmd);
 	}
 }
-

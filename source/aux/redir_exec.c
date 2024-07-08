@@ -6,73 +6,56 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:22:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/08 17:11:24 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/09 00:07:20 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void close_two_fd(t_cmd *cmd, int fd_in, int fd_out)
+void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
-	(void)cmd;
-	if (fd_in != STDIN_FILENO)
-		close_fd(&fd_in);
-	if (fd_out != STDOUT_FILENO)
-		close_fd(&fd_out);
-}
-
-void fd_errors(t_ms *s, t_cmd *cmd)
-{
-	(void)cmd;
-	if(access(cmd->file, F_OK) == -1)
-		s->exit_stat = 1;
-	else
-		s->exit_stat = 2;
-	perror(cmd->file);
-}
-
-void fd_unlock(t_cmd *cmd, t_ms *s, int *fd, int rd_only)
-{
-	(void)rd_only;
-	if (chdir(cmd->file) == 0)
-	{
-		ft_putstr_fd("minishell: ", 2);
-        ft_putstr_fd(cmd->file, 2);
-        ft_putstr_fd(" : Is a directory\n", 2);
-        s->exit_stat = 1;
-	}
-	if (rd_only == 0)
-	{
-		*fd = open(cmd->file, cmd->mode, 0666);
-		if (*fd < 0)
-			 fd_errors(s, cmd);
-	}
-	else if(rd_only == 1)
-	{
-		*fd = open(cmd->file, O_RDONLY);
-		if (*fd < 0)
-			 fd_errors(s, cmd);
-	}
-}
-		
-
-void exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
-{
-	int temp_fd;
+	int	temp_fd;
 
 	temp_fd = -1;
 	while (cmd->type == REDIR || cmd->type == HEREDOC)
 	{
 		if (cmd->type == HEREDOC)
-		{
 			fd_in = cmd->fd;
-		}
 		else if (cmd->fd == 1)
 		{
 			if (fd_out == STDOUT_FILENO)
-			{
 				fd_unlock(cmd, s, &fd_out, 0);
-			}
+			else
+				ft_unlock_close(cmd, s, &temp_fd, 0);
+		}
+		else if (cmd->fd == 0)
+		{
+			if (fd_in == STDIN_FILENO)
+				ft_unlock_close(cmd, s, &temp_fd, 1);
+			else
+				fd_unlock(cmd, s, &temp_fd, 1);
+		}
+		cmd = cmd->cmd;
+	}
+	if ((*cmd->argv))
+		updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
+	exec_redir_fork(s, cmd, fd_in, fd_out);
+}
+
+/* backup b4 norminette
+void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+{
+	int	temp_fd;
+
+	temp_fd = -1;
+	while (cmd->type == REDIR || cmd->type == HEREDOC)
+	{
+		if (cmd->type == HEREDOC)
+			fd_in = cmd->fd;
+		else if (cmd->fd == 1)
+		{
+			if (fd_out == STDOUT_FILENO)
+				fd_unlock(cmd, s, &fd_out, 0);
 			else
 			{
 				fd_unlock(cmd, s, &temp_fd, 0);
@@ -81,29 +64,26 @@ void exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		}
 		else if (cmd->fd == 0)
 		{
-			 if (fd_in == STDIN_FILENO)
-            {
-                fd_unlock(cmd, s, &fd_in, 1);
+			if (fd_in == STDIN_FILENO)
+			{
+				fd_unlock(cmd, s, &fd_in, 1);
 				close_fd(&temp_fd);
-            }
-            else
-            {
-                fd_unlock(cmd, s, &temp_fd, 1);
-            }
+			}
+			else
+				fd_unlock(cmd, s, &temp_fd, 1);
 		}
 		cmd = cmd->cmd;
 	}
 	close_fd(&temp_fd);
 	if ((*cmd->argv))
-	{
 		updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
-	}
 	exec_redir_fork(s, cmd, fd_in, fd_out);
 }
+*/
 
-void exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+void	exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
-	pid_t pid;
+	pid_t	pid;
 
 	pid = fork1();
 	if (pid == 0)
@@ -123,10 +103,6 @@ void exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	}
 }
 
-
-
-
-
 /* 	//close_fd(&temp_fd);
 	if ((*cmd->argv))
 	{
@@ -142,5 +118,5 @@ void exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		fd_in = temp_fd;
 		close_fd(&temp_fd);
 		exec_redir_fork(s, cmd, fd_in, fd_out);
-	}	
+	}
 } */

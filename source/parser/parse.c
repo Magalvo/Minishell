@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/05 19:33:15 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:25:40 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ t_cmd	*parse_cmd(char *input, t_ms *s)
 	end = input + ft_strlen(input);
 	cmd = parse_pipe(&input, end, s);
 	peek(&input, end, "");
-	if (input != end)
-	{
-		ft_dprintf(STDERR_FILENO, "\'%s\' ", input);
-		reprompt(INCOMPLETE_PARSE, 2, s);
-	}
+	// if (input != end)
+	// {
+	// 	ft_dprintf(STDERR_FILENO, "\'%s\' ", input);
+	// 	reprompt(INCOMPLETE_PARSE, 2, s);
+	// }
 	return (cmd);
 }
 

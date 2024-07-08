@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:17:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/05 20:02:42 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:41:43 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,7 @@ int	get_token(char **ps, char *es, char **q, char **eq)
 
 	skip = false;
 	str = *ps;
-	while (str < es && ft_strchr(SPACES, *str))
-		str++;
+	skip_spaces(str, es);
 	if (q)
 		*q = str;
 	ret = *str;
@@ -87,8 +86,6 @@ int	get_token(char **ps, char *es, char **q, char **eq)
 		str++;
 	if (eq)
 		*eq = str;
-	while (str < es && ft_strchr(SPACES, *str))
-		str++;
 	*ps = str;
 	return (ret);
 }

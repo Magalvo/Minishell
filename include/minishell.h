@@ -44,6 +44,8 @@ void	new_line(void);
 void	reset_ast(t_ms *s);
 void	free_ast(t_cmd *cmd);
 void	free_ast2(t_cmd **cmd);
+void	free_argv(t_cmd *cmd);
+void	free_argv2(t_cmd **cmd);
 void	close_fd(int *fd);
 
 //*================ BUILTINS =====================*//
@@ -92,6 +94,8 @@ void	untokenizer(char *start, char *end);
 void	retokenizer(char *start, char *end);
 void	unquoter(char *start, char *end);
 void	requoter(char *start, char *end);
+
+void	skip_spaces(char *str, char *es);
 char	*reassemble_input(char *start);
 bool	syntax_validation(char *input, t_ms *s);
 int		syntax_quotes(const char *str);
@@ -146,7 +150,9 @@ int		get_token(char **ps, char *es, char **q, char **eq);
 int		get_token_a(char **ps);
 t_cmd	*cmd_init(void);
 t_cmd	*cmd_exec(void);
-t_cmd	*cmd_redir(t_cmd *subcmd, char *filename, int mode, int fd);
+// t_cmd	*cmd_redir(t_cmd *subcmd, char *filename, int mode, int fd);
+t_cmd	*cmd_redir_in(t_cmd *subcmd, char *filename, int mode, t_ms *s);
+t_cmd	*cmd_redir_out(t_cmd *subcmd, char *filename, int mode, t_ms *s);
 t_cmd	*cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s);
 t_cmd	*cmd_pipe(t_cmd *left, t_cmd *right);
 t_cmd	*parse_cmd(char *input, t_ms *s);
@@ -203,20 +209,24 @@ char	*join_key_value(const char *key, const char *value);
 //*================= EXEC =========================*//
 
 //todo int	cmd_exec(char *args);
-//int			exec_input(t_ms *s);
-//char		*search_path(char *command, char **paths);
-char		*env_paths(t_ms *ms, char **envp);
-char		*cmd_path(char **paths, char *cmd, t_ms *s);
-void		exec_from_ast(t_ms *s);
-void		exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
-void		exec_one(t_ms *s, char **argv);
-void		single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
-void		exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
-void		exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
-void		close_two_fd(t_cmd *cmd, int fd_in, int fd_out);
-void		exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
-void		updating_cmds(t_ms *s, t_cmd *cmd, char *value);
-void		aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
+//int		exec_input(t_ms *s);
+//char	*search_path(char *command, char **paths);
+char	*env_paths(t_ms *ms, char **envp);
+char	*cmd_path(char **paths, char *cmd, t_ms *s);
+void	exec_from_ast(t_ms *s);
+void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
+void	exec_one(t_ms *s, char **argv);
+void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
+void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
+void	exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
+void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
+void	updating_cmds(t_ms *s, t_cmd *cmd, char *value);
+void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
+void	close_two_fd(t_cmd *cmd, int fd_in, int fd_out);
+void	fd_errors(t_ms *s, t_cmd *cmd);
+void	fd_unlock(t_cmd *cmd, t_ms *s, int *fd, int rd_only);
+void	ft_unlock_close(t_cmd *cmd, t_ms *s, int *fd, int rd_only);
+
 
 //*================= ERRORS =========================*//
 

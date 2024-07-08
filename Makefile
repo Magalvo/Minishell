@@ -6,7 +6,7 @@
 #    By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/07/08 10:13:31 by dde-maga         ###   ########.fr        #
+#    Updated: 2024/07/09 00:08:36 by dde-maga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ PARSER =    aux.c expand_tilde.c expand_vars.c expand_vars2.c \
 			parse.c syntax_tests.c tokens.c str_utils.c str_utils2.c \
 
 AUX = aux1.c env_aux.c env_aux2.c pipe_exec.c redir_exec.c \
-	  free.c ft_ms_aux.c env_aux3.c env_aux4.c
+		free.c	ft_ms_aux.c env_aux3.c	env_aux4.c fd_aux.c
 
 SIG = signals.c signals_type.c
 
@@ -115,7 +115,10 @@ fclean: clean
 	@printf "$(RED)[All binaries deleted]    $(RST)\n"
 
 valgrind: $(NAME)
-	valgrind --suppressions=readline.supp --trace-children=yes  --track-fds=yes --track-origins=yes ./${NAME}
+	valgrind --suppressions=readline.supp --trace-children=yes  --track-fds=yes --track-origins=yes --leak-check=full ./${NAME}
 #valgrind -s --suppressions=readline.supp --tool=memcheck --tool=callgrind  --track-fds=yes ./${NAME}
+
+lcount:
+	@printf "$(NAME) has $(BLUE_U)$(shell cat $(SRC) | wc -l)$(RST) lines of code\n"
 
 re: fclean all

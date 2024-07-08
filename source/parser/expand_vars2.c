@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:10:49 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/05 19:16:27 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:51:10 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,14 @@ char	*expand_dolar(char *input, char *ps, t_ms *s)
 		val = get_env_val(s->env, key, s);
 		glue_str(val, val + ft_strlen(val));
 	}
-	if ((*(ps + 1) == '"' && is_quoted(input, ps) == E_DQUOTE)
-		|| ft_strlen(key) == 0)
-		return (*(ps) = 17, s->one_dolar = true, input);
+	// if ((*(ps + 1) == '"' && is_quoted(input, ps) == E_DQUOTE)
+	// 	|| ft_strlen(key) == 0)
+	// 	return (*(ps) = 17, input);
+		// return (*(ps) = 17, s->one_dolar = true, input);
 	if (*(ps + 1) == '"' && is_quoted(input, ps) == E_DQUOTE)
-		return (*(ps) = 17, input);
+		return (free(key), *(ps) = 17, input);
 	res = get_expanded(input, ps, val, ps + keylen);
-	return (free (key), free (val), free(input), res);
+	return (free(key), free(val), free(input), res);
 }
 
 char	*vars_sw(char *xp_input, char *pos, t_ms *s)

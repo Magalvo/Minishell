@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:50 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/03 22:26:08 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:07:49 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ void	unset_move(t_env *current)
 {
 	if (current->prev)
 		current->prev->next = current->next;
-	if(current->next)
+	if (current->next)
 		current->next->prev = current->prev;
 }
-
 
 void	unset_cmd_export(t_ms *s, char *args)
 {
@@ -79,7 +78,7 @@ int	unset_cmd(t_ms *s, char **args)
 	int		i;
 
 	i = 1;
-	while(args[i])
+	while (args[i])
 	{
 		current = s->env;
 		while (current && args[i])
@@ -105,7 +104,6 @@ int	unset_cmd(t_ms *s, char **args)
 	}
 	return (1);
 }
-
 
 //if (ft_strncmp(args[1], "PATH", ft_strlen(args[1])) != 0)
 //env_paths(s, s->env_tmp);
