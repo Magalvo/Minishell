@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:23 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/04 19:00:36 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:41:01 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	else
 	{
 		close(pipefd[1]);
-		if (fd_in != STDIN_FILENO)
-			close_fd(&fd_in);
+/* 		if (fd_in != STDIN_FILENO)
+			close_fd(&fd_in); */
 		exec_from_ast_recursive(s, cmd->right, pipefd[0], fd_out);
 		close(pipefd[0]);
 		wait_till_end(s, pid, cmd);

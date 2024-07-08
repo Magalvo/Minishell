@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/04 17:53:04 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:43:56 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ void	exec_one(t_ms *s, char **argv)
 	{
 		if (access(argv[0], F_OK) != 0)
 			not_found(argv[0], 127, s);
-		if (access(argv[0], X_OK) != 0)
+		else if (access(argv[0], X_OK) != 0)
 			not_found(argv[0], 126, s);
-		if(!execve(argv[0], argv, s->env_tmp))
+/* 		if (chdir(argv[0]) == 0)
+			not_found(argv[0], 1, s); */
+		else if(!execve(argv[0], argv, s->env_tmp))
 			exit(EXIT_FAILURE);
 	}
 	if (argv && argv[0] != NULL)

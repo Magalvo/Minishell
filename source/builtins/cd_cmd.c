@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_cmd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:15 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/03 23:18:35 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:45:08 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static int	change_pwd(t_env *env, t_ms *s)
 	char	*cmd;
 	int		result;
 
-	cmd = getcwd(NULL, 0);
+	cmd = NULL;
+	cmd = getcwd(cmd, FILENAME_MAX);
 	if (!cmd)
 	{
 		s->exit_stat = 1;
@@ -115,7 +116,7 @@ int	cd_cmd(t_ms *mini, char **path)
 	char	*val;
 
 	env = mini->env;
-	if (mini->ast->argc > 2)
+	if (mini->ast->argc > 3)
 	{
 		mini->exit_stat = 1;
 		return (cd_cmd_error("too many arguments"));

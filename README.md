@@ -3,7 +3,23 @@
 see reference/ for study materials   
 use 'make debug' instead of 'make re' (won't recompile libft, and adds -g flag)   
    
-   
+## dde-maga notes:
+echo <"./test_files/infile_big" | cat <"./test_files/infile"
+
+minishell> echo <"./expa" | cat <"vina"
+type PIPE, 
+LEFT leaf, 
+        type REDIR < RDONLY, 
+        FILE: ./expa 
+                type EXEC, args: 
+                echo
+RIGHT leaf, 
+        type REDIR < RDONLY, 
+        FILE: vina 
+                type EXEC, args: 
+                cat
+
+
 ## cjoao-de notes:
   alteracao grande no parsing das vars, 122/146 de novo.
   mas os erros de expansao quase todos fixed.
