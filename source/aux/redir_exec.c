@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dicarval <dicarval@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:22:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/09 00:07:20 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:21:44 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,16 @@ void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		else if (cmd->fd == 0)
 		{
 			if (fd_in == STDIN_FILENO)
-				ft_unlock_close(cmd, s, &temp_fd, 1);
+			{
+				fd_unlock(cmd, s, &fd_in, 1);
+				close_fd(&temp_fd);
+			}
 			else
 				fd_unlock(cmd, s, &temp_fd, 1);
 		}
 		cmd = cmd->cmd;
 	}
+	close_fd(&temp_fd);
 	if ((*cmd->argv))
 		updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
 	exec_redir_fork(s, cmd, fd_in, fd_out);

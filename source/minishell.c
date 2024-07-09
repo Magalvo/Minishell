@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dicarval <dicarval@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/08 17:56:36 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:29:07 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void minishell(char **envp)
 	{
 		check_signal(MAIN);
 		// Test loop
-		if (isatty(fileno(stdin)))
+/* 		if (isatty(fileno(stdin)))
 		{
 			input = readline(s.prompt);
 		}
@@ -81,9 +81,9 @@ void minishell(char **envp)
 			line = get_next_line(fileno(stdin));
 			input = ft_strtrim(line, "\n");
 			free(line);
-		}
+		} */
 
-		// input = readline(s.prompt);
+		input = readline(s.prompt);
 		s.ast = parse_input(input, &s);
 		if (input == NULL && s.modal == MAIN)
 		{

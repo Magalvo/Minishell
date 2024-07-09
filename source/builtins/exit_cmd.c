@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dicarval <dicarval@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:04 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/09 00:08:03 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:28:14 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	exit_cmd(t_ms *s, char **cmds)
 			return (print_exit(s, cmds[0], " : too many arguments\n", 1));
 		}
 	}
-	if (s->ast->argc >= 2)
+	else if (s->ast->argc >= 2)
 	{
 		if (cmds[1][0] != '\0' && aux_all(cmds[1]))
 		{
@@ -56,9 +56,9 @@ void	exit_cmd(t_ms *s, char **cmds)
 		}
 		else
 		{
-			s->exit_stat = 255; 
-			print_exit(s, cmds[1], ": numeric argument required\n", 255);
-			exit_minishell(s, NULL);
+			s->exit_stat = 2;
+			print_exit(s, cmds[1], ": numeric argument required\n", 2);
+			exit_minishell(s, "exit\n");
 		}
 	}
 	else
