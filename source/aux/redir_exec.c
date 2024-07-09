@@ -46,6 +46,48 @@ void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	exec_redir_fork(s, cmd, fd_in, fd_out);
 }
 
+
+void	exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+{
+	pid_t	pid;
+
+	pid = fork1();
+	if (pid == 0)
+	{
+		if (fd_in != STDIN_FILENO)
+			dup_and_close(s, fd_in, STDIN_FILENO);
+		if (fd_out != STDOUT_FILENO)
+			dup_and_close(s, fd_out, STDOUT_FILENO);
+		exec_from_ast_recursive(s, cmd, STDIN_FILENO, STDOUT_FILENO);
+		exit_minishell(s, NULL);
+	}
+	else
+	{
+		close_two_fd(cmd, fd_in, fd_out);
+		wait_till_end(s, pid, cmd);
+	}
+}
+
+
+ /**	//close_fd(&temp_fd);
+	if ((*cmd->argv))
+	{
+		updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
+	}
+	if (temp_fd < 0)
+	{
+		close_fd(&temp_fd);
+		exec_redir_fork(s, cmd, fd_in, fd_out);
+	}
+	else
+	{
+		fd_in = temp_fd;
+		close_fd(&temp_fd);
+		exec_redir_fork(s, cmd, fd_in, fd_out);
+	}
+} */
+
+
 /* backup b4 norminette
 void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
@@ -82,45 +124,4 @@ void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	if ((*cmd->argv))
 		updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
 	exec_redir_fork(s, cmd, fd_in, fd_out);
-} */
-
-
-void	exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
-{
-	pid_t	pid;
-
-	pid = fork1();
-	if (pid == 0)
-	{
-		if (fd_in != STDIN_FILENO)
-			dup_and_close(s, fd_in, STDIN_FILENO);
-		if (fd_out != STDOUT_FILENO)
-			dup_and_close(s, fd_out, STDOUT_FILENO);
-		exec_from_ast_recursive(s, cmd, STDIN_FILENO, STDOUT_FILENO);
-		//s->exit_stat = 0;
-		exit_minishell(s, NULL);
-	}
-	else
-	{
-		close_two_fd(cmd, fd_in, fd_out);
-		wait_till_end(s, pid, cmd);
-	}
-}
-
- /**	//close_fd(&temp_fd);
-	if ((*cmd->argv))
-	{
-		updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
-	}
-	if (temp_fd < 0)
-	{
-		close_fd(&temp_fd);
-		exec_redir_fork(s, cmd, fd_in, fd_out);
-	}
-	else
-	{
-		fd_in = temp_fd;
-		close_fd(&temp_fd);
-		exec_redir_fork(s, cmd, fd_in, fd_out);
-	}
 } */

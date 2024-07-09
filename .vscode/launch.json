@@ -65,7 +65,7 @@
 				},
 				{
 					"description": "The new process is debugged after a fork. The parent process runs unimpeded.",
-					"text": "-gdb-set follow-fork-mode parent",
+					"text": "-gdb-set follow-fork-mode child",
 					"ignoreFailures": true
 				}
 			]

@@ -12,56 +12,65 @@
 
 #include "../../include/minishell.h"
 
-char	*get_key_from_str(const char *str)
+char *get_key_from_str(const char *str)
 {
-	char	*delimiter;
+	char *delimiter;
+	char *key;
 
 	delimiter = ft_strchr(str, '=');
 	if (delimiter)
-		return (extract_key(str, delimiter));
+		key = extract_key(str, delimiter);
 	else
-		return (ft_strdup(str));
+		key = ft_strdup(str);
+	return (key);
 }
 
-char	*get_value_from_str(const char *str)
+char	*get_value_from_str(char *str)
 {
-	char	*delimiter;
+	char	*equal_sign;
+	char	*value;
 
-	delimiter = ft_strchr(str, '=');
-	if (delimiter)
-		return (ft_strdup(delimiter + 1));
-	else
+	equal_sign = ft_strchr(str, '=');
+	if (!equal_sign)
 		return (NULL);
+	equal_sign += 1;
+	value = ft_strdup(equal_sign);
+	equal_sign -= 1;
+	return (value);
 }
 
-int	handle_kv_update(t_env *env, char *key, char *value, int tog)
+
+int handle_kv_update(t_env *env, char *key, char *value, int tog)
 {
 	if (!is_valid_key(key))
 	{
 		free(key);
+		key = NULL;
 		if (value)
+		{
 			free(value);
+			value = NULL;
+		}
 		return (printf(" not a valid identifier"), 0);
 	}
 	if (!update_key(env, key, value))
 	{
 		if (!add_new_node(env, key, value))
 		{
-			free(key);
-			if (value)
-				free(value);
-			return (0);
+			return 0;
 		}
-		else if (value)
-			free(value);
 	}
 	if (tog)
 	{
 		free(key);
 		key = NULL;
 	}
-	return (1);
+	return 1;
 }
+
+
+
+
 
 void	init_list(t_env **list, char **envp)
 {

@@ -34,14 +34,14 @@ void	fd_errors(t_ms *s, t_cmd *cmd)
 void	fd_unlock(t_cmd *cmd, t_ms *s, int *fd, int rd_only)
 {
 	(void)rd_only;
-/* 	if (chdir(cmd->file) == 0)
+	if (chdir(cmd->file) == 0)
 	{
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(cmd->file, 2);
 		ft_putstr_fd(": ", 2);
 		ft_putstr_fd("is a directory\n", 2);
 		s->exit_stat = 1;
-	} */
+	}
 	if (rd_only == 0)
 	{
 		*fd = open(cmd->file, cmd->mode, 0666);

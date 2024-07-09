@@ -17,7 +17,7 @@ int	add_node_export(t_env *env, char *key, char *value)
 	t_env	*new_node;
 	t_env	*export;
 
-	new_node = (t_env *)malloc(sizeof(t_env));
+	new_node = (t_env *)ft_calloc(sizeof(t_env), 1);
 	if (!new_node)
 		return (ft_putstr_fd("malloc (new env)", 2), 0);
 	new_node->key = ft_strdup(key);

@@ -21,9 +21,17 @@ void	exec_one(t_ms *s, char **argv)
 		(argv[0] && argv[0][0] == '/' && argv[0][1]))
 	{
 		if (access(argv[0], F_OK) != 0)
+		{
 			not_found(argv[0], 127, s);
-		if (access(argv[0], X_OK) != 0)
+			s->exit_stat = 127;
+			return ;
+		}	
+		else if (access(argv[0], X_OK) != 0)
+		{
 			not_found(argv[0], 126, s);
+			s->exit_stat = 126;
+			return ;
+		}	
 		if (!execve(argv[0], argv, s->env_tmp))
 			exit(EXIT_FAILURE);
 	}
@@ -31,7 +39,11 @@ void	exec_one(t_ms *s, char **argv)
 	{
 		path = cmd_path(s->paths, argv[0], s);
 		if (!path)
+		{
 			not_found(argv[0], 127, s);
+			s->exit_stat = 127;
+			return ;
+		}
 		cmd_name = ft_strchr(argv[0], '/');
 		if (cmd_name)
 			argv[0] = ++cmd_name;
@@ -141,6 +153,7 @@ void	exec_from_ast(t_ms *s)
 	}
 	if (!ft_exec_paria(s, s->ast))
 		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
-	s->ast->argv = original;
+	if(s->ast->type == EXEC)
+		s->ast->argv = original;
 	s->wait = 0;
 }

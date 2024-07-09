@@ -47,14 +47,15 @@ void	new_line(void)
 	rl_replace_line("", 0);
 }
 
-static void	assist_file(int fd, int standard)
+static void	assist_file(int fd, int standard, int *exec)
 {
 	if (dup2 (fd, standard) == -1)
 	{
 		perror("dup2");
+		*exec=0;
 		exit(1);
 	}
-	close(fd);
+	close_fd(&fd);
 }
 
 int	fork1(void)
@@ -70,25 +71,28 @@ int	fork1(void)
 void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	pid_t	pid;
+	int		exec;
 
+	exec=1;
 	check_signal(IGNORE);
 	pid = fork1();
 	if (pid == 0)
 	{
 		check_signal(CHILD);
 		if (fd_in != STDIN_FILENO)
-			assist_file(fd_in, STDIN_FILENO);
-		if (fd_out != STDOUT_FILENO)
-			assist_file(fd_out, STDOUT_FILENO);
-		exec_one(s, cmd->argv);
+			assist_file(fd_in, STDIN_FILENO, &exec);
+		else if (fd_out != STDOUT_FILENO)
+			assist_file(fd_out, STDOUT_FILENO, &exec);
+		if(exec)
+			exec_one(s, cmd->argv);
 		exit_minishell(s, NULL);
 	}
 	else
 	{
 		if (fd_in != STDIN_FILENO)
-			close (fd_in);
+			close_fd(&fd_in);
 		if (fd_out != STDOUT_FILENO)
-			close(fd_out);
+			close_fd(&fd_out);
 		wait_till_end(s, pid, cmd);
 	}
 }

@@ -67,7 +67,7 @@ int		print_export(t_env *env);
 int		ft_sw_builtins(const char *s1, const char *s2);
 int		is_valid_key(char *key);
 char	*get_key_from_str(const char *str);
-char	*get_value_from_str(const char *str);
+char	*get_value_from_str(char *str);
 int		handle_kv_update(t_env *env, char *key, char *value, int tog);
 int		export_update(t_env *export, char *key, char *value);
 char	*extract_key(const char *str, char *delimiter);

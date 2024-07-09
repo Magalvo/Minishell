@@ -51,8 +51,8 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	else
 	{
 		close(pipefd[1]);
-/* 		if (fd_in != STDIN_FILENO)
-			close_fd(&fd_in); */
+		if (fd_in != STDIN_FILENO)
+			close_fd(&fd_in);
 		exec_from_ast_recursive(s, cmd->right, pipefd[0], fd_out);
 		close(pipefd[0]);
 		wait_till_end(s, pid, cmd);
@@ -84,7 +84,5 @@ int	not_found(char *str, int status, t_ms *s)
 	else if (status == 126)
 		ft_putstr_fd(": Permission denied\n", 2);
 	// TODO commented out
-/* 	ft_putnbr_fd(status, 2);
-	ft_putstr_fd("\n", 2); */
-	return (set_exit(status, s), 1);
+	return (1);
 }
