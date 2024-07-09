@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:10:49 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/08 17:51:10 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:41:50 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ char	*expand_dolar(char *input, char *ps, t_ms *s)
 
 char	*vars_sw(char *xp_input, char *pos, t_ms *s)
 {
+	if (pos == NULL)
+		return (xp_input);
 	if (*(pos + 1) == '{')
 		xp_input = expand_curly(xp_input, pos, s);
 	else if (*(pos + 1) == '$')
