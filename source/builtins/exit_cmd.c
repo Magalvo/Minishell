@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:04 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/08 19:16:40 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/09 00:08:03 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	exit_cmd(t_ms *s, char **cmds)
 		}
 		else
 		{
-			s->exit_stat = 2;
-			print_exit(s, cmds[1], ": numeric argument required\n", 2);
+			s->exit_stat = 255; 
+			print_exit(s, cmds[1], ": numeric argument required\n", 255);
 			exit_minishell(s, NULL);
 		}
 	}

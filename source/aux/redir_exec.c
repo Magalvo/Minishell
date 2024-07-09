@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:22:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/09 15:11:16 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:15:27 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		}
 		cmd = cmd->cmd;
 	}
-		//close_fd(&temp_fd);
+	close_fd(&temp_fd);
 	if ((*cmd->argv))
 		updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
 	exec_redir_fork(s, cmd, fd_in, fd_out);

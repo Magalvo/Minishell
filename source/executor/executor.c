@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:04:53 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/08 19:30:23 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/09 00:08:16 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*cmd_path(char **paths, char *cmd, t_ms *s)
 		{
 			if (access(cmd, X_OK | F_OK) == 0)
 				return (cmd);
-			else
+			else 
 				return (NULL);
 		}
 		command = ft_strjoin(*paths, cmd);
