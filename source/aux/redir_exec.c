@@ -6,15 +6,15 @@
 /*   By: dicarval <dicarval@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:22:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/09 15:21:44 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:32:20 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
-{
-	int	temp_fd;
+// void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+// {
+// 	int	temp_fd;
 
 	temp_fd = -1;
 	while (cmd->type == REDIR || cmd->type == HEREDOC)
@@ -83,7 +83,7 @@ void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
 	exec_redir_fork(s, cmd, fd_in, fd_out);
 }
-*/
+
 
 void	exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {

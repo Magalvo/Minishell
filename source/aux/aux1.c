@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:10 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/08 18:34:57 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:03:25 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	wait_till_end(t_ms *s, pid_t pid, t_cmd *cmd)
 	int	status;
 
 	(void)cmd;
-	waitpid(pid, &status, 0);
+  	waitpid(pid, &status, 0);
 	if (s->ast->type == 2 && s->exit_stat == 1)
 		return ;
 /* 	printf("ANTES STATUS: -> %d\n", status);
