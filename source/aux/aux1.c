@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicarval <dicarval@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:10 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/10 16:27:06 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:56:56 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,8 @@ void	wait_till_end(t_ms *s, pid_t pid, t_cmd *cmd)
 	{
 		s->exit_stat /= 256;
 	}
-	//printf("EXIT: -> %d\n\n", s->exit_stat);
 	s->wait += 1;
 }
-/* 	printf("CMD: -> %d\n", s->ast->type);
-	printf("DEPOIS STATUS: -> %d\n", status);
-	printf("EXIT: -> %d\n\n", s->exit_stat);
-	printf("WAIT ->%d\n", s->wait); */
-/* 		printf("CMD: -> %d\n", s->ast->type);
-		printf("STATUS: -> %d\n", status);
-		printf("EXIT: -> %d\n\n", s->exit_stat); */
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
@@ -104,5 +96,14 @@ void	close_fd(int *fd)
 		s->exit_stat = s->exit_stat; */
 
 /* 		printf("CMD: -> %s\n", cmd->argv[0]);
+		printf("STATUS: -> %d\n", status);
+		printf("EXIT: -> %d\n\n", s->exit_stat); */
+
+
+/* 	printf("CMD: -> %d\n", s->ast->type);
+	printf("DEPOIS STATUS: -> %d\n", status);
+	printf("EXIT: -> %d\n\n", s->exit_stat);
+	printf("WAIT ->%d\n", s->wait); */
+/* 		printf("CMD: -> %d\n", s->ast->type);
 		printf("STATUS: -> %d\n", status);
 		printf("EXIT: -> %d\n\n", s->exit_stat); */

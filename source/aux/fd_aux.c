@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_aux.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicarval <dicarval@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:22:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/10 15:04:37 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:56:14 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	fd_errors(t_ms *s, t_cmd *cmd)
 	else
 		s->exit_stat = 2;
 	perror(cmd->file);
-	//exit(EXIT_FAILURE);
 }
 
 void fd_unlock(t_cmd *cmd, t_ms *s, int *fd, int rd_only)

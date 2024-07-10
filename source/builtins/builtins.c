@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicarval <dicarval@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:25 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/10 16:48:51 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:57:27 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ void	toggle_bnf(t_ms *s)
 
 int	ft_exec_builtins_chr(t_ms *s, char **cmds, int fd_in, int fd_out)
 {
-	(void)fd_in;
-	(void)fd_out;
 /* 	if (cmds == NULL || cmds[0] == NULL)
 		return (1); */
 	if (ft_sw_builtins(cmds[0], "echo") == 0)

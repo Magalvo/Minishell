@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicarval <dicarval@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:04:53 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/10 16:48:31 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:57:59 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	if (pid == 0)
 	{
 		check_signal(CHILD);
-		if (ft_exec_builtins_chr(s, cmd->argv, fd_in, fd_out) == 1)
+		if (ft_exec_builtins_chr(s, cmd->argv, fd_in, fd_out))
 			return(exit_minishell(s, NULL));
 		if (fd_in != STDIN_FILENO)
 			assist_file(fd_in, STDIN_FILENO);
