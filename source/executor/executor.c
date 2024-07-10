@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dicarval <dicarval@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:04:53 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/10 11:12:42 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:48:31 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,11 @@ void	new_line(void)
 	rl_replace_line("", 0);
 }
 
-static void	assist_file(int fd, int standard, int *exec)
+static void	assist_file(int fd, int standard)
 {
 	if (dup2 (fd, standard) == -1)
 	{
 		perror("dup2");
-		*exec = 0;
 		exit (1);
 	}
 	close_fd(&fd);
@@ -71,20 +70,19 @@ int	fork1(void)
 void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	pid_t	pid;
-	int		exec;
 
-	exec = 1;
 	check_signal(IGNORE);
 	pid = fork1();
 	if (pid == 0)
 	{
 		check_signal(CHILD);
+		if (ft_exec_builtins_chr(s, cmd->argv, fd_in, fd_out) == 1)
+			return(exit_minishell(s, NULL));
 		if (fd_in != STDIN_FILENO)
-			assist_file(fd_in, STDIN_FILENO, &exec);
+			assist_file(fd_in, STDIN_FILENO);
 		else if (fd_out != STDOUT_FILENO)
-			assist_file(fd_out, STDOUT_FILENO, &exec);
-		if (exec)
-			exec_one(s, cmd->argv);
+			assist_file(fd_out, STDOUT_FILENO);
+		exec_one(s, cmd->argv);
 		exit_minishell(s, NULL);
 	}
 	else

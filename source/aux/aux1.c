@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dicarval <dicarval@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:10 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/10 11:00:48 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:27:06 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,21 @@ void	wait_till_end(t_ms *s, pid_t pid, t_cmd *cmd)
 			printf("\n");
 		if (s->exit_stat == 141 && s->wait == 0)
 			s->exit_stat = 0;
-/* 		printf("CMD: -> %d\n", s->ast->type);
-		printf("STATUS: -> %d\n", status);
-		printf("EXIT: -> %d\n\n", s->exit_stat); */
 	}
 	if (s->exit_stat > 255 && s->wait == 0)
+	{
 		s->exit_stat /= 256;
+	}
+	//printf("EXIT: -> %d\n\n", s->exit_stat);
+	s->wait += 1;
+}
 /* 	printf("CMD: -> %d\n", s->ast->type);
 	printf("DEPOIS STATUS: -> %d\n", status);
 	printf("EXIT: -> %d\n\n", s->exit_stat);
 	printf("WAIT ->%d\n", s->wait); */
-	s->wait += 1;
-}
+/* 		printf("CMD: -> %d\n", s->ast->type);
+		printf("STATUS: -> %d\n", status);
+		printf("EXIT: -> %d\n\n", s->exit_stat); */
 
 int	ft_strcmp(const char *s1, const char *s2)
 {

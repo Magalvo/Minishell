@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dicarval <dicarval@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/10 11:02:50 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:51:07 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,8 @@ void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	if (s->ast && s->ast->argc > 0)
 		updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
-	if (!ft_exec_builtins_chr(s, cmd->argv, fd_in, fd_out))
-		single_exec(s, cmd, fd_in, fd_out);
+	//if (!ft_exec_builtins_chr(s, cmd->argv, fd_in, fd_out))
+	single_exec(s, cmd, fd_in, fd_out);
 }
 
 void	exec_from_ast(t_ms *s)

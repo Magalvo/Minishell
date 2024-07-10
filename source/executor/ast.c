@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dicarval <dicarval@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:23 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/10 11:10:31 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:02:18 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	}
 	else if (cmd->type == REDIR || cmd->type == HEREDOC)
 	{
+		if(fd_in != STDIN_FILENO && cmd->fd == 0 && s->ast->type == PIPE)
+			fd_in = STDIN_FILENO;
 		exec_redir(s, cmd, fd_in, fd_out);
 	}
 }
@@ -74,15 +76,15 @@ int	not_found(char *str, int status, t_ms *s)
 			if (chdir(str) == 1)
 			{
 				s->exit_stat = 126;
-				ft_putstr_fd(": Is a directory\n", 2);
+				return(ft_putstr_fd(": Is a directory\n", 2), 0);
 			}
 			else if (chdir(str) == -1)
-				ft_putstr_fd(": No such file or directory\n", 2);
+				return(ft_putstr_fd(": No such file or directory\n", 2), 0);
 		}
 		else
-			ft_putstr_fd(": command not found\n", 2);
+			return (ft_putstr_fd(": command not found\n", 2), 0);
 	}
 	else if (status == 126)
-		ft_putstr_fd(": Permission denied\n", 2);
+		return (ft_putstr_fd(": Permission denied\n", 2), 0);
 	return (1);
 }
