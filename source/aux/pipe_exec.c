@@ -123,6 +123,15 @@ int	builtins_parent(t_ms *s, char **cmds, int fd_in, int fd_out)
 
 void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
+	if(ft_strlen(cmd->argv[0]) == 0)
+	{
+		if (cmd->argv[0][0] == '\x11')
+			cmd = cmd->cmd;
+		if(ft_isspace(cmd->argv[0][0] || cmd->argv[0][0] == '\0'))
+			not_found(cmd->argv[0], 127, s);
+		
+		return ;
+	}
 	if (s->ast && s->ast->argc > 0)
 		updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
 	if (!builtins_parent(s, cmd->argv, fd_in, fd_out))

@@ -100,10 +100,11 @@ int	unset_cmd(t_ms *s, char **args)
 		}
 		unset_cmd_export(s, args[i]);
 		env_arr_update(s, args[i]);
+		if (ft_strncmp(args[1], "PATH", ft_strlen(args[1])) != 0)
+			env_paths(s, s->env_tmp);
 		i++;
 	}
 	return (1);
 }
 
-//if (ft_strncmp(args[1], "PATH", ft_strlen(args[1])) != 0)
-//env_paths(s, s->env_tmp);
+

@@ -1,0 +1,30 @@
+total 476
+drwxrwxr-x 12 dde-maga dde-maga   4096 jul 10 22:04 .
+drwxr-x--- 21 dde-maga dde-maga   4096 jul 10 21:37 ..
+drwxrwxr-x  3 dde-maga dde-maga   4096 jul  9 19:52 42_minishell_tester
+-rw-rw-r--  1 dde-maga dde-maga      0 jul 10 21:00 cat
+-rw-rw-r--  1 dde-maga dde-maga      5 jul 10 18:45 chia
+-rw-rw-r--  1 dde-maga dde-maga      0 jul 10 18:45 china
+-rw-rw-r--  1 dde-maga dde-maga      4 jul 10 21:06 echo
+-rw-rw-r--  1 dde-maga dde-maga     61 jul  9 19:52 file name with spaces
+drwxrwxr-x  8 dde-maga dde-maga   4096 jul 10 20:35 .git
+-rwxrw-rw-  1 dde-maga dde-maga    735 jul  5 19:55 .gitignore
+-rwxrw-rw-  1 dde-maga dde-maga    469 jul  5 19:55 g.sh
+drwxrwxrwx  2 dde-maga dde-maga   4096 jul 10 18:45 include
+-rw-rw-r--  1 dde-maga dde-maga      0 jul 10 20:35 la
+drwxrwxrwx  3 dde-maga dde-maga   4096 jul  5 19:55 libs
+-rwxrwxr-x  1 dde-maga dde-maga   4265 jul 10 20:35 Makefile
+-rwxrwxr-x  1 dde-maga dde-maga 388632 jul 10 21:46 minishell
+-rwxrw-rw-  1 dde-maga dde-maga    846 jul  5 19:55 minishell.code-workspace
+drwxrwxrwx  6 dde-maga dde-maga   4096 jul 10 20:35 minishell_tester
+drwxrwxr-x  8 dde-maga dde-maga   4096 jul 10 21:10 object
+-rw-rw-r--  1 dde-maga dde-maga      4 jul 10 21:04 ola
+-rw-rw-r--  1 dde-maga dde-maga      0 jul 10 22:04 out
+-rwxrw-rw-  1 dde-maga dde-maga    799 jul  5 19:55 readline.supp
+-rwxrwxr-x  1 dde-maga dde-maga   3137 jul 10 20:35 README.md
+drwxrwxrwx  2 dde-maga dde-maga   4096 jul 10 20:35 reference
+drwxrwxrwx  8 dde-maga dde-maga   4096 jul 10 18:45 source
+drwxrwxrwx  2 dde-maga dde-maga   4096 jul  5 19:55 test_results
+-rw-rw-r--  1 dde-maga dde-maga      0 jul 10 18:45 town
+drwxrwxrwx  2 dde-maga dde-maga   4096 jul 10 20:29 .vscode
+-rwxrw-rw-  1 dde-maga dde-maga   2642 jul  5 19:55 workspaceState.state.json
