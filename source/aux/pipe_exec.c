@@ -98,12 +98,35 @@ void	updating_cmds(t_ms *s, t_cmd *cmd, char *value)
 	}
 }
 
+
+int	builtins_parent(t_ms *s, char **cmds, int fd_in, int fd_out)
+{
+	(void)fd_in;
+	(void)fd_out;
+	if (ft_sw_builtins(cmds[0], "cd") == 0)
+		return (cd_cmd(s, cmds), 1);
+	else if (ft_sw_builtins(cmds[0], "env") == 0)
+		return (env_cmd(s, cmds));
+	else if (ft_sw_builtins(cmds[0], "pwd") == 0)
+		return (pwd_cmd(s));
+	else if (ft_sw_builtins(cmds[0], "export") == 0)
+		return (export_cmd(s, cmds), 1);
+	else if (ft_sw_builtins(cmds[0], "unset") == 0)
+		return (unset_cmd(s, cmds));
+	else if (ft_sw_builtins(cmds[0], "exit") == 0)
+		return (exit_cmd(s, cmds), 1);
+	else if (ft_sw_builtins(cmds[0], "bnf") == 0)
+		return (s->bnf = true, ft_putstr_fd("bnf ON\n", 1), 1);
+	else
+		return (0);
+}
+
 void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	if (s->ast && s->ast->argc > 0)
 		updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
-	//if (!ft_exec_builtins_chr(s, cmd->argv, fd_in, fd_out))
-	single_exec(s, cmd, fd_in, fd_out);
+	if (!builtins_parent(s, cmd->argv, fd_in, fd_out))
+		single_exec(s, cmd, fd_in, fd_out);
 }
 
 void	exec_from_ast(t_ms *s)

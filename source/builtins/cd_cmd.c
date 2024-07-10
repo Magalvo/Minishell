@@ -114,7 +114,7 @@ int	cd_cmd(t_ms *mini, char **path)
 	char	*val;
 
 	env = mini->env;
-	if (mini->ast->argc > 3)
+	if (mini->ast->argc >= 3)
 	{
 		mini->exit_stat = 1;
 		return (cd_cmd_error("too many arguments"));
