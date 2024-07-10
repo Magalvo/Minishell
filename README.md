@@ -21,112 +21,127 @@ RIGHT leaf,
 
 
 ## cjoao-de notes:
-  alteracao grande no parsing das vars, 122/146 de novo.
-  mas os erros de expansao quase todos fixed.
-  nao sei que fazer com este teste, se calhar nada...
   
 export T="echo segfault | grep segfault"
-$T
-bash: 
-    segfault | grep segfault
+ $T  
+bash:
+segfault | grep segfault
+>> executa o echo
 minishell> 
     echo segfault | grep segfault: command not found
-como e que o echo no bash desaparece????
+>> nao executa o echo, parse nao e refeito
 
-## dde-maga notes:
-  
-//WIP
-## BUILTINS
+export T="l"
+
+minishell> $?
+>> 127: command not found
+bash-5.2$ $?
+>> bash: 0: command not found
+
+'''''''''''''''' echo ok
+ok
+minishell> $?
+0: command not found
+>> BNF //1st arg vazio, devia parar ai, execve esta a saltar argv[0]?
+type EXEC, args: 
+
+echo
+ok
+bash: : command not found
+bash-5.2$ $?
+bash: 127: command not found
+
+
+<| echo ok
+bash: syntax error near unexpected token `|'
+bash-5.2$ $?
+bash: 2: command not found
+
+>| echo sure
+syntax error: unexpected token
+>> devia ser command not found. esta a parar no parser......
+minishell> $?
+1: command not found
+bash: sure: command not found
+bash-5.2$ $?
+bash: 127: command not found
+
+
+ls | cat << stop | ls -la | cat << stop1 | ls | cat << stop2 | ls -la > > out | cat << stop3
+bash: syntax error near unexpected token `>'                            ^
+bash-5.2$ $?
+bash: 2: command not found
+minishell executa ate ao stop2, so depois da erro
+minishell> $?
+minishell> 0: command not found
+
+
+echo segfault <"<<<"<<amazing
+> .
+> amazing
+<<<: No such file or directory
+segfault
+
+echo segfault <"<<<"<<amazing
+> .
+> amazing
+bash: <<<: No such file or directory
+
+minishell> echo seg <> echo seg
+syntax error: unexpected token
+bash$ echo seg <> echo seg
+seg seg
+
+echo <<< echo seegf
+syntax error: unexpected token
+bash
+echo <<< echo seegf
+seegf
+
+
+
+/*
 export TEST+=100
 export TEST+=100  
     expected "100100"
+*/
 
-## DONE
-export test=42 | echo 99
-99
-export: command not found  // nao devia aparecer
+minishell> export TEST=100
 
+minishell> export TEST+=100
+minishell: export: `': not a valid identifier
+export -TEST=123
+minishell: export: `': not a valid identifier
+>> msg de erro antiga.
 
-## DONE
-exit ""
+minishell> exit aa bb
 exit
-bash: exit: : numeric argument required
-minishell just exits
-
-## DONE
-exit 1 2
-exit
-bash: exit: too many arguments // nao da exit
-minishell: nao da erro e faz exit
-
-## DONE
-exit A 2 3
-exit
-bash: exit: A: numeric argument required
 minishell: exit : too many arguments
+>> devia sair
 
-## DONE
-echo "         |       "  | echo maybe          // or
-echo "|"  | echo maybe                          // or
-echo '|'  | echo maybe
-maybe
-echo $?
-bash: 0
-minishell: 141
+env what
+minishell> lista o env
+bash>   env: ‘what’: No such file or directory
+
+unset -TEST
+>> a PATH desaparece
+
+
+## testes que falham mas devem ser ignorados
+## SAFE TO IGNORE (TM)
+unset -TEST
+bash: unset: -T: invalid option
+unset: usage: unset [-f] [-v] [-n] [name ...]
+>> ignorar, nao se tem de implementar options
+
+unset TES;T
+>> ignorar, nao se tem de implementar ';', erro de syntax
 
 cd --
-minishell: cd: No such file or directory
+>> ignorar, cd with only a relative or absolute path
 
 
-## mixed   //DUNNO
-## DONE
-<| echo ok
-minishell>
- syntax error: unexpected token
-'| echo ok' not parsed, double check parser
-bash: syntax error near unexpected token `|'
-echo $?
-MS: 1
-bash: 2
-
-## SEGFAULT
-    >> '$USER'
-    segfault em ft_strcmp l70
-    update_key l51
-    export_update l56
-    updating_cmds
-    exec_redir
-    exec_from_ast_recursive
-    exec_from_ast
->> SEGFAULT
-
-## INVALID READ
-export T=hello
-export T=world
-$T      // invalid read
-echo $T    // ok
-
-
-## parsing not working
-
- '''''''''''''''' echo ok
- echo ok
-bash: : command not found
-minishell: prints first arg of PATH. WTF?
-
-
-## leaks
->> multiple on one line
-export T=e E=c S=h L=o L=ok
-export L=amazing L=ok L=cool
-
-export T=hello
-export T=world
-
-export PATH
-export PATH=1
-
-
+## dde-maga notes:
 
 ### VSCODE
 disable 42 Header extension for this workspace   

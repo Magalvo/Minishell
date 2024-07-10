@@ -6,7 +6,7 @@
 #    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/07/10 10:49:01 by cjoao-de         ###   ########.fr        #
+#    Updated: 2024/07/10 17:50:11 by cjoao-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -116,6 +116,9 @@ fclean: clean
 
 valgrind: $(NAME)
 	valgrind -s --suppressions=readline.supp --trace-children=yes  --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all ./${NAME}
+
+valgrind2: $(NAME)
+	valgrind -s --suppressions=readline.supp --trace-children=yes  --track-fds=yes --track-origins=yes --leak-check=full ./${NAME}
 #valgrind -s --suppressions=readline.supp --tool=memcheck --tool=callgrind  --track-fds=yes ./${NAME}
 
 lcount:
