@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/08 17:15:59 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/10 10:52:44 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	exit_minishell(t_ms *s, char *msg)
 
 int	init_minishell(t_ms *s, char **ep)
 {
-	int i = 0;	//! just for test
+	int	i = 0;	//! just for test
 	if (!*ep)
 	{
 		initialize_env(&ep);

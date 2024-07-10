@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:23 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/09 00:08:07 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:10:31 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	}
 }
 
+// TODO Function has more than 25 lines
 void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	int		pipefd[2];
@@ -83,6 +84,5 @@ int	not_found(char *str, int status, t_ms *s)
 	}
 	else if (status == 126)
 		ft_putstr_fd(": Permission denied\n", 2);
-	// TODO commented out
 	return (1);
 }

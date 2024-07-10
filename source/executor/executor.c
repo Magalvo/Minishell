@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:04:53 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/09 00:08:16 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:12:42 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*cmd_path(char **paths, char *cmd, t_ms *s)
 		{
 			if (access(cmd, X_OK | F_OK) == 0)
 				return (cmd);
-			else 
+			else
 				return (NULL);
 		}
 		command = ft_strjoin(*paths, cmd);
@@ -52,8 +52,8 @@ static void	assist_file(int fd, int standard, int *exec)
 	if (dup2 (fd, standard) == -1)
 	{
 		perror("dup2");
-		*exec=0;
-		exit(1);
+		*exec = 0;
+		exit (1);
 	}
 	close_fd(&fd);
 }
@@ -73,7 +73,7 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	pid_t	pid;
 	int		exec;
 
-	exec=1;
+	exec = 1;
 	check_signal(IGNORE);
 	pid = fork1();
 	if (pid == 0)
@@ -83,7 +83,7 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			assist_file(fd_in, STDIN_FILENO, &exec);
 		else if (fd_out != STDOUT_FILENO)
 			assist_file(fd_out, STDOUT_FILENO, &exec);
-		if(exec)
+		if (exec)
 			exec_one(s, cmd->argv);
 		exit_minishell(s, NULL);
 	}

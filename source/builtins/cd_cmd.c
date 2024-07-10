@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_cmd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:15 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/09 00:07:41 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:05:22 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static int	change_pwd(t_env *env, t_ms *s)
 	return (result);
 }
 
+// TODO Function has more than 25 lines
 static int	cd_cmd_home(t_env *env)
 {
 	char	*home;
@@ -106,6 +107,7 @@ static int	cd_cmd_minus(t_env *env)
 	return (result);
 }
 
+// TODO Function has more than 25 lines
 int	cd_cmd(t_ms *mini, char **path)
 {
 	t_env	*env;

@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicarval <dicarval@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/09 15:34:10 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:02:50 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
+// TODO Function has more than 25 lines
 void	exec_one(t_ms *s, char **argv)
 {
 	char	*path;
@@ -25,13 +26,13 @@ void	exec_one(t_ms *s, char **argv)
 			not_found(argv[0], 127, s);
 			s->exit_stat = 127;
 			return ;
-		}	
+		}
 		else if (access(argv[0], X_OK) != 0)
 		{
 			not_found(argv[0], 126, s);
 			s->exit_stat = 126;
 			return ;
-		}	
+		}
 		if (!execve(argv[0], argv, s->env_tmp))
 			exit(EXIT_FAILURE);
 	}
@@ -85,7 +86,6 @@ void	exec_one(t_ms *s, char **argv)
 	}
 	//set_exit(0, s);
 } */
-
 
 int	ft_exec_paria(t_ms *s, t_cmd *cmds)
 {
@@ -153,7 +153,7 @@ void	exec_from_ast(t_ms *s)
 	}
 	if (!ft_exec_paria(s, s->ast))
 		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
-	if(s->ast->type == EXEC)
+	if (s->ast->type == EXEC)
 		s->ast->argv = original;
 	s->wait = 0;
 }

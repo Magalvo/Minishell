@@ -100,6 +100,12 @@ bash: 2
     exec_from_ast
 >> SEGFAULT
 
+## INVALID READ
+export T=hello
+export T=world
+$T      // invalid read
+echo $T    // ok
+
 
 ## parsing not working
 

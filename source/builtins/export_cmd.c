@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:59 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/08 19:14:40 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:07:12 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int	is_valid_key(char *key)
 	return (1);
 }
 
-char *extract_key(const char *str, char *delimiter)
+char	*extract_key(const char *str, char *delimiter)
 {
-	size_t key_len;
-	char *key;
+	size_t	key_len;
+	char	*key;
 
 	key_len = delimiter - str;
 	key = ft_substr(str, 0, key_len);
@@ -39,6 +39,7 @@ char *extract_key(const char *str, char *delimiter)
 }
 
 //!! AQUI
+// TODO Function has more than 25 lines
 int	update_key(t_env *env, char *key, char *value)
 {
 	char	*value_tmp;
@@ -110,6 +111,7 @@ void free_key(char **key)
 
 
 
+// TODO Function has more than 25 lines
 int export_cmd(t_ms *s, char **str)
 {
 	char *key = NULL;
@@ -141,8 +143,3 @@ int export_cmd(t_ms *s, char **str)
 	}
 	return 0;
 }
-
-
-
-
-

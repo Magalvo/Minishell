@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   redir_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicarval <dicarval@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:22:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/09 15:35:42 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:04:18 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
+// TODO Function has more than 25 lines
 void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	int	temp_fd;
@@ -46,7 +47,6 @@ void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	exec_redir_fork(s, cmd, fd_in, fd_out);
 }
 
-
 void	exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	pid_t	pid;
@@ -68,7 +68,6 @@ void	exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	}
 }
 
-
  /**	//close_fd(&temp_fd);
 	if ((*cmd->argv))
 	{
@@ -86,7 +85,6 @@ void	exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		exec_redir_fork(s, cmd, fd_in, fd_out);
 	}
 } */
-
 
 /* backup b4 norminette
 void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)

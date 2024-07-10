@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:00 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/09 14:40:26 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:14:07 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ char	*expand_sw_vars(char *input, t_ms *s)
 	{
 		if (is_quoted(xp_input, pos) != E_QUOTE)
 		{
-			if ((pos && *(pos - 1) == '"' && *(pos + 1) == '"') ||
-				ft_strchr(SPACES, *(pos + 1)))
+			if ((pos && *(pos - 1) == '"' && *(pos + 1) == '"')
+				|| ft_strchr(SPACES, *(pos + 1)))
 				*(pos) = 17;
 			pos = ft_strchr(xp_input, '$');
 			xp_input = vars_sw(xp_input, pos, s);
@@ -69,8 +69,8 @@ char	*expand_var(char *input, t_ms *s)
 		{
 			xp_input = vars_sw(xp_input, pos, s);
 			pos = ft_strchr(xp_input, '$');
-			if ((pos && *(pos - 1) == '"' && *(pos + 1) == '"') ||
-				ft_strchr(SPACES, *(pos + 1)))
+			if ((pos && *(pos - 1) == '"' && *(pos + 1) == '"')
+				|| ft_strchr(SPACES, *(pos + 1)))
 				*(pos) = 17;
 			// if (pos && *(pos - 1) == '"' && *(pos + 1) == '"')
 				// *(pos) = 17;

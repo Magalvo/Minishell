@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   export_aux.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:23:29 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/04 18:01:19 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:08:30 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-char *get_key_from_str(const char *str)
+char	*get_key_from_str(const char *str)
 {
-	char *delimiter;
-	char *key;
+	char	*delimiter;
+	char	*key;
 
 	delimiter = ft_strchr(str, '=');
 	if (delimiter)
@@ -39,8 +39,7 @@ char	*get_value_from_str(char *str)
 	return (value);
 }
 
-
-int handle_kv_update(t_env *env, char *key, char *value, int tog)
+int	handle_kv_update(t_env *env, char *key, char *value, int tog)
 {
 	if (!is_valid_key(key))
 	{
@@ -57,7 +56,7 @@ int handle_kv_update(t_env *env, char *key, char *value, int tog)
 	{
 		if (!add_new_node(env, key, value))
 		{
-			return 0;
+			return (0);
 		}
 	}
 	if (tog)
@@ -65,12 +64,8 @@ int handle_kv_update(t_env *env, char *key, char *value, int tog)
 		free(key);
 		key = NULL;
 	}
-	return 1;
+	return (1);
 }
-
-
-
-
 
 void	init_list(t_env **list, char **envp)
 {
