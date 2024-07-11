@@ -127,6 +127,7 @@ env what
 minishell> lista o env
 bash>   env: ‘what’: No such file or directory
 
+## Solved
 unset -TEST
 >> a PATH desaparece
 
