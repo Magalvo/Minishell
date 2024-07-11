@@ -22,21 +22,15 @@ RIGHT leaf,
 
 ## cjoao-de notes:
 
-export T="echo segfault | grep segfault"
+<!-- export T="echo segfault | grep segfault"
  $T
 bash:
 segfault | grep segfault
 >> executa o echo
 minishell>
     echo segfault | grep segfault: command not found
->> nao executa o echo, parse nao e refeito
+>> nao executa o echo, parse nao e refeito -->
 
-export T="l"
-
-minishell> $?
->> 127: command not found
-bash-5.2$ $?
->> bash: 0: command not found
 
 '''''''''''''''' echo ok
 ok
@@ -52,7 +46,7 @@ bash-5.2$ $?
 bash: 127: command not found
 
 
-<| echo ok
+<!-- <| echo ok
 bash: syntax error near unexpected token `|'
 bash-5.2$ $?
 bash: 2: command not found
@@ -65,6 +59,13 @@ minishell> $?
 bash: sure: command not found
 bash-5.2$ $?
 bash: 127: command not found
+>> >> clober, not implemented -->
+
+ $EMPTY
+>> newline
+""
+command not found
+>> tem de devolver um non-printable
 
 
 ls | cat << stop | ls -la | cat << stop1 | ls | cat << stop2 | ls -la > > out | cat << stop3
@@ -87,17 +88,20 @@ echo segfault <"<<<"<<amazing
 > amazing
 bash: <<<: No such file or directory
 
+<!--
 minishell> echo seg <> echo seg
 syntax error: unexpected token
 bash$ echo seg <> echo seg
 seg seg
+>> The redirection operator. [ n ]<> word. causes the file whose name is the expansion of word to be opened for both reading and writing on file descriptor n , or on file descriptor 0 if n is not specified. If the file does not exist, it is created.
+
 
 echo <<< echo seegf
 syntax error: unexpected token
 bash
 echo <<< echo seegf
 seegf
-
+>> Here Strings -->
 
 
 /*
@@ -143,8 +147,6 @@ unset TES;T
 cd --
 >> ignorar, cd with only a relative or absolute path
 
-
-## dde-maga notes:
 
 ### VSCODE
 disable 42 Header extension for this workspace

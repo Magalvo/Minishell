@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/10 10:57:36 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:38:06 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_cmd	*parse_cmd(char *input, t_ms *s)
 
 	if (input == NULL)
 		return (NULL);
-	ft_strrep_range(input, NULL, (char)17, '$');
+	ft_strrep_range(input, NULL, DOLAR, '$');
 	end = NULL;
 	end = input;
 	while (true)
@@ -70,11 +70,6 @@ t_cmd	*parse_cmd(char *input, t_ms *s)
 	end = input + ft_strlen(input);
 	cmd = parse_pipe(&input, end, s);
 	peek(&input, end, "");
-	// if (input != end)
-	// {
-	// 	ft_dprintf(STDERR_FILENO, "\'%s\' ", input);
-	// 	reprompt(INCOMPLETE_PARSE, 2, s);
-	// }
 	return (cmd);
 }
 

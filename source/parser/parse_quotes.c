@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:08 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/05 20:19:45 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:42:28 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,30 +44,6 @@ int	*magic_key(void)
 		key[2] = NONE;
 	}
 	return (key);
-}
-
-int	syntax_quotes(const char *str)
-{
-	int	*key;
-
-	key = magic_key();
-	while (*str)
-	{
-		if (*str == QUOTE)
-		{
-			if (key[E_DQUOTE] == NONE)
-				(key[E_QUOTE] ^= E_QUOTE);
-		}
-		else if (*str == DQUOTE)
-		{
-			if (key[E_QUOTE] == NONE)
-				(key[E_DQUOTE] ^= E_DQUOTE);
-		}
-		str++;
-	}
-	if (key[E_QUOTE] != NONE || key[E_DQUOTE] != NONE)
-		return (free(key), -1);
-	return (free(key), 0);
 }
 
 // check what type of quotes a ptr on a string has, if any

@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:21:13 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/26 18:39:47 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:25:25 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ char	*ft_getrnd_str(void)
 
 char	*ft_get_empty(void)
 {
-	char	no_char;
+	// char	no_char;
 	char	*empty;
 
-	no_char = (char)17;
+	// no_char = EMPTY;
 	empty = ft_calloc(1, 2);
-	empty[0] = no_char;
+	empty[0] = EMPTY;
 	empty[1] = '\0';
 	return (empty);
 }

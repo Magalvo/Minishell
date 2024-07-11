@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:10:49 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/10 17:36:11 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:28:31 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ char	*expand_dolar(char *input, char *ps, t_ms *s)
 	{
 		keylen = (ft_strlen(key)) + 1;
 		val = get_env_val(s->env, key, s);
+		if (val == NULL)
+			val = ft_get_empty();
 		glue_str(val, val + ft_strlen(val));
 	}
 	// if ((*(ps + 1) == '"' && is_quoted(input, ps) == E_DQUOTE)
@@ -37,7 +39,7 @@ char	*expand_dolar(char *input, char *ps, t_ms *s)
 	// 	return (*(ps) = 17, input);
 		// return (*(ps) = 17, s->one_dolar = true, input);
 	if (*(ps + 1) == '"' && is_quoted(input, ps) == E_DQUOTE)
-		return (free(key), *(ps) = 17, input);
+		return (free(key), *(ps) = DOLAR, input);
 	res = get_expanded(input, ps, val, ps + keylen);
 	return (free(key), free(val), free(input), res);
 }
