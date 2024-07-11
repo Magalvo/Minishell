@@ -6,7 +6,7 @@
 #    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/07/10 17:50:11 by cjoao-de         ###   ########.fr        #
+#    Updated: 2024/07/11 13:43:07 by cjoao-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ PARSER =    aux.c expand_tilde.c expand_vars.c expand_vars2.c \
 			get_newstr.c init_cmd.c init_heredoc.c init_heredoc_aux.c \
 			parse_exec.c parse_prechecks.c parse_quotes.c parse_redir.c \
 			parse.c syntax_tests.c tokens.c str_utils.c str_utils2.c \
+			syntax_tests2.c
 
 AUX = aux1.c env_aux.c env_aux2.c pipe_exec.c redir_exec.c \
 		free.c	ft_ms_aux.c env_aux3.c	env_aux4.c fd_aux.c

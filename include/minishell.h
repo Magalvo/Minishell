@@ -99,13 +99,14 @@ void	requoter(char *start, char *end);
 void	skip_spaces(char *str, char *es);
 char	*reassemble_input(char *start);
 bool	syntax_validation(char *input, t_ms *s);
-int		syntax_quotes(const char *str);
+bool	syntax_quotes(const char *str);
 int		*magic_key(void);
 bool	syntax_pipes(const char *str, const char *end);
 bool	syntax_and_or(const char *str);
 bool	syntax_list(const char *str);
 bool	syntax_back(const char *str);
 bool	syntax_parenthesis(const char *str);
+bool	syntax_redir(char *str, char *end);
 
 char	*expand_sw_vars(char *input, t_ms *s);
 char	*expand_var(char *input, t_ms *s);
@@ -190,10 +191,11 @@ void	free_env_list(t_env *env);
 void 	cleanup_shell(t_ms *s);
 void	clear_cmd(t_cmd *cmd);
 // char	*get_pid(t_ms *s);
-char	*ft_getpid(void);
 void	free_env_array(char **env_array);
 void	init_aux(t_env **head, t_env **tail, t_env *new_node);
 char	*ft_getrnd_str(void);
+char	*ft_get_empty(void);
+char	*ft_getpid(void);
 
 //*==================== AUX 3 =======================*//
 

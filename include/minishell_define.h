@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/08 17:15:07 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:19:48 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define UNTOKENS	"\x12\x13\x14" // { } $ @ ' " \ / * ;
 # define QUOTES		"'\""
 # define UNQUOTES	"\x15\x16"
+# define DOLAR		'\x11'
+# define EMPTY		'\x10'
 // # define EMPTY_ARG 17
 
 //*======================= STRUCTS ====================== *//

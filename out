@@ -1,0 +1,27 @@
+total 212
+drwxr-xr-x. 1 kajo kajo    486 Jul 11 14:51 .
+drwxr-xr-x. 1 kajo kajo    210 Jul 10 23:06 ..
+drwxr-xr-x. 1 kajo kajo    132 Jul  4 15:13 42_minishell_tester
+drwxr-xr-x. 1 kajo kajo     90 Jul  4 20:48 .devcontainer
+-rw-r--r--. 1 kajo kajo      0 Jul 10 21:13 echo
+-rw-r--r--. 1 kajo kajo     61 Jul  9 14:57 file name with spaces
+drwxr-xr-x. 1 kajo kajo    204 Jul 11 14:50 .git
+drwxr-xr-x. 1 kajo kajo     28 Jul  4 20:48 .github
+-rwxr-xr-x. 1 kajo kajo    735 Jul  4 20:49 .gitignore
+-rwxr-xr-x. 1 kajo kajo    469 Jul  3 20:06 g.sh
+drwxr-xr-x. 1 kajo kajo    126 Jul 10 17:08 include
+drwxr-xr-x. 1 kajo kajo     10 Jul  3 20:06 libs
+-rwxr-xr-x. 1 kajo kajo   4284 Jul 11 13:43 Makefile
+-rwxr-xr-x. 1 kajo kajo 173128 Jul 11 14:47 minishell
+-rwxr-xr-x. 1 kajo kajo    846 Jul  4 00:54 minishell.code-workspace
+drwxr-xr-x. 1 kajo kajo    268 Jul 10 19:04 minishell_tester
+drwxr-xr-x. 1 kajo kajo    138 Jul 11 14:47 object
+-rw-r--r--. 1 kajo kajo    212 Jul 10 21:07 ola
+-rw-r--r--. 1 kajo kajo      0 Jul 11 14:51 out
+-rwxr-xr-x. 1 kajo kajo    799 Jul  4 00:54 readline.supp
+-rwxr-xr-x. 1 kajo kajo   3421 Jul 10 22:37 README.md
+drwxr-xr-x. 1 kajo kajo    276 Jul 10 19:09 reference
+drwxr-xr-x. 1 kajo kajo    180 Jul 10 10:47 source
+drwxr-xr-x. 1 kajo kajo    374 Jul  4 00:54 test_results
+drwxr-xr-x. 1 kajo kajo     68 Jul 10 17:08 .vscode
+-rwxr-xr-x. 1 kajo kajo   2642 Jul  4 00:54 workspaceState.state.json

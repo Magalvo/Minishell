@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:00 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/10 17:51:06 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/11 14:11:06 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	syntax_validation(char *input, t_ms *s)
 {
-	if (syntax_quotes(input))
+	if (!syntax_quotes(input))
 		return (reprompt(MISSING_QUOTE, 1, s), NULL);
 	if (!syntax_and_or(input))
 		return (reprompt(LOGICAL_TOKEN, 1, s), NULL);
@@ -26,6 +26,8 @@ bool	syntax_validation(char *input, t_ms *s)
 		return (reprompt(SINGLE_AMPERSAND, 1, s), NULL);
 	if (!syntax_parenthesis(input))
 		return (reprompt(PARENTHESIS, 1, s), NULL);
+	if (!syntax_redir(input, (char *)input + ft_strlen(input)))
+		return (reprompt(INVALID_TOKEN, 1, s), NULL);
 	else
 		return (true);
 }
@@ -43,7 +45,7 @@ char	*expand_sw_vars(char *input, t_ms *s)
 		{
 			if ((pos > xp_input && *(pos - 1) == '"' && *(pos + 1) == '"')
 				|| (pos != NULL && ft_strchr(SPACES, *(pos + 1))))
-				*(pos) = 17;
+				*(pos) = DOLAR;
 			pos = ft_strchr(xp_input, '$');
 			xp_input = vars_sw(xp_input, pos, s);
 			pos = ft_strchr(xp_input, '$');
@@ -71,7 +73,7 @@ char	*expand_var(char *input, t_ms *s)
 			pos = ft_strchr(xp_input, '$');
 			if ((pos && *(pos - 1) == '"' && *(pos + 1) == '"')
 				|| ft_strchr(SPACES, *(pos + 1)))
-				*(pos) = 17;
+				*(pos) = DOLAR;
 			// if (pos && *(pos - 1) == '"' && *(pos + 1) == '"')
 				// *(pos) = 17;
 		}
