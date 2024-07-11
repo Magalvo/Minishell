@@ -1,33 +1,33 @@
 # MiniShell
 
-see reference/ for study materials   
-use 'make debug' instead of 'make re' (won't recompile libft, and adds -g flag)   
-   
+see reference/ for study materials
+use 'make debug' instead of 'make re' (won't recompile libft, and adds -g flag)
+
 ## dde-maga notes:
 echo <"./test_files/infile_big" | cat <"./test_files/infile"
 
 minishell> echo <"./expa" | cat <"vina"
-type PIPE, 
-LEFT leaf, 
-        type REDIR < RDONLY, 
-        FILE: ./expa 
-                type EXEC, args: 
+type PIPE,
+LEFT leaf,
+        type REDIR < RDONLY,
+        FILE: ./expa
+                type EXEC, args:
                 echo
-RIGHT leaf, 
-        type REDIR < RDONLY, 
-        FILE: vina 
-                type EXEC, args: 
+RIGHT leaf,
+        type REDIR < RDONLY,
+        FILE: vina
+                type EXEC, args:
                 cat
 
 
 ## cjoao-de notes:
-  
+
 export T="echo segfault | grep segfault"
- $T  
+ $T
 bash:
 segfault | grep segfault
 >> executa o echo
-minishell> 
+minishell>
     echo segfault | grep segfault: command not found
 >> nao executa o echo, parse nao e refeito
 
@@ -43,7 +43,7 @@ ok
 minishell> $?
 0: command not found
 >> BNF //1st arg vazio, devia parar ai, execve esta a saltar argv[0]?
-type EXEC, args: 
+type EXEC, args:
 
 echo
 ok
@@ -102,7 +102,7 @@ seegf
 
 /*
 export TEST+=100
-export TEST+=100  
+export TEST+=100
     expected "100100"
 */
 
@@ -114,11 +114,13 @@ export -TEST=123
 minishell: export: `': not a valid identifier
 >> msg de erro antiga.
 
+## Solved
 minishell> exit aa bb
 exit
 minishell: exit : too many arguments
 >> devia sair
 
+## Solved
 env what
 minishell> lista o env
 bash>   env: ‘what’: No such file or directory
@@ -145,9 +147,9 @@ cd --
 ## dde-maga notes:
 
 ### VSCODE
-disable 42 Header extension for this workspace   
-    (select extension, click the down arrow next to disable, select workspace)   
-Add this line to your settings.json file, to prevent markdown files losing format.   
-"[markdown]": {   
-    "files.trimTrailingWhitespace": false   
-}  
+disable 42 Header extension for this workspace
+    (select extension, click the down arrow next to disable, select workspace)
+Add this line to your settings.json file, to prevent markdown files losing format.
+"[markdown]": {
+    "files.trimTrailingWhitespace": false
+}

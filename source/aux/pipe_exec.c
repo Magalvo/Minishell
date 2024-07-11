@@ -6,13 +6,53 @@
 /*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/10 16:56:33 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:36:19 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-// TODO Function has more than 25 lines
+char	*path_constructor(const char *path, const char *cmd, int slashi)
+{
+	char	*new_path;
+	char	*temp;
+
+	if(slashi)
+	{
+		temp = ft_strjoin(path, "/");
+		if(!temp)
+			return (NULL);
+		new_path = ft_strjoin(temp, cmd);
+		free(temp);
+	}
+	else
+		new_path = ft_strjoin(path, cmd);
+	return new_path;
+}
+
+int abs_or_rel_path(const char *cmd)
+{
+	return(cmd[0] == '/' || (cmd[0] == '.' && cmd[1] == '/'));
+}
+
+char	*check_abs_or_rel(const char *cmd, t_ms *s)
+{
+	if (access(cmd, F_OK) != 0)
+	{
+		not_found((char *)cmd, 127, s);
+		s->exit_stat = 127;
+		return(NULL);
+	}
+	else if (access(cmd, X_OK) != 0)
+	{
+		not_found((char *)cmd, 126, s);
+		s->exit_stat = 126;
+		return(NULL);
+	}
+	else
+		return (ft_strdup(cmd));
+}
+
 void	exec_one(t_ms *s, char **argv)
 {
 	char	*path;
@@ -39,17 +79,17 @@ void	exec_one(t_ms *s, char **argv)
 	if (argv && argv[0] != NULL)
 	{
 		path = cmd_path(s->paths, argv[0], s);
-		if (!path)
-		{
+	if (!path)
+	{
 			not_found(argv[0], 127, s);
 			s->exit_stat = 127;
-			return ;
-		}
+		return ;
+	}
 		cmd_name = ft_strchr(argv[0], '/');
 		if (cmd_name)
 			argv[0] = ++cmd_name;
-		execve(path, argv, s->env_tmp);
-		free(path);
+	execve(path, argv, s->env_tmp);
+	free(path);
 	}
 }
 
@@ -129,7 +169,7 @@ void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			cmd = cmd->cmd;
 		if(ft_isspace(cmd->argv[0][0] || cmd->argv[0][0] == '\0'))
 			not_found(cmd->argv[0], 127, s);
-		
+
 		return ;
 	}
 	if (s->ast && s->ast->argc > 0)

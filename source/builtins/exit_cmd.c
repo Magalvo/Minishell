@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicarval <dicarval@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:04 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/09 15:28:14 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/07/11 16:38:28 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	exit_cmd(t_ms *s, char **cmds)
 			s->exit_stat = 1;
 			return (print_exit(s, cmds[0], " : too many arguments\n", 1));
 		}
-		return (print_exit(s, cmds[0], " : too many arguments\n", 1));
+		return (print_exit(s, cmds[0], " : numeric argument required\n", 2));
 	}
 	else if (s->ast->argc >= 2)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:59 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/10 11:07:12 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/11 10:25:55 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int export_cmd(t_ms *s, char **str)
 		if (!key || !is_valid_key(key))
 		{
 			free_key(&key);
-			export_cmd_error(s, ": not a valid identifier", key);
+			export_cmd_error(s, ": not a valid identifier", str[i]);
 		}
 		else
 		{

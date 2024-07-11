@@ -174,6 +174,11 @@ void	print_ast_pipe(t_ms *s, t_cmd *ptr, int padding);
 void	print_ast_redir(t_ms *s, t_cmd *ptr, int padding);
 void	print_ast_heredoc(t_ms *s, t_cmd *ptr, int padding);
 void	print_2d(char **ptr, int padding);
+char	*path_constructor(const char *path, const char *cmd, int slashi);
+char	*check_abs_or_rel(const char *cmd, t_ms *s);
+int		is_dir(const char *cmd);
+int		abs_or_rel_path(const	char *cmd);
+void	print_exit(t_ms *s, char *cmds, char *str, int status);
 // char	*empty(void);
 
 
