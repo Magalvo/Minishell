@@ -149,9 +149,9 @@ int	builtins_parent(t_ms *s, char **cmds, int fd_in, int fd_out)
 {
 	(void)fd_in;
 	(void)fd_out;
-	if (ft_sw_builtins(cmds[0], "echo") == 0)
-		return (echo_cmd_test(cmds, s, fd_in, fd_out), 1);
-	else if (ft_sw_builtins(cmds[0], "cd") == 0)
+/* 	if (ft_sw_builtins(cmds[0], "echo") == 0)
+		return (echo_cmd_test(cmds, s, fd_in, fd_out), 1); */
+	if (ft_sw_builtins(cmds[0], "cd") == 0)
 		return (cd_cmd(s, cmds), 1);
 	else if (ft_sw_builtins(cmds[0], "env") == 0)
 		return (env_cmd(s, cmds));
@@ -242,8 +242,8 @@ void	exec_from_ast(t_ms *s)
     if (!ft_exec_paria(s, s->ast))
 	{
 		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
+		s->wait = 0;
 	}
 	/* if(original)
 		s->ast->argv = original; */
-    s->wait = 0;
 }
