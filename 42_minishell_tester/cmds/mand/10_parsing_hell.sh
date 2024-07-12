@@ -148,7 +148,9 @@ export T=e E=c S=h L=o
 $T$E$S$L -nn
 
 export T=e E=c S=h L=o
-$T$E"c"$L -nn
+$T$E"c"$L -nnls >
+        e
+
 
 export T=e E=c S=h L=o
 $T$E"C"$L -nn
@@ -300,7 +302,7 @@ echo '$'$'$'$'$'$'$'
 
 echo "$"$'$'$"$"$"$"$'$'
 
-echo $/ $/ 
+echo $/ $/
 
 echo $U/SER
 

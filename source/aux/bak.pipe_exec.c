@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe_exec.c                                        :+:      :+:    :+:   */
+/*   bak.pipe_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/12 20:36:58 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/12 20:34:28 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,31 +199,12 @@ void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
         single_exec(s, cmd, fd_in, fd_out);
 }
 
-bool	check_argv(t_cmd *cmd)
-{
-	if (!cmd)
-		return false;
-	if (cmd->left)
-		check_argv(cmd->left);
-	if (cmd->right)
-		check_argv(cmd->right);
-	if (cmd->cmd)
-		check_argv(cmd->cmd);
-	if (cmd->type == EXEC && !cmd->argv[0])
-		return false;
-	return true;
-}
 
-void	exec_from_ast(t_ms *s)
+void exec_from_ast(t_ms *s)
 {
 	//char	**original;
 
-	if (!s->ast || !check_argv(s->ast))
-		return ;
-	// check_argv(s->ast)
-
-	original = s->ast->argv;
-	if (s->ast->type == EXEC && s->ast->argv[0][0] == '\0')
+    if (!s->ast)
 	{
 		return;
 	}

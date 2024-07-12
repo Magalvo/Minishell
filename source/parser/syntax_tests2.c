@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:08 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/11 14:51:47 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/12 18:59:51 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ bool	syntax_redir(char *str, char *end)
 		tok = get_token(&str, end, 0, 0);
 		if (tok == 0)
 			break ;
-		if (peek(&str, end, "<>") && ft_strchr("<>", tok))
+		if (peek(&str, end, "<>") && ft_strchr("<>", tok)
+			&& is_quoted(ps_cpy, str) == NONE)
 		{
 			str = ps_cpy;
 			end = es_cpy;

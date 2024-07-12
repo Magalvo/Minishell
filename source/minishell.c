@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/10 10:56:15 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/12 20:00:52 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 		// 	input = ft_strtrim(line, "\n");
 		// 	free(line);
 		// }
+
 
 void	minishell(char **envp)
 {

@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/11 13:38:06 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:58:51 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ t_cmd	*parse_cmd(char *input, t_ms *s)
 
 	if (input == NULL)
 		return (NULL);
-	ft_strrep_range(input, NULL, DOLAR, '$');
+	// no dolar replacement is done before this step anymore
+	// ft_strrep_range(input, NULL, DOLAR, '$');
 	end = NULL;
 	end = input;
 	while (true)
