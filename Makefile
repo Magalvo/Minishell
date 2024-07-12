@@ -6,7 +6,7 @@
 #    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/07/11 13:43:07 by cjoao-de         ###   ########.fr        #
+#    Updated: 2024/07/12 22:05:10 by cjoao-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ include include/pretty_colors_ANSI
 # Project files
 BUILTINS =  builtins.c cd_cmd.c echo_cmd.c env_cmd.c \
 			exit_cmd.c export_cmd.c pwd_cmd.c unset_cmd.c \
-			export_print.c export_aux.c export_update.c\
+			export_print.c export_aux.c export_aux2.c export_update.c\
 
 EXECUTOR =  executor.c ast.c frees.c \
 

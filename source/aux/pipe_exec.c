@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/12 21:25:07 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/12 22:52:43 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,6 +220,8 @@ void	exec_from_ast(t_ms *s)
 {
 	//char	**original;
 
+	// ! || !check_argv(s->ast)) added to chck for faux argv:
+	// ! (paste of invalid char on terminal)
 	if (!s->ast || !check_argv(s->ast))
 		return ;
 	/* original = NULL;

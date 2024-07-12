@@ -22,8 +22,36 @@ RIGHT leaf,
 
 ## cjoao-de notes:
 
-### LEAKS
+works:
+export +=cenas 
 
+segfault protc when argv[0] is not null but invalid
+- what?!?
+- select between > <  >		
+    < to here, mid click on prompt, enjoy.
+
+JUST THIS NOW
+./cenas.exe     should work (and it does)
+&&
+cenas.exe       should not work (but it does)
+
+
+
+"		"
+minishell> "            "
+                 : command not found
+<!-- bash is joking -->
+bash: $'\t\t': command not found
+
+
+just ">"
+$? 
+minishell 1
+bash 2
+
+## ENV -i
+
+<!-- done from here -->
 export T=e E=c S=h L=o
 $T$E"C"$L "" -""n
 

@@ -6,29 +6,27 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:10:49 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/12 18:19:01 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/13 00:32:53 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+// expands $VAR, safeguarding empty and quoted $VAR
 char	*expand_dolar(char *input, char *ps, t_ms *s)
 {
 	char	*end;
 	char	*key;
 	char	*val;
 	char	*res;
-	int		keylen;
 
 	end = ps;
-	keylen = 0;
 	val = NULL;
 	while (ft_isalpha(*++end) || *end == '_')
 		;
 	key = ft_substr(input, (ps + 1) - input, (end - 1) - ps);
 	if (key)
 	{
-		keylen = (ft_strlen(key)) + 1;
 		val = get_env_val(s->env, key, s);
 		if (val == NULL)
 			val = EMPTY_STR;
@@ -36,12 +34,13 @@ char	*expand_dolar(char *input, char *ps, t_ms *s)
 	}
 	if (*(ps + 1) == '"' && is_quoted(input, ps) == E_DQUOTE)
 		return (free(key), *(ps) = DOLAR, input);
-	res = get_expanded(input, ps, val, ps + keylen);
+	res = get_expanded(input, ps, val, ps + ft_strlen(key) + 1);
 	if (!(val[0] == EMPTY))
 		free(val);
 	return (free(key), free(input), res);
 }
 
+// case switch for $VAR specific cases, returns expanded string
 char	*vars_sw(char *xp_input, char *pos, t_ms *s)
 {
 	if (pos == NULL)

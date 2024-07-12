@@ -6,12 +6,13 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:23:29 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/12 21:56:40 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/13 00:09:12 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
+/* backup */
 // char	*get_key_from_str(const char *str)
 // {
 // 	char	*delimiter;
@@ -29,13 +30,10 @@ char	*get_key_from_str(const char *str)
 {
 	char	*delimiter;
 	char	*key;
-	// char	*oldkey;
 
 	delimiter = ft_strchr(str, '=');
-	if (*(delimiter - 1) == '+')
-		// oldkey = get_env_val(s->env, key, s)
-		// key = ft_strjoin(extract_key(str, delimiter));
-
+	// ! next 2 lines added
+	if (delimiter && *(delimiter - 1) == '+')
 		key = extract_key(str, --delimiter);
 	else if (delimiter)
 		key = extract_key(str, delimiter);

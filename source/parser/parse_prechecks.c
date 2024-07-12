@@ -6,12 +6,13 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:00 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/11 14:11:06 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/13 00:30:23 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+// preparse syntax validation, rejects invalid symbols and crude syntax errors
 bool	syntax_validation(char *input, t_ms *s)
 {
 	if (!syntax_quotes(input))
@@ -27,11 +28,12 @@ bool	syntax_validation(char *input, t_ms *s)
 	if (!syntax_parenthesis(input))
 		return (reprompt(PARENTHESIS, 1, s), NULL);
 	if (!syntax_redir(input, (char *)input + ft_strlen(input)))
-		return (reprompt(INVALID_TOKEN, 1, s), NULL);
+		return (reprompt(INVALID_TOKEN, 2, s), NULL);
 	else
 		return (true);
 }
 
+// iterates char *input to find $VAR possible to expand, returns expanded string
 char	*expand_sw_vars(char *input, t_ms *s)
 {
 	char	*pos;
@@ -49,31 +51,6 @@ char	*expand_sw_vars(char *input, t_ms *s)
 			pos = ft_strchr(xp_input, '$');
 			xp_input = vars_sw(xp_input, pos, s);
 			pos = ft_strchr(xp_input, '$');
-			// if (pos && *(pos - 1) == '"' && *(pos + 1) == '"')
-				// *(pos) = 17;
-		}
-		else
-			pos = ft_strchr(pos + 1, '$');
-	}
-	return (free(input), xp_input);
-}
-
-char	*expand_var(char *input, t_ms *s)
-{
-	char	*pos;
-	char	*xp_input;
-
-	xp_input = ft_strdup(input);
-	pos = ft_strchr(xp_input, '$');
-	while (pos)
-	{
-		if (is_quoted(xp_input, pos) != E_QUOTE)
-		{
-			xp_input = vars_sw(xp_input, pos, s);
-			pos = ft_strchr(xp_input, '$');
-			if ((pos && *(pos - 1) == '"' && *(pos + 1) == '"')
-				|| ft_strchr(SPACES, *(pos + 1)))
-				*(pos) = DOLAR;
 			// if (pos && *(pos - 1) == '"' && *(pos + 1) == '"')
 				// *(pos) = 17;
 		}

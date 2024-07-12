@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:15 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/10 11:05:22 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/13 00:03:11 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int	cd_cmd(t_ms *mini, char **path)
 	if (chdir(path[1]) == -1)
 	{
 		mini->exit_stat = 1;
-		if(access(path[1], F_OK) == 0)
+		if (access(path[1], F_OK) == 0)
 			return (cd_cmd_error("Not a directory"));
 		return (cd_cmd_error("No such file or directory"));
 	}

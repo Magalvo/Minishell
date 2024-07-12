@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:07 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/11 09:42:06 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/12 23:59:57 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	env_cmd(t_ms *s, char **cmds)
 	else if (cmds[1])
 	{
 		s->exit_stat = 127;
-		return(not_found(cmds[1], 127, s), 1);
+		return (not_found(cmds[1], 127, s), 1);
 	}
 	else
 		print_current_env(s->env);

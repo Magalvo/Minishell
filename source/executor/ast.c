@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:23 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/12 21:25:40 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/13 00:15:00 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	}
 	else if (cmd->type == REDIR || cmd->type == HEREDOC)
 	{
-		if(fd_in != STDIN_FILENO && cmd->fd == 0 && s->ast->type == PIPE)
+		if (fd_in != STDIN_FILENO && cmd->fd == 0 && s->ast->type == PIPE)
 			fd_in = STDIN_FILENO;
 		exec_redir(s, cmd, fd_in, fd_out);
 	}
@@ -67,7 +67,6 @@ int	not_found(char *str, int status, t_ms *s)
 
 	(void)s;
 	temp = str;
-	// err = 1;
 	if (temp)
 		ft_putstr_fd(temp, 2);
 	if (status == 127)
@@ -77,10 +76,10 @@ int	not_found(char *str, int status, t_ms *s)
 			if (is_dir(str))
 			{
 				s->exit_stat = 126;
-				return(ft_putstr_fd(" : Is a directory\n", 2), 0);
+				return (ft_putstr_fd(" : Is a directory\n", 2), 0);
 			}
 			else if (!is_dir(str) && (str[0] == '/' || str[0] == '.'))
-				return(ft_putstr_fd(" : No such file or directory\n", 2), 0);
+				return (ft_putstr_fd(" : No such file or directory\n", 2), 0);
 		}
 		else
 			return (ft_putstr_fd(" : command not found\n", 2), 0);

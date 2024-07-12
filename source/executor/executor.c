@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:04:53 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/11 17:37:48 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/13 00:13:59 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,16 @@ char	*cmd_path(char **paths, char *cmd, t_ms *s)
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
 	{
-		return(NULL);
+		return (NULL);
 	}
 	command = path_constructor(cwd, cmd, 1);
 	free(cwd);
 	if (command && access(command, X_OK | F_OK) == 0)
 	{
 		return (command);
-	}    
-    free(command);
-    return(NULL);
+	}
+	free(command);
+	return (NULL);
 }
 
 void	new_line(void)
