@@ -22,6 +22,19 @@ RIGHT leaf,
 
 ## cjoao-de notes:
 
+### LEAKS
+
+export T=e E=c S=h L=o
+$T$E"C"$L "" -""n
+
+export T="s"
+l$T -a
+export T="|"
+$T$T$T$T$T$T$T
+p""''''w''''''""""""''''''''''''''''''''''''''''''''d
+<| echo ok
+>| echo sure
+
 <!-- export T="echo segfault | grep segfault"
  $T
 bash:

@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:17:00 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/05 19:29:00 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/12 19:35:12 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	syntax_pipes(const char *str, const char *end)
 		return (true);
 	if (ft_strchr("|", *str))
 		return (false);
-	while (str < end && ft_strrchr(SPACES, *end - 1))
+	while (str < end && ft_strrchr(SPACES, *(end - 1)))
 		end--;
 	if (ft_strrchr("|", *(end - 1)))
 		return (false);
