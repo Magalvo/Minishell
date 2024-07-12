@@ -222,7 +222,7 @@ void	exec_from_ast(t_ms *s)
 		return ;
 	// check_argv(s->ast)
 
-	original = s->ast->argv;
+	//original = s->ast->argv;
 	if (s->ast->type == EXEC && s->ast->argv[0][0] == '\0')
 	{
 		return;
