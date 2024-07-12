@@ -46,7 +46,8 @@ void	exit_cmd(t_ms *s, char **cmds)
 			s->exit_stat = 1;
 			return (print_exit(s, cmds[0], " : too many arguments\n", 1));
 		}
-		return (print_exit(s, cmds[0], " : numeric argument required\n", 2));
+		print_exit(s, cmds[0], " : numeric argument required\n", 2);
+		exit_minishell(s, NULL);
 	}
 	else if (s->ast->argc >= 2)
 	{

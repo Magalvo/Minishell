@@ -67,7 +67,6 @@ int	not_found(char *str, int status, t_ms *s)
 
 	(void)s;
 	temp = str;
-	err = 1;
 	if (temp)
 		ft_putstr_fd(temp, 2);
 	if (status == 127)
