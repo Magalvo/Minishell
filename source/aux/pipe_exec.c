@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/12 20:36:58 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/12 21:25:07 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,13 +220,6 @@ void	exec_from_ast(t_ms *s)
 
 	if (!s->ast || !check_argv(s->ast))
 		return ;
-	// check_argv(s->ast)
-
-	//original = s->ast->argv;
-	if (s->ast->type == EXEC && s->ast->argv[0][0] == '\0')
-	{
-		return;
-	}
 	/* original = NULL;
     if (s->ast->argv && s->ast->type == EXEC && s->ast->argv[0][0] == '\020')
     {

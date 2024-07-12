@@ -6,19 +6,38 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:23:29 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/10 11:08:30 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/12 21:56:40 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
+// char	*get_key_from_str(const char *str)
+// {
+// 	char	*delimiter;
+// 	char	*key;
+
+// 	delimiter = ft_strchr(str, '=');
+// 	if (delimiter)
+// 		key = extract_key(str, delimiter);
+// 	else
+// 		key = ft_strdup(str);
+// 	return (key);
+// }
+
 char	*get_key_from_str(const char *str)
 {
 	char	*delimiter;
 	char	*key;
+	// char	*oldkey;
 
 	delimiter = ft_strchr(str, '=');
-	if (delimiter)
+	if (*(delimiter - 1) == '+')
+		// oldkey = get_env_val(s->env, key, s)
+		// key = ft_strjoin(extract_key(str, delimiter));
+
+		key = extract_key(str, --delimiter);
+	else if (delimiter)
 		key = extract_key(str, delimiter);
 	else
 		key = ft_strdup(str);
@@ -38,6 +57,22 @@ char	*get_value_from_str(char *str)
 	equal_sign -= 1;
 	return (value);
 }
+
+// char	*get_value_from_str(const char *str)
+// {
+// 	char	*equal_sign;
+// 	char	*value;
+
+// 	equal_sign = ft_strchr(str, '=');
+// 	if (!equal_sign)
+// 		return (NULL);
+// 	if (*(equal_sign - 1) == '+')
+// 		equal_sign += 1;
+// 	equal_sign += 1;
+// 	value = ft_strdup(equal_sign);
+// 	// equal_sign -= 1;
+// 	return (value);
+// }
 
 int	handle_kv_update(t_env *env, char *key, char *value, int tog)
 {
