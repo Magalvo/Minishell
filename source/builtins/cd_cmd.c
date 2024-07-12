@@ -126,6 +126,8 @@ int	cd_cmd(t_ms *mini, char **path)
 	if (chdir(path[1]) == -1)
 	{
 		mini->exit_stat = 1;
+		if(access(path[1], F_OK) == 0)
+			return (cd_cmd_error("Not a directory"));
 		return (cd_cmd_error("No such file or directory"));
 	}
 	val = get_env_val(env, "PWD", NULL);

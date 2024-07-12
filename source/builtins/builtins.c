@@ -75,7 +75,7 @@ int	ft_exec_builtins_chr(t_ms *s, char **cmds, int fd_in, int fd_out)
 		return (1); */
 	if (ft_sw_builtins(cmds[0], "echo") == 0)
 		return (echo_cmd_test(cmds, s, fd_in, fd_out), 1);
-	if (ft_sw_builtins(cmds[0], "cd") == 0)
+	else if (ft_sw_builtins(cmds[0], "cd") == 0)
 		return (cd_cmd(s, cmds), 1);
 	else if (ft_sw_builtins(cmds[0], "env") == 0)
 		return (env_cmd(s, cmds));

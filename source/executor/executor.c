@@ -15,15 +15,16 @@
 char	*cmd_path(char **paths, char *cmd, t_ms *s)
 {
 	char	*command;
+	char	*cwd;
 
-	if (!paths || !cmd)
+	if (!cmd)
 		return (NULL);
-	if (chdir(cmd) == 0 && (cmd[0] == '.' || cmd[0] == '/'))
+	if (is_dir(cmd) && (cmd[0] == '.' || cmd[0] == '/'))
 	{
 		ft_dprintf(2, "minishell: %s : Is a directory\n", cmd);
 		return (set_exit(126, s), NULL);
 	}
-	while (*paths)
+	while (paths && *paths)
 	{
 		if (ft_strncmp(*paths, cmd, ft_strlen(*paths)) == 0)
 		{
@@ -34,11 +35,23 @@ char	*cmd_path(char **paths, char *cmd, t_ms *s)
 		}
 		command = ft_strjoin(*paths, cmd);
 		if (access(command, X_OK | F_OK) == 0)
-			return (printf("%s", command), command);
+			return (command);
 		free(command);
 		paths++;
 	}
-	return (NULL);
+	cwd = getcwd(NULL, 0);
+	if (!cwd)
+	{
+		return(NULL);
+	}
+	command = path_constructor(cwd, cmd, 1);
+	free(cwd);
+	if (command && access(command, X_OK | F_OK) == 0)
+	{
+		return (command);
+	}    
+    free(command);
+    return(NULL);
 }
 
 void	new_line(void)
@@ -77,7 +90,7 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	{
 		check_signal(CHILD);
 		if (ft_exec_builtins_chr(s, cmd->argv, fd_in, fd_out))
-			return(exit_minishell(s, NULL));
+			exit_minishell(s, NULL);
 		if (fd_in != STDIN_FILENO)
 			assist_file(fd_in, STDIN_FILENO);
 		else if (fd_out != STDOUT_FILENO)

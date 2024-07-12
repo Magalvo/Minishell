@@ -25,9 +25,10 @@ char	*path_constructor(const char *path, const char *cmd, int slashi)
 		new_path = ft_strjoin(temp, cmd);
 		free(temp);
 	}
+	if (access(new_path, X_OK) == 0)
+		return (new_path);
 	else
-		new_path = ft_strjoin(path, cmd);
-	return new_path;
+		return (NULL);
 }
 
 int abs_or_rel_path(const char *cmd)
@@ -79,17 +80,22 @@ void	exec_one(t_ms *s, char **argv)
 	if (argv && argv[0] != NULL)
 	{
 		path = cmd_path(s->paths, argv[0], s);
-	if (!path)
-	{
+		if (!path)
+		{
 			not_found(argv[0], 127, s);
 			s->exit_stat = 127;
-		return ;
-	}
+			return ;
+		}
 		cmd_name = ft_strchr(argv[0], '/');
 		if (cmd_name)
-			argv[0] = ++cmd_name;
-	execve(path, argv, s->env_tmp);
-	free(path);
+		{
+			cmd_name++;
+			argv[0] = cmd_name;
+		}
+		execve(path, argv, s->env_tmp);
+		not_found(argv[0], 127, s);
+		free(path);
+		s->exit_stat = 127;
 	}
 }
 
@@ -143,7 +149,9 @@ int	builtins_parent(t_ms *s, char **cmds, int fd_in, int fd_out)
 {
 	(void)fd_in;
 	(void)fd_out;
-	if (ft_sw_builtins(cmds[0], "cd") == 0)
+	if (ft_sw_builtins(cmds[0], "echo") == 0)
+		return (echo_cmd_test(cmds, s, fd_in, fd_out), 1);
+	else if (ft_sw_builtins(cmds[0], "cd") == 0)
 		return (cd_cmd(s, cmds), 1);
 	else if (ft_sw_builtins(cmds[0], "env") == 0)
 		return (env_cmd(s, cmds));
@@ -163,36 +171,60 @@ int	builtins_parent(t_ms *s, char **cmds, int fd_in, int fd_out)
 
 void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
-	if(ft_strlen(cmd->argv[0]) == 0)
-	{
-		if (cmd->argv[0][0] == '\x11')
-			cmd = cmd->cmd;
-		if(ft_isspace(cmd->argv[0][0] || cmd->argv[0][0] == '\0'))
-			not_found(cmd->argv[0], 127, s);
+    int	i;
 
-		return ;
-	}
-	if (s->ast && s->ast->argc > 0)
-		updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
-	if (!builtins_parent(s, cmd->argv, fd_in, fd_out))
-		single_exec(s, cmd, fd_in, fd_out);
+    if (cmd->argv && cmd->argv[0])
+    {
+        if (cmd->argv[0][0] == EMPTY)
+        {
+			i = 0;
+            free(cmd->argv[0]);
+			while(cmd->argv[i + 1] != NULL)
+			{
+				cmd->argv[i] = cmd->argv[i + 1];
+				i++;
+			}
+            cmd->argv[i] = NULL; 
+            cmd->argc -= 1;
+        }
+        else if (ft_isspace(cmd->argv[0][0]) || cmd->argv[0][0] == '\0')
+        {
+            not_found(cmd->argv[0], 127, s);
+            return;
+        }
+    }
+    if (cmd && cmd->argc > 0)
+        updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
+    if (!builtins_parent(s, cmd->argv, fd_in, fd_out))
+        single_exec(s, cmd, fd_in, fd_out);
 }
 
-void	exec_from_ast(t_ms *s)
-{
-	char	**original;
 
-	if (!s->ast)
-		return ;
-	original = s->ast->argv;
-	if (s->ast->type == EXEC && s->ast->argv[0][0] == '\0')
+void exec_from_ast(t_ms *s)
+{
+	//char	**original;
+
+    if (!s->ast)
 	{
-		while (*s->ast->argv && **s->ast->argv == '\0')
+		return;
+	}   
+	/* original = NULL;
+    if (s->ast->argv && s->ast->type == EXEC && s->ast->argv[0][0] == '\020')
+    {
+		original = s->ast->argv;
+        if (s->ast->argv[0][0] == '\020')
 			s->ast->argv++;
-	}
-	if (!ft_exec_paria(s, s->ast))
+    }
+	if (s->ast->argv && (ft_isspace(s->ast->argv[0][0]) || s->ast->argv[0][0] == '\0'))
+    {
+        not_found(s->ast->argv[0], 127, s);
+        return;
+    } */
+    if (!ft_exec_paria(s, s->ast))
+	{
 		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
-	if (s->ast->type == EXEC)
-		s->ast->argv = original;
-	s->wait = 0;
+	}
+	/* if(original)
+		s->ast->argv = original; */
+    s->wait = 0;
 }
