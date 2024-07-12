@@ -25,7 +25,9 @@ char	*path_constructor(const char *path, const char *cmd, int slashi)
 		new_path = ft_strjoin(temp, cmd);
 		free(temp);
 	}
-	if (access(new_path, X_OK) == 0)
+	if (ft_strcmp(cmd, "minishell") == 0)
+		return (NULL);
+	else if (access(new_path, X_OK) == 0)
 		return (new_path);
 	else
 		return (NULL);
