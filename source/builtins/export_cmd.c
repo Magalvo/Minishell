@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:59 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/13 00:01:20 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/13 11:25:46 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void	handle_key(t_ms *s, char *str, char *key)
 	char	*value;
 	char	*append;
 	char	*val;
+	char	*val2;
 
 	value = NULL;
 	append = ft_strchr(str, '=');
@@ -110,7 +111,10 @@ void	handle_key(t_ms *s, char *str, char *key)
 	if (append && *(append - 1) == '+')
 	{
 		val = get_env_val(s->env, key, s);
-		value = ft_strjoin(val, get_value_from_str(str));
+		val2 = get_value_from_str(str);
+		value = ft_strjoin(val, val2);
+		free(val);
+		free(val2);
 	}
 	else
 		value = get_value_from_str(str);
