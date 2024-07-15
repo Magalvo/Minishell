@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/08 19:26:08 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/15 13:56:43 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	free_argv2(t_cmd **cmd)
 
 void	reset_ast(t_ms *s)
 {
+	s->error = false;
 	if (s->ast)
 	{
 		free_ast(s->ast);
