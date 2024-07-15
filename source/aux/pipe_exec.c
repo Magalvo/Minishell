@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/12 22:52:43 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/15 13:09:34 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,10 +189,11 @@ void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
             cmd->argv[i] = NULL;
             cmd->argc -= 1;
         }
-        else if (ft_isspace(cmd->argv[0][0]) || cmd->argv[0][0] == '\0')
+        else if ((ft_isspace(cmd->argv[0][0]) && cmd->argv[0][0] == '\0' && !cmd->argv[1])  || cmd->argv[0][0] == '\0')
         {
             not_found(cmd->argv[0], 127, s);
-            return;
+			s->exit_stat = 127;
+            return ;
         }
     }
     if (cmd && cmd->argc > 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:23 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/13 00:15:00 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/15 13:04:43 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	not_found(char *str, int status, t_ms *s)
 			if (is_dir(str))
 			{
 				s->exit_stat = 126;
-				return (ft_putstr_fd(" : Is a directory\n", 2), 0);
+				return (ft_putstr_fd(" : is a directory\n", 2), 0);
 			}
 			else if (!is_dir(str) && (str[0] == '/' || str[0] == '.'))
 				return (ft_putstr_fd(" : No such file or directory\n", 2), 0);

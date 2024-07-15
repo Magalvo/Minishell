@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:04:53 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/13 00:13:59 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/15 13:07:02 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*cmd_path(char **paths, char *cmd, t_ms *s)
 		return (NULL);
 	if (is_dir(cmd) && (cmd[0] == '.' || cmd[0] == '/'))
 	{
-		ft_dprintf(2, "minishell: %s : Is a directory\n", cmd);
+		ft_dprintf(2, "minishell: %s : is a directory\n", cmd);
 		return (set_exit(126, s), NULL);
 	}
 	while (paths && *paths)
@@ -96,6 +96,7 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		else if (fd_out != STDOUT_FILENO)
 			assist_file(fd_out, STDOUT_FILENO);
 		exec_one(s, cmd->argv);
+		//s->exit_stat = 127;
 		exit_minishell(s, NULL);
 	}
 	else

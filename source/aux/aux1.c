@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:10 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/11 10:26:37 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/15 12:52:27 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,25 @@ char	*get_env_expand(char *key)
 int	export_cmd_error(t_ms *s, char *msg, char *key)
 {
 	(void)key;
-	s->exit_stat = 1;
+	if (key[0] == '-')
+	{
+		s->exit_stat = 2;
+		msg = "usage: export [-nf] [name[=value] ...] or export -p";
+	}
+	else 
+		s->exit_stat = 1;
 	ft_putstr_fd("minishell: export: `", 2);
-	ft_putstr_fd(key, 2);
-	ft_putstr_fd("'", 2);
+	if (s->exit_stat == 1)
+	{
+		ft_putstr_fd(key, 2);
+		ft_putstr_fd("'", 2);
+	}
 	ft_putstr_fd(msg, 2);
 	ft_putstr_fd("\n", 2);
 	return (1);
 }
 
-void	wait_till_end(t_ms *s, pid_t pid, t_cmd *cmd)
+void	 wait_till_end(t_ms *s, pid_t pid, t_cmd *cmd)
 {
 	int	status;
 
@@ -67,6 +76,7 @@ void	wait_till_end(t_ms *s, pid_t pid, t_cmd *cmd)
 	{
 		s->exit_stat /= 256;
 	}
+	//printf("EXIT: -> %d\n\n", s->exit_stat);
 	s->wait += 1;
 }
 

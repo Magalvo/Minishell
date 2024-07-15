@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:04 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/13 00:21:55 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/15 13:03:14 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	exit_cmd(t_ms *s, char **cmds)
 	if (s->ast->argc >= 3)
 	{
 		if (aux_all(cmds[1]))
-			return (set_exit(1, s), \
+			return (not_found(cmds[0], 1, s), \
 			print_exit(s, cmds[0], " : too many arguments\n", 1));
 		print_exit(s, cmds[0], " : numeric argument required\n", 2);
 		exit_minishell(s, NULL);

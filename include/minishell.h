@@ -80,6 +80,7 @@ int		add_slash(char *slash, char **paths);
 t_env	*new_env_node(char *env_var);
 int		update_last(t_env *env, char *key, char *value);
 int		ft_exec_paria(t_ms *s, t_cmd *cmds);
+int		is_valid_unset(char	*arg);
 
 
 
