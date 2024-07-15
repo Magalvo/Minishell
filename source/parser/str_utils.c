@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:12:16 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/12 20:31:07 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/15 13:11:35 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ char	*reassemble_input(char *input)
 {
 	size_t	input_len;
 
+	if (!input)
+		return (input);
 	input_len = ft_strlen(input);
 	ft_strrep_range(input, NULL, DOLAR, '$');
 	// if (input_len == 1 && input[0] == EMPTY)

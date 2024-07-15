@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:28:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/08 17:28:46 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/15 13:18:29 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ t_cmd	*parse_exec(char **ps, char *es, t_ms *s)
 	cmd->argv[cmd->argc] = NULL;
 	cmd = cmds.one;
 	ret = cmds.two;
+	if (s->error == true)
+		return (NULL);
 	return (ret);
 }
 
@@ -51,9 +53,10 @@ void	parse_args(char **ps, char *es, t_d_cmd *cmds, t_ms *s)
 	while (!peek(ps, es, "|"))
 	{
 		tok = get_token(ps, es, &q, &eq);
-		if (tok == 0)
-			break ;
-		if (tok != 'a' && s->error == true)
+		// if (tok == 0)
+			// break ;
+		// if (tok != 'a' && s->error == true)
+		if (tok == 0 || (tok != 'a' && s->error == true))
 			break ;
 		else if (tok != 'a')
 			reprompt(NOT_A_VALID_TOKEN, 1, s);
@@ -61,6 +64,8 @@ void	parse_args(char **ps, char *es, t_d_cmd *cmds, t_ms *s)
 		ft_memmove((void *)new_arg, (void *)q, (eq - q));
 		unglue_str(new_arg, new_arg + ft_strlen(new_arg));
 		new_arg = expand_sw_vars(new_arg, s);
+		if (s->error == true)
+			break ;
 		cmds->one->argv[cmds->one->argc] = reassemble_input(new_arg);
 		cmds->one->argc++;
 		cmds->two = parse_redir(cmds->two, ps, es, s);

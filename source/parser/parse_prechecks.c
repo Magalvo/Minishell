@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:00 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/13 00:30:23 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/15 12:59:54 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ char	*expand_sw_vars(char *input, t_ms *s)
 				*(pos) = DOLAR;
 			pos = ft_strchr(xp_input, '$');
 			xp_input = vars_sw(xp_input, pos, s);
+			if (s->error == true)
+				break ;
 			pos = ft_strchr(xp_input, '$');
 			// if (pos && *(pos - 1) == '"' && *(pos + 1) == '"')
 				// *(pos) = 17;

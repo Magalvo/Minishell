@@ -1,3 +1,22 @@
+#gitinclude
+/*
+!.gitignore
+!*.c
+!g.sh
+!Makefile
+!minishell.code-workspace
+!readline.supp
+!README.md
+!source/**/
+!source/**/*.c
+!reference/**/
+!reference/**/*
+!libs/**
+!libs/**/*
+!include/**
+!include/**/*
+!.vscode/**/*
+
 # Prerequisites
 *.d
 
@@ -53,10 +72,8 @@ Mkfile.old
 dkms.conf
 
 #directories
-# .vscode/
 .temp/
 .stuff/
-# .vscode/*
 .temp/*
 .stuff/*
 reference/docker
