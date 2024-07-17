@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:45 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/03 17:39:01 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/17 14:23:12 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,15 @@ void	free_node(t_env *node)
 	}
 }
 
-void	dup_and_close(t_ms *s, int fd, int standard)
+void	dup_and_close(t_ms *s, int *fd, int standard)
 {
-	if (dup2(fd, standard) < 0)
+	if (dup2(*fd, standard) < 0)
 	{
-		set_exit(1, s);
+		s->exit_stat = 1;
+		close_fd(fd);
+		exit_minishell(s, NULL);
 	}
-	close(fd);
+	close_fd(fd);
 }
 
 void	free_env_array(char **env_array)

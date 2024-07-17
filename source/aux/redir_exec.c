@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:22:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/10 11:04:18 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/17 14:33:03 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 				close_fd(&temp_fd);
 			}
 			else
+			{
+				close_fd(&temp_fd);
 				fd_unlock(cmd, s, &temp_fd, 1);
+			}	
 		}
 		cmd = cmd->cmd;
 	}
@@ -55,9 +58,9 @@ void	exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	if (pid == 0)
 	{
 		if (fd_in != STDIN_FILENO)
-			dup_and_close(s, fd_in, STDIN_FILENO);
+			dup_and_close(s, &fd_in, STDIN_FILENO);
 		if (fd_out != STDOUT_FILENO)
-			dup_and_close(s, fd_out, STDOUT_FILENO);
+			dup_and_close(s, &fd_out, STDOUT_FILENO);
 		exec_from_ast_recursive(s, cmd, STDIN_FILENO, STDOUT_FILENO);
 		exit_minishell(s, NULL);
 	}

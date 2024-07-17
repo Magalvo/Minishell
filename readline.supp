@@ -59,3 +59,21 @@
 	...
 	fun:readline_internal_char
 }
+{
+   ignore_setlocale_reachable
+   Memcheck:Leak
+   ...
+   fun:setlocale
+}
+{
+   ignore_below_main
+   Memcheck:Leak
+   obj:/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
+   fun:__libc_start_main
+}
+{
+   still_reachable_ls_blocks
+   Memcheck:Leak
+   ...
+   fun:??? (in /usr/bin/ls)
+}

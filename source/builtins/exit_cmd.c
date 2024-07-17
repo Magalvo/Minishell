@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:04 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/15 13:03:14 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/17 12:23:43 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	exit_cmd(t_ms *s, char **cmds)
 		}
 		else
 		{
-			set_exit(2, s);
 			print_exit(s, cmds[1], ": numeric argument required\n", 2);
 			exit_minishell(s, NULL);
 		}

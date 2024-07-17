@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_aux.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:22:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/10 16:56:14 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/17 14:45:01 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void fd_unlock(t_cmd *cmd, t_ms *s, int *fd, int rd_only)
         return ;
     }
     if (rd_only == 0)
-    {
+    {      
         *fd = open(cmd->file, cmd->mode, 0666);
         if (*fd < 0)
             fd_errors(s, cmd);

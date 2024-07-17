@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:07 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/12 23:59:57 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/17 10:39:56 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	execute_command(t_ms *s, t_cmd *cmd, char **cmds)
 		cmds++;
 		cmds++;
 		exec_one(s, cmds);
-		not_found(cmd->argv[0], 126, s);
+		not_found(cmd->argv[0], 127, s);
 	}
 	else
 		wait_till_end(s, id, cmd);

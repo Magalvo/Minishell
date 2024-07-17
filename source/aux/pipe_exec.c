@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/15 13:09:34 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/17 12:29:40 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char	*path_constructor(const char *path, const char *cmd, int slashi)
 	char	*new_path;
 	char	*temp;
 
+	new_path = NULL;
 	if(slashi)
 	{
 		temp = ft_strjoin(path, "/");
@@ -24,21 +25,26 @@ char	*path_constructor(const char *path, const char *cmd, int slashi)
 			return (NULL);
 		new_path = ft_strjoin(temp, cmd);
 		free(temp);
+		if (!new_path)
+			return (NULL);
 	}
 	if (ft_strcmp(cmd, "minishell") == 0)
+	{
+		free(new_path);
 		return (NULL);
+	}
 	else if (access(new_path, X_OK) == 0)
 		return (new_path);
-	else
-		return (NULL);
+	free(new_path);
+	return (NULL);
 }
 
-int abs_or_rel_path(const char *cmd)
+/* int abs_or_rel_path(const char *cmd)
 {
 	return(cmd[0] == '/' || (cmd[0] == '.' && cmd[1] == '/'));
-}
+} */
 
-char	*check_abs_or_rel(const char *cmd, t_ms *s)
+/* char	*check_abs_or_rel(const char *cmd, t_ms *s)
 {
 	if (access(cmd, F_OK) != 0)
 	{
@@ -54,7 +60,7 @@ char	*check_abs_or_rel(const char *cmd, t_ms *s)
 	}
 	else
 		return (ft_strdup(cmd));
-}
+} */
 
 void	exec_one(t_ms *s, char **argv)
 {
@@ -95,8 +101,8 @@ void	exec_one(t_ms *s, char **argv)
 			argv[0] = cmd_name;
 		}
 		execve(path, argv, s->env_tmp);
-		not_found(argv[0], 127, s);
 		free(path);
+		not_found(argv[0], 127, s);
 		s->exit_stat = 127;
 	}
 }
@@ -136,14 +142,16 @@ void	updating_cmds(t_ms *s, t_cmd *cmd, char *value)
 	{
 		key = ft_strdup("_");
 		export_update(s->export, key, value);
-		handle_kv_update(s->env, key, value, 1);
+		handle_kv_update(s->env, key, value, 0);
 	}
 	else if (s->ast->type == 2 || s->ast->type == 4)
 	{
 		key = ft_strdup("_");
 		export_update(s->export, key, value);
-		handle_kv_update(s->env, key, value, 1);
+		handle_kv_update(s->env, key, value, 0);
 	}
+	if (key)
+		free(key);
 }
 
 

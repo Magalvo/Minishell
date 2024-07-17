@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:04:53 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/15 13:07:02 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/17 12:21:09 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*cmd_path(char **paths, char *cmd, t_ms *s)
 		return (NULL);
 	if (is_dir(cmd) && (cmd[0] == '.' || cmd[0] == '/'))
 	{
-		ft_dprintf(2, "minishell: %s : is a directory\n", cmd);
+		ft_dprintf(2, "minishell: %s : Is a directory\n", cmd);
 		return (set_exit(126, s), NULL);
 	}
 	while (paths && *paths)

@@ -8,5 +8,6 @@
     "cstdlib": "c",
     "type_traits": "c"
   },
-  "C_Cpp.errorSquiggles": "disabled"
+  "C_Cpp.errorSquiggles": "disabled",
+  "search.useIgnoreFiles": false
 }
