@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_aux4.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:18 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/11 11:30:53 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:25:51 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,3 +51,21 @@ int	is_dir(const char *cmd)
 	}
 	return (0);
 }
+void	swipper_fds(void)
+{
+    int fd;
+	
+    for (fd = 0; fd < 1024; fd++) {
+        close(fd);
+    }
+}
+
+/* int	pipe1(void)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == -1)
+		error_msg("minishell: fork error");
+	return (pid);
+} */

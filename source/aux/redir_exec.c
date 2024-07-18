@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:22:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/17 14:33:03 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:31:11 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void	exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	if (pid == 0)
 	{
 		if (fd_in != STDIN_FILENO)
-			dup_and_close(s, &fd_in, STDIN_FILENO);
+			dup_and_close(s, &fd_in, &fd_out, STDIN_FILENO);
 		if (fd_out != STDOUT_FILENO)
-			dup_and_close(s, &fd_out, STDOUT_FILENO);
+			dup_and_close(s, &fd_out, &fd_in, STDOUT_FILENO);
 		exec_from_ast_recursive(s, cmd, STDIN_FILENO, STDOUT_FILENO);
 		exit_minishell(s, NULL);
 	}

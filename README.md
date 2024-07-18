@@ -4,6 +4,9 @@ see reference/ for study materials
 use 'make debug' instead of 'make re' (won't recompile libft, and adds -g flag)
 
 ## dde-maga notes:
+ls -la | cat -e | wc -l > OUT
+
+cat >./outfiles/outfile01 <missing >./test_files/invalid_permission
 echo <"./test_files/infile_big" | cat <"./test_files/infile"
 
 minishell> echo <"./expa" | cat <"vina"

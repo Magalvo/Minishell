@@ -184,6 +184,7 @@ char	*check_abs_or_rel(const char *cmd, t_ms *s);
 int		is_dir(const char *cmd);
 int		abs_or_rel_path(const	char *cmd);
 void	print_exit(t_ms *s, char *cmds, char *str, int status);
+void	swipper_fds(void);
 // char	*empty(void);
 
 
@@ -211,7 +212,7 @@ char	*ft_getpid(void);
 void	free_node(t_env *node);
 char	*key_dup(char *env_var, size_t key_len);
 int		setting_value(t_env *node, char *delimiter);
-void	dup_and_close(t_ms *s, int *fd, int standard);
+void	dup_and_close(t_ms *s, int *fd_this, int *fd_aux, int standard);
 int		fork1(void);
 int		ft_strcmp(const char *s1, const char *s2);
 int		env_pos(t_env *env, char *value);

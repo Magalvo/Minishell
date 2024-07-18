@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/12 21:46:05 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/18 12:16:28 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	minishell(char **envp)
 		free(input);
 		reset_ast(&s);
 	}
+	//rl_clear_history();
 	exit_minishell(&s, NULL);
 }
 

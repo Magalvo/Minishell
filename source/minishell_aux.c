@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_aux.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/10 10:52:44 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:31:41 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	exit_minishell(t_ms *s, char *msg)
 	}
 	cleanup_shell(s);
 	res = (unsigned char)exiter;
+	rl_clear_history();
 	exit(res);
 }
 

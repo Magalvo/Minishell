@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/17 12:29:40 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/18 16:18:34 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,6 +250,6 @@ void	exec_from_ast(t_ms *s)
 		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
 		s->wait = 0;
 	}
-	/* if(original)
+		/* if(original)
 		s->ast->argv = original; */
 }
