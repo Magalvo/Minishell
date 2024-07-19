@@ -1,15 +1,15 @@
 # https://github.com/JonathanDUFOUR/minishell/blob/master/ignoreliberror
 {
-	leak readline
-	Memcheck:Leak
-	...
-	fun:readline
-}
-{
 	leak add_history
 	Memcheck:Leak
 	...
 	fun:add_history
+}
+{
+	leak readline
+	Memcheck:Leak
+	...
+	fun:readline
 }
 {
 	still_reachable xrealloc

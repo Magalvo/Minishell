@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:50 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/15 12:48:51 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/19 12:19:27 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ int	unset_cmd(t_ms *s, char **args)
 
 	i = 1;
 	if( s->ast->argc > 1 && !is_valid_key(args[i]))
-		return(export_cmd_error(s, "not a valid identifier", args[i]), 1);
+		return(1);
+		//return(export_cmd_error(s, "not a valid identifier", args[i]), 1);
 	while (args[i])
 	{
 		current = s->env;

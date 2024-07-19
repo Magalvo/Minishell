@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/12 23:33:07 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/19 13:57:24 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ char *q		is pointer to start of symbol
 char *eq	is pointer to end of symbol
 */
 
-t_cmd	*parse_input(char *input, t_ms *s)
+t_cmd	*parse_input(char **input, t_ms *s)
 {
 	char	*xp_input;
 	t_cmd	*ast;
 
-	if (ft_strlen(input) == 0)
+	if (ft_strlen(*input) == 0)
 		return (NULL);
-	add_history(input);
-	s->input = input;
-	if (!syntax_validation(input, s))
+	add_history(*input);
+	s->input = *input;
+	if (!syntax_validation(*input, s))
 		return (NULL);
-	xp_input = ft_strdup(input);
+	xp_input = ft_strdup(*input);
 	// xp_input = expand_sw_vars(xp_input, s);
 	if (xp_input == NULL)
 		return (NULL);

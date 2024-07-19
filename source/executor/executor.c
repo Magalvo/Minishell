@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:04:53 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/19 11:11:49 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/19 13:08:54 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*cmd_path(char **paths, char *cmd, t_ms *s)
 
 	if (!cmd)
 		return (NULL);
-	if (is_dir(cmd) && (cmd[0] == '.' || cmd[0] == '/'))
+	if ((is_dir(cmd) && cmd[0] == '.' && cmd[1] && cmd[1] != '.' && cmd[1] != '\0') || cmd[0] == '/') //((cmd[0] == '.' && cmd[1]) || cmd[0] == '/')
 	{
 		ft_dprintf(2, "minishell: %s : Is a directory\n", cmd);
 		return (set_exit(126, s), NULL);
@@ -96,8 +96,6 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		if (!ft_exec_builtins_chr(s, cmd->argv, fd_in, fd_out))
 			exec_one(s, cmd->argv);
 		//s->exit_stat = 127;
-/* 		close_fd(&fd_in);
-		close_fd(&fd_out); */
 		exit_minishell(s, NULL);
 	}
 	else

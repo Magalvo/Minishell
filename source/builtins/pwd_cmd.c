@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:55 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/08 19:55:26 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/19 12:12:42 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int	pwd_cmd(t_ms *s)
 	else
 		printf("%s\n", get_env_val(s->env, "PWD", s));
 	free(pwd);
+	s->exit_stat = 0;
 	return (1);
 }

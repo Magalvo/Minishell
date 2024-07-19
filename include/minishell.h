@@ -88,7 +88,7 @@ int		is_valid_unset(char	*arg);
 
 
 //*=================== PARSE ======================*//
-t_cmd	*parse_input(char *input, t_ms *s);
+t_cmd	*parse_input(char **input, t_ms *s);
 char	**create_dptr(int argc);
 int		count_argc(char **ps, char *es, t_ms *s);
 void	parse_fake_redir(char **ps, char *es, t_ms *s);

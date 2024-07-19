@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:11 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/08 19:15:46 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/19 12:05:40 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,10 @@ int	echo_cmd_test(char **cmd, t_ms *s, int fd_in, int fd_out)
 	int	i;
 	int	check;
 
-	(void)s;
 	(void)fd_in;
-	(void)fd_out;
 	i = 1;
 	check = 0;
+	
 	while (cmd[i] != NULL && ft_flagged(cmd[i]) == 1)
 	{
 		check = 1;

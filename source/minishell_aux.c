@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/19 11:40:13 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/19 13:50:55 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	exit_minishell(t_ms *s, char *msg)
 		s->ast = NULL;
 	}
 	cleanup_shell(s);
-	rl_clear_history();
+	//rl_clear_history();
 	res = (unsigned char)exiter;
 	exit(res);
 }

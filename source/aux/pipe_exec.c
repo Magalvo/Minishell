@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/19 11:12:38 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/19 14:28:57 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ int	builtins_parent(t_ms *s, char **cmds, int fd_in, int fd_out)
 /* 	if (ft_sw_builtins(cmds[0], "echo") == 0)
 		return (echo_cmd_test(cmds, s, fd_in, fd_out), 1); */  //!!!! HERE
 	if (ft_sw_builtins(cmds[0], "cd") == 0)
-		return (cd_cmd(s, cmds), 1);
+		return (cd_cmd(s, cmds));
 	else if (ft_sw_builtins(cmds[0], "env") == 0)
 		return (env_cmd(s, cmds));
 	else if (ft_sw_builtins(cmds[0], "pwd") == 0)

@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/18 12:16:28 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/19 13:56:14 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	minishell(char **envp)
 	{
 		check_signal(MAIN);
 		input = readline(s.prompt);
-		s.ast = parse_input(input, &s);
+		s.ast = parse_input(&input, &s);
 		if (input == NULL && s.modal == MAIN)
 			exit_minishell(&s, "exit\n");
 		if (!s.bnf && s.ast != NULL)
@@ -51,7 +51,7 @@ void	minishell(char **envp)
 		free(input);
 		reset_ast(&s);
 	}
-	//rl_clear_history();
+	rl_clear_history();
 	exit_minishell(&s, NULL);
 }
 
