@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:04:53 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/17 12:21:09 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/19 11:11:49 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,15 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	if (pid == 0)
 	{
 		check_signal(CHILD);
-		if (ft_exec_builtins_chr(s, cmd->argv, fd_in, fd_out))
-			exit_minishell(s, NULL);
 		if (fd_in != STDIN_FILENO)
 			assist_file(fd_in, STDIN_FILENO);
 		else if (fd_out != STDOUT_FILENO)
 			assist_file(fd_out, STDOUT_FILENO);
-		exec_one(s, cmd->argv);
+		if (!ft_exec_builtins_chr(s, cmd->argv, fd_in, fd_out))
+			exec_one(s, cmd->argv);
 		//s->exit_stat = 127;
+/* 		close_fd(&fd_in);
+		close_fd(&fd_out); */
 		exit_minishell(s, NULL);
 	}
 	else
