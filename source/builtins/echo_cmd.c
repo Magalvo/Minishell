@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:11 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/19 12:05:40 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:18:29 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	echo_cmd_test(char **cmd, t_ms *s, int fd_in, int fd_out)
 	(void)fd_in;
 	i = 1;
 	check = 0;
-	
 	while (cmd[i] != NULL && ft_flagged(cmd[i]) == 1)
 	{
 		check = 1;

@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:04:53 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/19 16:17:13 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:21:21 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*aux_cwd(void)
 {
 	char	*cwd;
-	char	command;
+	char	*command;
 
 	command = NULL;
 	cwd = getcwd(NULL, 0);
@@ -27,7 +27,7 @@ char	*aux_cwd(void)
 	free(cwd);
 	if (command && access(command, X_OK | F_OK) == 0)
 	{
-		return (&command);
+		return (command);
 	}
 	free(command);
 	return (NULL);
