@@ -6,11 +6,33 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:04:53 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/19 13:08:54 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:17:13 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+char	*aux_cwd(void)
+{
+	char	*cwd;
+	char	command;
+
+	command = NULL;
+	cwd = getcwd(NULL, 0);
+	if (!cwd)
+	{
+		return (NULL);
+	}
+	command = path_constructor(cwd, command, 1);
+	free(cwd);
+	if (command && access(command, X_OK | F_OK) == 0)
+	{
+		return (&command);
+	}
+	free(command);
+	return (NULL);
+}
+
 
 char	*cmd_path(char **paths, char *cmd, t_ms *s)
 {
@@ -19,7 +41,8 @@ char	*cmd_path(char **paths, char *cmd, t_ms *s)
 
 	if (!cmd)
 		return (NULL);
-	if ((is_dir(cmd) && cmd[0] == '.' && cmd[1] && cmd[1] != '.' && cmd[1] != '\0') || cmd[0] == '/') //((cmd[0] == '.' && cmd[1]) || cmd[0] == '/')
+	if ((is_dir(cmd) && cmd[0] == '.' && cmd[1] && cmd[1] != '.' \
+		&& cmd[1] != '\0') || cmd[0] == '/') //((cmd[0] == '.' && cmd[1]) || cmd[0] == '/')
 	{
 		ft_dprintf(2, "minishell: %s : Is a directory\n", cmd);
 		return (set_exit(126, s), NULL);

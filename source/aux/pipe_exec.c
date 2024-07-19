@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/19 14:28:57 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:13:32 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,28 +39,11 @@ char	*path_constructor(const char *path, const char *cmd, int slashi)
 	return (NULL);
 }
 
-/* int abs_or_rel_path(const char *cmd)
+void	all_together(char *arg, int stat, t_ms *s)
 {
-	return(cmd[0] == '/' || (cmd[0] == '.' && cmd[1] == '/'));
-} */
-
-/* char	*check_abs_or_rel(const char *cmd, t_ms *s)
-{
-	if (access(cmd, F_OK) != 0)
-	{
-		not_found((char *)cmd, 127, s);
-		s->exit_stat = 127;
-		return(NULL);
-	}
-	else if (access(cmd, X_OK) != 0)
-	{
-		not_found((char *)cmd, 126, s);
-		s->exit_stat = 126;
-		return(NULL);
-	}
-	else
-		return (ft_strdup(cmd));
-} */
+	not_found(arg, stat, s);
+	s->exit_stat = stat;
+}
 
 void	exec_one(t_ms *s, char **argv)
 {
@@ -197,7 +180,7 @@ void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
             cmd->argv[i] = NULL;
             cmd->argc -= 1;
         }
-        else if ((ft_isspace(cmd->argv[0][0]) && cmd->argv[0][0] == '\0' && !cmd->argv[1])  || cmd->argv[0][0] == '\0')
+        else if ((ft_isspace(cmd->argv[0][0]) && cmd->argv[0][0] == '\0' && !cmd->argv[1]) || cmd->argv[0][0] == '\0')
         {
             not_found(cmd->argv[0], 127, s);
 			s->exit_stat = 127;
