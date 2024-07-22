@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:42:24 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/01/29 17:17:56 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/22 16:24:43 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,20 @@ be allocated:	malloc(nmemb * size);
 If error returns empty void to be free() // <- read with salt
 */
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	*ft_calloc(size_t nmemb, size_t sz)
 {
 	void	*newmem;
 
-	if (nmemb && size && (SIZE_MAX / size < nmemb))
+	if (nmemb && sz && (SIZE_MAX / sz < nmemb))
 	{
 		return (NULL);
 	}
-	newmem = malloc(size * nmemb);
+	newmem = malloc(sz * nmemb);
 	if (!newmem)
 	{
 		return (NULL);
 	}
-	ft_bzero(newmem, size * nmemb);
+	ft_bzero(newmem, sz * nmemb);
 	return (newmem);
 }
 

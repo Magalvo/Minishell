@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/05 19:36:01 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/22 14:42:40 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_cmd	*cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 	cmd->mode = mode;
 	unglue_str(delim, delim + ft_strlen(delim));
 	cmd->delim = reassemble_input(delim);
+	str_rm_char(delim, EMPTY);
 	filename = ft_getrnd_str();
 	cmd->file = ft_strjoin("/tmp/", filename);
 	free(filename);

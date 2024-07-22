@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+         #
+#    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/07/19 14:01:12 by dde-maga         ###   ########.fr        #
+#    Updated: 2024/07/22 17:32:12 by cjoao-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ BUILTINS =  builtins.c cd_cmd.c echo_cmd.c env_cmd.c \
 			exit_cmd.c export_cmd.c pwd_cmd.c unset_cmd.c \
 			export_print.c export_aux.c export_aux2.c export_update.c\
 
-EXECUTOR =  executor.c ast.c frees.c \
+EXECUTOR =  executor.c ast.c frees.c frees_aux.c\
 
 PARSER =    aux.c expand_tilde.c expand_vars.c expand_vars2.c \
 			get_newstr.c init_cmd.c init_heredoc.c init_heredoc_aux.c \

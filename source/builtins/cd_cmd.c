@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_cmd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:15 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/19 14:25:31 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:34:02 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,16 +94,18 @@ static int	cd_cmd_minus(t_env *env)
 	if (chdir(old) == -1)
 	{
 		ft_putstr_fd("Failed to change directory\n", 2);
-		free(old);
-		free(current_pwd);
+		free2(old, current_pwd);
+		// free(old);
+		// free(current_pwd);
 		return (0);
 	}
 	ft_putstr_fd(old, 1);
 	write(1, "\n", 1);
 	update_key(env, "OLDPWD", current_pwd);
 	result = update_key(env, "PWD", old);
-	free(old);
-	free(current_pwd);
+	free2(old, current_pwd);
+	// free(old);
+	// free(current_pwd);
 	return (result);
 }
 

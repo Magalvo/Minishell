@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/12 18:14:05 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/22 13:55:09 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define UNQUOTES	"\x15\x16"
 # define DOLAR		'\x11'
 # define EMPTY		'\x10'
-# define EMPTY_STR	"\x10\0"
+# define EMPTY_STR	"\x10\x00"
 // # define EMPTY_ARG 17
 
 //*======================= STRUCTS ====================== *//

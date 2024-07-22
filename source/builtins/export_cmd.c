@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:59 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/19 14:27:32 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:29:31 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,9 @@ void	handle_key(t_ms *s, char *str, char *key)
 		val = get_env_val(s->env, key, s);
 		val2 = get_value_from_str(str);
 		value = ft_strjoin(val, val2);
-		free(val);
-		free(val2);
+		free2(val, val2);
+		// free(val);
+		// free(val2);
 	}
 	else
 		value = get_value_from_str(str);
@@ -122,8 +123,9 @@ void	handle_key(t_ms *s, char *str, char *key)
 	handle_kv_update(s->env, key, value, 0);
 	env_arr_update(s, NULL);
 	env_paths(s, s->env_tmp);
-	free(key);
-	free(value);
+	free2(key, value);
+	// free(key);
+	// free(value);
 	key = NULL;
 	value = NULL;
 }

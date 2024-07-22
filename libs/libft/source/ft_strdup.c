@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 21:20:48 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/03 17:38:00 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/22 16:32:10 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*ft_strndup(const char *src, size_t n)
 	dup = (char *)malloc(sizeof(char) * (n + 1));
 	if (!dup)
 		return (NULL);
-	while (src[i] != '\0' && i < n)
+	while (i < n && src[i] != '\0')
 	{
 		dup[i] = src[i];
 		i++;

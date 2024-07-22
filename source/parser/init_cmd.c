@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:06:42 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/09 19:58:23 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/22 14:42:12 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_cmd	*cmd_redir_out(t_cmd *subcmd, char *filename, int mode, t_ms *s)
 	unglue_str(filename, filename + ft_strlen(filename));
 	filename = expand_sw_vars(filename, s);
 	filename = reassemble_input(filename);
+	str_rm_char(filename, EMPTY);
 	cmd->file = filename;
 	cmd->mode = mode;
 	cmd->fd = 1;
@@ -59,6 +60,7 @@ t_cmd	*cmd_redir_in(t_cmd *subcmd, char *filename, int mode, t_ms *s)
 	unglue_str(filename, filename + ft_strlen(filename));
 	filename = expand_sw_vars(filename, s);
 	filename = reassemble_input(filename);
+	str_rm_char(filename, EMPTY);
 	cmd->file = filename;
 	cmd->mode = mode;
 	cmd->fd = 0;

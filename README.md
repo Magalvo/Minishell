@@ -24,6 +24,23 @@ RIGHT leaf,
 
 
 ## cjoao-de notes:
+### NOT WORKING
+./executable is the same as executable
+####
+echo segfault <"<<<"<<amazing
+bash
+echo segfault <"<<<"<<amazing
+> amazing
+bash: <<<: No such file or directory
+minishell
+echo segfault <"<<<"<<amazing
+> amazing
+<<<: No such file or directory
+segfault                                << ops
+####
+
+
+
 
 works:
 export +=cenas 

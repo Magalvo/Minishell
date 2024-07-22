@@ -46,17 +46,18 @@ void	free_ast(t_cmd *cmd);
 void	free_ast2(t_cmd **cmd);
 void	free_argv(t_cmd *cmd);
 void	free_argv2(t_cmd **cmd);
+void	free2(char *one, char *two);
 void	close_fd(int *fd);
 
 //*================ BUILTINS =====================*//
 
 void	init_list(t_env **list, char **envp);
-void	init_env(t_ms *ms, char **envp);
+// void	init_env(t_ms *ms, char **envp);
 //int	echo_cmd(t_cmd *cmd);
 int		env_cmd(t_ms *s, char **cmds);
 int		cd_cmd(t_ms *mini, char **path);
 int		pwd_cmd(t_ms *s);
-int		export_cmd(t_ms *s, char **cmd);
+int		export_cmd(t_ms *s, char **str);
 // void	handle_key(t_ms *s, char **str, char *key, char *value);
 void	handle_key(t_ms *s, char *str, char *key);
 int		update_key(t_env *env, char *key, char *value);
@@ -75,10 +76,10 @@ int		handle_kv_update(t_env *env, char *key, char *value, int tog);
 int		export_update(t_env *export, char *key, char *value);
 char	*extract_key(const char *str, char *delimiter);
 int		add_new_node(t_env *env, char *key, char *value);
-void	init_export(t_ms *ms, char **envp);
+// void	init_export(t_ms *ms, char **envp);
 int		add_slash(char *slash, char **paths);
 t_env	*new_env_node(char *env_var);
-int		update_last(t_env *env, char *key, char *value);
+// int		update_last(t_env *env, char *key, char *value);
 int		ft_exec_paria(t_ms *s, t_cmd *cmds);
 int		is_valid_unset(char	*arg);
 
@@ -123,7 +124,7 @@ char	*expand_pid(char *input, char *ps, t_ms *s);
 char	*expand_exit_stat(char *input, char *ps, t_ms *s);
 char	*expand_last_cmd(char *input, char *ps, t_ms *s);
 char	*expand_self(char *input, char *ps, t_ms *s);
-char	*expand_dolar_loop(char *input, t_ms *s);
+// char	*expand_dolar_loop(char *input, t_ms *s);
 char	*expand_dolar(char *input, char *ps, t_ms *s);
 char	*expand_tilde_equal(char *input, char *ps, t_ms *s);
 char	*expand_tilde_pwd(char *input, char *ps, bool check, t_ms *s);
@@ -132,12 +133,13 @@ char	*expand_tilde(char *input, char *ps, bool check, t_ms *s);
 
 bool	strrchr_alpha_loop(const char *input, const char *pos);
 int		is_quoted(const char *str, const char *totest);
-char	expand_braces(char *input);
-char	*expand_words(char *input);
+// char	expand_braces(char *input);
+// char	*expand_words(char *input);
 char	*remove_quotes(char *input, char *pos);
-bool	check_valid_position(char *input);
+// bool	check_valid_position(char *input);
 char	*get_expanded(char *input, char *cut, char *paste, char *remain);
 void	get_shrinked(char *input, char *move);
+void	str_rm_char(char *input, char remove);
 // int		here_doc(char *dli, t_ms *s, t_cmd *cmd);
 int		exec_heredoc(char *dli, char *file, int expand, t_ms *s);
 void	expand_heredoc(t_ms *s, char *line, int expand, int fd_file);
@@ -180,16 +182,16 @@ void	print_ast_redir(t_ms *s, t_cmd *ptr, int padding);
 void	print_ast_heredoc(t_ms *s, t_cmd *ptr, int padding);
 void	print_2d(char **ptr, int padding);
 char	*path_constructor(const char *path, const char *cmd, int slashi);
-char	*check_abs_or_rel(const char *cmd, t_ms *s);
+// char	*check_abs_or_rel(const char *cmd, t_ms *s);
 int		is_dir(const char *cmd);
-int		abs_or_rel_path(const	char *cmd);
+// int		abs_or_rel_path(const	char *cmd);
 void	print_exit(t_ms *s, char *cmds, char *str, int status);
 void	swipper_fds(void);
 // char	*empty(void);
 
 
 //*==================== AUX =======================*//
-void	split_input(t_ms *s, char* input);
+// void	split_input(t_ms *s, char* input);
 char	*get_env_expand(char *key);
 void	env_arr_update(t_ms *s, char *str);
 void	initialize_env(char ***envp);
@@ -197,7 +199,7 @@ char	**null_env_init(void);
 void	free_and_error(char *one, char *two, char **three);
 char	**env_convert(t_env *env);
 char	**create_env_array(int ctd_ptr);
-void	free_env_list(t_env *env);
+void	free_env_list(t_env *list);
 void 	cleanup_shell(t_ms *s);
 void	clear_cmd(t_cmd *cmd);
 // char	*get_pid(t_ms *s);
