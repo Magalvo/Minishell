@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/19 13:50:55 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/22 15:53:30 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ void	exit_minishell(t_ms *s, char *msg)
 
 int	init_minishell(t_ms *s, char **ep)
 {
-	int	i = 0;	//! just for test
+	//int	i = 0;	//! just for test
 	if (!*ep)
 	{
 		initialize_env(&ep);
-		while (ep[i])
+/* 		while (ep[i])
 		{
 			printf("%s\n", ep[i]);
 			i++;
-		}
+		} */
 	}
 	init_list(&s->env, ep);
 	init_list(&s->export, ep);

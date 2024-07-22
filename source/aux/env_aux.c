@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:18 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/17 13:00:28 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/22 15:51:20 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	**null_env_init(void)
 	ft_strlcpy(init_env[0], "PWD=", key_len + 1);
 	ft_strlcpy(init_env[0] + key_len, cwd, cwd_len + 1);
 	free(cwd);
-	init_env[1] = ft_strdup("SHLVL=1");
+	init_env[1] = ft_strdup("SHLVL=0");
 	if (!init_env[1])
 		free_and_error(init_env[0], NULL, init_env);
 	init_env[2] = ft_strdup("_=/usr/bin/env");
