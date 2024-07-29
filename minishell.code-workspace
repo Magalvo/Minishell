@@ -41,7 +41,8 @@
 			"signal.h": "c",
 			"sigaction.h": "c",
 			"minishell.h": "c",
-			"compare": "c"
+			"compare": "c",
+			"minishell_define.h": "c"
 		}
 	}
 }

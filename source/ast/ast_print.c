@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_print.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:12:38 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/29 16:52:59 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:53:56 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,6 @@ void	print_ast(t_ms *s, t_cmd *ptr, int padding)
 	else if (ptr->type == HEREDOC)
 	{
 		print_ast_heredoc(s, ptr, padding);
-	}
-}
-
-void	free2(char *one, char *two)
-{
-	if (one)
-	{
-		free(one);
-		one = NULL;
-	}
-	if (two)
-	{
-		free(two);
-		two = NULL;
 	}
 }
 

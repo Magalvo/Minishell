@@ -1,3 +1,5 @@
+# to test
+# find . -not -path '*/\.*' | while read -r file; do git check-ignore -v "$file"; done
 #gitinclude
 /*
 !.gitignore
