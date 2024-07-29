@@ -6,7 +6,7 @@
 #    By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/07/29 15:16:39 by dde-maga         ###   ########.fr        #
+#    Updated: 2024/07/29 16:53:05 by dde-maga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ BUILTINS =  builtins.c cd_cmd.c echo_cmd.c env_cmd.c \
 			exit_cmd.c export_cmd.c pwd_cmd.c unset_cmd.c \
 			export_print.c export_aux.c export_aux2.c export_update.c\
 
-EXECUTOR =  executor.c ast.c frees.c frees_aux.c\
+EXECUTOR =  executor.c ast.c frees.c \
 
 PARSER =    aux.c expand_tilde.c expand_vars.c expand_vars2.c \
 			get_newstr.c init_cmd.c init_heredoc.c init_heredoc_aux.c \
