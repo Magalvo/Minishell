@@ -10,7 +10,7 @@
 !readline.supp
 !README.md
 !source/**/
-!source/**/*.c
+!source/**/*
 !reference/**/
 !reference/**/*
 !libs/**
