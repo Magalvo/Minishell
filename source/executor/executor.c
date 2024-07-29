@@ -83,15 +83,16 @@ void	new_line(void)
 	rl_replace_line("", 0);
 }
 
-static void	assist_file(int fd, int standard)
+/* static void	assist_file(int fd, int standard)
 {
 	if (dup2 (fd, standard) == -1)
 	{
 		perror("dup2");
+		close_fd(&fd);
 		exit (1);
 	}
 	close_fd(&fd);
-}
+} */
 
 int	fork1(void)
 {
@@ -113,9 +114,9 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	{
 		check_signal(CHILD);
 		if (fd_in != STDIN_FILENO)
-			assist_file(fd_in, STDIN_FILENO);
-		else if (fd_out != STDOUT_FILENO)
-			assist_file(fd_out, STDOUT_FILENO);
+			dup_and_close(s, &fd_in, &fd_out, STDIN_FILENO);//assist_file(fd_in, STDIN_FILENO);
+		if (fd_out != STDOUT_FILENO)
+			dup_and_close(s, &fd_out, &fd_in, STDOUT_FILENO);//assist_file(fd_out, STDOUT_FILENO);
 		if (!ft_exec_builtins_chr(s, cmd->argv, fd_in, fd_out))
 			exec_one(s, cmd->argv);
 		//s->exit_stat = 127;

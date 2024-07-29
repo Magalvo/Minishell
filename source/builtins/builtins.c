@@ -71,8 +71,8 @@ void	toggle_bnf(t_ms *s)
 
 int	ft_exec_builtins_chr(t_ms *s, char **cmds, int fd_in, int fd_out)
 {
-/* 	if (cmds == NULL || cmds[0] == NULL)
-		return (1); */
+	if (cmds == NULL || cmds[0] == NULL)
+		return (0);
 	if (ft_sw_builtins(cmds[0], "echo") == 0)
 		return (echo_cmd_test(cmds, s, fd_in, fd_out), 1);
 	else if (ft_sw_builtins(cmds[0], "cd") == 0)

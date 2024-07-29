@@ -42,7 +42,7 @@ int	echo_cmd_test(char **cmd, t_ms *s, int fd_in, int fd_out)
 		check = 1;
 		i++;
 	}
-	while (cmd[i])
+	while (cmd[i] && !(cmd[i][0] == EMPTY))
 	{
 		ft_putstr_fd(cmd[i], fd_out);
 		if (cmd[i + 1])

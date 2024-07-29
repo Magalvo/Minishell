@@ -25,7 +25,10 @@ void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	else if (cmd->type == REDIR || cmd->type == HEREDOC)
 	{
 		if (fd_in != STDIN_FILENO && cmd->fd == 0 && s->ast->type == PIPE)
+		{
+			printf("PINNERS!");
 			fd_in = STDIN_FILENO;
+		}
 		exec_redir(s, cmd, fd_in, fd_out);
 	}
 }
@@ -43,11 +46,12 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	{
 		close(pipefd[0]);
 		if (fd_in != STDIN_FILENO)
-			dup2(fd_in, STDIN_FILENO);
+			dup2(fd_in, STDIN_FILENO);//dup_and_close(s, &fd_in, &fd_out, STDIN_FILENO);
 		if (pipefd[1] != STDOUT_FILENO)
-			dup2(pipefd[1], STDOUT_FILENO);
+			dup2(pipefd[1], STDOUT_FILENO);//dup_and_close(s, &fd_out, &fd_in, STDOUT_FILENO);
 		close(pipefd[1]);
 		exec_from_ast_recursive(s, cmd->left, fd_in, STDOUT_FILENO);
+		close_two_fd(cmd, fd_in, fd_out);
 		exit_minishell(s, NULL);
 	}
 	else

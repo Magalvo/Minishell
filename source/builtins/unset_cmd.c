@@ -78,11 +78,10 @@ int	unset_cmd(t_ms *s, char **args)
 	int		i;
 
 	i = 1;
-	if( s->ast->argc > 1 && !is_valid_key(args[i]))
-		return(1);
-		//return(export_cmd_error(s, "not a valid identifier", args[i]), 1);
 	while (args[i])
 	{
+		if( s->ast->argc > 1 && !is_valid_key(args[i]))
+			export_cmd_error(s, "not valid identifier", args[i]);
 		current = s->env;
 		while (current && args[i])
 		{

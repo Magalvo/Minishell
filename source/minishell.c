@@ -12,6 +12,22 @@
 
 #include "../include/minishell.h"
 
+void print_open_fds(void) 
+{
+    char path[256];
+    snprintf(path, sizeof(path), "/proc/%d/fd", getpid());
+    DIR *dir = opendir(path);
+    if (dir) {
+        struct dirent *entry;
+        while ((entry = readdir(dir)) != NULL) {
+            if (entry->d_type == DT_LNK) {
+                printf("Open FD: %s\n", entry->d_name);
+            }
+        }
+        closedir(dir);
+    }
+}
+
 		/* Test loop */
 		// if (isatty(fileno(stdin)))
 		// {
@@ -48,8 +64,10 @@ void	minishell(char **envp)
 			s.bnf = false;
 			print_ast(&s, s.ast, -1);
 		}
+		//print_open_fds();
 		free(input);
 		reset_ast(&s);
+
 	}
 	rl_clear_history();
 	exit_minishell(&s, NULL);

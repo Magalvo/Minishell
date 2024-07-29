@@ -179,6 +179,11 @@ void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			}
             cmd->argv[i] = NULL;
             cmd->argc -= 1;
+/* 			if (fd_in != STDIN_FILENO)
+				close_fd(&fd_in);
+			if (fd_out != STDOUT_FILENO)
+				close_fd(&fd_out);
+			return ; */
         }
         else if ((ft_isspace(cmd->argv[0][0]) && cmd->argv[0][0] == '\0' && !cmd->argv[1]) || cmd->argv[0][0] == '\0')
         {
