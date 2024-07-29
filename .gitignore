@@ -67,6 +67,11 @@ reference/docker/*
 .github/*
 .devcontainer
 .devcontainer/*
+c_report
+c_report/*
+*.xml
+leaks_err_only
+
 
 # Compliance with 42 rules
 # *.pdf
@@ -79,3 +84,5 @@ libs/libft/Makefile
 settings.json
 minishell
 vgcore.*
+
+!*.c
