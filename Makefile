@@ -6,7 +6,7 @@
 #    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/07/29 18:04:19 by cjoao-de         ###   ########.fr        #
+#    Updated: 2024/07/29 19:14:50 by cjoao-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ BUILTINS =  builtins.c cd_cmd.c echo_cmd.c env_cmd.c \
 
 EXECUTOR =  executor.c ast.c frees.c frees_aux.c\
 
-PARSER =    aux.c expand_tilde.c expand_vars.c expand_vars2.c \
+PARSER =	aux.c expand_tilde.c expand_vars.c expand_vars2.c \
 			get_newstr.c init_cmd.c init_heredoc.c init_heredoc_aux.c \
 			parse_exec.c parse_prechecks.c parse_quotes.c parse_redir.c \
 			parse.c syntax_tests.c tokens.c str_utils.c str_utils2.c \

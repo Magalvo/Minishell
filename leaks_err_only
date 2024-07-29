@@ -1,0 +1,69 @@
+  # **************************************************************************** #
+  #                                COMPARE PARSING                               #
+  # **************************************************************************** #
+65:	STD_ERR: ❌  EXIT_CODE: ✅  LEAKS: ✅ cmds/mand/0_compare_parsing.sh:134
+72:	STD_ERR: ❌  EXIT_CODE: ✅  LEAKS: ✅ cmds/mand/0_compare_parsing.sh:148
+  # **************************************************************************** #
+  #                                PARSING HELL                                  #
+  # **************************************************************************** #
+51:	STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(127)  bash(2) ]  LEAKS: ✅ cmds/mand/10_parsing_hell.sh:150
+77:	STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(127)  bash(0) ]  LEAKS: ✅ cmds/mand/10_parsing_hell.sh:218
+123:	STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(2)  bash(127) ]  LEAKS: ✅ cmds/mand/10_parsing_hell.sh:321
+124:	STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  LEAKS: ✅ cmds/mand/10_parsing_hell.sh:323
+  # **************************************************************************** #
+  #                                   BUILTINS                                   #
+  # **************************************************************************** #
+61:	STD_ERR: ❌  EXIT_CODE: ✅  LEAKS: ✅ cmds/mand/1_builtins.sh:127
+68:	STD_ERR: ❌  EXIT_CODE: ✅  LEAKS: ✅ cmds/mand/1_builtins.sh:142
+105:	STD_ERR: ❌  EXIT_CODE: ✅  LEAKS: ✅ cmds/mand/1_builtins.sh:239
+107:	STD_ERR: ❌  EXIT_CODE: ✅  LEAKS: ✅ cmds/mand/1_builtins.sh:243
+224:	STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(127) ]  LEAKS: ✅ cmds/mand/1_builtins.sh:552
+231:	STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(0)  bash(2) ]  LEAKS: ✅ cmds/mand/1_builtins.sh:566
+  # **************************************************************************** #
+  #                                  PIPELINES                                   #
+  # **************************************************************************** #
+29:	STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(0)  bash(2) ]  LEAKS: ✅ cmds/mand/1_pipelines.sh:96
+  # **************************************************************************** #
+  #                                    REDIRS                                    #
+  # **************************************************************************** #
+  # **************************************************************************** #
+  #                                     SCMD                                     #
+  # **************************************************************************** #
+7:	STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  LEAKS: ✅ cmds/mand/1_scmds.sh:19
+  # **************************************************************************** #
+  #                                  BROKEN SCMD                                 #
+  # **************************************************************************** #
+  # **************************************************************************** #
+  #                                  VARIABLES                                   #
+  # **************************************************************************** #
+43:	STD_ERR: ❌  EXIT_CODE: ✅  LEAKS: ✅ cmds/mand/1_variables.sh:120
+  # **************************************************************************** #
+  #                                  CORRECTION                                  #
+  # **************************************************************************** #
+96:	STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(0)  bash(1) ]  LEAKS: ✅ cmds/mand/2_correction.sh:211
+  # **************************************************************************** #
+  #                                  PATH FAILS                                  #
+  # **************************************************************************** #
+11:	STD_ERR: ❌  EXIT_CODE: ✅  LEAKS: ✅ cmds/mand/2_path_check.sh:43
+  # **************************************************************************** #
+  #                                SYNTAX ERRORS                                 #
+  # **************************************************************************** #
+20:	STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(0)  bash(2) ]  LEAKS: ✅ cmds/mand/8_syntax_errors.sh:43
+21:	STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(0)  bash(2) ]  LEAKS: ✅ cmds/mand/8_syntax_errors.sh:46
+22:	STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(0)  bash(2) ]  LEAKS: ✅ cmds/mand/8_syntax_errors.sh:49
+  # **************************************************************************** #
+  #                                     WILD                                     #
+  # **************************************************************************** #
+10:	STD_ERR: ❌  EXIT_CODE: ✅  LEAKS: ✅ cmds/mand/9_go_wild.sh:30
+13:	STD_ERR: ❌  EXIT_CODE: ✅  LEAKS: ✅ cmds/mand/9_go_wild.sh:46
+14:	STD_ERR: ❌  EXIT_CODE: ✅  LEAKS: ✅ cmds/mand/9_go_wild.sh:49
+15:	STD_ERR: ❌  EXIT_CODE: ✅  LEAKS: ✅ cmds/mand/9_go_wild.sh:52
+
+🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
+🏁                                    RESULT                                    🏁
+🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
+             TOTAL TEST COUNT: 943  TESTS PASSED: 0  LEAKING: 0
+                     STD_OUT: 943  STD_ERR: 16  EXIT_CODE: 12
+                         TOTAL FAILED AND PASSED CASES:
+                                     ❌ 971
+                                     ✅ 1858

@@ -1,23 +1,6 @@
 # to test
 # find . -not -path '*/\.*' | while read -r file; do git check-ignore -v "$file"; done
 #gitinclude
-/*
-!.gitignore
-!*.c
-!g.sh
-!Makefile
-!minishell.code-workspace
-!readline.supp
-!README.md
-!source/**/
-!source/**/*
-!reference/**/
-!reference/**/*
-!libs/**
-!libs/**/*
-!include/**
-!include/**/*
-!.vscode/**/*
 
 # Prerequisites
 *.d
