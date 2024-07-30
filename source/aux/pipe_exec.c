@@ -3,25 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/19 16:13:32 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:59:50 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
+// todo too many functions in file
+// todo too many comments in file
 char	*path_constructor(const char *path, const char *cmd, int slashi)
 {
 	char	*new_path;
 	char	*temp;
 
 	new_path = NULL;
-	if(slashi)
+	if (slashi)
 	{
 		temp = ft_strjoin(path, "/");
-		if(!temp)
+		if (!temp)
 			return (NULL);
 		new_path = ft_strjoin(temp, cmd);
 		free(temp);
@@ -45,6 +47,7 @@ void	all_together(char *arg, int stat, t_ms *s)
 	s->exit_stat = stat;
 }
 
+// todo more than 25 lines
 void	exec_one(t_ms *s, char **argv)
 {
 	char	*path;
@@ -89,7 +92,6 @@ void	exec_one(t_ms *s, char **argv)
 		s->exit_stat = 127;
 	}
 }
-
 
 int	ft_exec_paria(t_ms *s, t_cmd *cmds)
 {
@@ -137,7 +139,6 @@ void	updating_cmds(t_ms *s, t_cmd *cmd, char *value)
 		free(key);
 }
 
-
 int	builtins_parent(t_ms *s, char **cmds, int fd_in, int fd_out)
 {
 	(void)fd_in;
@@ -164,44 +165,44 @@ int	builtins_parent(t_ms *s, char **cmds, int fd_in, int fd_out)
 
 void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
-    int	i;
+	int	i;
 
-    if (cmd->argv && cmd->argv[0])
-    {
-        if (cmd->argv[0][0] == EMPTY)
-        {
+	if (cmd->argv && cmd->argv[0])
+	{
+		if (cmd->argv[0][0] == EMPTY)
+		{
 			i = 0;
-            free(cmd->argv[0]);
-			while(cmd->argv[i + 1] != NULL)
+			free(cmd->argv[0]);
+			while (cmd->argv[i + 1] != NULL)
 			{
 				cmd->argv[i] = cmd->argv[i + 1];
 				i++;
 			}
-            cmd->argv[i] = NULL;
-            cmd->argc -= 1;
+			cmd->argv[i] = NULL;
+			cmd->argc -= 1;
 /* 			if (fd_in != STDIN_FILENO)
 				close_fd(&fd_in);
 			if (fd_out != STDOUT_FILENO)
 				close_fd(&fd_out);
 			return ; */
-        }
-        else if ((ft_isspace(cmd->argv[0][0]) && cmd->argv[0][0] == '\0' && !cmd->argv[1]) || cmd->argv[0][0] == '\0')
-        {
-            not_found(cmd->argv[0], 127, s);
+		}
+		else if ((ft_isspace(cmd->argv[0][0]) && cmd->argv[0][0] == '\0' && !cmd->argv[1]) || cmd->argv[0][0] == '\0')
+		{
+			not_found(cmd->argv[0], 127, s);
 			s->exit_stat = 127;
-            return ;
-        }
-    }
-    if (cmd && cmd->argc > 0)
-        updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
-    if (!builtins_parent(s, cmd->argv, fd_in, fd_out))
-        single_exec(s, cmd, fd_in, fd_out);
+			return ;
+		}
+	}
+	if (cmd && cmd->argc > 0)
+		updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
+	if (!builtins_parent(s, cmd->argv, fd_in, fd_out))
+		single_exec(s, cmd, fd_in, fd_out);
 }
 
 bool	check_argv(t_cmd *cmd)
 {
 	if (!cmd)
-		return false;
+		return (false);
 	if (cmd->left)
 		check_argv(cmd->left);
 	if (cmd->right)
@@ -209,31 +210,30 @@ bool	check_argv(t_cmd *cmd)
 	if (cmd->cmd)
 		check_argv(cmd->cmd);
 	if (cmd->type == EXEC && !cmd->argv[0])
-		return false;
-	return true;
+		return (false);
+	return (true);
 }
 
 void	exec_from_ast(t_ms *s)
 {
 	//char	**original;
-
 	// ! || !check_argv(s->ast)) added to chck for faux argv:
 	// ! (paste of invalid char on terminal)
 	if (!s->ast || !check_argv(s->ast))
 		return ;
 	/* original = NULL;
-    if (s->ast->argv && s->ast->type == EXEC && s->ast->argv[0][0] == '\020')
-    {
+	if (s->ast->argv && s->ast->type == EXEC && s->ast->argv[0][0] == '\020')
+	{
 		original = s->ast->argv;
-        if (s->ast->argv[0][0] == '\020')
+		if (s->ast->argv[0][0] == '\020')
 			s->ast->argv++;
-    }
+	}
 	if (s->ast->argv && (ft_isspace(s->ast->argv[0][0]) || s->ast->argv[0][0] == '\0'))
-    {
-        not_found(s->ast->argv[0], 127, s);
-        return;
-    } */
-    if (!ft_exec_paria(s, s->ast))
+	{
+		not_found(s->ast->argv[0], 127, s);
+		return;
+	} */
+	if (!ft_exec_paria(s, s->ast))
 	{
 		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
 		s->wait = 0;

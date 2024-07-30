@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:00 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/15 12:59:54 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:53:26 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ char	*expand_sw_vars(char *input, t_ms *s)
 			if (s->error == true)
 				break ;
 			pos = ft_strchr(xp_input, '$');
-			// if (pos && *(pos - 1) == '"' && *(pos + 1) == '"')
-				// *(pos) = 17;
 		}
 		else
 			pos = ft_strchr(pos + 1, '$');
@@ -73,16 +71,19 @@ char	*expand_sw_tilde(char *input, t_ms *s)
 	{
 		if (is_quoted(xp_input, pos) == NONE)
 		{
-			if (ft_strnstr(input, "=~", ft_strlen(input)))
+			if (ft_strnstr(xp_input, "=~", ft_strlen(xp_input)))
 				xp_input = expand_tilde_equal(xp_input, pos, s);
-			if (ft_strnstr(input, "~+", ft_strlen(input)))
+			if (ft_strnstr(xp_input, "~+", ft_strlen(xp_input)))
 				xp_input = expand_tilde_pwd(xp_input, pos, false, s);
-			else if (ft_strnstr(input, "~-", ft_strlen(input)))
+			else if (ft_strnstr(xp_input, "~-", ft_strlen(xp_input)))
 				xp_input = expand_tilde_oldpwd(xp_input, pos, false, s);
 			else
 				xp_input = expand_tilde(xp_input, pos, false, s);
 		}
-		pos = ft_strchr(pos + 1, '~');
+		if (ft_strchr(xp_input, '~') == pos)
+			pos = ft_strchr(pos + 1, '~');
+		else
+			pos = ft_strchr(xp_input, '~');
 	}
 	return (free(input), xp_input);
 }

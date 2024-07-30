@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ms_aux.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:21:13 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/30 16:54:19 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/30 19:01:19 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ char	*ft_getrnd_str(void)
 	return (ft_strdup(res));
 }
 
+// todo comments
 char	*ft_get_empty(void)
 {
-	// char	no_char;
 	char	*empty;
+	// char	no_char;
 
 	// no_char = EMPTY;
 	empty = ft_calloc(1, 2);

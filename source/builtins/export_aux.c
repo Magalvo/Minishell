@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:23:29 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/13 00:09:12 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:40:19 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 // 	return (key);
 // }
 
+// todo Error: WRONG_SCOPE_COMMENT  (line:  35, col:   5)
 char	*get_key_from_str(const char *str)
 {
 	char	*delimiter;

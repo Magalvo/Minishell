@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:50 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/19 12:19:27 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:42:52 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	unset_cmd_aux(t_ms *s, t_env *current)
 		current->next->prev = NULL;
 }
 
+// todo Error: TOO_MANY_LINES
 int	unset_cmd(t_ms *s, char **args)
 {
 	t_env	*current;
@@ -80,7 +81,7 @@ int	unset_cmd(t_ms *s, char **args)
 	i = 1;
 	while (args[i])
 	{
-		if( s->ast->argc > 1 && !is_valid_key(args[i]))
+		if (s->ast->argc > 1 && !is_valid_key(args[i]))
 			export_cmd_error(s, "not valid identifier", args[i]);
 		current = s->env;
 		while (current && args[i])

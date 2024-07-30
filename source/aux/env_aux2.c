@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_aux2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:37 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/30 17:41:36 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:35:59 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	*get_other_env_val(t_env *env, char *key)
 	tmp_env = env;
 	while (env)
 	{
-		if(ft_strncmp(env->key, key, ft_strlen(key)) == 0 && \
+		if (ft_strncmp(env->key, key, ft_strlen(key)) == 0 && \
 			ft_strlen(env->key) == ft_strlen(key))
 		{
 			value = env->value;
@@ -95,9 +95,9 @@ char	*get_other_env_val(t_env *env, char *key)
 char	*get_env_val(t_env *env, char *key, t_ms *s)
 {
 	if (ft_strncmp(key, "PATH", 4) == 0)
-		return get_path_value(s);
+		return (get_path_value(s));
 	else
-		return get_other_env_val(env, key);
+		return (get_other_env_val(env, key));
 }
 
 char	**env_convert(t_env *env)
@@ -129,7 +129,7 @@ char	**env_convert(t_env *env)
 	return (env_array);
 }
 
-
+// todo deprecated! remove?
 /* char	*get_env_val(t_env *env, char *key, t_ms *s)
 {
 	int		i;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:04:53 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/19 16:21:21 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:51:20 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ char	*aux_cwd(void)
 	return (NULL);
 }
 
-
+// todo too may lines
+// todo line 46 to long, still need the comment?
 char	*cmd_path(char **paths, char *cmd, t_ms *s)
 {
 	char	*command;
@@ -104,6 +105,7 @@ int	fork1(void)
 	return (pid);
 }
 
+// todo still need the comment on 119 and 121?
 void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	pid_t	pid;

@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   aux1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:10 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/30 16:01:11 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:34:04 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
+// todo remove !!!!!s or not
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 char	*get_env_expand(char *key)
 {
@@ -44,7 +45,7 @@ int	export_cmd_error(t_ms *s, char *msg, char *key)
 	return (1);
 }
 
-void	 wait_till_end(t_ms *s, pid_t pid, t_cmd *cmd)
+void	wait_till_end(t_ms *s, pid_t pid, t_cmd *cmd)
 {
 	int	status;
 

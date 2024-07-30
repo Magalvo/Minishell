@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_aux.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/22 15:53:30 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:55:30 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	exit_minishell(t_ms *s, char *msg)
 		s->ast = NULL;
 	}
 	cleanup_shell(s);
-	//rl_clear_history();
 	res = (unsigned char)exiter;
 	exit(res);
 }
 
+// todo comments still neeeded?
 int	init_minishell(t_ms *s, char **ep)
 {
 	//int	i = 0;	//! just for test

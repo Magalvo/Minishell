@@ -6,27 +6,28 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/22 17:49:05 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:56:02 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void print_open_fds(void) 
-{
-    char path[256];
-    snprintf(path, sizeof(path), "/proc/%d/fd", getpid());
-    DIR *dir = opendir(path);
-    if (dir) {
-        struct dirent *entry;
-        while ((entry = readdir(dir)) != NULL) {
-            if (entry->d_type == DT_LNK) {
-                printf("Open FD: %s\n", entry->d_name);
-            }
-        }
-        closedir(dir);
-    }
-}
+// ! WTF? debug right?
+// void print_open_fds(void)
+// {
+// 	char path[256];
+// 	snprintf(path, sizeof(path), "/proc/%d/fd", getpid());
+// 	DIR *dir = opendir(path);
+// 	if (dir) {
+// 		struct dirent *entry;
+// 		while ((entry = readdir(dir)) != NULL) {
+// 			if (entry->d_type == DT_LNK) {
+// 				printf("Open FD: %s\n", entry->d_name);
+// 			}
+// 		}
+// 		closedir(dir);
+// 	}
+// }
 
 		/* Test loop */
 		// if (isatty(fileno(stdin)))
@@ -41,7 +42,7 @@ void print_open_fds(void)
 		// 	free(line);
 		// }
 
-
+// todo line 68 comment
 void	minishell(char **envp)
 {
 	t_ms	s;
@@ -67,7 +68,6 @@ void	minishell(char **envp)
 		//print_open_fds();
 		free(input);
 		reset_ast(&s);
-
 	}
 	rl_clear_history();
 	exit_minishell(&s, NULL);
@@ -76,7 +76,6 @@ void	minishell(char **envp)
 int	main(int argc, char *argv[], char *envp[])
 {
 	(void)argv;
-
 	if (argc != 1)
 		return (ft_dprintf(STDERR_FILENO, \
 			"Minishell takes no arguments, Exiting.\n"));

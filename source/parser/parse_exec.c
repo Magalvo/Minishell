@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:28:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/22 17:03:22 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:53:11 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,6 @@ void	parse_args(char **ps, char *es, t_d_cmd *cmds, t_ms *s)
 	while (!peek(ps, es, "|"))
 	{
 		tok = get_token(ps, es, &q, &eq);
-		// if (tok == 0)
-			// break ;
-		// if (tok != 'a' && s->error == true)
 		if (tok == 0 || (tok != 'a' && s->error == true))
 			break ;
 		else if (tok != 'a')

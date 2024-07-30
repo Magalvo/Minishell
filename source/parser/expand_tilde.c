@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:07:37 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/22 17:30:52 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:52:11 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*expand_tilde_equal(char *input, char *ps, t_ms *s)
 		else
 			res = expand_tilde(input, ps, true, s);
 	}
-	if (res == input)
+	if (!res || res == input)
 		return (input);
 	return (free(input), res);
 }
@@ -96,7 +96,8 @@ char	*expand_tilde(char *input, char *ps, bool check, t_ms *s)
 	char	*res;
 
 	res = NULL;
-	if (ft_isspace(*(ps - 1)) || ps == input || check)
+	if ((ps != input && ft_isspace(*(ps - 1)))
+		|| ps == input || check)
 	{
 		if (ft_strchr(" :/", *(ps + 1)))
 		{

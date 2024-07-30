@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/19 13:57:24 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:54:23 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_cmd	*parse_input(char **input, t_ms *s)
 	if (!syntax_validation(*input, s))
 		return (NULL);
 	xp_input = ft_strdup(*input);
-	// xp_input = expand_sw_vars(xp_input, s);
 	if (xp_input == NULL)
 		return (NULL);
 	xp_input = expand_sw_tilde(xp_input, s);
@@ -55,8 +54,6 @@ t_cmd	*parse_cmd(char *input, t_ms *s)
 
 	if (input == NULL)
 		return (NULL);
-	// no dolar replacement is done before this step anymore
-	// ft_strrep_range(input, NULL, DOLAR, '$');
 	end = NULL;
 	end = input;
 	while (true)

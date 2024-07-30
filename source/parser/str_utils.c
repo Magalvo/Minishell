@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:12:16 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/22 14:27:13 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:54:00 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,6 @@ char	*reassemble_input(char *input)
 		return (input);
 	input_len = ft_strlen(input);
 	ft_strrep_range(input, NULL, DOLAR, '$');
-	// if (input_len == 1 && input[0] == EMPTY)
-	// {
-	// }
-	// else if (input_len > 1 && input[0] == EMPTY)
-	// {
-	// 	ft_strrep_range(input+1, NULL, EMPTY, '$');
-	// }
-	// else
-	// 	ft_strrep_range(input+1, NULL, EMPTY, '$');
 	retokenizer(input, input + input_len);
 	unglue_str(input, input + input_len);
 	requoter(input + 1, input + input_len);

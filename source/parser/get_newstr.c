@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:12:16 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/22 14:39:52 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:52:47 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ char	*get_expanded(char *input, char *cut, char *paste, char *remain)
 	size_t	last;
 
 	first = ft_strlen(input) - ft_strlen(cut);
-	// if (paste == NULL || !ft_strcmp(paste, EMPTY_STR))
 	if (paste == NULL)
 		insert = 0;
 	else

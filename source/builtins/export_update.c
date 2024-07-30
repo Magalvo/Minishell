@@ -6,12 +6,13 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:02 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/08 19:15:25 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:39:26 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
+// todo Error: TOO_MANY_LINES
 int	add_node_export(t_env *env, char *key, char *value)
 {
 	t_env	*new_node;

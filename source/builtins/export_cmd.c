@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:59 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/30 17:28:08 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:48:10 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	update_key(t_env *env, char *key, char *value)
 		if (result == 1)
 		{
 			key_found = 1;
-			break;
+			break ;
 		}
 		else if (result == -1)
 			return (0);
@@ -103,7 +103,6 @@ int	export_cmd(t_ms *s, char **str)
 			free_key(&key);
 			export_cmd_error(s, ": not a valid identifier", str[i]);
 		}
-		// ! moved to other function because nilf
 		else
 			handle_key(s, str[i], key);
 	}
@@ -119,7 +118,6 @@ void	handle_key(t_ms *s, char *str, char *key)
 
 	value = NULL;
 	append = ft_strchr(str, '=');
-	// ! comment next if else, keep: value = get_value_from_str(str);
 	if (append && *(append - 1) == '+')
 	{
 		val = get_env_val(s->env, key, s);

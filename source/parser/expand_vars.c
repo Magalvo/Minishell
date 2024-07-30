@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_vars.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:09:13 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/30 17:15:12 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/30 19:02:39 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,10 @@ char	*expand_curly(char *input, char *ps, t_ms *s)
 		val = get_env_val(s->env, key, s);
 		res = get_expanded(input, ps, val, end + 1);
 		free2(key, val);
-		// free(key);
-		// free(val);
 		return (free(input), res);
 	}
 	return (reprompt(CURLY_ERROR, 1, s), NULL);
 }
-
 
 char	*expand_pid(char *input, char *ps, t_ms *s)
 {
@@ -104,8 +101,6 @@ char	*expand_last_cmd(char *input, char *ps, t_ms *s)
 	val = get_env_val(s->env, key, s);
 	res = get_expanded(input, ps, val, ps + 2);
 	free2(key, val);
-	// free(key);
-	// free(val);
 	return (free(input), res);
 }
 

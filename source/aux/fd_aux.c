@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_aux.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:22:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/18 16:28:23 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:56:51 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	fd_errors(t_ms *s, t_cmd *cmd)
 	perror(cmd->file);
 }
 
-void fd_unlock(t_cmd *cmd, t_ms *s, int *fd, int rd_only)
+void	fd_unlock(t_cmd *cmd, t_ms *s, int *fd, int rd_only)
 {
 	(void)rd_only;
 	if (chdir(cmd->file) == 0)
@@ -42,7 +42,7 @@ void fd_unlock(t_cmd *cmd, t_ms *s, int *fd, int rd_only)
 	}
 	if (rd_only == 0)
 	{
-		*fd = open(cmd->file, cmd->mode, 0666); 
+		*fd = open(cmd->file, cmd->mode, 0666);
 		if (*fd < 0)
 			fd_errors(s, cmd);
 	}

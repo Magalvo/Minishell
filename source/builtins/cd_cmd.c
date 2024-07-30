@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_cmd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:15 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/30 18:00:00 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:46:11 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,9 @@ int	cd_cmd_minus(t_env *env)
 	return (result);
 }
 
-
+// todo
+//Error: ASSIGN_IN_CONTROLA ssignment in control structure
+//     (line:  101 col:  17):      103, 105, 107
 int	cd_cmd(t_ms *mini, char **path)
 {
 	t_env	*env;
@@ -114,7 +116,7 @@ int	cd_cmd(t_ms *mini, char **path)
 	return (change_pwd(env, mini));
 }
 
-
+// todo remove maybe?
 /*
 int	cd_cmd(t_ms *mini, char **path)
 {

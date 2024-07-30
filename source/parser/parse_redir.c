@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/12 23:23:12 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:53:41 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,6 @@ t_cmd	*parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 		if (peek(ps, es, TOKENS))
 		{
 			return (free_ast2(&cmd), reprompt(INVALID_TOKEN, 2, s), NULL);
-			// reprompt(INVALID_TOKEN, 1, s);
-			// while (peek(ps, es, TOKENS))
-			// 	get_token(ps, es, 0, 0);
-			// return (NULL);
 		}
 		if (get_token(ps, es, &q, &eq) != 'a')
 		{
