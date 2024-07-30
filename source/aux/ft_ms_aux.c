@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ms_aux.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:21:13 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/11 13:25:25 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/30 16:54:19 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,20 @@ char	*ft_getpid(void)
 	return (pid_res);
 }
 
+void	init_aux(t_env **head, t_env **tail, t_env *new_node)
+{
+	if (*tail)
+	{
+		(*tail)->next = new_node;
+		new_node->prev = *tail;
+		*tail = new_node;
+	}
+	else
+	{
+		*head = new_node;
+		*tail = new_node;
+	}
+}
 // for historical reasons this monstrosity shall remain here.
 // If it's stupid and it works is not stupid, then there's this function...
 /*

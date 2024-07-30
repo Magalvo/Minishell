@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:23 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/19 16:25:04 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/30 17:14:11 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,20 @@ void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	}
 }
 
-// TODO Function has more than 25 lines
+void	standard_check(int fd_in, int pipefd)
+{
+	if (fd_in != STDIN_FILENO)
+	{
+		if (dup2(fd_in, STDIN_FILENO) == -1)
+			error_msg("dup2");
+	}
+	if (pipefd != STDOUT_FILENO)
+	{
+		if (dup2(pipefd, STDOUT_FILENO) == -1)
+			error_msg("dup2");
+	}
+}
+
 void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	int		pipefd[2];
@@ -45,10 +58,7 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	if (pid == 0)
 	{
 		close(pipefd[0]);
-		if (fd_in != STDIN_FILENO)
-			dup2(fd_in, STDIN_FILENO);//dup_and_close(s, &fd_in, &fd_out, STDIN_FILENO);
-		if (pipefd[1] != STDOUT_FILENO)
-			dup2(pipefd[1], STDOUT_FILENO);//dup_and_close(s, &fd_out, &fd_in, STDOUT_FILENO);
+		standard_check(fd_in, pipefd[1]);
 		close(pipefd[1]);
 		exec_from_ast_recursive(s, cmd->left, fd_in, STDOUT_FILENO);
 		close_two_fd(cmd, fd_in, fd_out);
@@ -68,7 +78,7 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 int	not_found(char *str, int status, t_ms *s)
 {
 	char	*temp;
-	
+
 	temp = str;
 	if (temp)
 		ft_putstr_fd(temp, 2);

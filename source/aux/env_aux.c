@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_aux.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:18 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/22 15:51:20 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/30 16:01:32 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,24 +55,6 @@ char	**null_env_init(void)
 	init_env[3] = NULL;
 	return (init_env);
 }
-
-	// if (!init_env[1])
-	// {
-	// 	free_and_error(init_env[0], init_env[1], NULL)
-	// 	// free(init_env[0]);
-	// 	// free(init_env);
-	// 	// error_msg("strdup");
-	// }
-	// // TODO * Break Func Here
-	// init_env[2] = ft_strdup("_=/usr/bin/env");
-	// if (!init_env[2])
-	// {
-	// 	free_and_error(init_env[0], init_env[1], init_env)
-	// 	// free(init_env[0]);
-	// 	// free(init_env[1]);
-	// 	// free(init_env);
-	// 	// error_msg("strdup");
-	// }
 
 void	free_and_error(char *one, char *two, char **three)
 {

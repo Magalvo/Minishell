@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/07/29 19:14:50 by cjoao-de         ###   ########.fr        #
+#    Updated: 2024/07/30 17:31:24 by dde-maga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ PARSER =	aux.c expand_tilde.c expand_vars.c expand_vars2.c \
 			syntax_tests2.c
 
 AUX = aux1.c env_aux.c env_aux2.c pipe_exec.c redir_exec.c \
-		free.c	ft_ms_aux.c env_aux3.c	env_aux4.c fd_aux.c
+		free.c	ft_ms_aux.c env_aux3.c	env_aux4.c fd_aux.c \
+		cd_aux.c
 
 SIG = signals.c signals_type.c
 

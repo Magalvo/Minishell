@@ -3,16 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   redir_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:22:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/18 18:31:11 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/30 16:55:50 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-// TODO Function has more than 25 lines
+void	unclose1(t_ms *s, t_cmd *cmd, int *fd_out, int *temp_fd)
+{
+	if (*fd_out == STDOUT_FILENO)
+		fd_unlock(cmd, s, fd_out, 0);
+	else
+		ft_unlock_close(cmd, s, temp_fd, 0);
+}
+
+void	unclose0(t_ms *s, t_cmd *cmd, int *fd_in, int *temp_fd)
+{
+	if (*fd_in == STDIN_FILENO)
+	{
+		fd_unlock(cmd, s, fd_in, 1);
+		close_fd(temp_fd);
+	}
+	else
+	{
+		close_fd(temp_fd);
+		fd_unlock(cmd, s, temp_fd, 1);
+	}
+}
+
 void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	int	temp_fd;
@@ -23,25 +44,9 @@ void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		if (cmd->type == HEREDOC)
 			fd_in = cmd->fd;
 		else if (cmd->fd == 1)
-		{
-			if (fd_out == STDOUT_FILENO)
-				fd_unlock(cmd, s, &fd_out, 0);
-			else
-				ft_unlock_close(cmd, s, &temp_fd, 0);
-		}
+			unclose1(s, cmd, &fd_out, &temp_fd);
 		else if (cmd->fd == 0)
-		{
-			if (fd_in == STDIN_FILENO)
-			{
-				fd_unlock(cmd, s, &fd_in, 1);
-				close_fd(&temp_fd);
-			}
-			else
-			{
-				close_fd(&temp_fd);
-				fd_unlock(cmd, s, &temp_fd, 1);
-			}	
-		}
+			unclose0(s, cmd, &fd_in, &temp_fd);
 		cmd = cmd->cmd;
 	}
 	close_fd(&temp_fd);

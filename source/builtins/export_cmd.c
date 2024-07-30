@@ -3,42 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   export_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:58:59 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/22 17:29:31 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/30 17:28:08 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-//!! AQUI
-// TODO Function has more than 25 lines
-int	update_key(t_env *env, char *key, char *value)
+int	check_and_update(t_env *env, char *key, char *value)
 {
 	char	*value_tmp;
+
+	if (ft_sw_builtins(env->key, key) == 0)
+	{
+		if (value)
+		{
+			if (env->value != NULL && ft_strcmp(value, env->value) == 0)
+				return (1);
+			value_tmp = ft_strdup(value);
+			if (!value_tmp)
+				return (-1);
+			free(env->value);
+			env->value = value_tmp;
+		}
+		return (1);
+	}
+	return (0);
+}
+
+//!! AQUI
+int	update_key(t_env *env, char *key, char *value)
+{
 	t_env	*env_hold;
+	int		result;
 	int		key_found;
 
 	env_hold = env;
 	key_found = 0;
 	while (env)
 	{
-		if (ft_sw_builtins(env->key, key) == 0)
+		result = check_and_update(env, key, value);
+		if (result == 1)
 		{
 			key_found = 1;
-			if (value)
-			{
-				if (env->value != NULL && ft_strcmp(value, env->value) == 0)
-					break ;
-				value_tmp = ft_strdup(value);
-				if (!value_tmp)
-					return (0);
-				free(env->value);
-				env->value = value_tmp;
-			}
-			break ;
+			break;
 		}
+		else if (result == -1)
+			return (0);
 		env = env->next;
 	}
 	env = env_hold;
@@ -73,7 +86,6 @@ int	add_new_node(t_env *env, char *key, char *value)
 	return (0);
 }
 
-// TODO Function has more than 25 lines
 int	export_cmd(t_ms *s, char **str)
 {
 	char	*key;
@@ -114,8 +126,6 @@ void	handle_key(t_ms *s, char *str, char *key)
 		val2 = get_value_from_str(str);
 		value = ft_strjoin(val, val2);
 		free2(val, val2);
-		// free(val);
-		// free(val2);
 	}
 	else
 		value = get_value_from_str(str);
@@ -124,8 +134,6 @@ void	handle_key(t_ms *s, char *str, char *key)
 	env_arr_update(s, NULL);
 	env_paths(s, s->env_tmp);
 	free2(key, value);
-	// free(key);
-	// free(value);
 	key = NULL;
 	value = NULL;
 }

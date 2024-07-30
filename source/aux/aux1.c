@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:10 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/15 12:52:27 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/30 16:01:11 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,12 @@ char	*get_env_expand(char *key)
 
 int	export_cmd_error(t_ms *s, char *msg, char *key)
 {
-	(void)key;
 	if (key[0] == '-')
 	{
 		s->exit_stat = 2;
 		msg = "usage: export [-nf] [name[=value] ...] or export -p";
 	}
-	else 
+	else
 		s->exit_stat = 1;
 	ft_putstr_fd("minishell: export: `", 2);
 	if (s->exit_stat == 1)
@@ -53,8 +52,6 @@ void	 wait_till_end(t_ms *s, pid_t pid, t_cmd *cmd)
 	waitpid(pid, &status, 0);
 	if (s->ast->type == 2 && s->exit_stat == 1)
 		return ;
-/* 	printf("ANTES STATUS: -> %d\n", status);
-	printf("EXIT: -> %d\n\n", s->exit_stat); */
 	if (WIFEXITED(status))
 	{
 		if (s->wait == 0)
@@ -62,7 +59,6 @@ void	 wait_till_end(t_ms *s, pid_t pid, t_cmd *cmd)
 	}
 	else if (WIFSIGNALED(status))
 	{
-		//printf("Entrou no IF");
 		if (s->wait == 0)
 			s->exit_stat = 128 + WTERMSIG(status);
 		if (s->exit_stat == 131 && s->wait == 0)
@@ -73,10 +69,7 @@ void	 wait_till_end(t_ms *s, pid_t pid, t_cmd *cmd)
 			s->exit_stat = 0;
 	}
 	if (s->exit_stat > 255 && s->wait == 0)
-	{
 		s->exit_stat /= 256;
-	}
-	//printf("EXIT: -> %d\n\n", s->exit_stat);
 	s->wait += 1;
 }
 
@@ -98,21 +91,3 @@ void	close_fd(int *fd)
 		*fd = -1;
 	}
 }
-
-/* 	printf("STATUS: %d\n", status);
-	printf("EXIT: %d\n", s->exit_stat); */
-	/* 	if (status == 13)
-		s->exit_stat = s->exit_stat; */
-
-/* 		printf("CMD: -> %s\n", cmd->argv[0]);
-		printf("STATUS: -> %d\n", status);
-		printf("EXIT: -> %d\n\n", s->exit_stat); */
-
-
-/* 	printf("CMD: -> %d\n", s->ast->type);
-	printf("DEPOIS STATUS: -> %d\n", status);
-	printf("EXIT: -> %d\n\n", s->exit_stat);
-	printf("WAIT ->%d\n", s->wait); */
-/* 		printf("CMD: -> %d\n", s->ast->type);
-		printf("STATUS: -> %d\n", status);
-		printf("EXIT: -> %d\n\n", s->exit_stat); */

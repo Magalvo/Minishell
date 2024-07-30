@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_aux4.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:18 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/18 18:25:51 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/30 16:58:19 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,25 @@ int	is_dir(const char *cmd)
 	}
 	return (0);
 }
+
 void	swipper_fds(void)
 {
-    int fd;
-	
-    for (fd = 0; fd < 1024; fd++) {
-        close(fd);
-    }
+	int fd;
+
+	for (fd = 0; fd < 1024; fd++) {
+		close(fd);
+	}
 }
 
-/* int	pipe1(void)
+char	**create_env_array(int ctd_ptr)
 {
-	pid_t	pid;
+	char	**env_array;
 
-	pid = fork();
-	if (pid == -1)
-		error_msg("minishell: fork error");
-	return (pid);
-} */
+	env_array = (char **)ft_calloc((ctd_ptr + 1), sizeof(char *));
+	if (!env_array)
+	{
+		ft_putstr_fd("env_arr", 2);
+		return (NULL);
+	}
+	return (env_array);
+}

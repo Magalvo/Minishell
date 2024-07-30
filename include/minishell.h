@@ -188,6 +188,16 @@ int		is_dir(const char *cmd);
 void	print_exit(t_ms *s, char *cmds, char *str, int status);
 void	swipper_fds(void);
 // char	*empty(void);
+char	**create_env_array(int ctd_ptr);
+void	old_pwd(t_env *env);
+int		cd_cmd_arg_check(t_ms *mini);
+int		cd_cmd_handle_home(t_env *env, char **path);
+int		cd_cmd_handle_minus(t_env *env, char **path);
+int		cd_cmd_change_dir(t_ms *mini, char *dir);
+int		cd_cmd_error(char *msg);
+int		change_pwd(t_env *env, t_ms *s);
+int		cd_cmd_home(t_env *env);
+int		cd_cmd_minus(t_env *env);
 
 
 //*==================== AUX =======================*//

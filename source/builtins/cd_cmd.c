@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cd_cmd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:15 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/22 17:34:02 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:00:00 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-static int	cd_cmd_error(char *msg)
+int	cd_cmd_error(char *msg)
 {
 	ft_putstr_fd("minishell: cd: ", 2);
 	ft_putstr_fd(msg, 2);
@@ -20,7 +20,7 @@ static int	cd_cmd_error(char *msg)
 	return (1);
 }
 
-static int	change_pwd(t_env *env, t_ms *s)
+int	change_pwd(t_env *env, t_ms *s)
 {
 	char	*cmd;
 	int		result;
@@ -37,8 +37,7 @@ static int	change_pwd(t_env *env, t_ms *s)
 	return (result);
 }
 
-// TODO Function has more than 25 lines
-static int	cd_cmd_home(t_env *env)
+int	cd_cmd_home(t_env *env)
 {
 	char	*home;
 	char	*oldpwd;
@@ -47,14 +46,7 @@ static int	cd_cmd_home(t_env *env)
 
 	oldpwd = get_env_val(env, "OLDPWD", NULL);
 	if (!oldpwd)
-	{
-		pwd = get_env_val(env, "PWD", NULL);
-		if (pwd)
-		{
-			add_new_node(env, "OLDPWD", pwd);
-			free(pwd);
-		}
-	}
+		old_pwd(env);
 	else
 		free(oldpwd);
 	pwd = get_env_val(env, "PWD", NULL);
@@ -70,18 +62,9 @@ static int	cd_cmd_home(t_env *env)
 		return (free(home), ft_putstr_fd("No such file or directory\n", 2), 1);
 	result = update_key(env, "PWD", home);
 	return (free(home), result);
-	/* if (!get_env_val(env, "OLDPWD", NULL))
-		add_new_node(env, "OLDPWD", get_env_val(env, "PWD", NULL));
-	update_key(env, "OLDPWD", get_env_val(env, "PWD", NULL));
-	home = get_env_val(env, "HOME", NULL);
-	if (!home)
-		return (ft_putstr_fd("Err on ENV\n", 2), 1);
-	if (chdir(home) == -1)
-		return (ft_putstr_fd("No such file or directory\n", 2), 1);
-	return (update_key(env, "PWD", home), 1); */
 }
 
-static int	cd_cmd_minus(t_env *env)
+int	cd_cmd_minus(t_env *env)
 {
 	char	*old;
 	char	*current_pwd;
@@ -95,8 +78,6 @@ static int	cd_cmd_minus(t_env *env)
 	{
 		ft_putstr_fd("Failed to change directory\n", 2);
 		free2(old, current_pwd);
-		// free(old);
-		// free(current_pwd);
 		return (0);
 	}
 	ft_putstr_fd(old, 1);
@@ -104,12 +85,37 @@ static int	cd_cmd_minus(t_env *env)
 	update_key(env, "OLDPWD", current_pwd);
 	result = update_key(env, "PWD", old);
 	free2(old, current_pwd);
-	// free(old);
-	// free(current_pwd);
 	return (result);
 }
 
-// TODO Function has more than 25 lines
+
+int	cd_cmd(t_ms *mini, char **path)
+{
+	t_env	*env;
+	char	*val;
+	int		result;
+
+	env = mini->env;
+	if ((result = cd_cmd_arg_check(mini)) != 0)
+		return (result);
+	if ((result = cd_cmd_handle_home(env, path)) != 0)
+		return (result);
+	if ((result = cd_cmd_handle_minus(env, path)) != 0)
+		return (result);
+	if ((result = cd_cmd_change_dir(mini, path[1])) != 0)
+		return (result);
+	val = get_env_val(env, "PWD", NULL);
+	if (val)
+	{
+		export_update(env, "OLDPWD", val);
+		export_update(mini->export, "OLDPWD", val);
+		free(val);
+	}
+	return (change_pwd(env, mini));
+}
+
+
+/*
 int	cd_cmd(t_ms *mini, char **path)
 {
 	t_env	*env;
@@ -140,4 +146,4 @@ int	cd_cmd(t_ms *mini, char **path)
 		free(val);
 	}
 	return (change_pwd(env, mini));
-}
+} */

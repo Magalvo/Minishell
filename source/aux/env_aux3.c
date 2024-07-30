@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_aux3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:45 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/18 17:29:52 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/07/30 16:55:09 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,10 @@ void	dup_and_close(t_ms *s, int *fd_this, int *fd_aux, int standard)
 		close_fd(fd_this);
 		if(*fd_aux != (!standard))
 			close_fd(fd_aux);
-/* 		printf("FD-> %d\n", *fd);
-		printf("STANDARD-> %d\n", standard); */
 		exit_minishell(s, NULL);
 	}
 	close_fd(fd_this);
 }
-
-/* void	dup_and_close(t_ms *s, int *fd, int standard)
-{
-	if (dup2(*fd, standard) < 0)
-	{
-		fd_errors(s, NULL);
-	}
-	close_fd(fd);
-} */
 
 void	free_env_array(char **env_array)
 {
