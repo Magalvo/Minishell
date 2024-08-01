@@ -3,47 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   export_update.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:02 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/30 18:39:26 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/01 13:19:18 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-// todo Error: TOO_MANY_LINES
-int	add_node_export(t_env *env, char *key, char *value)
+t_env	*create_new_node(char *key, char *value)
 {
-	t_env	*new_node;
-	t_env	*export;
+	t_env *new_node;
 
 	new_node = (t_env *)ft_calloc(sizeof(t_env), 1);
 	if (!new_node)
-		return (ft_putstr_fd("malloc (new env)", 2), 0);
+		return (ft_putstr_fd("malloc (new env)", 2), NULL);
 	new_node->key = ft_strdup(key);
 	if (!new_node)
-		return (free(new_node), 0);
+		return (free(new_node), NULL);
 	if (value)
 	{
 		new_node->value = ft_strdup(value);
 		if (!new_node->key)
-			return (free(new_node->key), free(new_node), 0);
+		{
+			free(new_node->key);
+			free(new_node);
+			return (NULL);
+		}
 	}
 	else
 		new_node->value = NULL;
 	new_node->prev = NULL;
 	new_node->next = NULL;
+	return (new_node);
+}
+
+void	append_env(t_env *env, t_env *new_node)
+{
+	t_env *export;
+
+	export = env;
+	while (export->next)
+		export = export->next;
+	export->next = new_node;
+	new_node->prev = export;
+}
+
+int	add_node_export(t_env *env, char *key, char *value)
+{
+	t_env	*new_node;
+
+	new_node = create_new_node(key, value);
+	if (!new_node)
+		return (0);
 	if (!env)
 		env = new_node;
 	else
-	{
-		export = env;
-		while (export->next)
-			export = export->next;
-		export->next = new_node;
-		new_node->prev = export;
-	}
+		append_env(env, new_node);
 	return (1);
 }
 

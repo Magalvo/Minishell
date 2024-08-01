@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_aux.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:23:29 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/30 18:40:19 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/01 12:39:57 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,13 @@
 // 	return (key);
 // }
 
-// todo Error: WRONG_SCOPE_COMMENT  (line:  35, col:   5)
+
 char	*get_key_from_str(const char *str)
 {
 	char	*delimiter;
 	char	*key;
 
 	delimiter = ft_strchr(str, '=');
-	// ! next 2 lines added
 	if (delimiter && *(delimiter - 1) == '+')
 		key = extract_key(str, --delimiter);
 	else if (delimiter)

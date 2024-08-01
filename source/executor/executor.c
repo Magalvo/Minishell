@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:04:53 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/30 18:51:20 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/01 12:07:11 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,76 @@ char	*aux_cwd(void)
 	return (NULL);
 }
 
-// todo too may lines
-// todo line 46 to long, still need the comment?
 char	*cmd_path(char **paths, char *cmd, t_ms *s)
+{
+	char	*command;
+
+	if (!cmd)
+		return (NULL);
+	if ((command = check_if_dir(cmd, s)) == NULL)
+		return (NULL);
+	command = check_paths(paths, cmd);
+	if (command)
+		return (command);
+	return (get_cmd_from_cwd(cmd));
+}
+
+void	new_line(void)
+{
+	rl_on_new_line();
+	rl_replace_line("", 0);
+}
+
+/* static void	assist_file(int fd, int standard)
+{
+	if (dup2 (fd, standard) == -1)
+	{
+		perror("dup2");
+		close_fd(&fd);
+		exit (1);
+	}
+	close_fd(&fd);
+} */
+
+int	fork1(void)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == -1)
+		error_msg("minishell: fork error");
+	return (pid);
+}
+
+void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+{
+	pid_t	pid;
+
+	check_signal(IGNORE);
+	pid = fork1();
+	if (pid == 0)
+	{
+		check_signal(CHILD);
+		if (fd_in != STDIN_FILENO)
+			dup_and_close(s, &fd_in, &fd_out, STDIN_FILENO);
+		if (fd_out != STDOUT_FILENO)
+			dup_and_close(s, &fd_out, &fd_in, STDOUT_FILENO);
+		if (!ft_exec_builtins_chr(s, cmd->argv, fd_in, fd_out))
+			exec_one(s, cmd->argv);
+		exit_minishell(s, NULL);
+	}
+	else
+	{
+		if (fd_in != STDIN_FILENO)
+			close_fd(&fd_in);
+		if (fd_out != STDOUT_FILENO)
+			close_fd(&fd_out);
+		wait_till_end(s, pid, cmd);
+	}
+}
+
+
+/* char	*cmd_path(char **paths, char *cmd, t_ms *s)
 {
 	char	*command;
 	char	*cwd;
@@ -76,60 +143,4 @@ char	*cmd_path(char **paths, char *cmd, t_ms *s)
 	}
 	free(command);
 	return (NULL);
-}
-
-void	new_line(void)
-{
-	rl_on_new_line();
-	rl_replace_line("", 0);
-}
-
-/* static void	assist_file(int fd, int standard)
-{
-	if (dup2 (fd, standard) == -1)
-	{
-		perror("dup2");
-		close_fd(&fd);
-		exit (1);
-	}
-	close_fd(&fd);
 } */
-
-int	fork1(void)
-{
-	pid_t	pid;
-
-	pid = fork();
-	if (pid == -1)
-		error_msg("minishell: fork error");
-	return (pid);
-}
-
-// todo still need the comment on 119 and 121?
-void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
-{
-	pid_t	pid;
-
-	check_signal(IGNORE);
-	pid = fork1();
-	if (pid == 0)
-	{
-		check_signal(CHILD);
-		if (fd_in != STDIN_FILENO)
-			dup_and_close(s, &fd_in, &fd_out, STDIN_FILENO);//assist_file(fd_in, STDIN_FILENO);
-		if (fd_out != STDOUT_FILENO)
-			dup_and_close(s, &fd_out, &fd_in, STDOUT_FILENO);//assist_file(fd_out, STDOUT_FILENO);
-		if (!ft_exec_builtins_chr(s, cmd->argv, fd_in, fd_out))
-			exec_one(s, cmd->argv);
-		//s->exit_stat = 127;
-		exit_minishell(s, NULL);
-	}
-	else
-	{
-		if (fd_in != STDIN_FILENO)
-			close_fd(&fd_in);
-		if (fd_out != STDOUT_FILENO)
-			close_fd(&fd_out);
-		wait_till_end(s, pid, cmd);
-	}
-}

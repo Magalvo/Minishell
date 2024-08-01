@@ -11,10 +11,6 @@
 # include <signal.h>
 # include <termios.h>
 # include <dirent.h>
-// ! included in libft
-// # include <stdio.h>
-// # include <stdlib.h>
-// # include <unistd.h>
 // ? all structs and defines are here now
 # include "minishell_define.h"
 # include "minishell_msgs.h"
@@ -52,13 +48,13 @@ void	close_fd(int *fd);
 //*================ BUILTINS =====================*//
 
 void	init_list(t_env **list, char **envp);
-// void	init_env(t_ms *ms, char **envp);
+//void	init_env(t_ms *ms, char **envp);
 //int	echo_cmd(t_cmd *cmd);
 int		env_cmd(t_ms *s, char **cmds);
 int		cd_cmd(t_ms *mini, char **path);
 int		pwd_cmd(t_ms *s);
 int		export_cmd(t_ms *s, char **str);
-// void	handle_key(t_ms *s, char **str, char *key, char *value);
+//void	handle_key(t_ms *s, char **str, char *key, char *value);
 void	handle_key(t_ms *s, char *str, char *key);
 int		update_key(t_env *env, char *key, char *value);
 int		unset_cmd(t_ms *s, char **args);
@@ -82,11 +78,12 @@ t_env	*new_env_node(char *env_var);
 // int		update_last(t_env *env, char *key, char *value);
 int		ft_exec_paria(t_ms *s, t_cmd *cmds);
 int		is_valid_unset(char	*arg);
-
-
+void	unset_aux(t_ms *s, t_env **tmp, char *arg);
+void	unset_cmd_aux(t_ms *s, t_env *current);
+void	unset_clean(t_env *current);
+void	unset_move(t_env *current);
 
 //*=================== INIT =======================*//
-
 
 //*=================== PARSE ======================*//
 t_cmd	*parse_input(char **input, t_ms *s);
@@ -147,7 +144,6 @@ void	heredoc_child(char *dli, int fd_file, int expand, t_ms *s);
 int		del_eof(int heredoc);
 int		open_fd(char *file, int mode);
 
-
 // ! PARSE WIP
 // t_cmd	*nulterminate(t_cmd *cmd);
 void	reprompt(char *str, int exit_stat, t_ms *s);
@@ -173,7 +169,6 @@ t_cmd	*parse_exec(char **ps, char *es, t_ms *s);
 void	parse_args(char **ps, char *es, t_d_cmd *cmds, t_ms *s);
 // void	parse_args(char **ps, char *es, t_cmd *cmd, t_cmd *ret);
 
-
 //*==================== AUX =======================*//
 void	print_ast(t_ms *s, t_cmd *ptr, int padding);
 void	print_ast_exec(t_ms *s, t_cmd *ptr, int padding);
@@ -198,7 +193,7 @@ int		cd_cmd_error(char *msg);
 int		change_pwd(t_env *env, t_ms *s);
 int		cd_cmd_home(t_env *env);
 int		cd_cmd_minus(t_env *env);
-
+void	exit_and_found(char *str, int status, t_ms *s);
 
 //*==================== AUX =======================*//
 // void	split_input(t_ms *s, char* input);
@@ -210,9 +205,8 @@ void	free_and_error(char *one, char *two, char **three);
 char	**env_convert(t_env *env);
 char	**create_env_array(int ctd_ptr);
 void	free_env_list(t_env *list);
-void 	cleanup_shell(t_ms *s);
+void	cleanup_shell(t_ms *s);
 void	clear_cmd(t_cmd *cmd);
-// char	*get_pid(t_ms *s);
 void	free_env_array(char **env_array);
 void	init_aux(t_env **head, t_env **tail, t_env *new_node);
 char	*ft_getrnd_str(void);
@@ -229,15 +223,17 @@ int		fork1(void);
 int		ft_strcmp(const char *s1, const char *s2);
 int		env_pos(t_env *env, char *value);
 char	*join_key_value(const char *key, const char *value);
-
+int		builtins_parent(t_ms *s, char **cmds, int fd_in, int fd_out);
 
 //*================= EXEC =========================*//
-
 //todo int	cmd_exec(char *args);
 //int		exec_input(t_ms *s);
 //char	*search_path(char *command, char **paths);
 char	*env_paths(t_ms *ms, char **envp);
 char	*cmd_path(char **paths, char *cmd, t_ms *s);
+char	*check_if_dir(char *cmd, t_ms *s);
+char	*check_paths(char **paths, char	*cmd);
+char	*get_cmd_from_cwd(char *cmd);
 void	exec_from_ast(t_ms *s);
 void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
 void	exec_one(t_ms *s, char **argv);
@@ -251,10 +247,10 @@ void	close_two_fd(t_cmd *cmd, int fd_in, int fd_out);
 void	fd_errors(t_ms *s, t_cmd *cmd);
 void	fd_unlock(t_cmd *cmd, t_ms *s, int *fd, int rd_only);
 void	ft_unlock_close(t_cmd *cmd, t_ms *s, int *fd, int rd_only);
-
+void	exec_dir_path(t_ms *s, char **argv);
+void	exec_command_path(t_ms *s, char **argv);
 
 //*================= ERRORS =========================*//
-
 void	error_msg(char *str);
 int		free_export(char *key, char *value);
 void	free_paths(char **paths, int i);
@@ -264,17 +260,15 @@ int		free_export_p(t_env *env_copy, t_env *new_node);
 int		not_found(char *str, int status, t_ms *s);
 int		export_cmd_error(t_ms *s, char *msg, char *key);
 
-
 //!! To be sorted//
 void	set_exit(int stat, t_ms *s);
 void	wait_till_end(t_ms *s, pid_t pid, t_cmd *cmd);
-
+int		ft_exec_builtins_chr(t_ms *s, char **cmds, int fd_in, int fd_out);
+int		echo_cmd_test(char **cmd, t_ms *s, int fd_in, int fd_out);
 #endif
 
 //! Temporary //
-
 //int		exec_input(t_ms *s);
-int		ft_exec_builtins_chr(t_ms *s, char **cmds, int fd_in, int fd_out);
-int		echo_cmd_test(char **cmd, t_ms *s, int fd_in, int fd_out);
 //int		export_cmd_test(t_ms *s, char **cmds);
 //int		unset_cmd_test(t_ms *s, char **cmds);
+// char	*get_pid(t_ms *s);

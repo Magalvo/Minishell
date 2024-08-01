@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_cmd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:15 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/30 18:46:11 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/01 12:37:13 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,7 @@ int	cd_cmd_minus(t_env *env)
 	return (result);
 }
 
-// todo
-//Error: ASSIGN_IN_CONTROLA ssignment in control structure
-//     (line:  101 col:  17):      103, 105, 107
+
 int	cd_cmd(t_ms *mini, char **path)
 {
 	t_env	*env;
@@ -98,13 +96,17 @@ int	cd_cmd(t_ms *mini, char **path)
 	int		result;
 
 	env = mini->env;
-	if ((result = cd_cmd_arg_check(mini)) != 0)
+	result = cd_cmd_arg_check(mini);
+	if (result != 0)
 		return (result);
-	if ((result = cd_cmd_handle_home(env, path)) != 0)
+	result = cd_cmd_handle_home(env, path);
+	if (result != 0)
 		return (result);
-	if ((result = cd_cmd_handle_minus(env, path)) != 0)
+	result = cd_cmd_handle_minus(env, path);
+	if (result != 0)
 		return (result);
-	if ((result = cd_cmd_change_dir(mini, path[1])) != 0)
+	result = cd_cmd_change_dir(mini, path[1]);
+	if (result != 0)
 		return (result);
 	val = get_env_val(env, "PWD", NULL);
 	if (val)
@@ -116,7 +118,7 @@ int	cd_cmd(t_ms *mini, char **path)
 	return (change_pwd(env, mini));
 }
 
-// todo remove maybe?
+
 /*
 int	cd_cmd(t_ms *mini, char **path)
 {

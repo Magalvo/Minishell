@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/30 18:56:02 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/01 12:37:46 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@
 		// 	free(line);
 		// }
 
-// todo line 68 comment
 void	minishell(char **envp)
 {
 	t_ms	s;
@@ -65,14 +64,12 @@ void	minishell(char **envp)
 			s.bnf = false;
 			print_ast(&s, s.ast, -1);
 		}
-		//print_open_fds();
 		free(input);
 		reset_ast(&s);
 	}
 	rl_clear_history();
 	exit_minishell(&s, NULL);
 }
-
 int	main(int argc, char *argv[], char *envp[])
 {
 	(void)argv;

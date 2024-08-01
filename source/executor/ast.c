@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:23 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/30 17:14:11 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/01 12:31:10 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	not_found(char *str, int status, t_ms *s)
 {
 	char	*temp;
 
+	if (!str)
+		return (1);
 	temp = str;
 	if (temp)
 		ft_putstr_fd(temp, 2);
@@ -100,4 +102,11 @@ int	not_found(char *str, int status, t_ms *s)
 	else if (status == 126)
 		ft_putstr_fd(" : Permission denied\n", 2);
 	return (1);
+}
+
+void	exit_and_found(char *str, int status, t_ms *s)
+{
+	s->exit_stat = status;
+	if (!not_found(str, status, s))
+		return ;
 }

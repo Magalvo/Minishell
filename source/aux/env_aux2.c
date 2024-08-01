@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_aux2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:37 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/30 18:35:59 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/01 12:37:29 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,54 +129,3 @@ char	**env_convert(t_env *env)
 	return (env_array);
 }
 
-// todo deprecated! remove?
-/* char	*get_env_val(t_env *env, char *key, t_ms *s)
-{
-	int		i;
-	int		total_len;
-	char	*value;
-	char	*result;
-	t_env	*tmp_env;
-
-	i = 0;
-	if (ft_strncmp(key, "PATH", 4) == 0)
-	{
-		total_len = 0;
-		while (s->paths && s->paths[i])
-		{
-			total_len += ft_strlen(s->paths[i]);
-			if (s->paths[i + 1] != NULL)
-				total_len++;
-			i++;
-		}
-		result = ft_calloc(total_len + 1, sizeof(char *));
-		if (!result)
-			return (NULL);
-		i = 0;
-		while (s->paths && s->paths[i])
-		{
-			ft_strcat(result, s->paths[i]);
-			if (s->paths[i + 1] != NULL)
-				ft_strcat(result, ":");
-			i++;
-		}
-		return (result);
-	}
-	else
-	{
-		tmp_env = env;
-		while (env)
-		{
-			if (ft_strncmp(env->key, key, ft_strlen(key)) == 0 && \
-				ft_strlen(env->key) == ft_strlen(key))
-			{
-				value = env->value;
-				result = ft_strdup(value);
-				return (result);
-			}
-			env = env->next;
-		}
-		env = tmp_env;
-	}
-	return (NULL);
-} */

@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/30 18:59:50 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/01 13:23:05 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-// todo too many functions in file
-// todo too many comments in file
 char	*path_constructor(const char *path, const char *cmd, int slashi)
 {
 	char	*new_path;
@@ -41,55 +39,17 @@ char	*path_constructor(const char *path, const char *cmd, int slashi)
 	return (NULL);
 }
 
-void	all_together(char *arg, int stat, t_ms *s)
-{
-	not_found(arg, stat, s);
-	s->exit_stat = stat;
-}
-
-// todo more than 25 lines
 void	exec_one(t_ms *s, char **argv)
 {
-	char	*path;
-	char	*cmd_name;
-
 	if ((argv[0] && argv[0][0] == '.' && argv[0][1] == '/' && argv[0][2]) || \
 		(argv[0] && argv[0][0] == '/' && argv[0][1]))
 	{
-		if (access(argv[0], F_OK) != 0)
-		{
-			not_found(argv[0], 127, s);
-			s->exit_stat = 127;
-			return ;
-		}
-		else if (access(argv[0], X_OK) != 0)
-		{
-			not_found(argv[0], 126, s);
-			s->exit_stat = 126;
-			return ;
-		}
-		if (!execve(argv[0], argv, s->env_tmp))
-			exit(EXIT_FAILURE);
+		exec_dir_path(s, argv);
+		return ;
 	}
 	if (argv && argv[0] != NULL)
 	{
-		path = cmd_path(s->paths, argv[0], s);
-		if (!path)
-		{
-			not_found(argv[0], 127, s);
-			s->exit_stat = 127;
-			return ;
-		}
-		cmd_name = ft_strchr(argv[0], '/');
-		if (cmd_name)
-		{
-			cmd_name++;
-			argv[0] = cmd_name;
-		}
-		execve(path, argv, s->env_tmp);
-		free(path);
-		not_found(argv[0], 127, s);
-		s->exit_stat = 127;
+		exec_command_path(s, argv);
 	}
 }
 
@@ -138,13 +98,12 @@ void	updating_cmds(t_ms *s, t_cmd *cmd, char *value)
 	if (key)
 		free(key);
 }
-
+/* 	if (ft_sw_builtins(cmds[0], "echo") == 0)
+		return (echo_cmd_test(cmds, s, fd_in, fd_out), 1); */  //!!!! HERE
 int	builtins_parent(t_ms *s, char **cmds, int fd_in, int fd_out)
 {
 	(void)fd_in;
 	(void)fd_out;
-/* 	if (ft_sw_builtins(cmds[0], "echo") == 0)
-		return (echo_cmd_test(cmds, s, fd_in, fd_out), 1); */  //!!!! HERE
 	if (ft_sw_builtins(cmds[0], "cd") == 0)
 		return (cd_cmd(s, cmds));
 	else if (ft_sw_builtins(cmds[0], "env") == 0)
@@ -163,81 +122,5 @@ int	builtins_parent(t_ms *s, char **cmds, int fd_in, int fd_out)
 		return (0);
 }
 
-void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
-{
-	int	i;
 
-	if (cmd->argv && cmd->argv[0])
-	{
-		if (cmd->argv[0][0] == EMPTY)
-		{
-			i = 0;
-			free(cmd->argv[0]);
-			while (cmd->argv[i + 1] != NULL)
-			{
-				cmd->argv[i] = cmd->argv[i + 1];
-				i++;
-			}
-			cmd->argv[i] = NULL;
-			cmd->argc -= 1;
-/* 			if (fd_in != STDIN_FILENO)
-				close_fd(&fd_in);
-			if (fd_out != STDOUT_FILENO)
-				close_fd(&fd_out);
-			return ; */
-		}
-		else if ((ft_isspace(cmd->argv[0][0]) && cmd->argv[0][0] == '\0' && !cmd->argv[1]) || cmd->argv[0][0] == '\0')
-		{
-			not_found(cmd->argv[0], 127, s);
-			s->exit_stat = 127;
-			return ;
-		}
-	}
-	if (cmd && cmd->argc > 0)
-		updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
-	if (!builtins_parent(s, cmd->argv, fd_in, fd_out))
-		single_exec(s, cmd, fd_in, fd_out);
-}
 
-bool	check_argv(t_cmd *cmd)
-{
-	if (!cmd)
-		return (false);
-	if (cmd->left)
-		check_argv(cmd->left);
-	if (cmd->right)
-		check_argv(cmd->right);
-	if (cmd->cmd)
-		check_argv(cmd->cmd);
-	if (cmd->type == EXEC && !cmd->argv[0])
-		return (false);
-	return (true);
-}
-
-void	exec_from_ast(t_ms *s)
-{
-	//char	**original;
-	// ! || !check_argv(s->ast)) added to chck for faux argv:
-	// ! (paste of invalid char on terminal)
-	if (!s->ast || !check_argv(s->ast))
-		return ;
-	/* original = NULL;
-	if (s->ast->argv && s->ast->type == EXEC && s->ast->argv[0][0] == '\020')
-	{
-		original = s->ast->argv;
-		if (s->ast->argv[0][0] == '\020')
-			s->ast->argv++;
-	}
-	if (s->ast->argv && (ft_isspace(s->ast->argv[0][0]) || s->ast->argv[0][0] == '\0'))
-	{
-		not_found(s->ast->argv[0], 127, s);
-		return;
-	} */
-	if (!ft_exec_paria(s, s->ast))
-	{
-		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);
-		s->wait = 0;
-	}
-		/* if(original)
-		s->ast->argv = original; */
-}

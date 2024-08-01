@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_define.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/22 13:55:09 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/01 10:28:01 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ struct s_builtin
 	int		(*func)(t_cmd *cmd);
 };
 
-
 enum e_cmd_type
 {
 	EXEC	= 1,
@@ -99,11 +98,6 @@ enum e_cmd_type
 	PIPE	= 3,
 	HEREDOC	= 4, //maybe
 };
-
-// struct s_cmd
-// {
-// 	int type;
-// };
 
 struct	s_d_cmd
 {

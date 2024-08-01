@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:07 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/30 18:42:03 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/01 12:25:48 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	execute_command(t_ms *s, t_cmd *cmd, char **cmds)
 		wait_till_end(s, id, cmd);
 }
 
-// todo validate my changes, line 53, then remove comment
 void	clear_env_handler(t_ms *s)
 {
 	if (s->env_tmp)
@@ -50,7 +49,6 @@ void	clear_env_handler(t_ms *s)
 		clear_env(s->env_tmp);
 		s->env_tmp = NULL;
 	}
-	// s->env_tmp = null_env_init(s); // TODO altered prototype and removed arg
 	s->env_tmp = null_env_init();
 }
 
@@ -74,7 +72,8 @@ int	env_cmd(t_ms *s, char **cmds)
 	return (1);
 }
 
-// todo remove comments
+
+//!!! ADDED + 1
 t_env	*new_env_node(char *env_var)
 {
 	t_env	*node;
@@ -89,7 +88,7 @@ t_env	*new_env_node(char *env_var)
 	node->key = key_dup(env_var, delimiter - env_var);
 	if (!node->key)
 		return (free(node), NULL);
-	if (!setting_value(node, delimiter))	//!!! ADDED + 1
+	if (!setting_value(node, delimiter))
 		return (free_node(node), NULL);
 	node->prev = NULL;
 	node->next = NULL;

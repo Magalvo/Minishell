@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ms_aux.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:21:13 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/30 19:01:19 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/01 12:39:08 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,7 @@ char	*ft_getrnd_str(void)
 char	*ft_get_empty(void)
 {
 	char	*empty;
-	// char	no_char;
 
-	// no_char = EMPTY;
 	empty = ft_calloc(1, 2);
 	empty[0] = EMPTY;
 	empty[1] = '\0';

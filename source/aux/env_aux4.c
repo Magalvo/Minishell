@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_aux4.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:18 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/30 19:00:36 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/01 12:38:55 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	env_arr_update(t_ms *s, char *str)
 }
 
 // todo check line 47, what is DIR ? -dir- prob
+// ? something we can use its good to go
 int	is_dir(const char *cmd)
 {
 	DIR	*dir = opendir(cmd);

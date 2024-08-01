@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_aux.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/30 18:55:30 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/01 12:37:35 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,12 @@ void	exit_minishell(t_ms *s, char *msg)
 	exit(res);
 }
 
-// todo comments still neeeded?
+
 int	init_minishell(t_ms *s, char **ep)
 {
-	//int	i = 0;	//! just for test
 	if (!*ep)
 	{
 		initialize_env(&ep);
-/* 		while (ep[i])
-		{
-			printf("%s\n", ep[i]);
-			i++;
-		} */
 	}
 	init_list(&s->env, ep);
 	init_list(&s->export, ep);
