@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:07 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/08/01 12:25:48 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/02 10:42:26 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int	env_cmd(t_ms *s, char **cmds)
 		print_current_env(s->env);
 	return (1);
 }
-
 
 //!!! ADDED + 1
 t_env	*new_env_node(char *env_var)

@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/01 13:23:05 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/02 11:29:29 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	exec_one(t_ms *s, char **argv)
 		exec_dir_path(s, argv);
 		return ;
 	}
-	if (argv && argv[0] != NULL)
+	else if (argv && argv[0] != NULL)
 	{
 		exec_command_path(s, argv);
 	}
@@ -98,8 +98,7 @@ void	updating_cmds(t_ms *s, t_cmd *cmd, char *value)
 	if (key)
 		free(key);
 }
-/* 	if (ft_sw_builtins(cmds[0], "echo") == 0)
-		return (echo_cmd_test(cmds, s, fd_in, fd_out), 1); */  //!!!! HERE
+
 int	builtins_parent(t_ms *s, char **cmds, int fd_in, int fd_out)
 {
 	(void)fd_in;
@@ -121,6 +120,3 @@ int	builtins_parent(t_ms *s, char **cmds, int fd_in, int fd_out)
 	else
 		return (0);
 }
-
-
-

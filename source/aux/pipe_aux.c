@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:18 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/01 12:53:19 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/02 10:33:15 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 					!cmd->argv[1]) || cmd->argv[0][0] == '\0')
 		{
 			exit_and_found(cmd->argv[0], 127, s);
-			return;
+			return ;
 		}
 	}
 	check_update_cmds(s, cmd, fd_in, fd_out);
@@ -72,7 +72,6 @@ void	exec_from_ast(t_ms *s)
 {
 	if (!s->ast || !check_argv(s->ast))
 		return ;
-
 	if (!ft_exec_paria(s, s->ast))
 	{
 		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);

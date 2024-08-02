@@ -4,6 +4,243 @@ see reference/ for study materials
 use 'make debug' instead of 'make re' (won't recompile libft, and adds -g flag)
 
 ## dde-maga notes:
+
+===================================
+
+minishell> cota << OLA
+> |
+>
+> ""
+> ' '
+> '
+> \\
+> //
+> /' }
+>
+> "OLA"
+> OLA
+==256294==
+==256294== FILE DESCRIPTORS: 3 open (3 std) at exit.
+==256294==
+==256294== HEAP SUMMARY:
+==256294==     in use at exit: 224,730 bytes in 700 blocks
+==256294==   total heap usage: 1,027 allocs, 327 frees, 246,929 bytes allocated
+==256294==
+==256294== 2 bytes in 1 blocks are still reachable in loss record 1 of 89
+==256294==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==256294==    by 0x40BA29: itoa_loop (in /home/guest/Minishell/minishell)
+==256294==    by 0x40B9DD: ft_itoa (in /home/guest/Minishell/minishell)
+==256294==    by 0x4095EE: setting_value (env_aux3.c:27)
+==256294==    by 0x4026DC: new_env_node (env_cmd.c:90)
+==256294==    by 0x40361A: init_list (export_aux.c:100)
+==256294==    by 0x4015C7: init_minishell (minishell_aux.c:50)
+==256294==    by 0x40132A: minishell (minishell.c:51)
+==256294==    by 0x40149E: main (minishell.c:83)
+==256294==
+==256294== 2 bytes in 1 blocks are still reachable in loss record 2 of 89
+==256294==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==256294==    by 0x40BA29: itoa_loop (in /home/guest/Minishell/minishell)
+==256294==    by 0x40B9DD: ft_itoa (in /home/guest/Minishell/minishell)
+==256294==    by 0x4095EE: setting_value (env_aux3.c:27)
+==256294==    by 0x4026DC: new_env_node (env_cmd.c:90)
+==256294==    by 0x40361A: init_list (export_aux.c:100)
+==256294==    by 0x4015D8: init_minishell (minishell_aux.c:51)
+==256294==    by 0x40132A: minishell (minishell.c:51)
+==256294==    by 0x40149E: main (minishell.c:83)
+==256294==
+==256294== 4 bytes in 1 blocks are still reachable in loss record 5 of 89
+==256294==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==256294==    by 0x40BB6C: ft_substr (in /home/guest/Minishell/minishell)
+==256294==    by 0x4068CC: parse_redir (parse_redir.c:38)
+==256294==    by 0x405F38: parse_args (parse_exec.c:68)
+==256294==    by 0x405C49: parse_exec (parse_exec.c:33)
+==256294==    by 0x406CF4: parse_pipe (parse.c:79)
+==256294==    by 0x406C96: parse_cmd (parse.c:69)
+==256294==    by 0x406BA5: parse_input (parse.c:43)
+==256294==    by 0x401375: minishell (minishell.c:57)
+==256294==    by 0x40149E: main (minishell.c:83)
+==256294==
+==256294== 5 bytes in 1 blocks are still reachable in loss record 6 of 89
+==256294==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==256294==    by 0x40B7B0: ft_strdup (in /home/guest/Minishell/minishell)
+==256294==    by 0x406128: expand_sw_vars (parse_prechecks.c:42)
+==256294==    by 0x405ECB: parse_args (parse_exec.c:63)
+==256294==    by 0x405C49: parse_exec (parse_exec.c:33)
+==256294==    by 0x406CF4: parse_pipe (parse.c:79)
+==256294==    by 0x406C96: parse_cmd (parse.c:69)
+==256294==    by 0x406BA5: parse_input (parse.c:43)
+==256294==    by 0x401375: minishell (minishell.c:57)
+==256294==    by 0x40149E: main (minishell.c:83)
+==256294==
+==256294== 12 bytes in 1 blocks are still reachable in loss record 12 of 89
+==256294==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==256294==    by 0x40B7B0: ft_strdup (in /home/guest/Minishell/minishell)
+==256294==    by 0x406268: expand_sw_tilde (parse_prechecks.c:68)
+==256294==    by 0x406B57: parse_input (parse.c:37)
+==256294==    by 0x401375: minishell (minishell.c:57)
+==256294==    by 0x40149E: main (minishell.c:83)
+==256294==
+==256294== 16 bytes in 1 blocks are still reachable in loss record 16 of 89
+==256294==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==256294==    by 0x40B739: ft_calloc (in /home/guest/Minishell/minishell)
+==256294==    by 0x40481D: create_dptr (aux.c:44)
+==256294==    by 0x405C19: parse_exec (parse_exec.c:30)
+==256294==    by 0x406CF4: parse_pipe (parse.c:79)
+==256294==    by 0x406C96: parse_cmd (parse.c:69)
+==256294==    by 0x406BA5: parse_input (parse.c:43)
+==256294==    by 0x401375: minishell (minishell.c:57)
+==256294==    by 0x40149E: main (minishell.c:83)
+==256294==
+==256294== 22 bytes in 1 blocks are still reachable in loss record 18 of 89
+==256294==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==256294==    by 0x40BC16: ft_strjoin (in /home/guest/Minishell/minishell)
+==256294==    by 0x4057F6: cmd_heredoc (init_heredoc.c:30)
+==256294==    by 0x4069AE: redir_sw (parse_redir.c:52)
+==256294==    by 0x4068DF: parse_redir (parse_redir.c:38)
+==256294==    by 0x405F38: parse_args (parse_exec.c:68)
+==256294==    by 0x405C49: parse_exec (parse_exec.c:33)
+==256294==    by 0x406CF4: parse_pipe (parse.c:79)
+==256294==    by 0x406C96: parse_cmd (parse.c:69)
+==256294==    by 0x406BA5: parse_input (parse.c:43)
+==256294==    by 0x401375: minishell (minishell.c:57)
+==256294==    by 0x40149E: main (minishell.c:83)
+==256294==
+==256294== 80 bytes in 1 blocks are still reachable in loss record 30 of 89
+==256294==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==256294==    by 0x40B739: ft_calloc (in /home/guest/Minishell/minishell)
+==256294==    by 0x4054C6: cmd_init (init_cmd.c:19)
+==256294==    by 0x4054EC: cmd_exec (init_cmd.c:27)
+==256294==    by 0x405BC0: parse_exec (parse_exec.c:24)
+==256294==    by 0x406CF4: parse_pipe (parse.c:79)
+==256294==    by 0x406C96: parse_cmd (parse.c:69)
+==256294==    by 0x406BA5: parse_input (parse.c:43)
+==256294==    by 0x401375: minishell (minishell.c:57)
+==256294==    by 0x40149E: main (minishell.c:83)
+==256294==
+==256294== 80 bytes in 1 blocks are still reachable in loss record 31 of 89
+==256294==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==256294==    by 0x40B739: ft_calloc (in /home/guest/Minishell/minishell)
+==256294==    by 0x4054C6: cmd_init (init_cmd.c:19)
+==256294==    by 0x40576B: cmd_heredoc (init_heredoc.c:22)
+==256294==    by 0x4069AE: redir_sw (parse_redir.c:52)
+==256294==    by 0x4068DF: parse_redir (parse_redir.c:38)
+==256294==    by 0x405F38: parse_args (parse_exec.c:68)
+==256294==    by 0x405C49: parse_exec (parse_exec.c:33)
+==256294==    by 0x406CF4: parse_pipe (parse.c:79)
+==256294==    by 0x406C96: parse_cmd (parse.c:69)
+==256294==    by 0x406BA5: parse_input (parse.c:43)
+==256294==    by 0x401375: minishell (minishell.c:57)
+==256294==
+==256294== 96 bytes in 1 blocks are still reachable in loss record 35 of 89
+==256294==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==256294==    by 0x40BE2D: ft_split (in /home/guest/Minishell/minishell)
+==256294==    by 0x4083E3: env_paths (env_aux2.c:33)
+==256294==    by 0x4015E5: init_minishell (minishell_aux.c:52)
+==256294==    by 0x40132A: minishell (minishell.c:51)
+==256294==    by 0x40149E: main (minishell.c:83)
+==256294==
+==256294== 149 bytes in 11 blocks are still reachable in loss record 36 of 89
+==256294==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==256294==    by 0x40BC16: ft_strjoin (in /home/guest/Minishell/minishell)
+==256294==    by 0x4019B1: add_slash (builtins.c:27)
+==256294==    by 0x40842B: env_paths (env_aux2.c:39)
+==256294==    by 0x4015E5: init_minishell (minishell_aux.c:52)
+==256294==    by 0x40132A: minishell (minishell.c:51)
+==256294==    by 0x40149E: main (minishell.c:83)
+==256294==
+==256294== 520 bytes in 1 blocks are still reachable in loss record 41 of 89
+==256294==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==256294==    by 0x40B739: ft_calloc (in /home/guest/Minishell/minishell)
+==256294==    by 0x40993D: create_env_array (env_aux4.c:75)
+==256294==    by 0x40876E: env_convert (env_aux2.c:118)
+==256294==    by 0x4015F2: init_minishell (minishell_aux.c:53)
+==256294==    by 0x40132A: minishell (minishell.c:51)
+==256294==    by 0x40149E: main (minishell.c:83)
+==256294==
+==256294== 807 bytes in 64 blocks are still reachable in loss record 45 of 89
+==256294==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==256294==    by 0x40B858: ft_strndup (in /home/guest/Minishell/minishell)
+==256294==    by 0x40958C: key_dup (env_aux3.c:17)
+==256294==    by 0x4026A1: new_env_node (env_cmd.c:87)
+==256294==    by 0x40361A: init_list (export_aux.c:100)
+==256294==    by 0x4015C7: init_minishell (minishell_aux.c:50)
+==256294==    by 0x40132A: minishell (minishell.c:51)
+==256294==    by 0x40149E: main (minishell.c:83)
+==256294==
+==256294== 807 bytes in 64 blocks are still reachable in loss record 46 of 89
+==256294==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==256294==    by 0x40B858: ft_strndup (in /home/guest/Minishell/minishell)
+==256294==    by 0x40958C: key_dup (env_aux3.c:17)
+==256294==    by 0x4026A1: new_env_node (env_cmd.c:87)
+==256294==    by 0x40361A: init_list (export_aux.c:100)
+==256294==    by 0x4015D8: init_minishell (minishell_aux.c:51)
+==256294==    by 0x40132A: minishell (minishell.c:51)
+==256294==    by 0x40149E: main (minishell.c:83)
+==256294==
+==256294== 2,048 bytes in 64 blocks are still reachable in loss record 59 of 89
+==256294==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==256294==    by 0x40B739: ft_calloc (in /home/guest/Minishell/minishell)
+==256294==    by 0x40262A: new_env_node (env_cmd.c:81)
+==256294==    by 0x40361A: init_list (export_aux.c:100)
+==256294==    by 0x4015C7: init_minishell (minishell_aux.c:50)
+==256294==    by 0x40132A: minishell (minishell.c:51)
+==256294==    by 0x40149E: main (minishell.c:83)
+==256294==
+==256294== 2,048 bytes in 64 blocks are still reachable in loss record 60 of 89
+==256294==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==256294==    by 0x40B739: ft_calloc (in /home/guest/Minishell/minishell)
+==256294==    by 0x40262A: new_env_node (env_cmd.c:81)
+==256294==    by 0x40361A: init_list (export_aux.c:100)
+==256294==    by 0x4015D8: init_minishell (minishell_aux.c:51)
+==256294==    by 0x40132A: minishell (minishell.c:51)
+==256294==    by 0x40149E: main (minishell.c:83)
+==256294==
+==256294== 2,878 bytes in 63 blocks are still reachable in loss record 62 of 89
+==256294==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==256294==    by 0x40B7B0: ft_strdup (in /home/guest/Minishell/minishell)
+==256294==    by 0x40960B: setting_value (env_aux3.c:30)
+==256294==    by 0x4026DC: new_env_node (env_cmd.c:90)
+==256294==    by 0x40361A: init_list (export_aux.c:100)
+==256294==    by 0x4015C7: init_minishell (minishell_aux.c:50)
+==256294==    by 0x40132A: minishell (minishell.c:51)
+==256294==    by 0x40149E: main (minishell.c:83)
+==256294==
+==256294== 2,878 bytes in 63 blocks are still reachable in loss record 63 of 89
+==256294==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==256294==    by 0x40B7B0: ft_strdup (in /home/guest/Minishell/minishell)
+==256294==    by 0x40960B: setting_value (env_aux3.c:30)
+==256294==    by 0x4026DC: new_env_node (env_cmd.c:90)
+==256294==    by 0x40361A: init_list (export_aux.c:100)
+==256294==    by 0x4015D8: init_minishell (minishell_aux.c:51)
+==256294==    by 0x40132A: minishell (minishell.c:51)
+==256294==    by 0x40149E: main (minishell.c:83)
+==256294==
+==256294== 3,751 bytes in 64 blocks are still reachable in loss record 64 of 89
+==256294==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==256294==    by 0x40B739: ft_calloc (in /home/guest/Minishell/minishell)
+==256294==    by 0x4082A3: join_key_value (env_aux.c:86)
+==256294==    by 0x4087C1: env_convert (env_aux2.c:123)
+==256294==    by 0x4015F2: init_minishell (minishell_aux.c:53)
+==256294==    by 0x40132A: minishell (minishell.c:51)
+==256294==    by 0x40149E: main (minishell.c:83)
+==256294==
+==256294== LEAK SUMMARY:
+==256294==    definitely lost: 0 bytes in 0 blocks
+==256294==    indirectly lost: 0 bytes in 0 blocks
+==256294==      possibly lost: 0 bytes in 0 blocks
+==256294==    still reachable: 16,205 bytes in 468 blocks
+==256294==         suppressed: 208,525 bytes in 232 blocks
+==256294==
+==256294== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+--256294--
+--256294-- used_suppression:     66 leak readline readline.supp:9 suppressed: 204,407 bytes in 225 blocks
+--256294-- used_suppression:      4 leak add_history readline.supp:3 suppressed: 4,118 bytes in 7 blocks
+==256294==
+==256294== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+cota : command not found
+
+=====================================
+
 ls -la | cat -e | wc -l > OUT
 
 cat >./outfiles/outfile01 <missing >./test_files/invalid_permission
@@ -43,11 +280,11 @@ segfault                                << ops
 
 
 works:
-export +=cenas 
+export +=cenas
 
 segfault protc when argv[0] is not null but invalid
 - what?!?
-- select between > <  >		
+- select between > <  >
     < to here, mid click on prompt, enjoy.
 
 JUST THIS NOW
@@ -65,7 +302,7 @@ bash: $'\t\t': command not found
 
 
 just ">"
-$? 
+$?
 minishell 1
 bash 2
 

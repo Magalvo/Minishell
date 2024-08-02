@@ -1,67 +1,68 @@
 # https://github.com/JonathanDUFOUR/minishell/blob/master/ignoreliberror
 {
-	leak add_history
-	Memcheck:Leak
-	...
-	fun:add_history
+    leak add_history
+    Memcheck:Leak
+    ...
+    fun:add_history
 }
 {
-	leak readline
-	Memcheck:Leak
-	...
-	fun:readline
+    leak readline
+    Memcheck:Leak
+    ...
+    fun:readline
 }
 {
-	still_reachable xrealloc
-	Memcheck:Leak
-	...
-	fun:realloc
+    still_reachable xrealloc
+    Memcheck:Leak
+    ...
+    fun:realloc
 }
 {
-	still_reachable rl_extend_line_buffer
-	Memcheck:Leak
-	...
-	fun:rl_extend_line_buffer
+    still_reachable rl_extend_line_buffer
+    Memcheck:Leak
+    ...
+    fun:rl_extend_line_buffer
 }
 {
-	still_reachable rl_insert_text
-	Memcheck:Leak
-	...
-	fun:rl_insert_text
+    still_reachable rl_insert_text
+    Memcheck:Leak
+    ...
+    fun:rl_insert_text
 }
 {
-	still_reachable rl_bracketed_paste_begin
-	Memcheck:Leak
-	...
-	fun:rl_bracketed_paste_begin
+    still_reachable rl_bracketed_paste_begin
+    Memcheck:Leak
+    ...
+    fun:rl_bracketed_paste_begin
 }
 {
-	still_reachable _rl_dispatch_subseq
-	Memcheck:Leak
-	...
-	fun:_rl_dispatch_subseq
+    still_reachable _rl_dispatch_subseq
+    Memcheck:Leak
+    ...
+    fun:_rl_dispatch_subseq
 }
 {
-	still_reachable readline_internal_char
-	Memcheck:Leak
-	...
-	fun:readline_internal_char
+    still_reachable readline_internal_char
+    Memcheck:Leak
+    ...
+    fun:readline_internal_char
 }
 {
-   ignore_setlocale_reachable
-   Memcheck:Leak
-   ...
-   fun:setlocale
+    ignore_setlocale_reachable
+    Memcheck:Leak
+    ...
+    fun:setlocale
 }
 {
-   ignore_below_main
-   Memcheck:Leak
-   obj:/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
-   fun:__libc_start_main
+    ignore_below_main
+    Memcheck:Leak
+    obj:/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
+    fun:__libc_start_main
+    fun: (below main)
 }
 {
-   still_reachable_ls_blocks
-   Memcheck:Leak
-   ...
-   fun:??? (in /usr/bin/ls)
+    still_reachable_ls_blocks
+    Memcheck:Leak
+    ...
+    fun:??? (in /usr/bin/ls)
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/22 14:42:40 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/02 13:11:34 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ int	exec_heredoc(char *dli, char *file, int expand, t_ms *s)
 	check_signal(IGNORE);
 	pid = fork1();
 	if (pid == 0)
+	{
 		heredoc_child(dli, fd_file, expand, s);
+		exit_minishell(s, NULL);
+	}
 	else
 	{
 		close(fd_file);

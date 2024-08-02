@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/01 12:05:49 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/02 11:32:32 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	exec_command_path(t_ms *s, char **argv)
 	char	*cmd_name;
 
 	path = cmd_path(s->paths, argv[0], s);
-	if(!path)
+	if (!path)
 	{
 		not_found(argv[0], 127, s);
 		s->exit_stat = 127;
@@ -65,7 +65,7 @@ char	*check_if_dir(char *cmd, t_ms *s)
 	{
 		ft_dprintf(2, "minishell: %s : Is a directory\n", cmd);
 		set_exit(126, s);
-		return ( NULL);
+		return (NULL);
 	}
 	return (cmd);
 }
@@ -100,13 +100,10 @@ char	*get_cmd_from_cwd(char *cmd)
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
 		return (NULL);
-
 	command = path_constructor(cwd, cmd, 1);
 	free(cwd);
-
 	if (command && access(command, X_OK | F_OK) == 0)
 		return (command);
-
 	free(command);
 	return (NULL);
 }

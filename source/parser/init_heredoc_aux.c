@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_heredoc_aux.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/05 19:20:38 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/02 13:12:30 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	heredoc_child(char *dli, int fd_file, int expand, t_ms *s)
 	{
 		line = readline("> ");
 		if (!line)
-			exit(del_eof(fd_file));
+			exit_doc(s, fd_file);
 		if ((ft_strcmp(dli, line) == 0 && !empty_dli)
 			|| (empty_dli && line[0] == '\0'))
 			break ;
@@ -33,7 +33,9 @@ void	heredoc_child(char *dli, int fd_file, int expand, t_ms *s)
 	}
 	free(line);
 	close(fd_file);
-	exit(0);
+	free(dli);
+	//exit_minishell(s, NULL);
+	//exit(0);
 }
 
 // void	heredoc_parent(char *dli, int fd_file, int expand, t_ms *s)

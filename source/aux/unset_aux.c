@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:18 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/01 13:22:14 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/02 10:42:11 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,8 @@ void	unset_aux(t_ms *s, t_env **tmp, char *arg)
 			else
 				unset_move(current);
 			unset_clean(current);
-			break;
+			break ;
 		}
 		current = *tmp;
 	}
 }
-
-

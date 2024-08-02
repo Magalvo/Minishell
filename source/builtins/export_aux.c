@@ -6,26 +6,11 @@
 /*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:23:29 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/01 12:39:57 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/02 10:38:32 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-/* backup */
-// char	*get_key_from_str(const char *str)
-// {
-// 	char	*delimiter;
-// 	char	*key;
-
-// 	delimiter = ft_strchr(str, '=');
-// 	if (delimiter)
-// 		key = extract_key(str, delimiter);
-// 	else
-// 		key = ft_strdup(str);
-// 	return (key);
-// }
-
 
 char	*get_key_from_str(const char *str)
 {

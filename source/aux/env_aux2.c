@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:37 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/01 12:37:29 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/02 10:34:25 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,4 +128,3 @@ char	**env_convert(t_env *env)
 	env_array[i] = NULL;
 	return (env_array);
 }
-

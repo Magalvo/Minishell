@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:04:53 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/08/01 12:07:11 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/02 10:42:40 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ char	*cmd_path(char **paths, char *cmd, t_ms *s)
 
 	if (!cmd)
 		return (NULL);
-	if ((command = check_if_dir(cmd, s)) == NULL)
+	command = check_if_dir(cmd, s);
+	if (command == NULL)
 		return (NULL);
 	command = check_paths(paths, cmd);
 	if (command)
@@ -52,17 +53,6 @@ void	new_line(void)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 }
-
-/* static void	assist_file(int fd, int standard)
-{
-	if (dup2 (fd, standard) == -1)
-	{
-		perror("dup2");
-		close_fd(&fd);
-		exit (1);
-	}
-	close_fd(&fd);
-} */
 
 int	fork1(void)
 {
@@ -100,47 +90,3 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		wait_till_end(s, pid, cmd);
 	}
 }
-
-
-/* char	*cmd_path(char **paths, char *cmd, t_ms *s)
-{
-	char	*command;
-	char	*cwd;
-
-	if (!cmd)
-		return (NULL);
-	if ((is_dir(cmd) && cmd[0] == '.' && cmd[1] && cmd[1] != '.' \
-		&& cmd[1] != '\0') || cmd[0] == '/') //((cmd[0] == '.' && cmd[1]) || cmd[0] == '/')
-	{
-		ft_dprintf(2, "minishell: %s : Is a directory\n", cmd);
-		return (set_exit(126, s), NULL);
-	}
-	while (paths && *paths)
-	{
-		if (ft_strncmp(*paths, cmd, ft_strlen(*paths)) == 0)
-		{
-			if (access(cmd, X_OK | F_OK) == 0)
-				return (cmd);
-			else
-				return (NULL);
-		}
-		command = ft_strjoin(*paths, cmd);
-		if (access(command, X_OK | F_OK) == 0)
-			return (command);
-		free(command);
-		paths++;
-	}
-	cwd = getcwd(NULL, 0);
-	if (!cwd)
-	{
-		return (NULL);
-	}
-	command = path_constructor(cwd, cmd, 1);
-	free(cwd);
-	if (command && access(command, X_OK | F_OK) == 0)
-	{
-		return (command);
-	}
-	free(command);
-	return (NULL);
-} */

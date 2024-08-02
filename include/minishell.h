@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
+/*   Updated: 2024/08/02 13:06:47 by dde-maga         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -194,6 +206,7 @@ int		change_pwd(t_env *env, t_ms *s);
 int		cd_cmd_home(t_env *env);
 int		cd_cmd_minus(t_env *env);
 void	exit_and_found(char *str, int status, t_ms *s);
+void	exit_doc(t_ms *s, int heredoc);
 
 //*==================== AUX =======================*//
 // void	split_input(t_ms *s, char* input);

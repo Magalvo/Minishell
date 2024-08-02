@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:18 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/01 12:38:55 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/02 10:37:54 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ void	env_arr_update(t_ms *s, char *str)
 // ? something we can use its good to go
 int	is_dir(const char *cmd)
 {
-	DIR	*dir = opendir(cmd);
+	DIR	*dir;
 
+	dir = opendir(cmd);
 	if (dir)
 	{
 		closedir(dir);
@@ -59,8 +60,11 @@ void	swipper_fds(void)
 {
 	int	fd;
 
-	for (fd = 0; fd < 1024; fd++) {
-		close(fd);
+	fd = 0;
+	while (fd < 1024)
+	{
+		close_fd(&fd);
+		fd++;
 	}
 }
 

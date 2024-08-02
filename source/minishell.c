@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/01 12:37:46 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/02 10:32:42 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	minishell(char **envp)
 	rl_clear_history();
 	exit_minishell(&s, NULL);
 }
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	(void)argv;

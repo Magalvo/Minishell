@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:15 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/08/01 12:37:13 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/02 10:42:37 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int	cd_cmd_minus(t_env *env)
 	return (result);
 }
 
-
 int	cd_cmd(t_ms *mini, char **path)
 {
 	t_env	*env;
@@ -117,37 +116,3 @@ int	cd_cmd(t_ms *mini, char **path)
 	}
 	return (change_pwd(env, mini));
 }
-
-
-/*
-int	cd_cmd(t_ms *mini, char **path)
-{
-	t_env	*env;
-	char	*val;
-
-	env = mini->env;
-	if (mini->ast->argc >= 3)
-	{
-		mini->exit_stat = 1;
-		return (cd_cmd_error("too many arguments"));
-	}
-	if (!path[1] || (path[1][0] == '~' && path[1][1] == '\0'))
-		return (cd_cmd_home(env));
-	if (path[1][0] == '-' && path[1][1] == '\0')
-		return (cd_cmd_minus(env));
-	if (chdir(path[1]) == -1)
-	{
-		mini->exit_stat = 1;
-		if (access(path[1], F_OK) == 0)
-			return (cd_cmd_error("Not a directory"));
-		return (cd_cmd_error("No such file or directory"));
-	}
-	val = get_env_val(env, "PWD", NULL);
-	if (val)
-	{
-		export_update(env, "OLDPWD", val);
-		export_update(mini->export, "OLDPWD", val);
-		free(val);
-	}
-	return (change_pwd(env, mini));
-} */

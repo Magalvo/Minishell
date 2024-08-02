@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/01 10:28:01 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/02 10:31:31 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define MAX_PIDS 1024
 # define MIN_PATH "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
-# define QUOTE '\''
-# define DQUOTE '\"'
+# define QUOTE 39
+# define DQUOTE 34
 # define SPACES		"\t\n\v\f\r "
 # define GLUE		"\x01\x02\x03\x04\x05\x06"
 # define SYMBOLS	"|&()<>" // { } $ @ ' " \ / * ;
@@ -26,8 +26,8 @@
 # define UNTOKENS	"\x12\x13\x14" // { } $ @ ' " \ / * ;
 # define QUOTES		"'\""
 # define UNQUOTES	"\x15\x16"
-# define DOLAR		'\x11'
-# define EMPTY		'\x10'
+# define DOLAR		17
+# define EMPTY		16
 # define EMPTY_STR	"\x10\x00"
 // # define EMPTY_ARG 17
 
@@ -51,37 +51,36 @@ struct s_pids
 
 struct	s_env
 {
-	char	*key;	//*Eg.: PATH=
-	char	*value;	//*Eg.: /usr/bin (...)
+	char	*key;
+	char	*value;
 	t_env	*prev;
 	t_env	*next;
-	//token
-	//* 1 -> ENV Originals  2 ->No Value  3 ->Exported with Export
+
 };
 
 struct s_ms
 {
-	char	*prompt;	//* ARGV
-	char	**paths;		//* PATH dir
-	char	*username;	//* Current User // ? needed?
-	int		modal;		//* MAIN / CHILD / HERE_DOC / IGNORE
-	int		infile;		//* Redirect Infile
-	int		outfile;	//* Redirect Outfile
-	int		exit_stat;	//* Exit Status
-	int		wait;		//*temp for waitpid
+	char	*prompt;
+	char	**paths;
+	char	*username;
+	int		modal;
+	int		infile;
+	int		outfile;
+	int		exit_stat;
+	int		wait;
 	char	*input;
 	bool	error;
 	bool	input_empty;
 	bool	bnf;
-	char	**env_tmp;	//* Temp env;
-	int		here_doc;	//* NUM of heredocs
+	char	**env_tmp;
+	int		here_doc;
 	char	**cmd_temp;
 	pid_t	pid;
-	bool	tog;		//*For here doc signal
-	t_cmd	*ast;		//* Command List
-	t_env	*env;		//*	ENV Linked List
-	t_env	*export;	//* EXPORT List (Sorted)
-	t_pids	pids_exec;	//* Wiat the cmds
+	bool	tog;
+	t_cmd	*ast;
+	t_env	*env;
+	t_env	*export;
+	t_pids	pids_exec;
 };
 
 // ? not used atm
@@ -96,7 +95,7 @@ enum e_cmd_type
 	EXEC	= 1,
 	REDIR	= 2,
 	PIPE	= 3,
-	HEREDOC	= 4, //maybe
+	HEREDOC	= 4,
 };
 
 struct	s_d_cmd
@@ -110,15 +109,15 @@ struct	s_cmd
 	int		type;
 	int		argc;
 	char	**argv;
-	t_cmd	*left;			//pipe
+	t_cmd	*left;
 	t_cmd	*right;
-	t_cmd	*cmd;			//redir
+	t_cmd	*cmd;
 	pid_t	pid;
 	char	*file;
 	char	*delim;
 	int		mode;
 	int		fd;
-	char	**temp;			// ! used?
+	char	**temp;
 };
 
 enum e_signal
@@ -139,6 +138,18 @@ enum e_quote_type
 #endif
 
 // !struct siginfo_DontUse
+//* MAIN / CHILD / HERE_DOC / IGNORE
+//* Redirect Infile
+//* Redirect Outfile
+//* Exit Status
+/*temp for waitpid*/
+//* Temp env;
+//* NUM of heredocs
+//*For here doc signal
+//* Command List
+//*	ENV Linked List
+//* EXPORT List (Sorted)
+//* Wiat the cmds
 //	int	si_signo; /* signal number */
 //	int si_errno; /* if nonzero, errno value from errno.h */
 //	int si_code; /* additional info (depends on signal) */
@@ -148,4 +159,8 @@ enum e_quote_type
 //	int si_status; /* exit value or signal number */
 //	union sigval si_value; /* application-specific value */
 	/* possibly other fields also */
+	//*Eg.: PATH=
+//*Eg.: /usr/bin (...)
+//token
+//* 1 -> ENV Originals  2 ->No Value  3 ->Exported with Export
 // !======================================

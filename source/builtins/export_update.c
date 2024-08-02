@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:02 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/01 13:19:18 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/02 10:40:01 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_env	*create_new_node(char *key, char *value)
 {
-	t_env *new_node;
+	t_env	*new_node;
 
 	new_node = (t_env *)ft_calloc(sizeof(t_env), 1);
 	if (!new_node)
@@ -41,7 +41,7 @@ t_env	*create_new_node(char *key, char *value)
 
 void	append_env(t_env *env, t_env *new_node)
 {
-	t_env *export;
+	t_env	*export;
 
 	export = env;
 	while (export->next)
