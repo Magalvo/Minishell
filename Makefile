@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/08/01 12:51:23 by dde-maga         ###   ########.fr        #
+#    Updated: 2024/08/02 15:32:48 by cjoao-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
