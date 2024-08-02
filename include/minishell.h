@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/02 15:24:49 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/02 16:25:29 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	free_argv(t_cmd *cmd);
 void	free_argv2(t_cmd **cmd);
 void	free2(char *one, char *two);
 void	close_fd(int *fd);
+void	close_fd_child(t_cmd *cmd, int fd_in, int fd_out);
 
 //*================ BUILTINS =====================*//
 

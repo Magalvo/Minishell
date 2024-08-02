@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:22:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/30 18:38:45 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/02 17:28:40 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,10 @@ void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	while (cmd->type == REDIR || cmd->type == HEREDOC)
 	{
 		if (cmd->type == HEREDOC)
+		{
 			fd_in = cmd->fd;
-		else if (cmd->fd == 1)
+		}
+		if (cmd->fd == 1)
 			unclose1(s, cmd, &fd_out, &temp_fd);
 		else if (cmd->fd == 0)
 			unclose0(s, cmd, &fd_in, &temp_fd);
@@ -53,6 +55,8 @@ void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	if ((*cmd->argv))
 		updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
 	exec_redir_fork(s, cmd, fd_in, fd_out);
+/* 	if (fd_in != STDIN_FILENO)
+		close(fd_in); */
 }
 
 void	exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
@@ -66,6 +70,7 @@ void	exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			dup_and_close(s, &fd_in, &fd_out, STDIN_FILENO);
 		if (fd_out != STDOUT_FILENO)
 			dup_and_close(s, &fd_out, &fd_in, STDOUT_FILENO);
+		printf("file: %d", cmd->fd);
 		exec_from_ast_recursive(s, cmd, STDIN_FILENO, STDOUT_FILENO);
 		exit_minishell(s, NULL);
 	}
