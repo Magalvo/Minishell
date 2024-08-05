@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:12:30 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/04 23:04:56 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:56:32 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	print_ast_exec(t_ms *s, t_cmd *ptr, int padding)
 			printf("\t");
 		printf("type EXEC, args: \n");
 		print_2d(ptr->argv, padding);
-		p = 0;
 	}
 }
 
@@ -48,7 +47,6 @@ void	print_ast_pipe(t_ms *s, t_cmd *ptr, int padding)
 		print_ast(s, ptr->left, padding);
 		while (p++ < padding)
 			printf("\t");
-		p = 0;
 		printf("RIGHT leaf, \n");
 		print_ast(s, ptr->right, padding);
 	}
@@ -93,7 +91,6 @@ void	print_ast_heredoc(t_ms *s, t_cmd *ptr, int padding)
 		printf("type HEREDOC, \n");
 		while (p++ < padding)
 			printf("\t");
-		p = 0;
 		printf("DELIM: %s \n", ptr->delim);
 		print_ast(s, ptr->cmd, padding);
 	}

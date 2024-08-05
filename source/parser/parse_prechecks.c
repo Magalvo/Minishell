@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:00 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/30 18:53:26 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/05 14:48:32 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ char	*expand_sw_quotes(char *input)
 
 	pos = NULL;
 	pos = get_first_quote(input);
+	end = NULL;
 	while (pos != NULL)
 	{
 		if (*pos == QUOTE)

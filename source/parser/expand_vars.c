@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:09:13 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/30 19:02:39 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:42:38 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,17 @@ char	*expand_self(char *input, char *ps, t_ms *s)
 {
 	char	*val;
 	char	*res;
+	bool	free_val;
 
 	val = get_env_val(s->env, "SHELL", s);
+	free_val = true;
 	if (!val)
+	{
 		val = "minishell";
+		free_val = false;
+	}
 	res = get_expanded(input, ps, val, ps + 2);
-	free(val);
+	if (free_val)
+		free(val);
 	return (free(input), res);
 }

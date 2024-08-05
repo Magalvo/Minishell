@@ -1,0 +1,912 @@
+source/executor/ast.c: In function 'standard_check':
+source/executor/ast.c:40:20: warning: leak of file descriptor 'dup2(fd_in, 0)' [CWE-775] [-Wanalyzer-fd-leak]
+   40 |                 if (dup2(fd_in, STDIN_FILENO) == -1)
+      |                    ^
+  'exec_pipe': events 1-7
+    |
+    |   50 | void    exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+    |      |         ^~~~~~~~~
+    |      |         |
+    |      |         (1) entry to 'exec_pipe'
+    |......
+    |   55 |         if (pipe(pipefd) == -1)
+    |      |            ~~~~~~~~~~~~~
+    |      |            ||
+    |      |            |(2) when 'pipe' succeeds
+    |      |            (3) following 'false' branch...
+    |   56 |                 error_msg("pipe");
+    |   57 |         pid = fork1();
+    |      |               ~~~~~~~
+    |      |               |
+    |      |               (4) ...to here
+    |   58 |         if (pid == 0)
+    |      |            ~
+    |      |            |
+    |      |            (5) following 'true' branch (when 'pid == 0')...
+    |   59 |         {
+    |   60 |                 close(pipefd[0]);
+    |      |                 ~~~~~~~~~~~~~~~~
+    |      |                 |
+    |      |                 (6) ...to here
+    |   61 |                 standard_check(fd_in, pipefd[1]);
+    |      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    |      |                 |
+    |      |                 (7) calling 'standard_check' from 'exec_pipe'
+    |
+    +--> 'standard_check': events 8-12
+           |
+           |   36 | void    standard_check(int fd_in, int pipefd)
+           |      |         ^~~~~~~~~~~~~~
+           |      |         |
+           |      |         (8) entry to 'standard_check'
+           |   37 | {
+           |   38 |         if (fd_in != STDIN_FILENO)
+           |      |            ~
+           |      |            |
+           |      |            (9) following 'true' branch (when 'fd_in != 0')...
+           |   39 |         {
+           |   40 |                 if (dup2(fd_in, STDIN_FILENO) == -1)
+           |      |                    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+           |      |                    ||
+           |      |                    |(10) ...to here
+           |      |                    |(11) opened here
+           |      |                    (12) 'dup2(fd_in, 0)' leaks here; was opened at (11)
+           |
+source/executor/ast.c:45:20: warning: leak of file descriptor 'dup2(pipefd, 1)' [CWE-775] [-Wanalyzer-fd-leak]
+   45 |                 if (dup2(pipefd, STDOUT_FILENO) == -1)
+      |                    ^
+  'exec_pipe': events 1-7
+    |
+    |   50 | void    exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+    |      |         ^~~~~~~~~
+    |      |         |
+    |      |         (1) entry to 'exec_pipe'
+    |......
+    |   55 |         if (pipe(pipefd) == -1)
+    |      |            ~~~~~~~~~~~~~
+    |      |            ||
+    |      |            |(2) when 'pipe' succeeds
+    |      |            (3) following 'false' branch...
+    |   56 |                 error_msg("pipe");
+    |   57 |         pid = fork1();
+    |      |               ~~~~~~~
+    |      |               |
+    |      |               (4) ...to here
+    |   58 |         if (pid == 0)
+    |      |            ~
+    |      |            |
+    |      |            (5) following 'true' branch (when 'pid == 0')...
+    |   59 |         {
+    |   60 |                 close(pipefd[0]);
+    |      |                 ~~~~~~~~~~~~~~~~
+    |      |                 |
+    |      |                 (6) ...to here
+    |   61 |                 standard_check(fd_in, pipefd[1]);
+    |      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    |      |                 |
+    |      |                 (7) calling 'standard_check' from 'exec_pipe'
+    |
+    +--> 'standard_check': events 8-12
+           |
+           |   36 | void    standard_check(int fd_in, int pipefd)
+           |      |         ^~~~~~~~~~~~~~
+           |      |         |
+           |      |         (8) entry to 'standard_check'
+           |......
+           |   43 |         if (pipefd != STDOUT_FILENO)
+           |      |            ~
+           |      |            |
+           |      |            (9) following 'true' branch (when 'pipefd != 1')...
+           |   44 |         {
+           |   45 |                 if (dup2(pipefd, STDOUT_FILENO) == -1)
+           |      |                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           |      |                    ||
+           |      |                    |(10) ...to here
+           |      |                    |(11) opened here
+           |      |                    (12) 'dup2(pipefd, 1)' leaks here; was opened at (11)
+           |
+source/executor/ast.c: In function 'exec_pipe':
+source/executor/ast.c:60:17: warning: use of uninitialized value 'pipefd[0]' [CWE-457] [-Wanalyzer-use-of-uninitialized-value]
+   60 |                 close(pipefd[0]);
+      |                 ^~~~~~~~~~~~~~~~
+  'exec_pipe': events 1-7
+    |
+    |   52 |         int             pipefd[2];
+    |      |                         ^~~~~~
+    |      |                         |
+    |      |                         (1) region created on stack here
+    |......
+    |   55 |         if (pipe(pipefd) == -1)
+    |      |            ~~~~~~~~~~~~~
+    |      |            ||
+    |      |            |(2) when 'pipe' fails
+    |      |            (3) following 'true' branch...
+    |   56 |                 error_msg("pipe");
+    |      |                 ~~~~~~~~~~~~~~~~~
+    |      |                 |
+    |      |                 (4) ...to here
+    |   57 |         pid = fork1();
+    |   58 |         if (pid == 0)
+    |      |            ~
+    |      |            |
+    |      |            (5) following 'true' branch (when 'pid == 0')...
+    |   59 |         {
+    |   60 |                 close(pipefd[0]);
+    |      |                 ~~~~~~~~~~~~~~~~
+    |      |                 |
+    |      |                 (6) ...to here
+    |      |                 (7) use of uninitialized value 'pipefd[0]' here
+    |
+source/executor/ast.c:60:17: warning: use of uninitialized value 'pipefd[0]' [CWE-457] [-Wanalyzer-use-of-uninitialized-value]
+   60 |                 close(pipefd[0]);
+      |                 ^~~~~~~~~~~~~~~~
+  'exec_pipe': events 1-8
+    |
+    |   50 | void    exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+    |      |         ^~~~~~~~~
+    |      |         |
+    |      |         (1) entry to 'exec_pipe'
+    |   51 | {
+    |   52 |         int             pipefd[2];
+    |      |                         ~~~~~~
+    |      |                         |
+    |      |                         (2) region created on stack here
+    |......
+    |   55 |         if (pipe(pipefd) == -1)
+    |      |            ~~~~~~~~~~~~~
+    |      |            ||
+    |      |            |(3) when 'pipe' succeeds
+    |      |            (4) following 'false' branch...
+    |   56 |                 error_msg("pipe");
+    |   57 |         pid = fork1();
+    |      |               ~~~~~~~
+    |      |               |
+    |      |               (5) ...to here
+    |   58 |         if (pid == 0)
+    |      |            ~
+    |      |            |
+    |      |            (6) following 'false' branch (when 'pid != 0')...
+    |......
+    |   69 |                 close(pipefd[1]);
+    |      |                 ~~~~~~~~~~~~~~~~
+    |      |                 |
+    |      |                 (7) ...to here
+    |......
+    |   72 |                 exec_from_ast_recursive(s, cmd->right, pipefd[0], fd_out);
+    |      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    |      |                 |
+    |      |                 (8) calling 'exec_from_ast_recursive' from 'exec_pipe'
+    |
+    +--> 'exec_from_ast_recursive': events 9-16
+           |
+           |   15 | void    exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+           |      |         ^~~~~~~~~~~~~~~~~~~~~~~
+           |      |         |
+           |      |         (9) entry to 'exec_from_ast_recursive'
+           |   16 | {
+           |   17 |         if (!cmd)
+           |      |            ~
+           |      |            |
+           |      |            (10) following 'false' branch (when 'cmd' is non-NULL)...
+           |   18 |                 return ;
+           |   19 |         if (cmd->type == EXEC)
+           |      |            ~~~~~~~~~~
+           |      |            |   |
+           |      |            |   (11) ...to here
+           |      |            (12) following 'false' branch...
+           |   20 |                 aux_rec_exec(s, cmd, fd_in, fd_out);
+           |   21 |         else if (cmd->type == PIPE)
+           |      |                 ~~~~~~~~~~
+           |      |                 |   |
+           |      |                 |   (13) ...to here
+           |      |                 (14) following 'true' branch...
+           |   22 |         {
+           |   23 |                 exec_pipe(s, cmd, fd_in, fd_out);
+           |      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           |      |                 |
+           |      |                 (15) ...to here
+           |      |                 (16) calling 'exec_pipe' from 'exec_from_ast_recursive'
+           |
+           +--> 'exec_pipe': events 17-24
+                  |
+                  |   50 | void    exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+                  |      |         ^~~~~~~~~
+                  |      |         |
+                  |      |         (17) entry to 'exec_pipe'
+                  |   51 | {
+                  |   52 |         int             pipefd[2];
+                  |      |                         ~~~~~~
+                  |      |                         |
+                  |      |                         (18) region created on stack here
+                  |......
+                  |   55 |         if (pipe(pipefd) == -1)
+                  |      |            ~~~~~~~~~~~~~
+                  |      |            ||
+                  |      |            |(19) when 'pipe' fails
+                  |      |            (20) following 'true' branch...
+                  |   56 |                 error_msg("pipe");
+                  |      |                 ~~~~~~~~~~~~~~~~~
+                  |      |                 |
+                  |      |                 (21) ...to here
+                  |   57 |         pid = fork1();
+                  |   58 |         if (pid == 0)
+                  |      |            ~
+                  |      |            |
+                  |      |            (22) following 'true' branch (when 'pid == 0')...
+                  |   59 |         {
+                  |   60 |                 close(pipefd[0]);
+                  |      |                 ~~~~~~~~~~~~~~~~
+                  |      |                 |
+                  |      |                 (23) ...to here
+                  |      |                 (24) use of uninitialized value 'pipefd[0]' here
+                  |
+source/executor/ast.c:60:17: warning: use of uninitialized value 'pipefd[0]' [CWE-457] [-Wanalyzer-use-of-uninitialized-value]
+   60 |                 close(pipefd[0]);
+      |                 ^~~~~~~~~~~~~~~~
+  'exec_pipe': events 1-8
+    |
+    |   50 | void    exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+    |      |         ^~~~~~~~~
+    |      |         |
+    |      |         (1) entry to 'exec_pipe'
+    |   51 | {
+    |   52 |         int             pipefd[2];
+    |      |                         ~~~~~~
+    |      |                         |
+    |      |                         (2) region created on stack here
+    |......
+    |   55 |         if (pipe(pipefd) == -1)
+    |      |            ~~~~~~~~~~~~~
+    |      |            ||
+    |      |            |(3) when 'pipe' succeeds
+    |      |            (4) following 'false' branch...
+    |   56 |                 error_msg("pipe");
+    |   57 |         pid = fork1();
+    |      |               ~~~~~~~
+    |      |               |
+    |      |               (5) ...to here
+    |   58 |         if (pid == 0)
+    |      |            ~
+    |      |            |
+    |      |            (6) following 'true' branch (when 'pid == 0')...
+    |   59 |         {
+    |   60 |                 close(pipefd[0]);
+    |      |                 ~~~~~~~~~~~~~~~~
+    |      |                 |
+    |      |                 (7) ...to here
+    |......
+    |   63 |                 exec_from_ast_recursive(s, cmd->left, fd_in, STDOUT_FILENO);
+    |      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    |      |                 |
+    |      |                 (8) calling 'exec_from_ast_recursive' from 'exec_pipe'
+    |
+    +--> 'exec_from_ast_recursive': events 9-16
+           |
+           |   15 | void    exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+           |      |         ^~~~~~~~~~~~~~~~~~~~~~~
+           |      |         |
+           |      |         (9) entry to 'exec_from_ast_recursive'
+           |   16 | {
+           |   17 |         if (!cmd)
+           |      |            ~
+           |      |            |
+           |      |            (10) following 'false' branch (when 'cmd' is non-NULL)...
+           |   18 |                 return ;
+           |   19 |         if (cmd->type == EXEC)
+           |      |            ~~~~~~~~~~
+           |      |            |   |
+           |      |            |   (11) ...to here
+           |      |            (12) following 'false' branch...
+           |   20 |                 aux_rec_exec(s, cmd, fd_in, fd_out);
+           |   21 |         else if (cmd->type == PIPE)
+           |      |                 ~~~~~~~~~~
+           |      |                 |   |
+           |      |                 |   (13) ...to here
+           |      |                 (14) following 'true' branch...
+           |   22 |         {
+           |   23 |                 exec_pipe(s, cmd, fd_in, fd_out);
+           |      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           |      |                 |
+           |      |                 (15) ...to here
+           |      |                 (16) calling 'exec_pipe' from 'exec_from_ast_recursive'
+           |
+           +--> 'exec_pipe': events 17-24
+                  |
+                  |   50 | void    exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+                  |      |         ^~~~~~~~~
+                  |      |         |
+                  |      |         (17) entry to 'exec_pipe'
+                  |   51 | {
+                  |   52 |         int             pipefd[2];
+                  |      |                         ~~~~~~
+                  |      |                         |
+                  |      |                         (18) region created on stack here
+                  |......
+                  |   55 |         if (pipe(pipefd) == -1)
+                  |      |            ~~~~~~~~~~~~~
+                  |      |            ||
+                  |      |            |(19) when 'pipe' succeeds
+                  |      |            (20) following 'false' branch...
+                  |   56 |                 error_msg("pipe");
+                  |   57 |         pid = fork1();
+                  |      |               ~~~~~~~
+                  |      |               |
+                  |      |               (21) ...to here
+                  |   58 |         if (pid == 0)
+                  |      |            ~
+                  |      |            |
+                  |      |            (22) following 'false' branch (when 'pid != 0')...
+                  |......
+                  |   69 |                 close(pipefd[1]);
+                  |      |                 ~~~~~~~~~~~~~~~~
+                  |      |                 |
+                  |      |                 (23) ...to here
+                  |......
+                  |   72 |                 exec_from_ast_recursive(s, cmd->right, pipefd[0], fd_out);
+                  |      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                  |      |                 |
+                  |      |                 (24) calling 'exec_from_ast_recursive' from 'exec_pipe'
+                  |
+                  +--> 'exec_from_ast_recursive': events 25-32
+                         |
+                         |   15 | void    exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+                         |      |         ^~~~~~~~~~~~~~~~~~~~~~~
+                         |      |         |
+                         |      |         (25) entry to 'exec_from_ast_recursive'
+                         |   16 | {
+                         |   17 |         if (!cmd)
+                         |      |            ~
+                         |      |            |
+                         |      |            (26) following 'false' branch (when 'cmd' is non-NULL)...
+                         |   18 |                 return ;
+                         |   19 |         if (cmd->type == EXEC)
+                         |      |            ~~~~~~~~~~
+                         |      |            |   |
+                         |      |            |   (27) ...to here
+                         |      |            (28) following 'false' branch...
+                         |   20 |                 aux_rec_exec(s, cmd, fd_in, fd_out);
+                         |   21 |         else if (cmd->type == PIPE)
+                         |      |                 ~~~~~~~~~~
+                         |      |                 |   |
+                         |      |                 |   (29) ...to here
+                         |      |                 (30) following 'true' branch...
+                         |   22 |         {
+                         |   23 |                 exec_pipe(s, cmd, fd_in, fd_out);
+                         |      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                         |      |                 |
+                         |      |                 (31) ...to here
+                         |      |                 (32) calling 'exec_pipe' from 'exec_from_ast_recursive'
+                         |
+                         +--> 'exec_pipe': events 33-40
+                                |
+                                |   50 | void    exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+                                |      |         ^~~~~~~~~
+                                |      |         |
+                                |      |         (33) entry to 'exec_pipe'
+                                |   51 | {
+                                |   52 |         int             pipefd[2];
+                                |      |                         ~~~~~~
+                                |      |                         |
+                                |      |                         (34) region created on stack here
+                                |......
+                                |   55 |         if (pipe(pipefd) == -1)
+                                |      |            ~~~~~~~~~~~~~
+                                |      |            ||
+                                |      |            |(35) when 'pipe' fails
+                                |      |            (36) following 'true' branch...
+                                |   56 |                 error_msg("pipe");
+                                |      |                 ~~~~~~~~~~~~~~~~~
+                                |      |                 |
+                                |      |                 (37) ...to here
+                                |   57 |         pid = fork1();
+                                |   58 |         if (pid == 0)
+                                |      |            ~
+                                |      |            |
+                                |      |            (38) following 'true' branch (when 'pid == 0')...
+                                |   59 |         {
+                                |   60 |                 close(pipefd[0]);
+                                |      |                 ~~~~~~~~~~~~~~~~
+                                |      |                 |
+                                |      |                 (39) ...to here
+                                |      |                 (40) use of uninitialized value 'pipefd[0]' here
+                                |
+source/executor/ast.c:69:17: warning: use of uninitialized value 'pipefd[1]' [CWE-457] [-Wanalyzer-use-of-uninitialized-value]
+   69 |                 close(pipefd[1]);
+      |                 ^~~~~~~~~~~~~~~~
+  'exec_pipe': events 1-7
+    |
+    |   52 |         int             pipefd[2];
+    |      |                         ^~~~~~
+    |      |                         |
+    |      |                         (1) region created on stack here
+    |......
+    |   55 |         if (pipe(pipefd) == -1)
+    |      |            ~~~~~~~~~~~~~
+    |      |            ||
+    |      |            |(2) when 'pipe' fails
+    |      |            (3) following 'true' branch...
+    |   56 |                 error_msg("pipe");
+    |      |                 ~~~~~~~~~~~~~~~~~
+    |      |                 |
+    |      |                 (4) ...to here
+    |   57 |         pid = fork1();
+    |   58 |         if (pid == 0)
+    |      |            ~
+    |      |            |
+    |      |            (5) following 'false' branch (when 'pid != 0')...
+    |......
+    |   69 |                 close(pipefd[1]);
+    |      |                 ~~~~~~~~~~~~~~~~
+    |      |                 |
+    |      |                 (6) ...to here
+    |      |                 (7) use of uninitialized value 'pipefd[1]' here
+    |
+source/executor/ast.c:69:17: warning: use of uninitialized value 'pipefd[1]' [CWE-457] [-Wanalyzer-use-of-uninitialized-value]
+   69 |                 close(pipefd[1]);
+      |                 ^~~~~~~~~~~~~~~~
+  'exec_pipe': events 1-8
+    |
+    |   50 | void    exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+    |      |         ^~~~~~~~~
+    |      |         |
+    |      |         (1) entry to 'exec_pipe'
+    |   51 | {
+    |   52 |         int             pipefd[2];
+    |      |                         ~~~~~~
+    |      |                         |
+    |      |                         (2) region created on stack here
+    |......
+    |   55 |         if (pipe(pipefd) == -1)
+    |      |            ~~~~~~~~~~~~~
+    |      |            ||
+    |      |            |(3) when 'pipe' succeeds
+    |      |            (4) following 'false' branch...
+    |   56 |                 error_msg("pipe");
+    |   57 |         pid = fork1();
+    |      |               ~~~~~~~
+    |      |               |
+    |      |               (5) ...to here
+    |   58 |         if (pid == 0)
+    |      |            ~
+    |      |            |
+    |      |            (6) following 'true' branch (when 'pid == 0')...
+    |   59 |         {
+    |   60 |                 close(pipefd[0]);
+    |      |                 ~~~~~~~~~~~~~~~~
+    |      |                 |
+    |      |                 (7) ...to here
+    |......
+    |   63 |                 exec_from_ast_recursive(s, cmd->left, fd_in, STDOUT_FILENO);
+    |      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    |      |                 |
+    |      |                 (8) calling 'exec_from_ast_recursive' from 'exec_pipe'
+    |
+    +--> 'exec_from_ast_recursive': events 9-16
+           |
+           |   15 | void    exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+           |      |         ^~~~~~~~~~~~~~~~~~~~~~~
+           |      |         |
+           |      |         (9) entry to 'exec_from_ast_recursive'
+           |   16 | {
+           |   17 |         if (!cmd)
+           |      |            ~
+           |      |            |
+           |      |            (10) following 'false' branch (when 'cmd' is non-NULL)...
+           |   18 |                 return ;
+           |   19 |         if (cmd->type == EXEC)
+           |      |            ~~~~~~~~~~
+           |      |            |   |
+           |      |            |   (11) ...to here
+           |      |            (12) following 'false' branch...
+           |   20 |                 aux_rec_exec(s, cmd, fd_in, fd_out);
+           |   21 |         else if (cmd->type == PIPE)
+           |      |                 ~~~~~~~~~~
+           |      |                 |   |
+           |      |                 |   (13) ...to here
+           |      |                 (14) following 'true' branch...
+           |   22 |         {
+           |   23 |                 exec_pipe(s, cmd, fd_in, fd_out);
+           |      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           |      |                 |
+           |      |                 (15) ...to here
+           |      |                 (16) calling 'exec_pipe' from 'exec_from_ast_recursive'
+           |
+           +--> 'exec_pipe': events 17-24
+                  |
+                  |   50 | void    exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+                  |      |         ^~~~~~~~~
+                  |      |         |
+                  |      |         (17) entry to 'exec_pipe'
+                  |   51 | {
+                  |   52 |         int             pipefd[2];
+                  |      |                         ~~~~~~
+                  |      |                         |
+                  |      |                         (18) region created on stack here
+                  |......
+                  |   55 |         if (pipe(pipefd) == -1)
+                  |      |            ~~~~~~~~~~~~~
+                  |      |            ||
+                  |      |            |(19) when 'pipe' fails
+                  |      |            (20) following 'true' branch...
+                  |   56 |                 error_msg("pipe");
+                  |      |                 ~~~~~~~~~~~~~~~~~
+                  |      |                 |
+                  |      |                 (21) ...to here
+                  |   57 |         pid = fork1();
+                  |   58 |         if (pid == 0)
+                  |      |            ~
+                  |      |            |
+                  |      |            (22) following 'false' branch (when 'pid != 0')...
+                  |......
+                  |   69 |                 close(pipefd[1]);
+                  |      |                 ~~~~~~~~~~~~~~~~
+                  |      |                 |
+                  |      |                 (23) ...to here
+                  |      |                 (24) use of uninitialized value 'pipefd[1]' here
+                  |
+source/executor/ast.c:69:17: warning: use of uninitialized value 'pipefd[1]' [CWE-457] [-Wanalyzer-use-of-uninitialized-value]
+   69 |                 close(pipefd[1]);
+      |                 ^~~~~~~~~~~~~~~~
+  'exec_pipe': events 1-8
+    |
+    |   50 | void    exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+    |      |         ^~~~~~~~~
+    |      |         |
+    |      |         (1) entry to 'exec_pipe'
+    |   51 | {
+    |   52 |         int             pipefd[2];
+    |      |                         ~~~~~~
+    |      |                         |
+    |      |                         (2) region created on stack here
+    |......
+    |   55 |         if (pipe(pipefd) == -1)
+    |      |            ~~~~~~~~~~~~~
+    |      |            ||
+    |      |            |(3) when 'pipe' succeeds
+    |      |            (4) following 'false' branch...
+    |   56 |                 error_msg("pipe");
+    |   57 |         pid = fork1();
+    |      |               ~~~~~~~
+    |      |               |
+    |      |               (5) ...to here
+    |   58 |         if (pid == 0)
+    |      |            ~
+    |      |            |
+    |      |            (6) following 'true' branch (when 'pid == 0')...
+    |   59 |         {
+    |   60 |                 close(pipefd[0]);
+    |      |                 ~~~~~~~~~~~~~~~~
+    |      |                 |
+    |      |                 (7) ...to here
+    |......
+    |   63 |                 exec_from_ast_recursive(s, cmd->left, fd_in, STDOUT_FILENO);
+    |      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    |      |                 |
+    |      |                 (8) calling 'exec_from_ast_recursive' from 'exec_pipe'
+    |
+    +--> 'exec_from_ast_recursive': events 9-16
+           |
+           |   15 | void    exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+           |      |         ^~~~~~~~~~~~~~~~~~~~~~~
+           |      |         |
+           |      |         (9) entry to 'exec_from_ast_recursive'
+           |   16 | {
+           |   17 |         if (!cmd)
+           |      |            ~
+           |      |            |
+           |      |            (10) following 'false' branch (when 'cmd' is non-NULL)...
+           |   18 |                 return ;
+           |   19 |         if (cmd->type == EXEC)
+           |      |            ~~~~~~~~~~
+           |      |            |   |
+           |      |            |   (11) ...to here
+           |      |            (12) following 'false' branch...
+           |   20 |                 aux_rec_exec(s, cmd, fd_in, fd_out);
+           |   21 |         else if (cmd->type == PIPE)
+           |      |                 ~~~~~~~~~~
+           |      |                 |   |
+           |      |                 |   (13) ...to here
+           |      |                 (14) following 'true' branch...
+           |   22 |         {
+           |   23 |                 exec_pipe(s, cmd, fd_in, fd_out);
+           |      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           |      |                 |
+           |      |                 (15) ...to here
+           |      |                 (16) calling 'exec_pipe' from 'exec_from_ast_recursive'
+           |
+           +--> 'exec_pipe': events 17-24
+                  |
+                  |   50 | void    exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+                  |      |         ^~~~~~~~~
+                  |      |         |
+                  |      |         (17) entry to 'exec_pipe'
+                  |   51 | {
+                  |   52 |         int             pipefd[2];
+                  |      |                         ~~~~~~
+                  |      |                         |
+                  |      |                         (18) region created on stack here
+                  |......
+                  |   55 |         if (pipe(pipefd) == -1)
+                  |      |            ~~~~~~~~~~~~~
+                  |      |            ||
+                  |      |            |(19) when 'pipe' succeeds
+                  |      |            (20) following 'false' branch...
+                  |   56 |                 error_msg("pipe");
+                  |   57 |         pid = fork1();
+                  |      |               ~~~~~~~
+                  |      |               |
+                  |      |               (21) ...to here
+                  |   58 |         if (pid == 0)
+                  |      |            ~
+                  |      |            |
+                  |      |            (22) following 'false' branch (when 'pid != 0')...
+                  |......
+                  |   69 |                 close(pipefd[1]);
+                  |      |                 ~~~~~~~~~~~~~~~~
+                  |      |                 |
+                  |      |                 (23) ...to here
+                  |......
+                  |   72 |                 exec_from_ast_recursive(s, cmd->right, pipefd[0], fd_out);
+                  |      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                  |      |                 |
+                  |      |                 (24) calling 'exec_from_ast_recursive' from 'exec_pipe'
+                  |
+                  +--> 'exec_from_ast_recursive': events 25-32
+                         |
+                         |   15 | void    exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+                         |      |         ^~~~~~~~~~~~~~~~~~~~~~~
+                         |      |         |
+                         |      |         (25) entry to 'exec_from_ast_recursive'
+                         |   16 | {
+                         |   17 |         if (!cmd)
+                         |      |            ~
+                         |      |            |
+                         |      |            (26) following 'false' branch (when 'cmd' is non-NULL)...
+                         |   18 |                 return ;
+                         |   19 |         if (cmd->type == EXEC)
+                         |      |            ~~~~~~~~~~
+                         |      |            |   |
+                         |      |            |   (27) ...to here
+                         |      |            (28) following 'false' branch...
+                         |   20 |                 aux_rec_exec(s, cmd, fd_in, fd_out);
+                         |   21 |         else if (cmd->type == PIPE)
+                         |      |                 ~~~~~~~~~~
+                         |      |                 |   |
+                         |      |                 |   (29) ...to here
+                         |      |                 (30) following 'true' branch...
+                         |   22 |         {
+                         |   23 |                 exec_pipe(s, cmd, fd_in, fd_out);
+                         |      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                         |      |                 |
+                         |      |                 (31) ...to here
+                         |      |                 (32) calling 'exec_pipe' from 'exec_from_ast_recursive'
+                         |
+                         +--> 'exec_pipe': events 33-40
+                                |
+                                |   50 | void    exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+                                |      |         ^~~~~~~~~
+                                |      |         |
+                                |      |         (33) entry to 'exec_pipe'
+                                |   51 | {
+                                |   52 |         int             pipefd[2];
+                                |      |                         ~~~~~~
+                                |      |                         |
+                                |      |                         (34) region created on stack here
+                                |......
+                                |   55 |         if (pipe(pipefd) == -1)
+                                |      |            ~~~~~~~~~~~~~
+                                |      |            ||
+                                |      |            |(35) when 'pipe' fails
+                                |      |            (36) following 'true' branch...
+                                |   56 |                 error_msg("pipe");
+                                |      |                 ~~~~~~~~~~~~~~~~~
+                                |      |                 |
+                                |      |                 (37) ...to here
+                                |   57 |         pid = fork1();
+                                |   58 |         if (pid == 0)
+                                |      |            ~
+                                |      |            |
+                                |      |            (38) following 'false' branch (when 'pid != 0')...
+                                |......
+                                |   69 |                 close(pipefd[1]);
+                                |      |                 ~~~~~~~~~~~~~~~~
+                                |      |                 |
+                                |      |                 (39) ...to here
+                                |      |                 (40) use of uninitialized value 'pipefd[1]' here
+                                |
+source/aux/env_aux.c: In function 'null_env_init':
+source/aux/env_aux.c:54:17: warning: use after 'free' of 'init_env' [CWE-416] [-Wanalyzer-use-after-free]
+   54 |                 free_and_error(init_env[0], init_env[1], init_env);
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  'null_env_init': events 1-7
+    |
+    |   30 | char    **null_env_init(void)
+    |      |           ^~~~~~~~~~~~~
+    |      |           |
+    |      |           (1) entry to 'null_env_init'
+    |......
+    |   43 |         init_env[0] = ft_calloc(key_len + cwd_len + 1, sizeof(char));
+    |      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    |      |                     |
+    |      |                     (2) state of 'CONJURED(init_env_30 = ft_calloc (5, 8);, init_env_30)': 'start' -> 'assumed-non-null' (NULL origin)
+    |   44 |         if (!init_env[0])
+    |      |            ~
+    |      |            |
+    |      |            (3) following 'false' branch...
+    |   45 |                 return (free(cwd), error_msg("malloc"), init_env);
+    |   46 |         ft_strlcpy(init_env[0], "PWD=", key_len + 1);
+    |      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    |      |         |
+    |      |         (4) ...to here
+    |......
+    |   50 |         if (!init_env[1])
+    |      |            ~
+    |      |            |
+    |      |            (5) following 'true' branch...
+    |   51 |                 free_and_error(init_env[0], NULL, init_env);
+    |      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    |      |                 |
+    |      |                 (6) ...to here
+    |      |                 (7) calling 'free_and_error' from 'null_env_init'
+    |
+    +--> 'free_and_error': events 8-9
+           |
+           |   59 | void    free_and_error(char *one, char *two, char **three)
+           |      |         ^~~~~~~~~~~~~~
+           |      |         |
+           |      |         (8) entry to 'free_and_error'
+           |......
+           |   63 |         free(three);
+           |      |         ~~~~~~~~~~~
+           |      |         |
+           |      |         (9) freed here
+           |
+    <------+
+    |
+  'null_env_init': events 10-13
+    |
+    |   51 |                 free_and_error(init_env[0], NULL, init_env);
+    |      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    |      |                 |
+    |      |                 (10) returning to 'null_env_init' from 'free_and_error'
+    |   52 |         init_env[2] = ft_strdup("_=/usr/bin/env");
+    |   53 |         if (!init_env[2])
+    |      |            ~
+    |      |            |
+    |      |            (11) following 'true' branch...
+    |   54 |                 free_and_error(init_env[0], init_env[1], init_env);
+    |      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    |      |                 |                                   |
+    |      |                 |                                   (12) ...to here
+    |      |                 (13) use after 'free' of 'init_env'; freed at (9)
+    |
+source/aux/pipe_exec.c: In function 'path_constructor':
+source/aux/pipe_exec.c:36:18: warning: use of NULL 'new_path' where non-null expected [CWE-476] [-Wanalyzer-null-argument]
+   36 |         else if (access(new_path, X_OK) == 0)
+      |                  ^~~~~~~~~~~~~~~~~~~~~~
+  'path_constructor': events 1-6
+    |
+    |   20 |         new_path = NULL;
+    |      |                  ^
+    |      |                  |
+    |      |                  (1) 'new_path' is NULL
+    |   21 |         if (slashi)
+    |      |            ~
+    |      |            |
+    |      |            (2) following 'false' branch (when 'slashi == 0')...
+    |......
+    |   31 |         if (ft_strcmp(cmd, "minishell") == 0)
+    |      |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    |      |            ||
+    |      |            |(3) ...to here
+    |      |            (4) following 'false' branch...
+    |......
+    |   36 |         else if (access(new_path, X_OK) == 0)
+    |      |                  ~~~~~~~~~~~~~~~~~~~~~~
+    |      |                  |
+    |      |                  (5) ...to here
+    |      |                  (6) argument 1 ('new_path') NULL where non-null expected
+    |
+In file included from source/aux/../../include/../libs/libft/include/libft.h:15,
+                 from source/aux/../../include/minishell.h:16,
+                 from source/aux/pipe_exec.c:13:
+/usr/include/unistd.h:287:12: note: argument 1 of 'access' must be non-null
+  287 | extern int access (const char *__name, int __type) __THROW __nonnull ((1));
+      |            ^~~~~~
+source/aux/pipe_exec.c: In function 'exec_one':
+source/aux/pipe_exec.c:50:17: warning: check of 'argv' for NULL after already dereferencing it [-Wanalyzer-deref-before-check]
+   50 |         else if (argv && argv[0] != NULL)
+      |                 ^
+  'exec_one': events 1-2
+    |
+    |   44 |         if ((argv[0] && argv[0][0] == '.' && argv[0][1] == '/' && argv[0][2]) || \
+    |      |              ~~~~^~~
+    |      |                  |
+    |      |                  (1) pointer 'argv' is dereferenced here
+    |......
+    |   50 |         else if (argv && argv[0] != NULL)
+    |      |                 ~
+    |      |                 |
+    |      |                 (2) pointer 'argv' is checked for NULL here but it was already dereferenced at (1)
+    |
+source/aux/ft_ms_aux.c: In function 'ft_getrnd_str':
+source/aux/ft_ms_aux.c:25:24: warning: leak of file descriptor 'fd' [CWE-775] [-Wanalyzer-fd-leak]
+   25 |                 return (NULL);
+      |                        ^
+  'ft_getrnd_str': events 1-4
+    |
+    |   23 |         fd = open("/dev/urandom", O_RDONLY);
+    |      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    |      |              |
+    |      |              (1) opened here
+    |   24 |         if (!fd)
+    |      |            ~
+    |      |            |
+    |      |            (2) following 'true' branch (when 'fd == 0')...
+    |   25 |                 return (NULL);
+    |      |                        ~
+    |      |                        |
+    |      |                        (3) ...to here
+    |      |                        (4) 'fd' leaks here; was opened at (1)
+    |
+source/aux/ft_ms_aux.c:28:17: warning: 'read' on possibly invalid file descriptor 'fd' [-Wanalyzer-fd-use-without-check]
+   28 |                 read(fd, buf, 1);
+      |                 ^~~~~~~~~~~~~~~~
+  'ft_getrnd_str': events 1-3
+    |
+    |   23 |         fd = open("/dev/urandom", O_RDONLY);
+    |      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    |      |              |
+    |      |              (1) opened here
+    |   24 |         if (!fd)
+    |      |            ~
+    |      |            |
+    |      |            (2) following 'false' branch (when 'fd != 0')...
+    |   25 |                 return (NULL);
+    |   26 |         while (i < STR_SIZE)
+    |      |               ~
+    |      |               |
+    |      |               (3) ...to here
+    |
+  'ft_getrnd_str': events 4-6
+    |
+    |   26 |         while (i < STR_SIZE)
+    |   27 |         {
+    |   28 |                 read(fd, buf, 1);
+    |      |                 ~~~~~~~~~~~~~~~~
+    |      |                 |
+    |      |                 (5) ...to here
+    |      |                 (6) 'fd' could be invalid: unchecked value from (1)
+    |
+source/aux/ft_ms_aux.c: In function 'ft_getpid':
+source/aux/ft_ms_aux.c:60:24: warning: leak of file descriptor 'fd' [CWE-775] [-Wanalyzer-fd-leak]
+   60 |                 return (NULL);
+      |                        ^
+  'ft_getpid': events 1-4
+    |
+    |   58 |         fd = open("/proc/self/stat", O_RDONLY);
+    |      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    |      |              |
+    |      |              (1) opened here
+    |   59 |         if (!fd)
+    |      |            ~
+    |      |            |
+    |      |            (2) following 'true' branch (when 'fd == 0')...
+    |   60 |                 return (NULL);
+    |      |                        ~
+    |      |                        |
+    |      |                        (3) ...to here
+    |      |                        (4) 'fd' leaks here; was opened at (1)
+    |
+source/aux/env_aux3.c: In function 'dup_and_close':
+source/aux/env_aux3.c:52:12: warning: leak of file descriptor 'dup2(*fd_this,  standard)' [CWE-775] [-Wanalyzer-fd-leak]
+   52 |         if (dup2(*fd_this, standard) < 0)
+      |            ^
+  'dup_and_close': events 1-2
+    |
+    |   52 |         if (dup2(*fd_this, standard) < 0)
+    |      |            ~^~~~~~~~~~~~~~~~~~~~~~~~
+    |      |            ||
+    |      |            |(1) opened here
+    |      |            (2) 'dup2(*fd_this,  standard)' leaks here; was opened at (1)
+    |

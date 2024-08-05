@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:40:06 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/06/27 17:50:07 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/05 14:40:11 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ void	free_paths(char **paths, int i)
 		return ;
 	while (ctd < i)
 	{
-		if (paths[i])
-			free(paths[i]);
+		// if (paths[i])
+		if (paths[ctd])
+			free(paths[ctd]);
+			// free(paths[i]);
 		ctd++;
 	}
 	free(paths);
