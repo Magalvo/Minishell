@@ -78,6 +78,8 @@ void	sort_env_list(t_env **head);
 int		print_export(t_env *env);
 int		ft_sw_builtins(const char *s1, const char *s2);
 int		is_valid_key(char *key);
+int		export_unset_error(t_ms *s, char *msg, char *key);
+int		export_unset_error(t_ms *s, char *msg, char *key);
 void	free_key(char **key);
 char	*get_key_from_str(const char *str);
 char	*get_value_from_str(char *str);

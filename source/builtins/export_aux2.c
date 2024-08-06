@@ -12,16 +12,18 @@
 
 #include "../../include/minishell.h"
 
-int	is_valid_unset(char	*arg)
+int	is_valid_unset(char *arg)
 {
 	int	i;
 
-	i = 0;
-	if (arg[i] == '\0')
+	if (!arg || !arg[0])
 		return (0);
+	if (arg[0] == '=' || arg[0] == '?' || arg[0] == '-')
+		return (0);
+	i = 0;
 	while (arg[i] != '\0')
 	{
-		if (arg[i] == '\0' || arg[i] == '=' || arg[i] == '?')
+		if (arg[i] == '=' || arg[i] == '?' || arg[i] == ' ' || arg[i] == '$')
 			return (0);
 		i++;
 	}

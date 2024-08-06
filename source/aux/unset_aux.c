@@ -42,3 +42,14 @@ void	unset_aux(t_ms *s, t_env **tmp, char *arg)
 		current = *tmp;
 	}
 }
+
+int	export_unset_error(t_ms *s, char *msg, char *key)
+{
+	(void)s;
+	ft_putstr_fd("minishell: unset: `", 2);
+	ft_putstr_fd(key, 2);
+	ft_putstr_fd("': ", 2);
+	ft_putstr_fd(msg, 2);
+	ft_putstr_fd("\n", 2);
+	return (1);
+}
