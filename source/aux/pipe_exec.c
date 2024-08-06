@@ -33,7 +33,7 @@ char	*path_constructor(const char *path, const char *cmd, int slashi)
 		free(new_path);
 		return (NULL);
 	}
-	else if (access(new_path, X_OK) == 0)
+	else if (new_path && access(new_path, X_OK) == 0)
 		return (new_path);
 	free(new_path);
 	return (NULL);

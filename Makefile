@@ -64,7 +64,7 @@ LDFLAGS = -L$(LIBFT_DIR) -lft -L/usr/local/opt/readline/lib -lreadline
 
 # Project settings
 NAME = minishell
-CFLAGS = -Wall -Wextra -Werror -I${LIBFT_DIR} #-fsanitize=address  #-O3
+CFLAGS = -Wall -Wextra -Werror -I${LIBFT_DIR} -fanalyzer #-fsanitize=address  #-O3
 # CFLAGS = -Wall -Wextra -I${LIBFT_DIR} -fanalyzer #-fsanitize=address  #-O3
 debug: CFLAGS += -g3 #-fPIE #-fsanitize=address #-pg   #-fsanitize=address
 MAKEFLAGS += --no-print-directory #  --silent

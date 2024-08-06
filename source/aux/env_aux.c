@@ -27,6 +27,15 @@ char	*find_cwd(void)
 	return (cwd);
 }
 
+void	free_and_error(char *one, char *two, char **three)
+{
+	free(one);
+	free(two);
+	free(three);
+	three = NULL;
+	error_msg("strdup");
+}
+
 char	**null_env_init(void)
 {
 	char	**init_env;
@@ -47,21 +56,11 @@ char	**null_env_init(void)
 	ft_strlcpy(init_env[0] + key_len, cwd, cwd_len + 1);
 	free(cwd);
 	init_env[1] = ft_strdup("SHLVL=0");
-	if (!init_env[1])
-		free_and_error(init_env[0], NULL, init_env);
 	init_env[2] = ft_strdup("_=/usr/bin/env");
-	if (!init_env[2])
+	if (!init_env[2] || !init_env[1])
 		free_and_error(init_env[0], init_env[1], init_env);
 	init_env[3] = NULL;
 	return (init_env);
-}
-
-void	free_and_error(char *one, char *two, char **three)
-{
-	free(one);
-	free(two);
-	free(three);
-	error_msg("strdup");
 }
 
 void	initialize_env(char ***envp)

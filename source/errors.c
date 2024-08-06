@@ -37,10 +37,8 @@ void	free_paths(char **paths, int i)
 		return ;
 	while (ctd < i)
 	{
-		// if (paths[i])
 		if (paths[ctd])
 			free(paths[ctd]);
-			// free(paths[i]);
 		ctd++;
 	}
 	free(paths);

@@ -55,8 +55,6 @@ void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	if ((*cmd->argv))
 		updating_cmds(s, cmd, cmd->argv[cmd->argc - 1]);
 	exec_redir_fork(s, cmd, fd_in, fd_out);
-/* 	if (fd_in != STDIN_FILENO)
-		close(fd_in); */
 }
 
 void	exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
@@ -70,7 +68,6 @@ void	exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			dup_and_close(s, &fd_in, &fd_out, STDIN_FILENO);
 		if (fd_out != STDOUT_FILENO)
 			dup_and_close(s, &fd_out, &fd_in, STDOUT_FILENO);
-		printf("file: %d", cmd->fd);
 		exec_from_ast_recursive(s, cmd, STDIN_FILENO, STDOUT_FILENO);
 		exit_minishell(s, NULL);
 	}

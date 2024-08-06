@@ -26,7 +26,6 @@ void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	{
 		if (fd_in != STDIN_FILENO && cmd->fd == 0 && s->ast->type == PIPE)
 		{
-			printf("PINNERS!");
 			fd_in = STDIN_FILENO;
 		}
 		exec_redir(s, cmd, fd_in, fd_out);
@@ -66,9 +65,10 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	}
 	else
 	{
-		close(pipefd[1]);
-		if (fd_in != STDIN_FILENO)
+		if (close(pipefd[1]) == 0 && fd_in != STDIN_FILENO)
 			close_fd(&fd_in);
+		if (cmd->left->fd > 2)
+			close_fd(&cmd->left->fd);
 		exec_from_ast_recursive(s, cmd->right, pipefd[0], fd_out);
 		close(pipefd[0]);
 		wait_till_end(s, pid, cmd);
