@@ -79,7 +79,7 @@ CC = cc #-ggdb -fsanitize=address -fno-omit-frame-pointer
 # CC = cc #-ggdb -fsanitize=address -fno-omit-frame-pointer
 # AR = ar
 
-all: $(NAME)
+all: $(LIBFT) $(NAME)
 
 libft: $(LIBFT)
 
@@ -118,7 +118,7 @@ fclean: clean
 	@printf "$(RED)[All binaries deleted]    $(RST)\n"
 
 valgrind: $(NAME)
-	valgrind --suppressions=readline.supp --trace-children=yes  --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all -s ./${NAME}
+	valgrind -s --suppressions=readline.supp --trace-children=yes  --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all ./${NAME}
 
 valgrind2: $(NAME)
 	valgrind --suppressions=readline.supp --trace-children=yes  --track-fds=yes --track-origins=yes --leak-check=full ./${NAME}

@@ -28,7 +28,7 @@ char	*path_constructor(const char *path, const char *cmd, int slashi)
 		if (!new_path)
 			return (NULL);
 	}
-	if (ft_strcmp(cmd, "minishell") == 0)
+	if (ft_strncmp(cmd, "./", 2) != 0 && ft_strcmp(path, "/usr/bin") != 0)
 	{
 		free(new_path);
 		return (NULL);

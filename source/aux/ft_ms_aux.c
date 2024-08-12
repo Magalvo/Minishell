@@ -57,18 +57,19 @@ char	*ft_getpid(void)
 
 	fd = open("/proc/self/stat", O_RDONLY);
 	if (!fd)
-		return (NULL);
+		return (close_fd(&fd), NULL);
 	pid_res = get_next_line(fd);
 	if (!pid_res)
-		return (NULL);
+		return (close_fd(&fd), NULL);
 	stat = ft_split(pid_res, ' ');
 	free(pid_res);
 	if (!stat)
-		return (NULL);
+		return (close_fd(&fd), NULL);
 	pid_res = ft_strdup(stat[0]);
 	ft_free_dptr(&stat);
 	if (!pid_res)
 		return (NULL);
+	close_fd(&fd);
 	return (pid_res);
 }
 
