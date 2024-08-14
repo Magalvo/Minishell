@@ -6,7 +6,7 @@
 #    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/08/05 16:16:41 by cjoao-de         ###   ########.fr        #
+#    Updated: 2024/08/14 10:33:14 by cjoao-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,19 +64,17 @@ LDFLAGS = -L$(LIBFT_DIR) -lft -L/usr/local/opt/readline/lib -lreadline
 
 # Project settings
 NAME = minishell
-CFLAGS = -Wall -Wextra -Werror -I${LIBFT_DIR} -fanalyzer #-fsanitize=address  #-O3
-# CFLAGS = -Wall -Wextra -I${LIBFT_DIR} -fanalyzer #-fsanitize=address  #-O3
+CFLAGS = -Wall -Wextra -Werror -I${LIBFT_DIR} #-fsanitize=address  #-O3
 debug: CFLAGS += -g3 #-fPIE #-fsanitize=address #-pg   #-fsanitize=address
 MAKEFLAGS += --no-print-directory #  --silent
 .SILENT: $(OBJ) $(NAME) clean fclean
 ARFLAGS = rvs
 RM = rm -rf
-CC = cc #-ggdb -fsanitize=address -fno-omit-frame-pointer
+CC = cc
 # ifeq ($(shell hostname), fedora)
 # 	CC = clang
 # endif
 # HOST=$(shell hostname)
-# CC = cc #-ggdb -fsanitize=address -fno-omit-frame-pointer
 # AR = ar
 
 all: $(LIBFT) $(NAME)
@@ -113,7 +111,6 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
-	$(RM) $(BNS_NAME)
 	$(RM) $(LIBFT)
 	@printf "$(RED)[All binaries deleted]    $(RST)\n"
 

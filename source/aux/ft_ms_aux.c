@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ms_aux.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:21:13 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/01 12:39:08 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/14 10:09:22 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,17 @@ char	*ft_getpid(void)
 	if (!fd)
 		return (close_fd(&fd), NULL);
 	pid_res = get_next_line(fd);
+	close_fd(&fd);
 	if (!pid_res)
-		return (close_fd(&fd), NULL);
+		return (NULL);
 	stat = ft_split(pid_res, ' ');
 	free(pid_res);
 	if (!stat)
-		return (close_fd(&fd), NULL);
+		return (NULL);
 	pid_res = ft_strdup(stat[0]);
 	ft_free_dptr(&stat);
 	if (!pid_res)
 		return (NULL);
-	close_fd(&fd);
 	return (pid_res);
 }
 
