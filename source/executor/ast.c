@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:23 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/02 10:02:29 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/16 18:40:21 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	standard_check(int fd_in, int pipefd)
 	}
 }
 
+// TODO check line 74, solves double free. causes problem?
 void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	int		pipefd[2];
@@ -70,7 +71,7 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		if (cmd->left->fd > 2)
 			close_fd(&cmd->left->fd);
 		exec_from_ast_recursive(s, cmd->right, pipefd[0], fd_out);
-		close(pipefd[0]);
+		// close(pipefd[0]);
 		wait_till_end(s, pid, cmd);
 	}
 }
