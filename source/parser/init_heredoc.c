@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/16 17:46:53 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/16 17:52:31 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,8 @@ int	exec_heredoc(t_cmd *cmd, char *file, int expand, t_ms *s)
 	else if (pid > 0)
 	{
 		close(fd_file);
-		here_await(&pid, s);
+		if(here_await(pid, s) == -1)
+			return (-1);
 	}
 	return (open_fd(file, O_RDONLY));
 }
