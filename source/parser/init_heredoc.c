@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/16 15:09:05 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/16 15:39:45 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ int	exec_heredoc(t_cmd *cmd, char *file, int expand, t_ms *s)
 	int		fd_file;
 	pid_t	pid;
 	int		status;
+	int 	i;
 
+	i = 0;
 	fd_file = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd_file == -1)
 		error_msg("Error opening here_doc");
@@ -59,14 +61,22 @@ int	exec_heredoc(t_cmd *cmd, char *file, int expand, t_ms *s)
 		{
 			free(cmd->cmd->file);
 			free(cmd->cmd->delim);
+			while(cmd->cmd->argv && cmd->cmd->argv[i])
+			{
+				free(cmd->cmd->argv[i++]);
+			}
 			free(cmd->cmd->argv);
 			free(cmd->cmd);
 		}
+		i = 0;
 		free(cmd->file);
 		free(cmd->delim);
+		while(cmd->argv && cmd->argv[i])
+		{
+			free(cmd->argv[i++]);
+		}
 		free(cmd->argv);
 		free(cmd);
-
 		exit_minishell(s, NULL);
 	}
 	else if (pid > 0)
