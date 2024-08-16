@@ -1,0 +1,67 @@
+make valgrind2
+valgrind --suppressions=readline.supp --track-fds=yes --track-origins=yes  --trace-children=yes  --show-leak-kinds=all --leak-check=full --show-error-list=yes --verbose ./minishell
+
+minishell> << OLA
+> OLA
+==321269== 
+==321269== FILE DESCRIPTORS: 3 open (3 std) at exit.
+==321269== 
+==321269== HEAP SUMMARY:
+==321269==     in use at exit: 228,675 bytes in 235 blocks
+==321269==   total heap usage: 1,106 allocs, 871 frees, 269,230 bytes allocated
+==321269== 
+==321269== Searching for pointers to 235 not-freed blocks
+==321269== Checked 282,408 bytes
+==321269== 
+==321269== 7 bytes in 1 blocks are still reachable in loss record 4 of 76
+==321269==    at 0x4843866: malloc (vg_replace_malloc.c:446)
+==321269==    by 0x40A801: ft_strdup (in /home/kajo/42/minishell/minishell)
+==321269==    by 0x405E02: expand_sw_tilde (parse_prechecks.c:82)
+==321269==    by 0x406513: parse_input (parse.c:37)
+==321269==    by 0x4013A0: minishell (minishell.c:57)
+==321269==    by 0x4014AB: main (minishell.c:83)
+==321269== 
+==321269== LEAK SUMMARY:
+==321269==    definitely lost: 0 bytes in 0 blocks
+==321269==    indirectly lost: 0 bytes in 0 blocks
+==321269==      possibly lost: 0 bytes in 0 blocks
+==321269==    still reachable: 7 bytes in 1 blocks
+==321269==         suppressed: 228,668 bytes in 234 blocks
+==321269== 
+==321295== FILE DESCRIPTORS: 3 open (3 std) at exit.
+==321295== 
+==321295== HEAP SUMMARY:
+==321295==     in use at exit: 228,686 bytes in 234 blocks
+==321295==   total heap usage: 1,101 allocs, 867 frees, 269,176 bytes allocated
+==321295== 
+==321295== Searching for pointers to 234 not-freed blocks
+==321295== Checked 282,320 bytes
+==321295== 
+==321295== LEAK SUMMARY:
+==321295==    definitely lost: 0 bytes in 0 blocks
+==321295==    indirectly lost: 0 bytes in 0 blocks
+==321295==      possibly lost: 0 bytes in 0 blocks
+==321295==    still reachable: 0 bytes in 0 blocks
+==321295==         suppressed: 228,686 bytes in 234 blocks
+==321295== 
+==321295== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+--321295-- 
+==321294== 
+==321294== FILE DESCRIPTORS: 3 open (3 std) at exit.
+==321294== 
+==321294== HEAP SUMMARY:
+==321294==     in use at exit: 228,686 bytes in 234 blocks
+==321294==   total heap usage: 1,101 allocs, 867 frees, 269,176 bytes allocated
+==321294== 
+==321294== Searching for pointers to 234 not-freed blocks
+==321294== Checked 282,160 bytes
+==321294== 
+==321294== LEAK SUMMARY:
+==321294==    definitely lost: 0 bytes in 0 blocks
+==321294==    indirectly lost: 0 bytes in 0 blocks
+==321294==      possibly lost: 0 bytes in 0 blocks
+==321294==    still reachable: 0 bytes in 0 blocks
+==321294==         suppressed: 228,686 bytes in 234 blocks
+==321294== 
+==321294== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+--321294-- 

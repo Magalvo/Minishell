@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/16 14:48:13 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/16 19:49:51 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_cmd	*parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 	int		tok;
 	char	*q;
 	char	*eq;
+	char	*filename;
 
 	eq = NULL;
 	q = NULL;
@@ -35,7 +36,8 @@ t_cmd	*parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 		{
 			return (free_ast2(&cmd), reprompt(MISSING_REDIRECT, 2, s), NULL);
 		}
-		cmd = redir_sw(cmd, tok, ft_substr(q, 0, eq - q), s);
+		filename = ft_substr(q, 0, eq - q);
+		cmd = redir_sw(cmd, tok, filename, s);
 	}
 	return (cmd);
 }
