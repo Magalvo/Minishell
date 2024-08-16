@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_prechecks.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:00 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/05 14:48:32 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:59:23 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ char	*expand_sw_vars(char *input, t_ms *s)
 	char	*pos;
 	char	*xp_input;
 
+	printf("%s\n", input);
 	xp_input = ft_strdup(input);
 	pos = ft_strchr(xp_input, '$');
 	while (pos)
@@ -57,7 +58,8 @@ char	*expand_sw_vars(char *input, t_ms *s)
 		else
 			pos = ft_strchr(pos + 1, '$');
 	}
-	return (free(input), xp_input);
+	free(input);
+	return (xp_input);
 }
 
 char	*expand_sw_tilde(char *input, t_ms *s)

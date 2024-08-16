@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/02 15:36:44 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/16 15:09:05 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,19 @@ t_cmd	*cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 	str_rm_char(delim, EMPTY);
 	filename = ft_getrnd_str();
 	cmd->file = ft_strjoin("/tmp/", filename);
-	free(filename);
 	if (!cmd->file)
 		perror("strjoin null");
-	cmd->fd = exec_heredoc(cmd->delim, cmd->file, expand, s);
+	free(filename);
+	cmd->fd = exec_heredoc(cmd, cmd->file, expand, s);
 	if (cmd->fd == -1)
 	{
-		return (free(cmd->file), free(cmd), NULL);
+		return (free(cmd->file), free(cmd->delim), free(cmd), NULL);
 	}
 	check_signal(MAIN);
 	return (cmd);
 }
 
-int	exec_heredoc(char *dli, char *file, int expand, t_ms *s)
+int	exec_heredoc(t_cmd *cmd, char *file, int expand, t_ms *s)
 {
 	int		fd_file;
 	pid_t	pid;
@@ -52,8 +52,24 @@ int	exec_heredoc(char *dli, char *file, int expand, t_ms *s)
 	check_signal(IGNORE);
 	pid = fork1();
 	if (pid == 0)
-		heredoc_child(dli, fd_file, expand, s);
-	else
+	{
+		heredoc_child(cmd->delim, fd_file, expand, s);
+		close_fd(&fd_file);
+		if(cmd->cmd)
+		{
+			free(cmd->cmd->file);
+			free(cmd->cmd->delim);
+			free(cmd->cmd->argv);
+			free(cmd->cmd);
+		}
+		free(cmd->file);
+		free(cmd->delim);
+		free(cmd->argv);
+		free(cmd);
+
+		exit_minishell(s, NULL);
+	}
+	else if (pid > 0)
 	{
 		close(fd_file);
 		waitpid(pid, &status, 0);

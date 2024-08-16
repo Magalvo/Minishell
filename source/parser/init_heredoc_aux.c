@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_heredoc_aux.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/02 15:36:16 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:58:41 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ void	heredoc_child(char *dli, int fd_file, int expand, t_ms *s)
 		expand_heredoc(s, line, expand, fd_file);
 	}
 	free(line);
-	close(fd_file);
-	free(dli);
-	exit_minishell(s, NULL);
 }
 
 // void	heredoc_parent(char *dli, int fd_file, int expand, t_ms *s)

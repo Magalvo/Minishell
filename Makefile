@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/08/14 10:33:14 by cjoao-de         ###   ########.fr        #
+#    Updated: 2024/08/16 14:43:12 by dde-maga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,7 +115,7 @@ fclean: clean
 	@printf "$(RED)[All binaries deleted]    $(RST)\n"
 
 valgrind: $(NAME)
-	valgrind -s --suppressions=readline.supp --trace-children=yes  --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all ./${NAME}
+	valgrind -s --suppressions=readline.supp --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all ./${NAME}
 
 valgrind2: $(NAME)
 	valgrind --suppressions=readline.supp --trace-children=yes  --track-fds=yes --track-origins=yes --leak-check=full ./${NAME}

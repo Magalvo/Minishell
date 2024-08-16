@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/02 16:25:29 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/16 13:25:41 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ char	*remove_quotes(char *input, char *pos);
 char	*get_expanded(char *input, char *cut, char *paste, char *remain);
 int		count_argc(char **ps, char *es, t_ms *s);
 int		is_quoted(const char *str, const char *totest);
-int		exec_heredoc(char *dli, char *file, int expand, t_ms *s);
+int		exec_heredoc(t_cmd *cmd, char *file, int expand, t_ms *s);
 int		del_eof(int heredoc);
 int		open_fd(char *file, int mode);
 int		*magic_key(void);
