@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/16 13:25:41 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/16 18:23:26 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	skip_spaces(char *str, char *es);
 void	get_shrinked(char *input, char *move);
 void	str_rm_char(char *input, char remove);
 void	expand_heredoc(t_ms *s, char *line, int expand, int fd_file);
-void	heredoc_child(char *dli, int fd_file, int expand, t_ms *s);
+void	heredoc_child(t_cmd *cmd, int fd_file, int expand, t_ms *s);
 void	reprompt(char *str, int exit_stat, t_ms *s);
 void	parse_args(char **ps, char *es, t_d_cmd *cmds, t_ms *s);
 char	**create_dptr(int argc);
@@ -167,7 +167,8 @@ void	print_ast(t_ms *s, t_cmd *ptr, int padding);
 void	print_ast_exec(t_ms *s, t_cmd *ptr, int padding);
 void	print_ast_pipe(t_ms *s, t_cmd *ptr, int padding);
 void	exit_and_found(char *str, int status, t_ms *s);
-void	exit_doc(t_ms *s, int heredoc);
+void	exit_doc(t_ms *s, int heredoc, t_cmd *cmd);
+void	free_herechild(t_cmd **cmd);
 void	print_ast_redir(t_ms *s, t_cmd *ptr, int padding);
 void	print_ast_heredoc(t_ms *s, t_cmd *ptr, int padding);
 void	print_exit(t_ms *s, char *cmds, char *str, int status);

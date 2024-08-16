@@ -6,27 +6,27 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/14 18:58:41 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/16 18:20:04 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	heredoc_child(char *dli, int fd_file, int expand, t_ms *s)
+void	heredoc_child(t_cmd *cmd, int fd_file, int expand, t_ms *s)
 {
 	char	*line;
 	bool	empty_dli;
 
 	check_signal(HERE_DOC);
 	empty_dli = false;
-	if (ft_strlen(dli) == 0)
+	if (ft_strlen(cmd->delim) == 0)
 		empty_dli = true;
 	while (1)
 	{
 		line = readline("> ");
 		if (!line)
-			exit_doc(s, fd_file);
-		if ((ft_strcmp(dli, line) == 0 && !empty_dli)
+			exit_doc(s, fd_file, cmd);
+		if ((ft_strcmp(cmd->delim, line) == 0 && !empty_dli)
 			|| (empty_dli && line[0] == '\0'))
 			break ;
 		expand_heredoc(s, line, expand, fd_file);

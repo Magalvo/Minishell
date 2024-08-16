@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/16 17:52:31 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/16 18:25:54 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,7 @@ int	exec_heredoc(t_cmd *cmd, char *file, int expand, t_ms *s)
 {
 	int		fd_file;
 	pid_t	pid;
-	int		i;
 
-	i = 0;
 	fd_file = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd_file == -1)
 		error_msg("Error opening here_doc");
@@ -97,7 +95,7 @@ int	exec_heredoc(t_cmd *cmd, char *file, int expand, t_ms *s)
 	pid = fork1();
 	if (pid == 0)
 	{
-		heredoc_child(cmd->delim, fd_file, expand, s);
+		heredoc_child(cmd, fd_file, expand, s);
 		close_fd(&fd_file);
 		free_herechild(&cmd);
 		exit_minishell(s, NULL);
@@ -105,7 +103,7 @@ int	exec_heredoc(t_cmd *cmd, char *file, int expand, t_ms *s)
 	else if (pid > 0)
 	{
 		close(fd_file);
-		if(here_await(pid, s) == -1)
+		if (here_await(pid, s) == -1)
 			return (-1);
 	}
 	return (open_fd(file, O_RDONLY));

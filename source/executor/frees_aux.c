@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   frees_aux.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/02 16:25:10 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/16 18:21:28 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ void	free2(char *one, char *two)
 	}
 }
 
-void	exit_doc(t_ms *s, int heredoc)
+void	exit_doc(t_ms *s, int heredoc, t_cmd *cmd)
 {
 	del_eof(heredoc);
+	free_herechild(&cmd);
 	exit_minishell(s, NULL);
 }
 
