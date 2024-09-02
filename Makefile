@@ -65,7 +65,7 @@ LDFLAGS = -L$(LIBFT_DIR) -lft -L/usr/local/opt/readline/lib -lreadline
 # Project settings
 NAME = minishell
 CFLAGS = -Wall -Wextra -Werror -I${LIBFT_DIR} #-fsanitize=address  #-O3
-debug: CFLAGS += -ggdb3 -Og #-fPIE #-fsanitize=address #-pg   #-fsanitize=address
+debug: CFLAGS += #-ggdb3 -Og -fPIE #-fsanitize=address #-pg   #-fsanitize=address
 MAKEFLAGS += --no-print-directory #  --silent
 .SILENT: $(OBJ) $(NAME) clean fclean
 ARFLAGS = rvs

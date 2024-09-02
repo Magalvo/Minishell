@@ -18,8 +18,8 @@ char	*get_key_from_str(const char *str)
 	char	*key;
 
 	delimiter = ft_strchr(str, '=');
-	if (delimiter && *(delimiter - 1) == '+')
-		key = extract_key(str, --delimiter);
+	if (delimiter && delimiter > str && *(delimiter - 1) == '+')
+		key = extract_key(str, delimiter - 1);
 	else if (delimiter)
 		key = extract_key(str, delimiter);
 	else
