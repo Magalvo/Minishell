@@ -71,7 +71,7 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		if (cmd->left->fd > 2)
 			close_fd(&cmd->left->fd);
 		exec_from_ast_recursive(s, cmd->right, pipefd[0], fd_out);
-		// close(pipefd[0]);
+		close_fd(&pipefd[0]);
 		wait_till_end(s, pid, cmd);
 	}
 }

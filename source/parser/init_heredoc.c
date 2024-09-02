@@ -98,6 +98,8 @@ int	exec_heredoc(t_cmd *cmd, char *file, int expand, t_ms *s)
 		heredoc_child(cmd, fd_file, expand, s);
 		close_fd(&fd_file);
 		free_herechild(&cmd);
+		if (s->cmd_temp)
+			free(s->cmd_temp);
 		exit_minishell(s, NULL);
 	}
 	else if (pid > 0)

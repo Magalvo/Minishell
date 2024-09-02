@@ -80,6 +80,8 @@ char	*expand_sw_tilde(char *input, t_ms *s)
 	char	*xp_input;
 
 	xp_input = ft_strdup(input);
+	s->cmd_temp = xp_input;
+	free(input);
 	pos = ft_strchr(xp_input, '~');
 	while (pos)
 	{
@@ -92,7 +94,7 @@ char	*expand_sw_tilde(char *input, t_ms *s)
 		else
 			pos = ft_strchr(xp_input, '~');
 	}
-	return (free(input), xp_input);
+	return (xp_input);
 }
 
 char	*expand_sw_quotes(char *input)

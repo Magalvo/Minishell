@@ -74,7 +74,7 @@ struct s_ms
 	bool	bnf;
 	char	**env_tmp;
 	int		here_doc;
-	char	**cmd_temp;
+	char	*cmd_temp;
 	pid_t	pid;
 	bool	tog;
 	t_cmd	*ast;

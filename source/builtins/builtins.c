@@ -86,7 +86,11 @@ int	ft_exec_builtins_chr(t_ms *s, char **cmds, int fd_in, int fd_out)
 	else if (ft_sw_builtins(cmds[0], "unset") == 0)
 		return (unset_cmd(s, cmds));
 	else if (ft_sw_builtins(cmds[0], "exit") == 0)
+	{
+		if (cmds[1] != NULL)
+			s->exit_stat = ft_atoi(cmds[1]);
 		return (exit_cmd(s, cmds), 1);
+	}
 	else if (ft_sw_builtins(cmds[0], "bnf") == 0)
 		return (s->bnf = true, ft_putstr_fd("bnf ON\n", 1), 1);
 	else

@@ -115,7 +115,7 @@ fclean: clean
 	@printf "$(RED)[All binaries deleted]    $(RST)\n"
 
 valgrind: $(NAME)
-	valgrind -s --suppressions=readline.supp --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all ./${NAME}
+	valgrind --suppressions=readline.supp --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all ./${NAME}
 
 valgrind2: $(NAME)
 	valgrind --suppressions=readline.supp --track-fds=yes --track-origins=yes  --trace-children=yes  --show-leak-kinds=all --leak-check=full --show-error-list=yes --verbose ./${NAME}
