@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/16 18:21:28 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/03 11:48:19 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void	exit_doc(t_ms *s, int heredoc, t_cmd *cmd)
 {
 	del_eof(heredoc);
 	free_herechild(&cmd);
+	if (s->cmd_temp != NULL)
+	{
+		free(s->cmd_temp);
+		s->cmd_temp = NULL;
+	}
 	exit_minishell(s, NULL);
 }
 

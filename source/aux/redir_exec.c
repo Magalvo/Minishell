@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   redir_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:22:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/02 17:28:40 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/03 18:21:56 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	unclose1(t_ms *s, t_cmd *cmd, int *fd_out, int *temp_fd)
+void unclose1(t_ms *s, t_cmd *cmd, int *fd_out, int *temp_fd)
 {
 	if (*fd_out == STDOUT_FILENO)
 		fd_unlock(cmd, s, fd_out, 0);
@@ -20,7 +20,7 @@ void	unclose1(t_ms *s, t_cmd *cmd, int *fd_out, int *temp_fd)
 		ft_unlock_close(cmd, s, temp_fd, 0);
 }
 
-void	unclose0(t_ms *s, t_cmd *cmd, int *fd_in, int *temp_fd)
+void unclose0(t_ms *s, t_cmd *cmd, int *fd_in, int *temp_fd)
 {
 	if (*fd_in == STDIN_FILENO)
 	{
@@ -34,9 +34,9 @@ void	unclose0(t_ms *s, t_cmd *cmd, int *fd_in, int *temp_fd)
 	}
 }
 
-void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+void exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
-	int	temp_fd;
+	int temp_fd;
 
 	temp_fd = -1;
 	while (cmd->type == REDIR || cmd->type == HEREDOC)
@@ -57,13 +57,14 @@ void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	exec_redir_fork(s, cmd, fd_in, fd_out);
 }
 
-void	exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
+void exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
-	pid_t	pid;
+	pid_t pid;
 
 	pid = fork1();
 	if (pid == 0)
 	{
+		s->exit_stat = 0;
 		if (fd_in != STDIN_FILENO)
 			dup_and_close(s, &fd_in, &fd_out, STDIN_FILENO);
 		if (fd_out != STDOUT_FILENO)

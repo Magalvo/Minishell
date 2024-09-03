@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/16 19:28:52 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:35:50 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ char *q		is pointer to start of symbol
 char *eq	is pointer to end of symbol
 */
 
-t_cmd	*parse_input(char **input, t_ms *s)
+t_cmd *parse_input(char **input, t_ms *s)
 {
-	char	*xp_input;
-	t_cmd	*ast;
+	char *xp_input;
+	t_cmd *ast;
 
 	if (ft_strlen(*input) == 0)
 		return (NULL);
@@ -46,11 +46,11 @@ t_cmd	*parse_input(char **input, t_ms *s)
 	return (ast);
 }
 
-t_cmd	*parse_cmd(char *input, t_ms *s)
+t_cmd *parse_cmd(char *input, t_ms *s)
 {
-	char	*end;
-	t_cmd	*cmd;
-	char	*quote;
+	char *end;
+	t_cmd *cmd;
+	char *quote;
 
 	if (input == NULL)
 		return (NULL);
@@ -60,7 +60,7 @@ t_cmd	*parse_cmd(char *input, t_ms *s)
 	{
 		quote = get_first_quote(end);
 		if (quote == NULL)
-			break ;
+			break;
 		end = ft_strchr(quote + 1, *quote);
 		untokenizer(quote, end);
 		end = ft_strchr(end + 1, *quote);
@@ -72,9 +72,9 @@ t_cmd	*parse_cmd(char *input, t_ms *s)
 }
 
 // looks for pipes, if found runs recursively until no pipe found
-t_cmd	*parse_pipe(char **ps, char *es, t_ms *s)
+t_cmd *parse_pipe(char **ps, char *es, t_ms *s)
 {
-	t_cmd	*cmd;
+	t_cmd *cmd;
 
 	cmd = parse_exec(ps, es, s);
 	if (cmd != NULL && peek(ps, es, "|"))

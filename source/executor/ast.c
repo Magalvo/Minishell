@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:23 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/16 18:40:21 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/03 19:28:05 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	if (!cmd)
 		return ;
 	if (cmd->type == EXEC)
+	{
 		aux_rec_exec(s, cmd, fd_in, fd_out);
+	}
 	else if (cmd->type == PIPE)
 	{
 		exec_pipe(s, cmd, fd_in, fd_out);
@@ -60,11 +62,13 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	int		pipefd[2];
 	pid_t	pid;
 
+	// check_signal(IGNORE);
 	if (pipe(pipefd) == -1)
-		perror("Pipefd");
+		perror("!!!!PIPEFD!!!!");
 	pid = fork1();
 	if (pid == 0)
 	{
+		//s->exit_stat = 0;
 		close(pipefd[0]);
 		standard_check(s, fd_in, pipefd[1]);
 		close(pipefd[1]);

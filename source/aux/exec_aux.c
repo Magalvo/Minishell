@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_aux.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/02 11:32:32 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/03 19:03:58 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	exec_dir_path(t_ms *s, char **argv)
 		return ;
 	}
 	if (!execve(argv[0], argv, s->env_tmp))
-		exit(EXIT_FAILURE);
+		perror("!EXECVE!");
 }
 
 void	exec_command_path(t_ms *s, char **argv)

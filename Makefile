@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/08/16 20:38:06 by cjoao-de         ###   ########.fr        #
+#    Updated: 2024/09/03 18:35:18 by dde-maga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ LDFLAGS = -L$(LIBFT_DIR) -lft -L/usr/local/opt/readline/lib -lreadline
 # Project settings
 NAME = minishell
 CFLAGS = -Wall -Wextra -Werror -I${LIBFT_DIR} #-fsanitize=address  #-O3
-debug: CFLAGS += #-ggdb3 -Og -fPIE #-fsanitize=address #-pg   #-fsanitize=address
+debug: CFLAGS += -ggdb3 -Og -fPIE #-fsanitize=address #-pg   #-fsanitize=address
 MAKEFLAGS += --no-print-directory #  --silent
 .SILENT: $(OBJ) $(NAME) clean fclean
 ARFLAGS = rvs
@@ -115,7 +115,7 @@ fclean: clean
 	@printf "$(RED)[All binaries deleted]    $(RST)\n"
 
 valgrind: $(NAME)
-	valgrind --suppressions=readline.supp --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all ./${NAME}
+	valgrind --suppressions=readline.supp --track-fds=yes --track-origins=yes --leak-check=full 	 --show-leak-kinds=all ./${NAME}
 
 valgrind2: $(NAME)
 	valgrind --suppressions=readline.supp --track-fds=yes --track-origins=yes  --trace-children=yes  --show-leak-kinds=all --leak-check=full --show-error-list=yes --verbose ./${NAME}

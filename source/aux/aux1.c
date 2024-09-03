@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:10 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/16 18:36:12 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/03 19:27:01 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ void	wait_till_end(t_ms *s, pid_t pid, t_cmd *cmd)
 	{
 		if (s->wait == 0)
 			s->exit_stat = 128 + WTERMSIG(status);
-		if (s->exit_stat == 131 && s->wait == 0)
-			printf("Quit\n");
+		if (s->exit_stat == 131 && s->wait == 0) //&& s->wait == 0
+			write(2, "Quit\n", 5);
 		if (s->exit_stat == 130 && s->wait == 0)
-			printf("\n");
+			write(2, "\n", 1);
 		if (s->exit_stat == 141 && s->wait == 0)
 			s->exit_stat = 0;
 	}
