@@ -18,7 +18,6 @@ void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		return ;
 	if (cmd->type == EXEC)
 	{
-		printf("EXECUTA\n");
 		aux_rec_exec(s, cmd, fd_in, fd_out);
 	}
 	else if (cmd->type == PIPE)

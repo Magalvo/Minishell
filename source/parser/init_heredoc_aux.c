@@ -17,11 +17,11 @@ void	heredoc_child(t_cmd *cmd, int fd_file, int expand, t_ms *s)
 	char	*line;
 	bool	empty_dli;
 
-	check_signal(HERE_DOC);
 	empty_dli = false;
-	printf("DELIM |%s|\n", cmd->delim);
 	if (ft_strlen(cmd->delim) == 0)
 		empty_dli = true;
+	exit_pack(s, cmd);
+	check_signal(HERE_DOC);
 	while (1)
 	{
 		line = readline("> ");

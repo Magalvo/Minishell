@@ -40,13 +40,43 @@ void	sig_ignore(struct sigaction *sa, int signal)
 	sa->sa_flags = sa_origin_flags;
 }
 
+t_sinfo	exit_pack(t_ms *s, t_cmd *cmd)
+{
+	static t_sinfo	sinfo;
+
+	if (s)
+		sinfo.s = s;
+	if (cmd)
+		sinfo.cmd = cmd;
+	return (sinfo);
+}
+
+void	ft_exitdoc(int status)
+{
+	t_sinfo	sinfo;
+
+	(void)sinfo;
+	(void)status;
+	sinfo = exit_pack(NULL, NULL);
+
+
+}
+
 void	here_handler(int signal, siginfo_t *info, void *context)
 {
 	(void)info;
 	(void)context;
+	t_sinfo	sinfo;
+
+	sinfo = exit_pack(NULL, NULL);
 	if (signal == SIGINT)
 	{
 		printf("\n");
-		exit(130);
+		sinfo.s->exit_stat = 130;
+		close(sinfo.cmd->fd);
+		/* if (sinfo.cmd->delim != NULL)
+			free(sinfo.cmd->delim);
+		if (sinfo.s->cmd_temp != NULL)
+			free(sinfo.s->cmd_temp); */
 	}
 }

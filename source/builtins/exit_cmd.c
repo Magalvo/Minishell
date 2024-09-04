@@ -39,6 +39,7 @@ int	aux_all(char *str)
 
 void	exit_cmd(t_ms *s, char **cmds)
 {
+	dprintf(2, "ENTROU AQUI\n");
 	if (s->ast->argc >= 3)
 	{
 		if (aux_all(cmds[1]))

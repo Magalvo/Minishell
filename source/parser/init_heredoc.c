@@ -17,7 +17,6 @@ t_cmd *cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 	t_cmd *cmd;
 	char *filename;
 	bool expand;
-	static int P = 0;
 
 	expand = (ft_strchr(delim, '\'') || ft_strchr(delim, '"'));
 	cmd = cmd_init();
@@ -32,15 +31,13 @@ t_cmd *cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 	if (!cmd->file)
 		perror("strjoin null");
 	free(filename);
-	printf("%d", P);
-	P++;
 	cmd->fd = exec_heredoc(cmd, cmd->file, expand, s);
 	if (cmd->fd == -1)
 	{
-		perror("fd null");
+		//perror("fd null");
 		return (free(cmd->file), free(cmd->delim), free(cmd), NULL);
 	}
-	//check_signal(MAIN);
+	check_signal(MAIN);
 	return (cmd);
 }
 
@@ -85,7 +82,7 @@ int here_await(pid_t pid, t_ms *s)
 	if (WIFEXITED(status))
 	{
 		s->exit_stat = WEXITSTATUS(status);
-		if (s->exit_stat != 0)
+		if (s->exit_stat != 0 && s->exit_stat != 130)
 			return (-1);
 	}
 	return (0);
