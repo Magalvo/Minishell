@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   init_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/03 19:38:09 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:43:03 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-t_cmd *cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
+t_cmd	*cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 {
-	t_cmd *cmd;
-	char *filename;
-	bool expand;
-	static int P = 0;
+	t_cmd		*cmd;
+	char		*filename;
+	bool		expand;
+	static int	p = 0;
 
 	expand = (ft_strchr(delim, '\'') || ft_strchr(delim, '"'));
 	cmd = cmd_init();
@@ -32,8 +32,8 @@ t_cmd *cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 	if (!cmd->file)
 		perror("strjoin null");
 	free(filename);
-	printf("%d", P);
-	P++;
+	printf("%d", p);
+	p++;
 	cmd->fd = exec_heredoc(cmd, cmd->file, expand, s);
 	if (cmd->fd == -1)
 	{
@@ -44,10 +44,11 @@ t_cmd *cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 	return (cmd);
 }
 
-void free_herechild(t_cmd **cmd)
+void	free_herechild(t_cmd **cmd)
 {
-	int i = 0;
-	
+	int	 i;
+
+	i = 0;
 	if (*cmd)
 	{
 		if ((*cmd)->cmd)
@@ -62,7 +63,6 @@ void free_herechild(t_cmd **cmd)
 			free((*cmd)->cmd->argv);
 			free((*cmd)->cmd);
 		}
-
 		free((*cmd)->file);
 		free((*cmd)->delim);
 		i = 0;
@@ -77,9 +77,9 @@ void free_herechild(t_cmd **cmd)
 	}
 }
 
-int here_await(pid_t pid, t_ms *s)
+int	here_await(pid_t pid, t_ms *s)
 {
-	int status;
+	int	status;
 
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
@@ -91,10 +91,10 @@ int here_await(pid_t pid, t_ms *s)
 	return (0);
 }
 
-int exec_heredoc(t_cmd *cmd, char *file, int expand, t_ms *s)
+int	exec_heredoc(t_cmd *cmd, char *file, int expand, t_ms *s)
 {
-	int fd_file;
-	pid_t pid;
+	int		fd_file;
+	pid_t	pid;
 
 	fd_file = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd_file == -1)
@@ -121,9 +121,9 @@ int exec_heredoc(t_cmd *cmd, char *file, int expand, t_ms *s)
 	return (open_fd(file, O_RDONLY));
 }
 
-void expand_heredoc(t_ms *s, char *line, int expand, int fd_file)
+void	expand_heredoc(t_ms *s, char *line, int expand, int fd_file)
 {
-	char *xp_line;
+	char	*xp_line;
 
 	if (expand == 0)
 	{

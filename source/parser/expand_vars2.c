@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:10:49 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/04 12:11:38 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:22:47 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ char	*expand_dolar(char *input, char *ps, t_ms *s)
 			val = EMPTY_STR;
 		glue_str(val, val + ft_strlen(val));
 	}
-	if ((*(ps + 1) == '"' && is_quoted(input, ps) == E_DQUOTE) || !isvar(*(ps + 1)))
+	if ((*(ps + 1) == '"' && is_quoted(input, ps) == E_DQUOTE) \
+		|| !isvar(*(ps + 1)))
 		return (free(key), *(ps) = DOLAR, input);
 	res = get_expanded(input, ps, val, ps + ft_strlen(key) + 1);
 	if (val && !(val[0] == EMPTY))
