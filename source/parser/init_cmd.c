@@ -3,26 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   init_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:06:42 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/03 14:47:18 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:37:06 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-t_cmd *cmd_init(void)
+t_cmd	*cmd_init(void)
 {
-	t_cmd *cmd;
+	t_cmd	*cmd;
 
 	cmd = ft_calloc(sizeof(t_cmd), 1);
+	if (!cmd)
+		reprompt(EXEC_MISSING_CMD, 2, s);
 	return (cmd);
 }
 
-t_cmd *cmd_exec(void)
+t_cmd	*cmd_exec(void)
 {
-	t_cmd *cmd;
+	t_cmd	*cmd;
 
 	cmd = cmd_init();
 	if (!cmd)
@@ -33,9 +35,9 @@ t_cmd *cmd_exec(void)
 	return (cmd);
 }
 
-t_cmd *cmd_redir_out(t_cmd *subcmd, char *filename, int mode, t_ms *s)
+t_cmd	*cmd_redir_out(t_cmd *subcmd, char *filename, int mode, t_ms *s)
 {
-	t_cmd *cmd;
+	t_cmd	*cmd;
 
 	cmd = cmd_init();
 	cmd->type = REDIR;
@@ -50,9 +52,9 @@ t_cmd *cmd_redir_out(t_cmd *subcmd, char *filename, int mode, t_ms *s)
 	return (cmd);
 }
 
-t_cmd *cmd_redir_in(t_cmd *subcmd, char *filename, int mode, t_ms *s)
+t_cmd	*cmd_redir_in(t_cmd *subcmd, char *filename, int mode, t_ms *s)
 {
-	t_cmd *cmd;
+	t_cmd	*cmd;
 
 	cmd = cmd_init();
 	cmd->type = REDIR;
@@ -67,9 +69,9 @@ t_cmd *cmd_redir_in(t_cmd *subcmd, char *filename, int mode, t_ms *s)
 	return (cmd);
 }
 
-t_cmd *cmd_pipe(t_cmd *left, t_cmd *right)
+t_cmd	*cmd_pipe(t_cmd *left, t_cmd *right)
 {
-	t_cmd *cmd;
+	t_cmd	*cmd;
 
 	cmd = cmd_init();
 	cmd->type = PIPE;

@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:07:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/08 19:39:29 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:10:43 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,9 @@ int	peek_nsp(const char *ps, char *es, char *tokens)
 char	**create_dptr(int nbr)
 {
 	return (ft_calloc((nbr + 1), sizeof(char *)));
+}
+
+int	isvar(int c)
+{
+	return (ft_isalpha(c) || ft_isdigit(c) || c == '_');
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/16 18:23:26 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:11:05 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ int		cd_cmd_error(char *msg);
 int		change_pwd(t_env *env, t_ms *s);
 int		cd_cmd_home(t_env *env);
 int		cd_cmd_minus(t_env *env);
+int		isvar(int c);
 
 //*==================== AUX =======================*//
 
