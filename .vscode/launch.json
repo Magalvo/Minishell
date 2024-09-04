@@ -115,7 +115,7 @@
 				},
 				{
 					"description": "The new process is debugged after a fork. The parent process is also debugged.",
-					"text": "-gdb-set follow-fork-mode child",
+					"text": "-gdb-set follow-fork-mode parent",
 					"ignoreFailures": true
 				}
 			]
@@ -150,7 +150,7 @@
 				},
 				{
 					"description": "The new process is debugged after a fork. The parent process is also debugged.",
-					"text": "-gdb-set follow-fork-mode child",
+					"text": "-gdb-set follow-fork-mode parent",
 					"ignoreFailures": true
 				}
 			]

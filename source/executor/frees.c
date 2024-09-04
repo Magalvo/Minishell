@@ -6,16 +6,16 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/16 13:10:48 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/03 13:45:46 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	free_ast(t_cmd *cmd)
+void free_ast(t_cmd *cmd)
 {
 	if (!cmd)
-		return ;
+		return;
 	if (cmd->left)
 		free_ast(cmd->left);
 	if (cmd->right)
@@ -34,10 +34,10 @@ void	free_ast(t_cmd *cmd)
 	cmd = NULL;
 }
 
-void	free_ast2(t_cmd **cmd)
+void free_ast2(t_cmd **cmd)
 {
 	if (!*cmd)
-		return ;
+		return;
 	if ((*cmd)->left)
 		free_ast((*cmd)->left);
 	if ((*cmd)->right)
@@ -52,13 +52,15 @@ void	free_ast2(t_cmd **cmd)
 	}
 	if ((*cmd)->delim)
 		free((*cmd)->delim);
+	if ((*cmd)->fd > 2)
+		close((*cmd)->fd);
 	free((*cmd));
 	*cmd = NULL;
 }
 
-void	free_argv(t_cmd *cmd)
+void free_argv(t_cmd *cmd)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	if (cmd->argv)
@@ -75,9 +77,9 @@ void	free_argv(t_cmd *cmd)
 	}
 }
 
-void	free_argv2(t_cmd **cmd)
+void free_argv2(t_cmd **cmd)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	if ((*cmd)->argv)
@@ -94,7 +96,7 @@ void	free_argv2(t_cmd **cmd)
 	}
 }
 
-void	reset_ast(t_ms *s)
+void reset_ast(t_ms *s)
 {
 	s->error = false;
 	if (s->ast)

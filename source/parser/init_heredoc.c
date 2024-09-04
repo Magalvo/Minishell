@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   init_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/16 18:42:59 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/03 19:38:09 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-t_cmd	*cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
+t_cmd *cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 {
-	t_cmd	*cmd;
-	char	*filename;
-	bool	expand;
+	t_cmd *cmd;
+	char *filename;
+	bool expand;
+	static int P = 0;
 
 	expand = (ft_strchr(delim, '\'') || ft_strchr(delim, '"'));
 	cmd = cmd_init();
@@ -31,47 +32,54 @@ t_cmd	*cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 	if (!cmd->file)
 		perror("strjoin null");
 	free(filename);
+	printf("%d", P);
+	P++;
 	cmd->fd = exec_heredoc(cmd, cmd->file, expand, s);
 	if (cmd->fd == -1)
 	{
+		perror("fd null");
 		return (free(cmd->file), free(cmd->delim), free(cmd), NULL);
 	}
-	check_signal(MAIN);
+	//check_signal(MAIN);
 	return (cmd);
 }
 
-void	free_herechild(t_cmd **cmd)
+void free_herechild(t_cmd **cmd)
 {
-	int	i;
-
-	i = 0;
-	if ((*cmd)->cmd)
+	int i = 0;
+	
+	if (*cmd)
 	{
-		free((*cmd)->cmd->file);
-		free((*cmd)->cmd->delim);
-		while ((*cmd)->cmd->argv && (*cmd)->cmd->argv[i])
+		if ((*cmd)->cmd)
 		{
-			free((*cmd)->cmd->argv[i]);
+			free((*cmd)->cmd->file);
+			free((*cmd)->cmd->delim);
+			while ((*cmd)->cmd->argv && (*cmd)->cmd->argv[i])
+			{
+				free((*cmd)->cmd->argv[i]);
+				i++;
+			}
+			free((*cmd)->cmd->argv);
+			free((*cmd)->cmd);
+		}
+
+		free((*cmd)->file);
+		free((*cmd)->delim);
+		i = 0;
+		while ((*cmd)->argv && (*cmd)->argv[i])
+		{
+			free((*cmd)->argv[i]);
 			i++;
 		}
-		free((*cmd)->cmd->argv);
-		free((*cmd)->cmd);
+		free((*cmd)->argv);
+		free(*cmd);
+		*cmd = NULL;
 	}
-	i = 0;
-	free((*cmd)->file);
-	free((*cmd)->delim);
-	while ((*cmd)->argv && (*cmd)->argv[i])
-	{
-		free((*cmd)->argv[i++]);
-	}
-	free((*cmd)->argv);
-	free(*cmd);
-	*cmd = NULL;
 }
 
-int	here_await(pid_t pid, t_ms *s)
+int here_await(pid_t pid, t_ms *s)
 {
-	int	status;
+	int status;
 
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
@@ -83,21 +91,25 @@ int	here_await(pid_t pid, t_ms *s)
 	return (0);
 }
 
-int	exec_heredoc(t_cmd *cmd, char *file, int expand, t_ms *s)
+int exec_heredoc(t_cmd *cmd, char *file, int expand, t_ms *s)
 {
-	int		fd_file;
-	pid_t	pid;
+	int fd_file;
+	pid_t pid;
 
 	fd_file = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd_file == -1)
-		error_msg("Error opening here_doc");
+		perror("Error opening here_doc");
 	check_signal(IGNORE);
 	pid = fork1();
 	if (pid == 0)
 	{
+		s->exit_stat = 0;
 		heredoc_child(cmd, fd_file, expand, s);
-		close_fd(&fd_file);
+		close(fd_file);
+		free_ast2(&cmd);
 		free_herechild(&cmd);
+		if (s->cmd_temp)
+			free(s->cmd_temp);
 		exit_minishell(s, NULL);
 	}
 	else if (pid > 0)
@@ -109,9 +121,9 @@ int	exec_heredoc(t_cmd *cmd, char *file, int expand, t_ms *s)
 	return (open_fd(file, O_RDONLY));
 }
 
-void	expand_heredoc(t_ms *s, char *line, int expand, int fd_file)
+void expand_heredoc(t_ms *s, char *line, int expand, int fd_file)
 {
-	char	*xp_line;
+	char *xp_line;
 
 	if (expand == 0)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/16 19:49:51 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/03 15:33:01 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ t_cmd	*parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 	char	*q;
 	char	*eq;
 	char	*filename;
+	t_cmd	*tmp;
 
 	eq = NULL;
 	q = NULL;
+	(void)tmp;
 	while (peek(ps, es, "<>"))
 	{
 		tok = get_token(ps, es, 0, 0);
@@ -37,7 +39,9 @@ t_cmd	*parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 			return (free_ast2(&cmd), reprompt(MISSING_REDIRECT, 2, s), NULL);
 		}
 		filename = ft_substr(q, 0, eq - q);
+		tmp = cmd;
 		cmd = redir_sw(cmd, tok, filename, s);
+		// TODO: if cmd fails, the loop continues and doesn't stop execution
 	}
 	return (cmd);
 }

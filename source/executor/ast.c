@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:23 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/16 18:40:21 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/03 19:28:05 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	if (!cmd)
 		return ;
 	if (cmd->type == EXEC)
+	{
+		printf("EXECUTA\n");
 		aux_rec_exec(s, cmd, fd_in, fd_out);
+	}
 	else if (cmd->type == PIPE)
 	{
 		exec_pipe(s, cmd, fd_in, fd_out);
@@ -32,17 +35,25 @@ void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	}
 }
 
-void	standard_check(int fd_in, int pipefd)
+void	standard_check(t_ms *s, int fd_in, int pipefd)
 {
 	if (fd_in != STDIN_FILENO)
 	{
 		if (dup2(fd_in, STDIN_FILENO) == -1)
-			error_msg("dup2");
+		{
+			close(fd_in);
+			close(pipefd);
+			exit_minishell(s, "dup2");
+		}
 	}
 	if (pipefd != STDOUT_FILENO)
 	{
 		if (dup2(pipefd, STDOUT_FILENO) == -1)
-			error_msg("dup2");
+		{
+			close(fd_in);
+			close(pipefd);
+			exit_minishell(s, "dup2");
+		}
 	}
 }
 
@@ -52,13 +63,15 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	int		pipefd[2];
 	pid_t	pid;
 
+	// check_signal(IGNORE);
 	if (pipe(pipefd) == -1)
-		error_msg("pipe");
+		perror("!!!!PIPEFD!!!!");
 	pid = fork1();
 	if (pid == 0)
 	{
+		//s->exit_stat = 0;
 		close(pipefd[0]);
-		standard_check(fd_in, pipefd[1]);
+		standard_check(s, fd_in, pipefd[1]);
 		close(pipefd[1]);
 		exec_from_ast_recursive(s, cmd->left, fd_in, STDOUT_FILENO);
 		close_two_fd(cmd, fd_in, fd_out);
@@ -71,8 +84,8 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		if (cmd->left->fd > 2)
 			close_fd(&cmd->left->fd);
 		exec_from_ast_recursive(s, cmd->right, pipefd[0], fd_out);
-		// close(pipefd[0]);
 		wait_till_end(s, pid, cmd);
+		close(pipefd[0]);
 	}
 }
 

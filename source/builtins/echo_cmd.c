@@ -29,6 +29,7 @@ static int	ft_flagged(char *s)
 	return (1);
 }
 
+//&& !(cmd[i][0] == EMPTY)
 int	echo_cmd_test(char **cmd, t_ms *s, int fd_in, int fd_out)
 {
 	int	i;
@@ -42,8 +43,10 @@ int	echo_cmd_test(char **cmd, t_ms *s, int fd_in, int fd_out)
 		check = 1;
 		i++;
 	}
-	while (cmd[i] && !(cmd[i][0] == EMPTY))
+	while (cmd[i])
 	{
+		if (cmd[i][0] == EMPTY && cmd[i + 1])
+			i++;
 		ft_putstr_fd(cmd[i], fd_out);
 		if (cmd[i + 1])
 			ft_putstr_fd(" ", fd_out);

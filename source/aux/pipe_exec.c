@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/02 11:29:29 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/08/30 17:58:58 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*path_constructor(const char *path, const char *cmd, int slashi)
 
 void	exec_one(t_ms *s, char **argv)
 {
-	if ((argv[0] && argv[0][0] == '.' && argv[0][1] == '/' && argv[0][2]) || \
+	if ((argv[0] && argv[0][0] == '.' && argv[0][1] == '/' && argv[0][2]) ||
 		(argv[0] && argv[0][0] == '/' && argv[0][1]))
 	{
 		exec_dir_path(s, argv);
@@ -113,8 +113,12 @@ int	builtins_parent(t_ms *s, char **cmds, int fd_in, int fd_out)
 		return (export_cmd(s, cmds), 1);
 	else if (ft_sw_builtins(cmds[0], "unset") == 0)
 		return (unset_cmd(s, cmds));
-	else if (ft_sw_builtins(cmds[0], "exit") == 0)
+	else if (ft_sw_builtins(cmds[0], "exit") == 0 && s->ast->type != 3)
+	{
+		close_fd(&fd_in);
+		close_fd(&fd_out);
 		return (exit_cmd(s, cmds), 1);
+	}
 	else if (ft_sw_builtins(cmds[0], "bnf") == 0)
 		return (s->bnf = true, ft_putstr_fd("bnf ON\n", 1), 1);
 	else
