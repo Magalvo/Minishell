@@ -19,6 +19,7 @@ void	heredoc_child(t_cmd *cmd, int fd_file, int expand, t_ms *s)
 
 	check_signal(HERE_DOC);
 	empty_dli = false;
+	printf("DELIM |%s|\n", cmd->delim);
 	if (ft_strlen(cmd->delim) == 0)
 		empty_dli = true;
 	while (1)

@@ -49,15 +49,16 @@ void	free_node(t_env *node)
 
 void	dup_and_close(t_ms *s, int *fd_this, int *fd_aux, int standard)
 {
-	if (dup2(*fd_this, standard) < 0)
-	{
-		s->exit_stat = 1;
-		close_fd(fd_this);
-		if (*fd_aux != (!standard))
-			close_fd(fd_aux);
-		exit_minishell(s, NULL);
-	}
-	close_fd(fd_this);
+	 if (dup2(*fd_this, standard) < 0)
+    {
+        perror("dup2 failed");
+        s->exit_stat = 1;
+        close_fd(fd_this);
+        if (*fd_aux != STDIN_FILENO && *fd_aux != STDOUT_FILENO)
+            close_fd(fd_aux);
+        exit_minishell(s, NULL);
+    }
+    close_fd(fd_this);
 }
 
 void	free_env_array(char **env_array)

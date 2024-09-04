@@ -26,6 +26,7 @@ t_cmd	*parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 
 	eq = NULL;
 	q = NULL;
+	(void)tmp;
 	while (peek(ps, es, "<>"))
 	{
 		tok = get_token(ps, es, 0, 0);

@@ -17,6 +17,7 @@ t_cmd *cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 	t_cmd *cmd;
 	char *filename;
 	bool expand;
+	static int P = 0;
 
 	expand = (ft_strchr(delim, '\'') || ft_strchr(delim, '"'));
 	cmd = cmd_init();
@@ -31,6 +32,8 @@ t_cmd *cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 	if (!cmd->file)
 		perror("strjoin null");
 	free(filename);
+	printf("%d", P);
+	P++;
 	cmd->fd = exec_heredoc(cmd, cmd->file, expand, s);
 	if (cmd->fd == -1)
 	{
@@ -43,31 +46,35 @@ t_cmd *cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 
 void free_herechild(t_cmd **cmd)
 {
-	int i;
-
-	i = 0;
-	if ((*cmd)->cmd)
+	int i = 0;
+	
+	if (*cmd)
 	{
-		free((*cmd)->cmd->file);
-		free((*cmd)->cmd->delim);
-		while ((*cmd)->cmd->argv && (*cmd)->cmd->argv[i])
+		if ((*cmd)->cmd)
 		{
-			free((*cmd)->cmd->argv[i]);
+			free((*cmd)->cmd->file);
+			free((*cmd)->cmd->delim);
+			while ((*cmd)->cmd->argv && (*cmd)->cmd->argv[i])
+			{
+				free((*cmd)->cmd->argv[i]);
+				i++;
+			}
+			free((*cmd)->cmd->argv);
+			free((*cmd)->cmd);
+		}
+
+		free((*cmd)->file);
+		free((*cmd)->delim);
+		i = 0;
+		while ((*cmd)->argv && (*cmd)->argv[i])
+		{
+			free((*cmd)->argv[i]);
 			i++;
 		}
-		free((*cmd)->cmd->argv);
-		free((*cmd)->cmd);
+		free((*cmd)->argv);
+		free(*cmd);
+		*cmd = NULL;
 	}
-	i = 0;
-	free((*cmd)->file);
-	free((*cmd)->delim);
-	while ((*cmd)->argv && (*cmd)->argv[i])
-	{
-		free((*cmd)->argv[i++]);
-	}
-	free((*cmd)->argv);
-	free(*cmd);
-	*cmd = NULL;
 }
 
 int here_await(pid_t pid, t_ms *s)
@@ -98,7 +105,8 @@ int exec_heredoc(t_cmd *cmd, char *file, int expand, t_ms *s)
 	{
 		s->exit_stat = 0;
 		heredoc_child(cmd, fd_file, expand, s);
-		close_fd(&fd_file);
+		close(fd_file);
+		free_ast2(&cmd);
 		free_herechild(&cmd);
 		if (s->cmd_temp)
 			free(s->cmd_temp);

@@ -46,6 +46,7 @@ void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		else if ((ft_isspace(cmd->argv[0][0]) && cmd->argv[0][0] == '\0' && \
 					!cmd->argv[1]) || cmd->argv[0][0] == '\0')
 		{
+			printf("VAZIU\n");
 			exit_and_found(cmd->argv[0], 127, s);
 			return ;
 		}
