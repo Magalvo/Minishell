@@ -39,6 +39,7 @@ typedef struct s_execution	t_execution;		//TODO not defined, still used?
 typedef struct s_cmd		t_cmd;
 typedef struct s_d_cmd		t_d_cmd;			// two t_cmd pointers
 typedef struct s_pids		t_pids;
+typedef struct s_sinfo		t_sinfo;
 typedef enum e_signal		t_signal;
 typedef enum e_cmd_type		t_cmd_type;
 typedef enum e_quote_type	t_quote_type;
@@ -118,6 +119,12 @@ struct	s_cmd
 	int		mode;
 	int		fd;
 	char	**temp;
+};
+
+struct	s_sinfo
+{
+	t_cmd	*cmd;
+	t_ms	*s;
 };
 
 enum e_signal

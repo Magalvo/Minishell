@@ -28,7 +28,10 @@ void	free2(char *one, char *two)
 
 void	exit_doc(t_ms *s, int heredoc, t_cmd *cmd)
 {
-	del_eof(heredoc);
+	if (s->exit_stat != 130)
+		del_eof(heredoc);
+	else 
+		close(heredoc);
 	free_herechild(&cmd);
 	if (s->cmd_temp != NULL)
 	{

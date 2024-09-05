@@ -252,6 +252,7 @@ int		not_found(char *str, int status, t_ms *s);
 int		export_cmd_error(t_ms *s, char *msg, char *key);
 int		ft_exec_builtins_chr(t_ms *s, char **cmds, int fd_in, int fd_out);
 int		echo_cmd_test(char **cmd, t_ms *s, int fd_in, int fd_out);
+t_sinfo	exit_pack(t_ms *s, t_cmd *cmd);
 
 #endif
 
