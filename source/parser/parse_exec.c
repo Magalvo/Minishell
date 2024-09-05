@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:28:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/04 12:28:02 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:48:33 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_cmd	*parse_exec(char **ps, char *es, t_ms *s)
 	int		argc;
 
 	cmd = NULL;
-	ret = cmd_exec();
+	ret = cmd_exec(s);
 	cmd = ret;
 	ret = parse_redir(ret, ps, es, s);
 	if (ret == NULL)

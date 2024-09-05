@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/04 12:43:03 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:47:49 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_cmd	*cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 	static int	p = 0;
 
 	expand = (ft_strchr(delim, '\'') || ft_strchr(delim, '"'));
-	cmd = cmd_init();
+	cmd = cmd_init(s);
 	cmd->type = HEREDOC;
 	cmd->cmd = subcmd;
 	cmd->mode = mode;

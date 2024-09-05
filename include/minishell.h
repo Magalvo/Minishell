@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/04 12:11:05 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:47:21 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	initialize_env(char ***envp);
 void	init_aux(t_env **head, t_env **tail, t_env *new_node);
 char	**null_env_init(void);
 int		init_minishell(t_ms *s, char **ep);
-t_cmd	*cmd_init(void);
+t_cmd	*cmd_init(t_ms *s);
 
 //*=================== PARSE ======================*//
 
@@ -150,11 +150,11 @@ bool	syntax_parenthesis(const char *str);
 bool	syntax_redir(char *str, char *end);
 bool	strrchr_alpha_loop(const char *input, const char *pos);
 t_cmd	*parse_input(char **input, t_ms *s);
-t_cmd	*cmd_exec(void);
+t_cmd	*cmd_exec(t_ms *s);
 t_cmd	*cmd_redir_in(t_cmd *subcmd, char *filename, int mode, t_ms *s);
 t_cmd	*cmd_redir_out(t_cmd *subcmd, char *filename, int mode, t_ms *s);
 t_cmd	*cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s);
-t_cmd	*cmd_pipe(t_cmd *left, t_cmd *right);
+t_cmd	*cmd_pipe(t_cmd *left, t_cmd *right, t_ms *s);
 t_cmd	*parse_cmd(char *input, t_ms *s);
 t_cmd	*parse_pipe(char **ps, char *es, t_ms *s);
 t_cmd	*parse_redir(t_cmd *t_cmd, char **ps, char *es, t_ms *s);

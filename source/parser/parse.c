@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/04 12:43:56 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:50:13 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_cmd	*parse_pipe(char **ps, char *es, t_ms *s)
 	if (cmd != NULL && peek(ps, es, "|"))
 	{
 		get_token(ps, es, 0, 0);
-		cmd = cmd_pipe(cmd, parse_pipe(ps, es, s));
+		cmd = cmd_pipe(cmd, parse_pipe(ps, es, s), s);
 	}
 	return (cmd);
 }
