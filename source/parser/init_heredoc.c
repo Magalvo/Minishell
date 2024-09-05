@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/05 10:49:33 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/05 11:00:29 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_cmd	*cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 	bool	expand;
 
 	expand = (ft_strchr(delim, '\'') || ft_strchr(delim, '"'));
-	cmd = cmd_init();
+	cmd = cmd_init(s);
 	cmd->type = HEREDOC;
 	cmd->cmd = subcmd;
 	cmd->mode = mode;

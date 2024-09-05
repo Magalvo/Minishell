@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:28:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/05 10:54:14 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:59:27 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_cmd	*parse_exec(char **ps, char *es, t_ms *s)
 	int		argc;
 
 	cmd = NULL;
-	ret = cmd_exec();
+	ret = cmd_exec(s);
 	cmd = ret;
 	ret = parse_redir(ret, ps, es, s);
 	if (ret == NULL)

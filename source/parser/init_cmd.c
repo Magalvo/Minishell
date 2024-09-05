@@ -6,14 +6,13 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:06:42 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/05 10:33:59 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:58:33 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-// reprompt(EXEC_MISSING_CMD, 2, s);
-t_cmd	*cmd_init(void)
+t_cmd	*cmd_init(t_ms *s)
 {
 	t_cmd	*cmd;
 
@@ -23,11 +22,11 @@ t_cmd	*cmd_init(void)
 	return (cmd);
 }
 
-t_cmd	*cmd_exec(void)
+t_cmd	*cmd_exec(t_ms *s)
 {
 	t_cmd	*cmd;
 
-	cmd = cmd_init();
+	cmd = cmd_init(s);
 	if (!cmd)
 		return (NULL);
 	cmd->type = EXEC;
@@ -40,7 +39,7 @@ t_cmd	*cmd_redir_out(t_cmd *subcmd, char *filename, int mode, t_ms *s)
 {
 	t_cmd	*cmd;
 
-	cmd = cmd_init();
+	cmd = cmd_init(s);
 	cmd->type = REDIR;
 	cmd->cmd = subcmd;
 	unglue_str(filename, filename + ft_strlen(filename));
@@ -57,7 +56,7 @@ t_cmd	*cmd_redir_in(t_cmd *subcmd, char *filename, int mode, t_ms *s)
 {
 	t_cmd	*cmd;
 
-	cmd = cmd_init();
+	cmd = cmd_init(s);
 	cmd->type = REDIR;
 	cmd->cmd = subcmd;
 	unglue_str(filename, filename + ft_strlen(filename));
@@ -70,11 +69,11 @@ t_cmd	*cmd_redir_in(t_cmd *subcmd, char *filename, int mode, t_ms *s)
 	return (cmd);
 }
 
-t_cmd	*cmd_pipe(t_cmd *left, t_cmd *right)
+t_cmd	*cmd_pipe(t_cmd *left, t_cmd *right, t_ms *s)
 {
 	t_cmd	*cmd;
 
-	cmd = cmd_init();
+	cmd = cmd_init(s);
 	cmd->type = PIPE;
 	cmd->left = left;
 	cmd->right = right;
