@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:22:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/04 12:39:24 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:37:21 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,11 @@ void	unclose0(t_ms *s, t_cmd *cmd, int *fd_in, int *temp_fd)
 	{
 		fd_unlock(cmd, s, fd_in, 1);
 		close_fd(temp_fd);
-		printf("PINTOU CIUMA\n");
 	}
 	else
 	{
 		close_fd(temp_fd);
 		fd_unlock(cmd, s, temp_fd, 1);
-		printf("PINTOU baixo\n");
 	}
 }
 
@@ -46,7 +44,7 @@ void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		if (cmd->type == HEREDOC)
 		{
 			if (fd_in > 2)
-				close_fd(&fd_in); 
+				close_fd(&fd_in);
 			fd_in = cmd->fd;
 		}
 		if (cmd->fd == 1)
@@ -56,7 +54,7 @@ void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		else if (cmd->fd == 0)
 		{
 			unclose0(s, cmd, &fd_in, &temp_fd);
-		}	
+		}
 		cmd = cmd->cmd;
 	}
 	close_fd(&temp_fd);

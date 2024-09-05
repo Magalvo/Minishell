@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/03 12:41:09 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:44:40 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,6 @@ void	heredoc_child(t_cmd *cmd, int fd_file, int expand, t_ms *s)
 	}
 	free(line);
 }
-
-// void	heredoc_parent(char *dli, int fd_file, int expand, t_ms *s)
-// {
-// 	close(fd_file);
-// 	waitpid(pid, &status, 0);
-// 	if (WIFEXITED(status))
-// 	{
-// 		s->exit_stat = WEXITSTATUS(status);
-// 		if(s->exit_stat != 0)
-// 			return(-1);
-// 	}
-// }
 
 int	open_fd(char *file, int mode)
 {

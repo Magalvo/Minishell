@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:28 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/06/27 18:04:11 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:56:50 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,25 +58,19 @@ void	ft_exitdoc(int status)
 	(void)sinfo;
 	(void)status;
 	sinfo = exit_pack(NULL, NULL);
-
-
 }
 
 void	here_handler(int signal, siginfo_t *info, void *context)
 {
-	(void)info;
-	(void)context;
 	t_sinfo	sinfo;
 
+	(void)info;
+	(void)context;
 	sinfo = exit_pack(NULL, NULL);
 	if (signal == SIGINT)
 	{
-		printf("\n");
+		write(1, "\n", 1);
 		sinfo.s->exit_stat = 130;
 		close(sinfo.cmd->fd);
-		/* if (sinfo.cmd->delim != NULL)
-			free(sinfo.cmd->delim);
-		if (sinfo.s->cmd_temp != NULL)
-			free(sinfo.s->cmd_temp); */
 	}
 }

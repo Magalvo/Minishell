@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   init_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:06:42 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/04 12:37:06 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:33:59 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+// reprompt(EXEC_MISSING_CMD, 2, s);
 t_cmd	*cmd_init(void)
 {
 	t_cmd	*cmd;
 
 	cmd = ft_calloc(sizeof(t_cmd), 1);
 	if (!cmd)
-		reprompt(EXEC_MISSING_CMD, 2, s);
+		ft_dprintf(STDERR_FILENO, "%s\n", EXEC_MISSING_CMD);
 	return (cmd);
 }
 

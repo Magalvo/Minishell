@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_aux3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:45 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/04 12:19:08 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:55:50 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	dup_and_close(t_ms *s, int *fd_this, int *fd_aux, int standard)
 {
 	if (dup2(*fd_this, standard) < 0)
 	{
-		perror("dup2 failed");
 		s->exit_stat = 1;
 		close_fd(fd_this);
 		if (*fd_aux != STDIN_FILENO && *fd_aux != STDOUT_FILENO)

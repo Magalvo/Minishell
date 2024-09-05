@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:10 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/03 19:27:01 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:56:15 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	wait_till_end(t_ms *s, pid_t pid, t_cmd *cmd)
 	{
 		if (s->wait == 0)
 			s->exit_stat = 128 + WTERMSIG(status);
-		if (s->exit_stat == 131 && s->wait == 0) //&& s->wait == 0
+		if (s->exit_stat == 131 && s->wait == 0)
 			write(2, "Quit\n", 5);
 		if (s->exit_stat == 130 && s->wait == 0)
 			write(2, "\n", 1);

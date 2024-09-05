@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/04 12:43:03 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:49:33 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 t_cmd	*cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 {
-	t_cmd *cmd;
-	char *filename;
-	bool expand;
+	t_cmd	*cmd;
+	char	*filename;
+	bool	expand;
 
 	expand = (ft_strchr(delim, '\'') || ft_strchr(delim, '"'));
 	cmd = cmd_init();
@@ -34,7 +34,7 @@ t_cmd	*cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 	cmd->fd = exec_heredoc(cmd, cmd->file, expand, s);
 	if (cmd->fd == -1)
 	{
-		//perror("fd null");
+		perror("(fd)(null)");
 		return (free(cmd->file), free(cmd->delim), free(cmd), NULL);
 	}
 	check_signal(MAIN);
@@ -43,9 +43,10 @@ t_cmd	*cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 
 void	free_herechild(t_cmd **cmd)
 {
-	int	 i;
+	int	i;
 
 	i = 0;
+	free_ast2(cmd);
 	if (*cmd)
 	{
 		if ((*cmd)->cmd)
@@ -53,10 +54,7 @@ void	free_herechild(t_cmd **cmd)
 			free((*cmd)->cmd->file);
 			free((*cmd)->cmd->delim);
 			while ((*cmd)->cmd->argv && (*cmd)->cmd->argv[i])
-			{
-				free((*cmd)->cmd->argv[i]);
-				i++;
-			}
+				free((*cmd)->cmd->argv[i++]);
 			free((*cmd)->cmd->argv);
 			free((*cmd)->cmd);
 		}
@@ -64,10 +62,7 @@ void	free_herechild(t_cmd **cmd)
 		free((*cmd)->delim);
 		i = 0;
 		while ((*cmd)->argv && (*cmd)->argv[i])
-		{
-			free((*cmd)->argv[i]);
-			i++;
-		}
+			free((*cmd)->argv[i++]);
 		free((*cmd)->argv);
 		free(*cmd);
 		*cmd = NULL;
@@ -103,7 +98,6 @@ int	exec_heredoc(t_cmd *cmd, char *file, int expand, t_ms *s)
 		s->exit_stat = 0;
 		heredoc_child(cmd, fd_file, expand, s);
 		close(fd_file);
-		free_ast2(&cmd);
 		free_herechild(&cmd);
 		if (s->cmd_temp)
 			free(s->cmd_temp);

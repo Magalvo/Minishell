@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:04 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/07/17 12:23:43 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:36:05 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	aux_all(char *str)
 
 void	exit_cmd(t_ms *s, char **cmds)
 {
-	dprintf(2, "ENTROU AQUI\n");
 	if (s->ast->argc >= 3)
 	{
 		if (aux_all(cmds[1]))
@@ -64,6 +63,3 @@ void	exit_cmd(t_ms *s, char **cmds)
 	else
 		exit_minishell(s, "exit\n");
 }
-
-			/* if (s->exit_stat > 255)
-				s->exit_stat %= 256; */

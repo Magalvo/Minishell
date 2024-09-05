@@ -30,7 +30,7 @@ void	exit_doc(t_ms *s, int heredoc, t_cmd *cmd)
 {
 	if (s->exit_stat != 130)
 		del_eof(heredoc);
-	else 
+	else
 		close(heredoc);
 	free_herechild(&cmd);
 	if (s->cmd_temp != NULL)

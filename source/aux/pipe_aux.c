@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_aux.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:18 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/02 10:33:15 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:37:34 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	aux_rec_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		else if ((ft_isspace(cmd->argv[0][0]) && cmd->argv[0][0] == '\0' && \
 					!cmd->argv[1]) || cmd->argv[0][0] == '\0')
 		{
-			printf("VAZIU\n");
 			exit_and_found(cmd->argv[0], 127, s);
 			return ;
 		}

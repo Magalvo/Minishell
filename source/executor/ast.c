@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:23 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/04 12:20:41 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:55:20 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,11 @@ void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	int		pipefd[2];
 	pid_t	pid;
 
-	// check_signal(IGNORE);
 	if (pipe(pipefd) == -1)
 		perror("!!!!PIPEFD!!!!");
 	pid = fork1();
 	if (pid == 0)
 	{
-		//s->exit_stat = 0;
 		close(pipefd[0]);
 		standard_check(s, fd_in, pipefd[1]);
 		close(pipefd[1]);
