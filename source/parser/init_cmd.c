@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:06:42 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/05 10:58:33 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/09 11:16:25 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_cmd	*cmd_init(t_ms *s)
 
 	cmd = ft_calloc(sizeof(t_cmd), 1);
 	if (!cmd)
-		ft_dprintf(STDERR_FILENO, "%s\n", EXEC_MISSING_CMD);
+		reprompt(EXEC_MISSING_CMD, 2, s);
 	return (cmd);
 }
 
