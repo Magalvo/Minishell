@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_prechecks.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:00 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/04 12:30:33 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:02:31 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ char	*expand_sw_tilde(char *input, t_ms *s)
 		s->cmd_temp = NULL;
 	xp_input = ft_strdup(input);
 	s->cmd_temp = xp_input;
-	free(input);
 	pos = ft_strchr(xp_input, '~');
 	while (pos)
 	{
@@ -96,7 +95,7 @@ char	*expand_sw_tilde(char *input, t_ms *s)
 		else
 			pos = ft_strchr(xp_input, '~');
 	}
-	return (xp_input);
+	return (free(input), xp_input);
 }
 
 char	*expand_sw_quotes(char *input)

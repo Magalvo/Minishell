@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/05 10:47:21 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:12:35 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ char	*remove_quotes(char *input, char *pos);
 char	*get_expanded(char *input, char *cut, char *paste, char *remain);
 int		count_argc(char **ps, char *es, t_ms *s);
 int		is_quoted(const char *str, const char *totest);
-int		exec_heredoc(t_cmd *cmd, char *file, int expand, t_ms *s);
+int		exec_heredoc(t_cmd *cmd, t_cmd *subcmd, int expand, t_ms *s);
 int		del_eof(int heredoc);
 int		open_fd(char *file, int mode);
 int		*magic_key(void);
@@ -253,6 +253,7 @@ int		export_cmd_error(t_ms *s, char *msg, char *key);
 int		ft_exec_builtins_chr(t_ms *s, char **cmds, int fd_in, int fd_out);
 int		echo_cmd_test(char **cmd, t_ms *s, int fd_in, int fd_out);
 t_sinfo	exit_pack(t_ms *s, t_cmd *cmd);
+t_d_cmd	cmd_info(t_cmd *cmd, t_cmd *ret);
 
 #endif
 

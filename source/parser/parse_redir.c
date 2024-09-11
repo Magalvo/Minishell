@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/04 12:38:55 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/09 21:28:30 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_cmd	*parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 
 	eq = NULL;
 	q = NULL;
+	if (s->error == true)
+		return (cmd);
 	while (peek(ps, es, "<>"))
 	{
 		tok = get_token(ps, es, 0, 0);
@@ -46,6 +48,8 @@ t_cmd	*parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 
 t_cmd	*redir_sw(t_cmd *cmd, int tok, char *filename, t_ms *s)
 {
+	if (cmd)
+		dprintf(2, "OLHA AQUI AQUI%s\n", cmd->argv[0]);
 	if (tok == '<')
 		cmd = cmd_redir_in(cmd, filename, O_RDONLY, s);
 	else if (tok == '>')
@@ -54,6 +58,10 @@ t_cmd	*redir_sw(t_cmd *cmd, int tok, char *filename, t_ms *s)
 		cmd = cmd_redir_out(cmd, filename, O_WRONLY | O_CREAT | O_APPEND, s);
 	else if (tok == 'H')
 		cmd = cmd_heredoc(cmd, filename, O_RDWR | O_CREAT | O_APPEND, s);
+	if (cmd == NULL)
+	{
+		dprintf(2, "NULL HERE1\n");
+	}
 	return (cmd);
 }
 

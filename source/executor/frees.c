@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/04 12:22:23 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:38:10 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
 void	free_ast(t_cmd *cmd)
 {
@@ -44,7 +44,7 @@ void	free_ast2(t_cmd **cmd)
 		free_ast((*cmd)->right);
 	if ((*cmd)->cmd)
 		free_ast((*cmd)->cmd);
-	free_argv(*cmd);
+	free_argv2(cmd);
 	if ((*cmd)->file)
 	{
 		free((*cmd)->file);

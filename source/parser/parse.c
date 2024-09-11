@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/05 10:50:13 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/09 23:49:10 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,16 @@ t_cmd	*parse_cmd(char *input, t_ms *s)
 t_cmd	*parse_pipe(char **ps, char *es, t_ms *s)
 {
 	t_cmd	*cmd;
+	t_cmd	*dcmd;
 
 	cmd = parse_exec(ps, es, s);
+	if (s->cmd_temp2 == NULL)
+		s->cmd_temp2 = cmd;
 	if (cmd != NULL && peek(ps, es, "|"))
 	{
 		get_token(ps, es, 0, 0);
-		cmd = cmd_pipe(cmd, parse_pipe(ps, es, s), s);
+		dcmd = parse_pipe(ps, es, s);
+		cmd = cmd_pipe(cmd, dcmd, s);
 	}
 	return (cmd);
 }

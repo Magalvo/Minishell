@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_define.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/02 10:31:31 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/09 21:15:24 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_execution	t_execution;		//TODO not defined, still used?
 typedef struct s_cmd		t_cmd;
 typedef struct s_d_cmd		t_d_cmd;			// two t_cmd pointers
 typedef struct s_pids		t_pids;
+typedef struct s_cinfo		t_cinfo;
 typedef struct s_sinfo		t_sinfo;
 typedef enum e_signal		t_signal;
 typedef enum e_cmd_type		t_cmd_type;
@@ -76,6 +77,7 @@ struct s_ms
 	char	**env_tmp;
 	int		here_doc;
 	char	*cmd_temp;
+	t_cmd	*cmd_temp2;
 	pid_t	pid;
 	bool	tog;
 	t_cmd	*ast;
@@ -125,6 +127,11 @@ struct	s_sinfo
 {
 	t_cmd	*cmd;
 	t_ms	*s;
+};
+
+struct	s_cinfo
+{
+	t_d_cmd	cinfo;
 };
 
 enum e_signal

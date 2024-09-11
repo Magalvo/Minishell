@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/05 10:44:40 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/09 20:49:47 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,17 @@ void	heredoc_child(t_cmd *cmd, int fd_file, int expand, t_ms *s)
 	empty_dli = false;
 	if (ft_strlen(cmd->delim) == 0)
 		empty_dli = true;
-	exit_pack(s, cmd);
 	check_signal(HERE_DOC);
+	exit_pack(s, cmd);
 	while (1)
 	{
 		line = readline("> ");
 		if (!line)
+		{
+			dprintf(2, "NOP LINER\n\n");
 			exit_doc(s, fd_file, cmd);
+			break ;
+		}
 		if ((ft_strcmp(cmd->delim, line) == 0 && !empty_dli) || (empty_dli
 				&& line[0] == '\0'))
 			break ;
