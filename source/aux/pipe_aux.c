@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:18 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/05 10:37:34 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/17 19:35:21 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,18 @@ bool	check_argv(t_cmd *cmd)
 
 void	exec_from_ast(t_ms *s)
 {
-	if (!s->ast || !check_argv(s->ast))
+	int	i;
+
+	i = 3;
+	if (!s->ast || !check_argv(s->ast) || s->error == true)
+	{
+		while (i < FD_MAX)
+		{
+			close(i);
+			i++;
+		}
 		return ;
+	}
 	if (!ft_exec_paria(s, s->ast))
 	{
 		exec_from_ast_recursive(s, s->ast, STDIN_FILENO, STDOUT_FILENO);

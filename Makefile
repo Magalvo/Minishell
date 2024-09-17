@@ -6,7 +6,7 @@
 #    By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/09/09 17:07:44 by dde-maga         ###   ########.fr        #
+#    Updated: 2024/09/17 19:16:15 by dde-maga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,5 +123,7 @@ valgrind2: $(NAME)
 
 lcount:
 	@printf "$(NAME) has $(BLUE_U)$(shell cat $(SRC) | wc -l)$(RST) lines of code\n"
+	@printf "and there are $(RED_B)$(shell cat $(SRC) | grep if | wc -l) if $(RST)statements, and $(RED_B)$(shell cat $(SRC) | grep while | wc -l) while$(RST) loops\n"
+
 
 re: fclean all

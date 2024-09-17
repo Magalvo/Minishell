@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/09 20:49:47 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/17 13:06:40 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,11 @@ void	heredoc_child(t_cmd *cmd, int fd_file, int expand, t_ms *s)
 	if (ft_strlen(cmd->delim) == 0)
 		empty_dli = true;
 	check_signal(HERE_DOC);
-	exit_pack(s, cmd);
 	while (1)
 	{
 		line = readline("> ");
 		if (!line)
 		{
-			dprintf(2, "NOP LINER\n\n");
 			exit_doc(s, fd_file, cmd);
 			break ;
 		}
@@ -37,6 +35,9 @@ void	heredoc_child(t_cmd *cmd, int fd_file, int expand, t_ms *s)
 		expand_heredoc(s, line, expand, fd_file);
 	}
 	free(line);
+	free_ast(cmd);
+	if (s->cmd_temp)
+		free(s->cmd_temp);
 }
 
 int	open_fd(char *file, int mode)

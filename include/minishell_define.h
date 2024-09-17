@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/09 21:15:24 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/17 16:23:33 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ struct s_ms
 	int		here_doc;
 	char	*cmd_temp;
 	t_cmd	*cmd_temp2;
+	t_cmd	*cmd_temp3;
+	t_cmd	*cmd_temp4;
 	pid_t	pid;
 	bool	tog;
 	t_cmd	*ast;
@@ -131,7 +133,7 @@ struct	s_sinfo
 
 struct	s_cinfo
 {
-	t_d_cmd	cinfo;
+	t_cmd	*cmd[FD_MAX];
 };
 
 enum e_signal

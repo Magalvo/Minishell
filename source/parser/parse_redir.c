@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/09 21:28:30 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/17 19:22:45 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_cmd	*parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 	eq = NULL;
 	q = NULL;
 	if (s->error == true)
-		return (cmd);
+		return (NULL);
 	while (peek(ps, es, "<>"))
 	{
 		tok = get_token(ps, es, 0, 0);
@@ -35,9 +35,7 @@ t_cmd	*parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 			return (free_ast2(&cmd), reprompt(INVALID_TOKEN, 2, s), NULL);
 		}
 		if (get_token(ps, es, &q, &eq) != 'a')
-		{
 			return (free_ast2(&cmd), reprompt(MISSING_REDIRECT, 2, s), NULL);
-		}
 		filename = ft_substr(q, 0, eq - q);
 		cmd = redir_sw(cmd, tok, filename, s);
 		if (s->error == true)
@@ -48,8 +46,6 @@ t_cmd	*parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 
 t_cmd	*redir_sw(t_cmd *cmd, int tok, char *filename, t_ms *s)
 {
-	if (cmd)
-		dprintf(2, "OLHA AQUI AQUI%s\n", cmd->argv[0]);
 	if (tok == '<')
 		cmd = cmd_redir_in(cmd, filename, O_RDONLY, s);
 	else if (tok == '>')
@@ -58,10 +54,6 @@ t_cmd	*redir_sw(t_cmd *cmd, int tok, char *filename, t_ms *s)
 		cmd = cmd_redir_out(cmd, filename, O_WRONLY | O_CREAT | O_APPEND, s);
 	else if (tok == 'H')
 		cmd = cmd_heredoc(cmd, filename, O_RDWR | O_CREAT | O_APPEND, s);
-	if (cmd == NULL)
-	{
-		dprintf(2, "NULL HERE1\n");
-	}
 	return (cmd);
 }
 

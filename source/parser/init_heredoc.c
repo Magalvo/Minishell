@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/09 22:48:01 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/17 13:07:31 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,13 @@ t_cmd	*cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 	if (!cmd->file)
 		perror("strjoin null");
 	free(filename);
-	cmd->fd = exec_heredoc(cmd, subcmd, expand, s);
+	exit_pack(s, cmd);
+	cmd->fd = exec_heredoc(cmd, cmd->file, expand, s);
 	if (cmd->fd == -1)
 	{
-		dprintf(2, "(fd)(null)\n");
 		free(cmd->file);
-		free(cmd->delim);
-		free(cmd->argv);
-		free(cmd);
-		return (NULL);
+		return (free(cmd->delim), free(cmd->argv), free(cmd), NULL);
 	}
-	//check_signal(MAIN);
 	return (cmd);
 }
 
@@ -78,14 +74,14 @@ int	here_await(pid_t pid, t_ms *s)
 	int	status;
 
 	waitpid(pid, &status, 0);
-	dprintf(2, "Exit stat %d\n", s->exit_stat);
+	ft_dprintf(2, "Exit stat %d\n", s->exit_stat);
 	if (WIFEXITED(status))
 	{
 		s->exit_stat = WEXITSTATUS(status);
-		dprintf(2, "Exit statIN %d\n", s->exit_stat);
+		ft_dprintf(2, "Exit statIN %d\n", s->exit_stat);
 		if (s->exit_stat == 130)
 		{
-			dprintf(2, "WAIT STAT 130 \n");
+			ft_dprintf(2, "WAIT STAT 130 \n");
 			s->error = true;
 			return (-1);
 		}
@@ -95,13 +91,14 @@ int	here_await(pid_t pid, t_ms *s)
 	return (0);
 }
 
-int	exec_heredoc(t_cmd *cmd, t_cmd *subcmd, int expand, t_ms *s)
+int	exec_heredoc(t_cmd *cmd, char *file, int expand, t_ms *s)
 {
 	int		fd_file;
 	pid_t	pid;
+	t_cinfo	cinfo;
 
-	(void)subcmd;
-	fd_file = open(cmd->file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	cinfo = cmd_info(NULL, 0);
+	fd_file = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd_file == -1)
 		perror("Error opening here_doc");
 	check_signal(IGNORE);
@@ -111,9 +108,7 @@ int	exec_heredoc(t_cmd *cmd, t_cmd *subcmd, int expand, t_ms *s)
 		s->exit_stat = 0;
 		heredoc_child(cmd, fd_file, expand, s);
 		close(fd_file);
-		if (s->cmd_temp)
-			free(s->cmd_temp);
-		free_ast2(&s->cmd_temp2);
+		free_cmdinfo(&cinfo);
 		exit_minishell(s, NULL);
 	}
 	else if (pid > 0)

@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/09 19:38:10 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/17 18:22:29 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,19 @@ void	free_argv2(t_cmd **cmd)
 
 void	reset_ast(t_ms *s)
 {
+	int	i;
+
+	i = 3;
 	s->error = false;
 	if (s->ast)
 	{
 		free_ast(s->ast);
 		s->ast = NULL;
+	}
+	cmd_info(NULL, 1);
+	while (i < FD_MAX)
+	{
+		close(i);
+		i++;
 	}
 }

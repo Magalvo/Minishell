@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:28 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/09 22:48:24 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/17 16:43:30 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,19 +73,15 @@ void	ft_exitdoc(int status)
 void	here_handler(int signal, siginfo_t *info, void *context)
 {
 	t_sinfo	sinfo;
-	//t_d_cmd	cinfo;
 
 	(void)info;
 	(void)context;
-	//cinfo = cmd_info(NULL, NULL);
 	sinfo = exit_pack(NULL, NULL);
 	if (signal == SIGINT)
 	{
 		write(1, "\n", 1);
 		close(sinfo.cmd->fd);
-		free_ast2(&sinfo.s->cmd_temp2);
 		sinfo.s->exit_stat = 130;
 		sinfo.s->error = true;
-		//exit_minishell(sinfo.s, NULL);
 	}
 }

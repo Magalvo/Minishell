@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/09 21:15:49 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/17 13:40:40 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	init_t_ms(t_ms *s)
 	s->env_tmp = NULL;
 	s->cmd_temp = NULL;
 	s->cmd_temp2 = NULL;
+	s->cmd_temp3 = NULL;
+	s->cmd_temp4 = NULL;
 	s->ast = NULL;
 	s->env = NULL;
 	s->export = NULL;

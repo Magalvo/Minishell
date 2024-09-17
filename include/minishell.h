@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/09 17:12:35 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/17 12:27:27 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ char	*remove_quotes(char *input, char *pos);
 char	*get_expanded(char *input, char *cut, char *paste, char *remain);
 int		count_argc(char **ps, char *es, t_ms *s);
 int		is_quoted(const char *str, const char *totest);
-int		exec_heredoc(t_cmd *cmd, t_cmd *subcmd, int expand, t_ms *s);
+int		exec_heredoc(t_cmd *cmd, char *file, int expand, t_ms *s);
 int		del_eof(int heredoc);
 int		open_fd(char *file, int mode);
 int		*magic_key(void);
@@ -237,6 +237,7 @@ char	*cmd_path(char **paths, char *cmd, t_ms *s);
 char	*check_if_dir(char *cmd, t_ms *s);
 char	*check_paths(char **paths, char	*cmd);
 char	*get_cmd_from_cwd(char *cmd);
+void	free_cmdinfo(t_cinfo *cinfo);
 
 //*================= ERRORS =========================*//
 
@@ -253,41 +254,41 @@ int		export_cmd_error(t_ms *s, char *msg, char *key);
 int		ft_exec_builtins_chr(t_ms *s, char **cmds, int fd_in, int fd_out);
 int		echo_cmd_test(char **cmd, t_ms *s, int fd_in, int fd_out);
 t_sinfo	exit_pack(t_ms *s, t_cmd *cmd);
-t_d_cmd	cmd_info(t_cmd *cmd, t_cmd *ret);
+t_cinfo	cmd_info(t_cmd *cmd, int clear);
 
 #endif
 
-//! Temporary //
-//int		exec_input(t_ms *s);
-//int		export_cmd_test(t_ms *s, char **cmds);
-//int		unset_cmd_test(t_ms *s, char **cmds);
-// char	*get_pid(t_ms *s);
-//void	exit_minishell(t_ms *s); // changed parameters
-//void	handle_signal(int sign);
+	//! Temporary //
+	// int		exec_input(t_ms *s);
+	// int		export_cmd_test(t_ms *s, char **cmds);
+	// int		unset_cmd_test(t_ms *s, char **cmds);
+	//  char	*get_pid(t_ms *s);
+	// void	exit_minishell(t_ms *s); // changed parameters
+	// void	handle_signal(int sign);
 
-/*
-signals.c
-*/
-//void	check_signal(t_ms *s);
-//void	init_env(t_ms *ms, char **envp);
-//int	echo_cmd(t_cmd *cmd);
-//void	handle_key(t_ms *s, char **str, char *key, char *value);
-// void	init_export(t_ms *ms, char **envp);
-// int		update_last(t_env *env, char *key, char *value);
-// char	*expand_var(char *input, t_ms *s);
-// char	*expand_dolar_loop(char *input, t_ms *s);
-//char	expand_braces(char *input);
-// char	*expand_words(char *input);
-// bool	check_valid_position(char *input);
-// int		here_doc(char *dli, t_ms *s, t_cmd *cmd);
-// t_cmd	*nulterminate(t_cmd *cmd);
-// t_cmd	*cmd_redir(t_cmd *subcmd, char *filename, int mode, int fd);
-// t_cmd	*parse_line(char **ps, char *es, t_ms *s);
-// t_cmd	*parse_block(char **ps, char *es, t_ms *s);
-// void	parse_args(char **ps, char *es, t_cmd *cmd, t_cmd *ret);
-// char	*check_abs_or_rel(const char *cmd, t_ms *s);
-// int		abs_or_rel_path(const	char *cmd);
-//char	*empty(void);
-// void	split_input(t_ms *s, char* input);
-//int		exec_input(t_ms *s);
-//char	*search_path(char *command, char **paths);
+	/*
+	signals.c
+	*/
+	// void	check_signal(t_ms *s);
+	// void	init_env(t_ms *ms, char **envp);
+	// int	echo_cmd(t_cmd *cmd);
+	// void	handle_key(t_ms *s, char **str, char *key, char *value);
+	//  void	init_export(t_ms *ms, char **envp);
+	//  int		update_last(t_env *env, char *key, char *value);
+	//  char	*expand_var(char *input, t_ms *s);
+	//  char	*expand_dolar_loop(char *input, t_ms *s);
+	// char	expand_braces(char *input);
+	//  char	*expand_words(char *input);
+	//  bool	check_valid_position(char *input);
+	//  int		here_doc(char *dli, t_ms *s, t_cmd *cmd);
+	//  t_cmd	*nulterminate(t_cmd *cmd);
+	//  t_cmd	*cmd_redir(t_cmd *subcmd, char *filename, int mode, int fd);
+	//  t_cmd	*parse_line(char **ps, char *es, t_ms *s);
+	//  t_cmd	*parse_block(char **ps, char *es, t_ms *s);
+	//  void	parse_args(char **ps, char *es, t_cmd *cmd, t_cmd *ret);
+	//  char	*check_abs_or_rel(const char *cmd, t_ms *s);
+	//  int		abs_or_rel_path(const	char *cmd);
+	// char	*empty(void);
+	//  void	split_input(t_ms *s, char* input);
+	// int		exec_input(t_ms *s);
+	// char	*search_path(char *command, char **paths);

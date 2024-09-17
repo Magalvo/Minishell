@@ -6,20 +6,33 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:28:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/09 22:22:56 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/17 19:34:15 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-t_d_cmd	cmd_info(t_cmd *cmd, t_cmd *ret)
+t_cinfo	cmd_info(t_cmd *cmd, int clear)
 {
-	static t_d_cmd	cinfo;
+	static t_cinfo	cinfo;
+	int				i;
 
+	i = 0;
+	if (clear == 1)
+	{
+		while (cinfo.cmd[i] != NULL)
+		{
+			cinfo.cmd[i] = NULL;
+			i++;
+		}
+		return (cinfo);
+	}
 	if (cmd)
-		cinfo.one = cmd;
-	if (ret)
-		cinfo.two = ret;
+	{
+		while (cinfo.cmd[i] != NULL)
+			i++;
+		cinfo.cmd[i] = cmd;
+	}
 	return (cinfo);
 }
 
@@ -41,30 +54,25 @@ t_cmd	*parse_exec(char **ps, char *es, t_ms *s)
 	cmd->argv = create_dptr(argc);
 	cmds.one = cmd;
 	cmds.two = ret;
-	cmd_info(cmd, ret);
 	parse_args(ps, es, &cmds, s);
 	if (cmds.two == NULL)
-	{
-		dprintf(2, "CMDS.two NULL return\n");
 		return (NULL);
-	}
 	cmd->argv[cmd->argc] = NULL;
 	cmd = cmds.one;
 	ret = cmds.two;
 	if (s->error == true)
-	{
-		dprintf(2, "CMDS.ERROR return\n");
 		return (NULL);
-	}	
 	return (ret);
 }
 
 void	parse_args_exec(t_d_cmd *cmds)
 {
-	if (!cmds->two)
+	if (cmds && !cmds->two)
 	{
-		//ft_free_dptr(&cmds->one->argv);
-		free_ast2(&cmds->one);
+		if (cmds->one)
+		{
+			free_ast(cmds->one);
+		}
 		ft_dprintf(2, "ESTRELA GUIATE \n");
 	}
 }
@@ -90,16 +98,10 @@ void	parse_args(char **ps, char *es, t_d_cmd *cmds, t_ms *s)
 		unglue_str(new_arg, new_arg + ft_strlen(new_arg));
 		new_arg = expand_sw_vars(new_arg, s);
 		if (s->error == true)
-		{
-			if (new_arg)
-				free(new_arg);
 			break ;
-		}
 		cmds->one->argv[cmds->one->argc] = reassemble_input(new_arg);
 		cmds->one->argc++;
 		cmds->two = parse_redir(cmds->two, ps, es, s);
-		parse_args_exec(cmds);
-		//free_ast2(&s->cmd_temp2);
 	}
 }
 
