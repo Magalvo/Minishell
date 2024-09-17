@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_aux.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:22:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/30 18:56:51 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/17 22:50:39 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 void	close_two_fd(t_cmd *cmd, int fd_in, int fd_out)
 {
 	(void)cmd;
+	if (cmd->fd != STDIN_FILENO && cmd->fd != STDOUT_FILENO)
+		close(cmd->fd);
 	if (fd_in != STDIN_FILENO)
 		close_fd(&fd_in);
 	if (fd_out != STDOUT_FILENO)

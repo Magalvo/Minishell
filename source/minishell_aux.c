@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/17 13:40:40 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/17 22:44:48 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,16 @@ void	reset_ms(t_ms *s, char *input, int error)
 	if (error >= 0)
 		s->exit_stat = error;
 	free(input);
+}
+
+void	clear_fds(void)
+{
+	int	i;
+
+	i = 3;
+	while (i < FD_MAX)
+	{
+		close(i);
+		i++;
+	}
 }

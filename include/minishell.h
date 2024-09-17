@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/17 12:27:27 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/17 22:45:35 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ t_cmd	*parse_exec(char **ps, char *es, t_ms *s);
 
 //*==================== AUX =======================*//
 
+void	clear_fds(void);
 void	print_ast(t_ms *s, t_cmd *ptr, int padding);
 void	print_ast_exec(t_ms *s, t_cmd *ptr, int padding);
 void	print_ast_pipe(t_ms *s, t_cmd *ptr, int padding);
