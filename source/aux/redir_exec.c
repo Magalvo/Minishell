@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:22:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/17 22:52:53 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:22:50 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,19 @@ void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	{
 		if (cmd->type == HEREDOC)
 		{
-			if (fd_in > 2)
-				close_fd(&fd_in);
-			fd_in = cmd->fd;
+			if (cmd->cmd && cmd->cmd->type == 2)
+				unclose0(s, cmd, &fd_in, &temp_fd);
+			else
+			{
+				if (fd_in > 2)
+					close_fd(&fd_in);
+				fd_in = cmd->fd;
+			}
 		}
 		if (cmd->fd == 1)
-		{
 			unclose1(s, cmd, &fd_out, &temp_fd);
-		}
 		else if (cmd->fd == 0)
-		{
 			unclose0(s, cmd, &fd_in, &temp_fd);
-		}
 		cmd = cmd->cmd;
 	}
 	close_fd(&temp_fd);
@@ -71,10 +72,15 @@ void	exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	if (pid == 0)
 	{
 		s->exit_stat = 0;
+		ft_dprintf(2, " OLHAA -> %d", cmd->fd);
 		if (fd_in != STDIN_FILENO)
+		{
 			dup_and_close(s, &fd_in, &fd_out, STDIN_FILENO);
+		}
 		if (fd_out != STDOUT_FILENO)
+		{
 			dup_and_close(s, &fd_out, &fd_in, STDOUT_FILENO);
+		}
 		exec_from_ast_recursive(s, cmd, STDIN_FILENO, STDOUT_FILENO);
 		clear_fds();
 		exit_minishell(s, NULL);

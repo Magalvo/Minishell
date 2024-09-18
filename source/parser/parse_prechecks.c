@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:00 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/17 10:12:56 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/18 13:44:13 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,11 @@ char	*expand_sw_vars(char *input, t_ms *s)
 			pos = ft_strchr(xp_input, '$');
 			xp_input = vars_sw(xp_input, pos, s);
 			if (s->error == true)
-				break ;
+			{
+				dprintf(2, "\nSAAAI 3\n");
+				break;
+			}
+				
 			pos = ft_strchr(xp_input, '$');
 		}
 		else

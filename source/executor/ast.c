@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:23 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/09 19:38:28 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:03:51 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	{
 		if (fd_in != STDIN_FILENO && cmd->fd == 0 && s->ast->type == PIPE)
 		{
+			dprintf(2, "\nVISTA ALEGRE\n");
 			fd_in = STDIN_FILENO;
 		}
 		exec_redir(s, cmd, fd_in, fd_out);

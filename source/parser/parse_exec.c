@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:28:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/17 19:34:15 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/18 14:17:37 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,13 @@ t_cmd	*parse_exec(char **ps, char *es, t_ms *s)
 	return (ret);
 }
 
-void	parse_args_exec(t_d_cmd *cmds)
+void	parse_args_exec(t_d_cmd *cmds, t_ms *s)
 {
+	(void)s;
 	if (cmds && !cmds->two)
 	{
 		if (cmds->one)
-		{
+		{	
 			free_ast(cmds->one);
 		}
 		ft_dprintf(2, "ESTRELA GUIATE \n");
@@ -90,7 +91,11 @@ void	parse_args(char **ps, char *es, t_d_cmd *cmds, t_ms *s)
 	{
 		tok = get_token(ps, es, &q, &eq);
 		if (tok == 0 || (tok != 'a' && s->error == true))
+		{
+			if (s->error == true && s->exit_stat == 130)
+				free_ast(cmds->one);
 			break ;
+		}
 		else if (tok != 'a')
 			reprompt(NOT_A_VALID_TOKEN, 1, s);
 		new_arg = ft_calloc((eq - q) + 1, sizeof(char));
@@ -98,7 +103,12 @@ void	parse_args(char **ps, char *es, t_d_cmd *cmds, t_ms *s)
 		unglue_str(new_arg, new_arg + ft_strlen(new_arg));
 		new_arg = expand_sw_vars(new_arg, s);
 		if (s->error == true)
-			break ;
+		{
+			if (new_arg != NULL)
+				free(new_arg);
+			new_arg = NULL;
+			break; 
+		}
 		cmds->one->argv[cmds->one->argc] = reassemble_input(new_arg);
 		cmds->one->argc++;
 		cmds->two = parse_redir(cmds->two, ps, es, s);
