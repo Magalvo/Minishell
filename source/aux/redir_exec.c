@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:22:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/18 16:22:50 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/18 18:30:58 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	exec_redir_fork(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	if (pid == 0)
 	{
 		s->exit_stat = 0;
-		ft_dprintf(2, " OLHAA -> %d", cmd->fd);
 		if (fd_in != STDIN_FILENO)
 		{
 			dup_and_close(s, &fd_in, &fd_out, STDIN_FILENO);

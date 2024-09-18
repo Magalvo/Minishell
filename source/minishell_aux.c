@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/17 22:44:48 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/18 18:30:06 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	exit_minishell(t_ms *s, char *msg)
 
 int	init_minishell(t_ms *s, char **ep)
 {
+	char *shell;
+	
 	if (!*ep)
 	{
 		initialize_env(&ep);
@@ -54,6 +56,12 @@ int	init_minishell(t_ms *s, char **ep)
 	s->modal = MAIN;
 	s->cmd_temp = NULL;
 	s->prompt = "minishell> ";
+	shell = get_env_val(s->env, "SHELL", s);
+	if (shell != NULL)
+	{
+		update_key(s->env, "SHELL", "./minishell");
+		free(shell);
+	}
 	return (true);
 }
 

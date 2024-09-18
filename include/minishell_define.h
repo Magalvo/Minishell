@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/17 16:23:33 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/18 18:51:47 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ struct	s_cmd
 	pid_t	pid;
 	char	*file;
 	char	*delim;
+	char	*error_msg;
 	int		mode;
 	int		fd;
 	char	**temp;

@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:06:42 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/09 11:16:25 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/18 18:55:20 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,11 @@ t_cmd	*cmd_redir_out(t_cmd *subcmd, char *filename, int mode, t_ms *s)
 	cmd->cmd = subcmd;
 	unglue_str(filename, filename + ft_strlen(filename));
 	filename = expand_sw_vars(filename, s);
+	dprintf(2, "\nFIlename %s\n", filename);
 	filename = reassemble_input(filename);
+	dprintf(2, "\nFIlename reasemb %s\n", filename);
 	str_rm_char(filename, EMPTY);
+	dprintf(2, "\nFIlename NULL %s\n", filename);
 	cmd->file = filename;
 	cmd->mode = mode;
 	cmd->fd = 1;
