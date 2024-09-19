@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:12:16 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/05 19:30:39 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:07:01 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,3 +59,20 @@ void	requoter(char *start, char *end)
 		i++;
 	}
 }
+
+void	get_endstr_ptr(char **str)
+{
+	// size_t	len;
+
+	if (!str)
+		return ;
+	// len = ft_strlen(str);
+	while (**str != '\0')
+		(*str)++;
+}
+
+// void	skip_spaces(char *str, char *es)
+// {
+// 	while (str < es && ft_strchr(SPACES, *str))
+// 		str++;
+// }
