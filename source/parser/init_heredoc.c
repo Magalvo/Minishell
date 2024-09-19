@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/19 17:39:15 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/19 18:26:11 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_cmd	*cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 	if (cmd->fd == -1)
 	{
 		free_ast(cmd);
-		cmd(NULL);
+		clear_fds();
 		return (NULL);
 	}
 	return (cmd);
@@ -106,8 +106,8 @@ int	exec_heredoc(t_cmd *cmd, char *file, int expand, t_ms *s)
 	{
 		s->exit_stat = 0;
 		heredoc_child(cmd, fd_file, expand, s);
-		clear_fds();
 		free_cmdinfo(&cinfo);
+		clear_fds();
 		exit_minishell(s, NULL);
 	}
 	else if (pid > 0)

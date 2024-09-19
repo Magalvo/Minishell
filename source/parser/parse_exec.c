@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:28:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/19 13:15:15 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/19 17:50:27 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ void	parse_args(char **ps, char *es, t_d_cmd *cmds, t_ms *s)
 		tok = get_token(ps, es, &q, &eq);
 		if (tok == 0 || (tok != 'a' && s->error == true))
 		{
-			if (s->error == true && s->exit_stat == 130)
-				free_ast(cmds->one);
+/* 			if (s->error == true && s->exit_stat == 130)
+				free_ast(cmds->one); */
 			break ;
 		}
 		else if (tok != 'a')

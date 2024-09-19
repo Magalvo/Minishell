@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:23 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/19 16:45:12 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/19 18:58:26 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,13 +114,13 @@ int	not_found(char *str, int status, t_ms *s)
 			ft_putstr_fd(" : command not found\n", 2);
 	}
 	else if (status == 126)
-		ft_putstr_fd(" : Permission denied\n", 2);
+		return (ft_putstr_fd(" : Permission denied\n", 2), 126);
 	return (1);
 }
 
 void	exit_and_found(char *str, int status, t_ms *s)
 {
 	s->exit_stat = status;
-	if (!not_found(str, status, s))
+	if (not_found(str, status, s) == 126)
 		return ;
 }
