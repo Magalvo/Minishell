@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:04:53 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/09/19 16:25:05 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/19 19:47:50 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,15 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			dup_and_close(s, &fd_in, &fd_out, STDIN_FILENO);
 		if (fd_out != STDOUT_FILENO)
 			dup_and_close(s, &fd_out, &fd_in, STDOUT_FILENO);
-		if (cmd->error_msg != NULL) 
+		if (cmd->error_msg != NULL)
 			ft_dprintf(2, "%s\n", cmd->error_msg);
-		else if (cmd->error_msg == NULL && \
-			 !ft_exec_builtins_chr(s, cmd->argv, fd_in, fd_out))
+		if (!ft_exec_builtins_chr(s, cmd->argv, fd_in, fd_out))
 			exec_one(s, cmd->argv);
 		clear_fds();
 		exit_minishell(s, NULL);
 	}
 	else
-	{	
+	{
 		close_two_fd(cmd, fd_in, fd_out);
 		wait_till_end(s, pid, cmd);
 	}

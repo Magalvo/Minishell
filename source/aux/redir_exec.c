@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:22:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/19 16:48:34 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/19 19:49:42 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,7 @@ void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	while (cmd->type == REDIR || cmd->type == HEREDOC)
 	{
 		if (cmd->error_msg)
-		{
 			ft_dprintf(2, "%s\n", cmd->error_msg);
-			return ;
-		}
 		if (cmd->type == HEREDOC)
 		{
 			if (cmd->cmd && cmd->cmd->type == 2)
