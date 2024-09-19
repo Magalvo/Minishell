@@ -6,13 +6,14 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:06:42 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/19 21:19:59 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/19 21:25:15 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	cmd_redir(t_cmd *cmd, char *filename, int mode)
+void
+cmd_redir(t_cmd *cmd, char *filename, int mode)
 {
 	cmd->type = REDIR;
 	cmd->mode = mode;
