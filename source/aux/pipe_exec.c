@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/19 13:21:41 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/19 15:54:55 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,13 @@ int	ft_exec_paria(t_ms *s, t_cmd *cmds)
 	}
 	else if (ft_sw_builtins(cmds->argv[0], "echo") == 0)
 	{
-		echo_cmd_test(cmds->argv, s, STDIN_FILENO, STDOUT_FILENO);
-		updating_cmds(s, cmds, s->ast->argv[s->ast->argc - 1]);
+		if (cmds->error_msg)
+			printf("%s\n", cmds->error_msg);
+		else
+		{
+			echo_cmd_test(cmds->argv, s, STDIN_FILENO, STDOUT_FILENO);
+			updating_cmds(s, cmds, s->ast->argv[s->ast->argc - 1]);
+		}
 		return (1);
 	}
 	else
