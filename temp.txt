@@ -1,5 +1,0 @@
-1. 1 std open in child
-2. cat < out > out2 (when out has no permissions)
-3. cat << f + CTRL_C - you should have 3 std
-4. ./minishell + cat << d << f << d + CTRL_D + CTRL_C (it doesn't stop)
-5. 
