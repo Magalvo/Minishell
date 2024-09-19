@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/18 22:51:59 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:18:58 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void	untokenizer(char *start, char *end);
 void	retokenizer(char *start, char *end);
 void	unquoter(char *start, char *end);
 void	requoter(char *start, char *end);
+void	get_endstr_ptr(char **str);
 void	skip_spaces(char *str, char *es);
 void	get_shrinked(char *input, char *move);
 void	str_rm_char(char *input, char remove);
@@ -137,7 +138,6 @@ int		open_fd(char *file, int mode);
 int		*magic_key(void);
 int		peek(char **ps, char *es, char *toks);
 int		peek_nsp(const char *ps, char *es, char *toks);
-int		getcmd(char *buf, int nbuf);
 int		get_token(char **ps, char *es, char **q, char **eq);
 int		get_token_a(char **ps);
 bool	syntax_validation(char *input, t_ms *s);
