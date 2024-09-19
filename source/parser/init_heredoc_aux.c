@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_heredoc_aux.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/17 13:06:40 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/19 17:34:12 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,22 @@ int	del_eof(int heredoc)
 	ft_putstr_fd("here-document ", STDOUT_FILENO);
 	ft_putstr_fd("delimited by end-of-file\n", STDOUT_FILENO);
 	return (errno);
+}
+
+// iterates char *input to find $VAR possible to expand, returns expanded string
+char	*expand_here_sw_vars(char *input, t_ms *s)
+{
+	char	*pos;
+	char	*xp_input;
+
+	xp_input = ft_strdup(input);
+	pos = ft_strchr(xp_input, '$');
+	while (pos)
+	{
+		pos = ft_strchr(xp_input, '$');
+		xp_input = vars_sw(xp_input, pos, s);
+		pos = ft_strchr(xp_input, '$');
+	}
+	free(input);
+	return (xp_input);
 }

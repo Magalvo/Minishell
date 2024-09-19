@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_prechecks.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:00 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/19 12:34:03 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/19 16:53:16 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ char	*expand_sw_vars(char *input, t_ms *s)
 				dprintf(2, "\nSAAAI 3\n");
 				break;
 			}
-				
 			pos = ft_strchr(xp_input, '$');
 		}
 		else
@@ -75,6 +74,7 @@ char	*tilde_sw(char *xp_input, char *pos, t_ms *s)
 		xp_input = expand_tilde_oldpwd(xp_input, pos, false, s);
 	else
 		xp_input = expand_tilde(xp_input, pos, false, s);
+
 	return (xp_input);
 }
 
