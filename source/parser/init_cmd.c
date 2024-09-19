@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:06:42 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/19 17:10:50 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/19 18:38:19 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ t_cmd	*cmd_redir_out(t_cmd *subcmd, char *filename, int mode, t_ms *s)
 	cmd->cmd = subcmd;
 	unglue_str(filename, filename + ft_strlen(filename));
 	filename = expand_sw_vars(filename, s);
+	end_file = filename;
 	get_endstr_ptr(&end_file);
 	if (*filename == DQUOTE && *--end_file == DQUOTE)
 		filename_expand = true;
@@ -56,8 +57,6 @@ t_cmd	*cmd_redir_out(t_cmd *subcmd, char *filename, int mode, t_ms *s)
 	get_endstr_ptr(&end_file);
 	if (peek_nsp(filename, end_file, SPACES))
 		cmd->error_msg = REDIR_SYNTAX;
-	if (filename_expand)
-		cmd->error_msg = NULL;
 	str_rm_char(filename, EMPTY);
 	cmd->file = filename;
 	cmd->mode = mode;
@@ -69,12 +68,17 @@ t_cmd	*cmd_redir_in(t_cmd *subcmd, char *filename, int mode, t_ms *s)
 {
 	t_cmd	*cmd;
 	char	*end_file;
+	bool	filename_expand;
 
 	cmd = cmd_init(s);
 	cmd->type = REDIR;
 	cmd->cmd = subcmd;
 	unglue_str(filename, filename + ft_strlen(filename));
 	filename = expand_sw_vars(filename, s);
+	end_file = filename;
+	get_endstr_ptr(&end_file);
+	if (*filename == DQUOTE && *--end_file == DQUOTE)
+		filename_expand = true;
 	filename = reassemble_input(filename);
 	end_file = filename;
 	get_endstr_ptr(&end_file);
