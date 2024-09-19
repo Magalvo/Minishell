@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:06:42 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/19 16:29:19 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/19 17:10:50 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,25 @@ t_cmd	*cmd_redir_out(t_cmd *subcmd, char *filename, int mode, t_ms *s)
 {
 	t_cmd	*cmd;
 	char	*end_file;
+	bool	filename_expand;
 
+	filename_expand = false;
 	cmd = cmd_init(s);
 	cmd->type = REDIR;
 	cmd->cmd = subcmd;
 	unglue_str(filename, filename + ft_strlen(filename));
 	filename = expand_sw_vars(filename, s);
+	get_endstr_ptr(&end_file);
+	if (*filename == DQUOTE && *--end_file == DQUOTE)
+		filename_expand = true;
 	filename = reassemble_input(filename);
 	end_file = filename;
 	get_endstr_ptr(&end_file);
 	if (peek_nsp(filename, end_file, SPACES))
 		cmd->error_msg = REDIR_SYNTAX;
-	if (cmd->error_msg != NULL)
-		dprintf(2, "\nNOT NULL -> %s\n", cmd->error_msg);
-	if (cmd->error_msg == NULL)
-		dprintf(2, "\nNULL\n");
+	if (filename_expand)
+		cmd->error_msg = NULL;
 	str_rm_char(filename, EMPTY);
-	// todo wtf?
 	cmd->file = filename;
 	cmd->mode = mode;
 	cmd->fd = 1;

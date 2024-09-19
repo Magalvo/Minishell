@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/19 12:18:58 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/19 17:31:01 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ void	skip_spaces(char *str, char *es);
 void	get_shrinked(char *input, char *move);
 void	str_rm_char(char *input, char remove);
 void	expand_heredoc(t_ms *s, char *line, int expand, int fd_file);
+char	*expand_here_sw_vars(char *input, t_ms *s);
 void	heredoc_child(t_cmd *cmd, int fd_file, int expand, t_ms *s);
 void	reprompt(char *str, int exit_stat, t_ms *s);
 void	parse_args(char **ps, char *es, t_d_cmd *cmds, t_ms *s);

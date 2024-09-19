@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+         #
+#    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/09/19 13:29:25 by dde-maga         ###   ########.fr        #
+#    Updated: 2024/09/19 16:53:34 by cjoao-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,7 +123,7 @@ valgrind2: $(NAME)
 
 lcount:
 	@printf "$(NAME) has $(BLUE_U)$(shell cat $(SRC) | wc -l)$(RST) lines of code\n"
-	@printf "and there are $(RED_B)$(shell cat $(SRC) | grep if | wc -l) if $(RST)statements, and $(RED_B)$(shell cat $(SRC) | grep while | wc -l) while$(RST) loops\n"
+	@printf "There are $(BLUE_U)$(shell cat $(SRC) | grep if | wc -l) if $(RST)statements, and $(BLUE_U)$(shell cat $(SRC) | grep while | wc -l) while$(RST) loops\n"
 
 
 re: fclean all
