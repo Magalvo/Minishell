@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_tilde.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:07:37 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/16 18:03:33 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/18 23:04:21 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ char	*expand_tilde_pwd(char *input, char *ps, bool check, t_ms *s)
 			{
 				res = get_expanded(input, ps, val, ps + 2);
 				free(val);
+				free(input);
 				return (res);
 			}
 		}
@@ -82,6 +83,7 @@ char	*expand_tilde_oldpwd(char *input, char *ps, bool check, t_ms *s)
 			{
 				res = get_expanded(input, ps, val, ps + 2);
 				free(val);
+				free(input);
 				return (res);
 			}
 		}

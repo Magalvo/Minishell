@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/18 18:51:47 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/18 22:31:18 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ struct s_ms
 	char	**env_tmp;
 	int		here_doc;
 	char	*cmd_temp;
-	t_cmd	*cmd_temp2;
+	char	*cmd_temp2;
 	t_cmd	*cmd_temp3;
 	t_cmd	*cmd_temp4;
 	pid_t	pid;

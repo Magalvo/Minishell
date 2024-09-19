@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:00 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/18 13:44:13 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/18 23:01:32 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ char	*tilde_sw(char *xp_input, char *pos, t_ms *s)
 		xp_input = expand_tilde_oldpwd(xp_input, pos, false, s);
 	else
 		xp_input = expand_tilde(xp_input, pos, false, s);
+	
 	return (xp_input);
 }
 
@@ -93,6 +94,7 @@ char	*expand_sw_tilde(char *input, t_ms *s)
 		if (is_quoted(xp_input, pos) == NONE)
 		{
 			xp_input = tilde_sw(xp_input, pos, s);
+			s->cmd_temp2 = xp_input;
 		}
 		if (ft_strchr(xp_input, '~') == pos)
 			pos = ft_strchr(pos + 1, '~');
