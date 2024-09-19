@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/18 17:12:04 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:41:18 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ t_cmd	*cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 	cmd->fd = exec_heredoc(cmd, cmd->file, expand, s);
 	if (cmd->fd == -1)
 	{
-		free(cmd->file);
-		return (free(cmd->delim), free(cmd->argv), free(cmd), NULL);
+		free_ast(cmd);
+		return (NULL);
 	}
 	return (cmd);
 }
@@ -82,7 +82,6 @@ int	here_await(pid_t pid, t_ms *s)
 		if (s->exit_stat == 130)
 		{
 			ft_dprintf(2, "WAIT STAT 130 \n");
-			s->error = true;
 			return (-1);
 		}
 		if (s->exit_stat != 0)

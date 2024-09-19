@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:10 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/05 10:56:15 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:23:38 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 
 void	close_fd(int *fd)
 {
-	if (*fd >= 0)
+	if (*fd >= 0 && *fd != 0 && *fd != 1 && *fd != 2)
 	{
 		close(*fd);
 		*fd = -1;

@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/18 22:58:48 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:46:04 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	exit_doc(t_ms *s, int heredoc, t_cmd *cmd)
 		if (s->cmd_temp != NULL)
 			free(s->cmd_temp);
 		free_cmdinfo(&cinfo);
+		dprintf(2, "\n ADIOS VIDE CRUEL \n");
 		exit_minishell(s, NULL);
 	}
 }

@@ -6,7 +6,7 @@
 #    By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/09/17 19:16:15 by dde-maga         ###   ########.fr        #
+#    Updated: 2024/09/19 13:29:25 by dde-maga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,7 +115,7 @@ fclean: clean
 	@printf "$(RED)[All binaries deleted]    $(RST)\n"
 
 valgrind: $(NAME)
-	valgrind --suppressions=readline.supp --track-fds=yes --track-origins=yes --leak-check=full 	 --show-leak-kinds=all ./${NAME}
+	valgrind --suppressions=readline.supp --track-fds=yes --track-origins=yes --leak-check=full	--show-leak-kinds=all ./${NAME}
 
 valgrind2: $(NAME)
 	valgrind --suppressions=readline.supp --track-fds=yes --track-origins=yes  --trace-children=yes  --show-leak-kinds=all --leak-check=full --show-error-list=yes --verbose ./${NAME}

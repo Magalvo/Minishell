@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:28:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/18 14:17:37 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:15:15 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void	parse_args(char **ps, char *es, t_d_cmd *cmds, t_ms *s)
 		cmds->one->argc++;
 		cmds->two = parse_redir(cmds->two, ps, es, s);
 	}
+
 }
 
 int	count_argc(char **ps, char *es, t_ms *s)
