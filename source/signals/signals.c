@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:28 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/19 13:37:59 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/19 17:27:04 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ void	here_handler(int signal, siginfo_t *info, void *context)
 		write(1, "\n", 1);
 		close(sinfo.cmd->fd);
 		sinfo.s->exit_stat = 130;
+		sinfo.s->error = true;
 	}
 }

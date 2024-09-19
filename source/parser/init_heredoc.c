@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/19 17:29:06 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/19 17:39:15 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,13 @@ t_cmd	*cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 	str_rm_char(delim, EMPTY);
 	filename = ft_getrnd_str();
 	cmd->file = ft_strjoin("/tmp/", filename);
-	if (!cmd->file)
-		perror("strjoin null");
 	free(filename);
 	exit_pack(s, cmd);
 	cmd->fd = exec_heredoc(cmd, cmd->file, expand, s);
 	if (cmd->fd == -1)
 	{
 		free_ast(cmd);
+		cmd(NULL);
 		return (NULL);
 	}
 	return (cmd);
@@ -82,6 +81,7 @@ int	here_await(pid_t pid, t_ms *s)
 		if (s->exit_stat == 130)
 		{
 			ft_dprintf(2, "WAIT STAT 130 \n");
+			s->error = true;
 			return (-1);
 		}
 		if (s->exit_stat != 0)
