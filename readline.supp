@@ -18,6 +18,20 @@
     fun:realloc
 }
 {
+   readline_and_history_leaks
+   Memcheck:Leak
+   ...
+   fun:readline
+   ...
+}
+{
+   add_history_leaks
+   Memcheck:Leak
+   ...
+   fun:add_history
+   ...
+}
+{
     still_reachable rl_extend_line_buffer
     Memcheck:Leak
     ...
