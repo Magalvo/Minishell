@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:13:04 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/19 17:39:15 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/19 18:44:58 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_cmd	*cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s)
 	if (cmd->fd == -1)
 	{
 		free_ast(cmd);
-		cmd(NULL);
+		clear_fds();
 		return (NULL);
 	}
 	return (cmd);
