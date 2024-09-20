@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_prechecks.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:00 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/19 16:53:16 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/20 10:25:23 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ char	*expand_sw_vars(char *input, t_ms *s)
 			xp_input = vars_sw(xp_input, pos, s);
 			if (s->error == true)
 			{
-				dprintf(2, "\nSAAAI 3\n");
 				break;
 			}
 			pos = ft_strchr(xp_input, '$');

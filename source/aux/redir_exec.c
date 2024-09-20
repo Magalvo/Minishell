@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:22:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/20 10:05:19 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/20 10:54:24 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,73 @@ void	unclose0(t_ms *s, t_cmd *cmd, int *fd_in, int *temp_fd)
 	}
 }
 
+
+int	aux_verify(t_cmd *cmd)
+{
+	t_cmd	*cmd_h;
+
+	cmd_h = cmd;
+	while (cmd_h->cmd)
+	{
+		if (cmd_h->fd == 0)
+		{
+			if (access(cmd_h->file, F_OK | R_OK) != 0)
+			{
+				perror(cmd_h->file);
+				return (1);
+			}
+				
+		}
+		else if (cmd_h->fd == 1)
+		{
+			if (access(cmd_h->file, F_OK) == 0)
+			{
+				if (access(cmd_h->file, W_OK) != 0)
+				{
+					perror(cmd_h->file);
+					return (1);
+				}
+			}
+		}
+		cmd_h = cmd_h->cmd;
+	}
+	return (0);
+}
+
 void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	int	temp_fd;
-
+	
 	temp_fd = -1;
+	if (aux_verify(cmd) == 1)
+		return ;
 	while (cmd->type == REDIR || cmd->type == HEREDOC)
 	{
 		if (cmd->error_msg)
+		{
 			ft_dprintf(2, "%s\n", cmd->error_msg);
+			return ;
+		}
 		if (cmd->type == HEREDOC)
 		{
 			if (cmd->cmd && cmd->cmd->type == 2)
 				unclose0(s, cmd, &fd_in, &temp_fd);
 			else
-				redir_aux(cmd, fd_in);
+			{
+				if (fd_in > 2)
+					close_fd(&fd_in);
+				fd_in = cmd->fd;
+			}
 		}
-		if (cmd->fd == 1 && !cmd->error_msg)
-			unclose1(s, cmd, &fd_out, &temp_fd);
-		else if (cmd->fd == 0 && !cmd->error_msg)
+		if (cmd->fd == 0 && !cmd->error_msg)
 			unclose0(s, cmd, &fd_in, &temp_fd);
+		else if (cmd->fd == 1 && !cmd->error_msg)
+			unclose1(s, cmd, &fd_out, &temp_fd);
+		if (s->exit_stat == 1 || s->exit_stat == 2)
+		{
+			dprintf(2, "\nENTROU NO ERR FILE\n");
+			return ;
+		}	
 		cmd = cmd->cmd;
 	}
 	close_fd(&temp_fd);

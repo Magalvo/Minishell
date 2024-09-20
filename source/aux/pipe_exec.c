@@ -68,7 +68,7 @@ int	ft_exec_paria(t_ms *s, t_cmd *cmds)
 	else if (ft_sw_builtins(cmds->argv[0], "echo") == 0)
 	{
 		if (cmds->error_msg)
-			printf("%s\n", cmds->error_msg);
+			printf("EXEC_PARIA %s\n", cmds->error_msg);
 		else
 		{
 			echo_cmd_test(cmds->argv, s, STDIN_FILENO, STDOUT_FILENO);

@@ -152,6 +152,7 @@ bool	syntax_redir(char *str, char *end);
 bool	strrchr_alpha_loop(const char *input, const char *pos);
 t_cmd	*parse_input(char **input, t_ms *s);
 t_cmd	*cmd_exec(t_ms *s);
+void	cmd_redir(t_cmd *cmd, char *filename, int mode);
 t_cmd	*cmd_redir_in(t_cmd *subcmd, char *filename, int mode, t_ms *s);
 t_cmd	*cmd_redir_out(t_cmd *subcmd, char *filename, int mode, t_ms *s);
 t_cmd	*cmd_heredoc(t_cmd *subcmd, char *delim, int mode, t_ms *s);

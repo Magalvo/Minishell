@@ -78,8 +78,9 @@ void	single_exec(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		if (fd_out != STDOUT_FILENO)
 			dup_and_close(s, &fd_out, &fd_in, STDOUT_FILENO);
 		if (cmd->error_msg != NULL)
-			ft_dprintf(2, "%s\n", cmd->error_msg);
-		if (!ft_exec_builtins_chr(s, cmd->argv, fd_in, fd_out))
+			ft_dprintf(2, "SINGLE_EXEC %s\n", cmd->error_msg);
+		else if (!cmd->error_msg && \
+			!ft_exec_builtins_chr(s, cmd->argv, fd_in, fd_out))
 			exec_one(s, cmd->argv);
 		clear_fds();
 		exit_minishell(s, NULL);
