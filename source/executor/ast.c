@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:24:23 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/20 10:35:11 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/20 21:29:35 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	}
 	else if (cmd->type == REDIR || cmd->type == HEREDOC)
 	{
-		if (fd_in != STDIN_FILENO && (cmd->fd == 0 | cmd->fd > 1) && s->ast->type == PIPE)
+		if (fd_in != STDIN_FILENO && ((cmd->fd == 0) | (cmd->fd == 1) | (cmd->fd > 1)) \
+			&& s->ast->type == PIPE)
 		{
 			fd_in = STDIN_FILENO;
 		}
