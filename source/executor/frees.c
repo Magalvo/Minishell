@@ -102,6 +102,7 @@ void	reset_ast(t_ms *s)
 
 	i = 3;
 	s->error = false;
+	s->file_err = -1;
 	if (s->ast)
 	{
 		free_ast(s->ast);

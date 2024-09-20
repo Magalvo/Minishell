@@ -78,8 +78,8 @@ struct s_ms
 	int		here_doc;
 	char	*cmd_temp;
 	char	*cmd_temp2;
-	t_cmd	*cmd_temp3;
-	t_cmd	*cmd_temp4;
+	t_cmd	*cmd_carris;
+	int		file_err;
 	pid_t	pid;
 	bool	tog;
 	t_cmd	*ast;
@@ -123,6 +123,7 @@ struct	s_cmd
 	char	*error_msg;
 	int		mode;
 	int		fd;
+	int		inv_file;		//flag para n criar file
 	char	**temp;
 };
 

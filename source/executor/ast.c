@@ -26,13 +26,10 @@ void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	}
 	else if (cmd->type == REDIR || cmd->type == HEREDOC)
 	{
-		if (fd_in != STDIN_FILENO && cmd->fd == 0 && s->ast->type == PIPE)
+		if (fd_in != STDIN_FILENO && (cmd->fd == 0 | cmd->fd > 1) && s->ast->type == PIPE)
 		{
-			dprintf(2, "\nVISTA ALEGRE\n");
 			fd_in = STDIN_FILENO;
 		}
-		/* if (cmd->error_msg != NULL)
-			ft_dprintf(2, "%s\n",cmd->error_msg); */
 		exec_redir(s, cmd, fd_in, fd_out);
 	}
 }

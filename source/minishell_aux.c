@@ -82,8 +82,8 @@ void	init_t_ms(t_ms *s)
 	s->env_tmp = NULL;
 	s->cmd_temp = NULL;
 	s->cmd_temp2 = NULL;
-	s->cmd_temp3 = NULL;
-	s->cmd_temp4 = NULL;
+	s->cmd_carris = NULL;
+	s->file_err = 0;
 	s->ast = NULL;
 	s->env = NULL;
 	s->export = NULL;

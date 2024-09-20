@@ -20,6 +20,7 @@ t_cmd	*cmd_init(t_ms *s)
 	if (!cmd)
 		reprompt(EXEC_MISSING_CMD, 2, s);
 	cmd->error_msg = NULL;
+	cmd->inv_file = 0;
 	return (cmd);
 }
 
