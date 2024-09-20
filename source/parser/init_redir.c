@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:06:42 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/19 21:25:15 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/20 10:09:55 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ t_cmd	*cmd_redir_in(t_cmd *subcmd, char *filename, int mode, t_ms *s)
 	filename = reassemble_input(filename);
 	end_file = filename;
 	get_endstr_ptr(&end_file);
-	if (peek_nsp(filename, end_file, SPACES))
+	if (peek_nsp(filename, end_file, SPACES) || \
+		access(filename, F_OK | R_OK) != 0)
 		cmd->error_msg = REDIR_SYNTAX;
 	if (filename_expand)
 		cmd->error_msg = NULL;

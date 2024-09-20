@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/19 17:31:01 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/20 10:04:38 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,7 @@ void	free_env_list(t_env *list);
 void	cleanup_shell(t_ms *s);
 void	clear_cmd(t_cmd *cmd);
 void	free_env_array(char **env_array);
+void	redir_aux(t_cmd *cmd, int fd_in);
 char	*get_env_expand(char *key);
 char	**env_convert(t_env *env);
 char	**create_env_array(int ctd_ptr);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset_aux.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:20:18 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/02 10:42:11 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/20 10:03:57 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,11 @@ int	export_unset_error(t_ms *s, char *msg, char *key)
 	ft_putstr_fd(msg, 2);
 	ft_putstr_fd("\n", 2);
 	return (1);
+}
+
+void	redir_aux(t_cmd *cmd, int fd_in)
+{
+	if (fd_in > 2)
+		close_fd(&fd_in);
+	fd_in = cmd->fd;
 }
