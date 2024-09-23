@@ -38,42 +38,10 @@ void	unclose0(t_ms *s, t_cmd *cmd, int *fd_in, int *temp_fd)
 	}
 }
 
-
-int	aux_verify(t_cmd *cmd, t_ms *s)
-{
-	t_cmd	*cmd_h;
-
-	cmd_h = cmd;
-	while (cmd_h->cmd)
-	{
-		if (cmd_h->fd == 0)
-		{
-			if (access(cmd_h->file, F_OK | R_OK) != 0)
-			{
-				s->exit_stat = 1;
-				return (perror(cmd_h->file), 1);
-			}	
-		}
-		else if (cmd_h->fd == 1)
-		{
-			if (access(cmd_h->file, F_OK) == 0)
-			{
-				if (access(cmd_h->file, W_OK) != 0)
-				{
-					s->file_err += 1;
-					cmd_h->inv_file = 1;
-				}
-			}
-		}
-		cmd_h = cmd_h->cmd;
-	}
-	return (0);
-}
-
 void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 {
 	int	temp_fd;
-	
+
 	temp_fd = -1;
 	if (aux_verify(cmd, s) == 1)
 		return ;
@@ -84,25 +52,11 @@ void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			ft_dprintf(2, "%s\n", cmd->error_msg);
 			return ;
 		}
-		if (cmd->type == HEREDOC)
-		{
-			if (cmd->cmd && cmd->cmd->type == 2)
-				unclose0(s, cmd, &fd_in, &temp_fd);
-			else
-			{
-				if (fd_in < 2)
-					fd_in = cmd->fd;
-			}
-		}
+		heredoc_handler(s, cmd, &fd_in, &temp_fd);
 		if (cmd->fd == 0)
 			unclose0(s, cmd, &fd_in, &temp_fd);
 		else if (cmd->fd == 1)
 			unclose1(s, cmd, &fd_out, &temp_fd);
-/* 		if (s->exit_stat == 1 || s->exit_stat == 2)
-		{
-			dprintf(2, "\nENTROU NO ERR FILE\n");
-			return ;
-		}	 */
 		cmd = cmd->cmd;
 	}
 	close_fd(&temp_fd);

@@ -19,7 +19,6 @@ void	cmd_redir(t_cmd *cmd, char *filename, int mode)
 	cmd->file = filename;
 }
 
-
 t_cmd	*cmd_redir_out(t_cmd *subcmd, char *filename, int mode, t_ms *s)
 {
 	t_cmd	*cmd;
@@ -74,4 +73,12 @@ t_cmd	*cmd_redir_in(t_cmd *subcmd, char *filename, int mode, t_ms *s)
 	cmd->fd = 0;
 	cmd_redir(cmd, filename, mode);
 	return (cmd);
+}
+
+void	handle_new_arg(char **q, char **eq, t_ms *s, char **new_arg)
+{
+	*new_arg = ft_calloc((*eq - *q) + 1, sizeof(char));
+	ft_memmove ((void *)*new_arg, (void *)*q, (*eq - *q));
+	unglue_str (*new_arg, *new_arg + ft_strlen(*new_arg));
+	*new_arg = expand_sw_vars(*new_arg, s);
 }

@@ -67,4 +67,3 @@ void	get_endstr_ptr(char **str)
 	while (**str != '\0')
 		(*str)++;
 }
-

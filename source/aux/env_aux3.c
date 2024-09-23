@@ -55,7 +55,6 @@ void	dup_and_close(t_ms *s, int *fd_this, int *fd_aux, int standard)
 		close_fd(fd_this);
 		if (*fd_aux != STDIN_FILENO && *fd_aux != STDOUT_FILENO)
 			close_fd(fd_aux);
-		dprintf(2, "\nOLHA AQUI1\n");
 		exit_minishell(s, NULL);
 	}
 	close_fd(fd_this);

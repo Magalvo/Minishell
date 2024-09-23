@@ -37,7 +37,6 @@ t_cmd	*cmd_exec(t_ms *s)
 	return (cmd);
 }
 
-
 t_cmd	*cmd_pipe(t_cmd *left, t_cmd *right, t_ms *s)
 {
 	t_cmd	*cmd;

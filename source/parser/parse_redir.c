@@ -39,7 +39,7 @@ t_cmd	*parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 		filename = ft_substr(q, 0, eq - q);
 		cmd = redir_sw(cmd, tok, filename, s);
 		if (s->error == true)
-			break ;	
+			break ;
 	}
 	return (cmd);
 }

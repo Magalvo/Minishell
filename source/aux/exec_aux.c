@@ -41,7 +41,7 @@ void	exec_command_path(t_ms *s, char **argv)
 	char	**argv_new;
 
 	argv_new = NULL;
-	if (ft_strchr(argv[0], ' ') != NULL)
+	if (ft_strchr(argv[0], ' ') != NULL && ft_strchr(s->input, '$') != NULL)
 	{
 		argv_new = ft_split(argv[0], ' ');
 		ft_free_dptr(&argv);
@@ -56,10 +56,7 @@ void	exec_command_path(t_ms *s, char **argv)
 	}
 	cmd_name = ft_strchr(argv[0], '/');
 	if (cmd_name)
-	{
-		cmd_name++;
-		argv[0] = cmd_name;
-	}
+		argv[0] = ++cmd_name;
 	execve(path, argv, s->env_tmp);
 	free(path);
 	not_found(argv[0], 127, s);

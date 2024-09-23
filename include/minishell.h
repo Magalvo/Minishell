@@ -169,6 +169,7 @@ void	clear_fds(void);
 void	print_ast(t_ms *s, t_cmd *ptr, int padding);
 void	print_ast_exec(t_ms *s, t_cmd *ptr, int padding);
 void	print_ast_pipe(t_ms *s, t_cmd *ptr, int padding);
+void	heredoc_handler(t_ms *s, t_cmd *cmd, int *fd_in, int *temp_fd);
 void	exit_and_found(char *str, int status, t_ms *s);
 void	exit_doc(t_ms *s, int heredoc, t_cmd *cmd);
 void	free_herechild(t_cmd **cmd);
@@ -190,6 +191,9 @@ int		change_pwd(t_env *env, t_ms *s);
 int		cd_cmd_home(t_env *env);
 int		cd_cmd_minus(t_env *env);
 int		isvar(int c);
+int		aux_verify(t_cmd *cmd, t_ms *s);
+void	unclose1(t_ms *s, t_cmd *cmd, int *fd_out, int *temp_fd);
+void	unclose0(t_ms *s, t_cmd *cmd, int *fd_in, int *temp_fd);
 
 //*==================== AUX =======================*//
 
@@ -221,6 +225,8 @@ int		builtins_parent(t_ms *s, char **cmds, int fd_in, int fd_out);
 
 //*================= EXEC =========================*//
 
+void	free_cmdinfo(t_cinfo *cinfo);
+void	handle_new_arg(char **q, char **eq, t_ms *s, char **new_arg);
 void	exec_from_ast(t_ms *s);
 void	exec_pipe(t_ms *s, t_cmd *cmd, int fd_in, int fd_out);
 void	exec_one(t_ms *s, char **argv);
@@ -241,7 +247,7 @@ char	*cmd_path(char **paths, char *cmd, t_ms *s);
 char	*check_if_dir(char *cmd, t_ms *s);
 char	*check_paths(char **paths, char	*cmd);
 char	*get_cmd_from_cwd(char *cmd);
-void	free_cmdinfo(t_cinfo *cinfo);
+int		check_read_acess(t_cmd *cmd_h, t_ms *s);
 
 //*================= ERRORS =========================*//
 

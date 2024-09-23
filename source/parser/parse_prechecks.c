@@ -52,7 +52,7 @@ char	*expand_sw_vars(char *input, t_ms *s)
 			xp_input = vars_sw(xp_input, pos, s);
 			if (s->error == true)
 			{
-				break;
+				break ;
 			}
 			pos = ft_strchr(xp_input, '$');
 		}
@@ -73,7 +73,6 @@ char	*tilde_sw(char *xp_input, char *pos, t_ms *s)
 		xp_input = expand_tilde_oldpwd(xp_input, pos, false, s);
 	else
 		xp_input = expand_tilde(xp_input, pos, false, s);
-
 	return (xp_input);
 }
 

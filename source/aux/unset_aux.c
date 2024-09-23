@@ -54,9 +54,41 @@ int	export_unset_error(t_ms *s, char *msg, char *key)
 	return (1);
 }
 
-void	redir_aux(t_cmd *cmd, int fd_in)
+int	aux_verify(t_cmd *cmd, t_ms *s)
 {
-	if (fd_in > 2)
-		close_fd(&fd_in);
-	fd_in = cmd->fd;
+	t_cmd	*cmd_h;
+
+	cmd_h = cmd;
+	while (cmd_h->cmd)
+	{
+		if (cmd_h->fd == 0)
+		{
+			if (check_read_acess(cmd_h, s))
+				return (1);
+		}
+		else if (cmd_h->fd == 1)
+		{
+			if (access(cmd_h->file, F_OK) == 0)
+			{
+				if (access(cmd_h->file, W_OK) != 0)
+				{
+					s->file_err += 1;
+					cmd_h->inv_file = 1;
+				}
+			}
+		}
+		cmd_h = cmd_h->cmd;
+	}
+	return (0);
+}
+
+void	heredoc_handler(t_ms *s, t_cmd *cmd, int *fd_in, int *temp_fd)
+{
+	if (cmd->type == HEREDOC)
+	{
+		if (cmd->cmd && cmd->cmd->type == 2)
+			unclose0(s, cmd, fd_in, temp_fd);
+		else if (*fd_in < 2)
+			*fd_in = cmd->fd;
+	}
 }

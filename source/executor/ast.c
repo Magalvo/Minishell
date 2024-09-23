@@ -26,7 +26,7 @@ void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 	}
 	else if (cmd->type == REDIR || cmd->type == HEREDOC)
 	{
-		if (fd_in != STDIN_FILENO && ((cmd->fd == 0) | (cmd->fd == 1) | (cmd->fd > 1)) \
+		if (fd_in != STDIN_FILENO && ((cmd->fd == 0) | (cmd->fd >= 1)) \
 			&& s->ast->type == PIPE)
 		{
 			fd_in = STDIN_FILENO;

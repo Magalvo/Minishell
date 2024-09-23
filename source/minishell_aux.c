@@ -43,8 +43,8 @@ void	exit_minishell(t_ms *s, char *msg)
 
 int	init_minishell(t_ms *s, char **ep)
 {
-	char *shell;
-	
+	char	*shell;
+
 	if (!*ep)
 	{
 		initialize_env(&ep);

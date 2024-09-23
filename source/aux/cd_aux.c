@@ -43,8 +43,8 @@ int	cd_cmd_handle_home(t_env *env, char **path)
 
 int	cd_cmd_handle_minus(t_env *env, char **path)
 {
-	if (!path[1] || (path[1][0] == '~' && path[1][1] == '\0'))
-		return (cd_cmd_home(env));
+	if (!path[1] || (path[1][0] == '-' && path[1][1] == '\0'))
+		return (cd_cmd_minus(env));
 	return (0);
 }
 

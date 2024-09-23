@@ -73,14 +73,11 @@ int	here_await(pid_t pid, t_ms *s)
 	int	status;
 
 	waitpid(pid, &status, 0);
-	ft_dprintf(2, "Exit stat %d\n", s->exit_stat);
 	if (WIFEXITED(status))
 	{
 		s->exit_stat = WEXITSTATUS(status);
-		ft_dprintf(2, "Exit statIN %d\n", s->exit_stat);
 		if (s->exit_stat == 130)
 		{
-			ft_dprintf(2, "WAIT STAT 130 \n");
 			s->error = true;
 			return (-1);
 		}

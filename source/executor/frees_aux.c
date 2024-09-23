@@ -59,3 +59,14 @@ void	close_fd_child(t_cmd *cmd, int fd_in, int fd_out)
 	close_fd(&fd_in);
 	close_fd(&fd_out);
 }
+
+int	check_read_acess(t_cmd *cmd_h, t_ms *s)
+{
+	if (access(cmd_h->file, F_OK | R_OK) != 0)
+	{
+		s->exit_stat = 1;
+		perror(cmd_h->file);
+		return (1);
+	}
+	return (0);
+}
