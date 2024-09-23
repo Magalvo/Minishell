@@ -3,44 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/09 17:32:49 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/23 15:18:15 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-// ! WTF? debug right?
-// void print_open_fds(void)
-// {
-// 	char path[256];
-// 	snprintf(path, sizeof(path), "/proc/%d/fd", getpid());
-// 	DIR *dir = opendir(path);
-// 	if (dir) {
-// 		struct dirent *entry;
-// 		while ((entry = readdir(dir)) != NULL) {
-// 			if (entry->d_type == DT_LNK) {
-// 				printf("Open FD: %s\n", entry->d_name);
-// 			}
-// 		}
-// 		closedir(dir);
-// 	}
-// }
-
-		/* Test loop */
-		// if (isatty(fileno(stdin)))
-		// {
-		// 	input = readline(s.prompt);
-		// }
-		// else
-		// {
-		// 	char *line;
-		// 	line = get_next_line(fileno(stdin));
-		// 	input = ft_strtrim(line, "\n");
-		// 	free(line);
-		// }
 
 void	minishell(char **envp)
 {

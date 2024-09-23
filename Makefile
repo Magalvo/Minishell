@@ -6,7 +6,7 @@
 #    By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 12:12:04 by cjoao-de          #+#    #+#              #
-#    Updated: 2024/09/19 21:07:45 by cjoao-de         ###   ########.fr        #
+#    Updated: 2024/09/23 15:15:44 by cjoao-de         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,8 +64,8 @@ LDFLAGS = -L$(LIBFT_DIR) -lft -L/usr/local/opt/readline/lib -lreadline
 
 # Project settings
 NAME = minishell
-CFLAGS = -Wall -Wextra -Werror -I${LIBFT_DIR} #-fsanitize=address  #-O3
-debug: CFLAGS += -ggdb3 #-Og -fPIE #-fsanitize=address #-pg   #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -I${LIBFT_DIR} #-O3
+debug: CFLAGS += -g3 #-Og #-fPIE #-fsanitize=address #-pg
 MAKEFLAGS += --no-print-directory #  --silent
 .SILENT: $(OBJ) $(NAME) clean fclean
 ARFLAGS = rvs
@@ -86,7 +86,6 @@ libft: $(LIBFT)
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
 
-# $(NAME): $(LIBFT) $(OBJ)
 $(NAME): $(OBJ)
 	@printf "$(YELLOW)** compiling **      "$(NAME)"$(RST)\n"
 	$(CC) $(CFLAGS)  -o $(NAME) $(OBJ) $(LDFLAGS)
@@ -97,7 +96,6 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(dir $@)
 	@printf "$(CYAN_I)** compiling **      "$<"$(RST)\n"
 	$(CC) $(CFLAGS) $(INC_DIR) -c $< -o $@
-
 
 debug: clean $(LIBFT) $(OBJ)
 	@printf "$(YELLOW)"
@@ -117,13 +115,8 @@ fclean: clean
 valgrind: $(NAME)
 	valgrind --suppressions=readline.supp --track-fds=yes --track-origins=yes --leak-check=full	--show-leak-kinds=all ./${NAME}
 
-valgrind2: $(NAME)
-	valgrind --suppressions=readline.supp --track-fds=yes --track-origins=yes  --trace-children=yes  --show-leak-kinds=all --leak-check=full --show-error-list=yes --verbose ./${NAME}
-#valgrind -s --suppressions=readline.supp --tool=memcheck --tool=callgrind  --track-fds=yes ./${NAME}
-
 lcount:
 	@printf "$(NAME) has $(BLUE_U)$(shell cat $(SRC) | wc -l)$(RST) lines of code\n"
 	@printf "There are $(BLUE_U)$(shell cat $(SRC) | grep if | wc -l) if $(RST)statements, and $(BLUE_U)$(shell cat $(SRC) | grep while | wc -l) while$(RST) loops\n"
-
 
 re: fclean all

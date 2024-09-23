@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 14:59:25 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/09/19 16:02:25 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/23 15:22:45 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,44 +96,3 @@ int	ft_exec_builtins_chr(t_ms *s, char **cmds, int fd_in, int fd_out)
 	else
 		return (0);
 }
-
-/* int	ft_exec_buitltins(t_ms *s, char **cmds)
-{
-	int	i;
-	int	len;
-
-int	add_slash(char *slash, char **paths)
-{
-	len = 0;
-	i = 0;
-	while (paths[i])
-	{
-		len = ft_strlen(paths[i]);
-		if (paths[i][len - 1] != '/')
-		{
-			slash = ft_strjoin(paths[i], "/");
-			if (!slash)
-				return (free_paths(paths, i), 0);
-			free(paths[i]);
-			paths[i] = slash;
-		}
-		i++;
-	}
-	return (1);
-}
-	if (ft_strcmp(cmds->cmd_args[0], "echo") == 0)
-		return (echo_cmd(cmds));
-	if (ft_strcmp(cmds->cmd_args[0], "cd") == 0)
-		return (cd_cmd(s));
-	if (ft_strcmp(cmds->cmd_args[0], "env") == 0)
-		return (env_cmd(s));
-	if (ft_strcmp(cmds->cmd_args[0], "pwd") == 0)
-		return (pwd_cmd(s));
-	if (ft_strcmp(cmds->cmd_args[0], "export") == 0)
-		return (export_cmd(s, cmds));
-	if (ft_strcmp(cmds->cmd_args[0], "unset") == 0)
-		return (unset_cmd(s, cmds));
-	if (ft_strcmp(cmds->cmd_args[0], "exit") == 0)
-		return (exit_cmd(s));
-	return (1);
-} */

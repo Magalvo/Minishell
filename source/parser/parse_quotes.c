@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:08 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/11 13:42:28 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/23 15:19:55 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ by one of these characters are removed
 // enum s_quote_type { NONE 0, E_QUOTE 1, E_DQUOTE 2 };
 // # define QUOTE '		DQUOTE "
 // key[0] unused, key[1] for quote, key[2] for dquote
-// TODO too many lines // implement the XOR ^= trick here
-
 int	*magic_key(void)
 {
 	int	*key;

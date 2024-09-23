@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:12:38 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/29 17:53:56 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/23 15:20:41 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,72 +54,3 @@ void	print_ast(t_ms *s, t_cmd *ptr, int padding)
 		print_ast_heredoc(s, ptr, padding);
 	}
 }
-
-/* bak
-
-void	print_ast(t_ms *s, t_cmd *ptr, int padding)
-{
-	int p;
-
-	p=0;
-	if (s->ast == NULL)
-	{
-		printf("empty input, nothing to print");
-		return ;
-	}
-	if (ptr->type == EXEC)
-	{
-		print_ast_exec(s, ptr, padding)
-		padding++;
-		while (p++ < padding)
-			printf("\t");
-		printf("type EXEC, args: \n");
-		print_2d(ptr->argv, padding);
-		p = 0;
-	}
-	else if (ptr->type == PIPE)
-	{
-		padding++;
-		while (p++ < padding)
-			printf("\t");
-		p = 0;
-		printf("type PIPE, \n");
-		while (p++ < padding)
-			printf("\t");
-		p = 0;
-		printf("LEFT leaf, \n");
-		print_ast(s, ptr->left, padding);
-		while (p++ < padding)
-			printf("\t");
-		p = 0;
-		printf("RIGHT leaf, \n");
-		print_ast(s, ptr->right, padding);
-	}
-	else if (ptr->type == REDIR)
-	{
-		padding++;
-		while (p++ < padding)
-			printf("\t");
-		p = 0;
-		printf("type REDIR, \n");
-		while (p++ < padding)
-			printf("\t");
-		p = 0;
-		printf("FILE: %s \n", ptr->file);
-		print_ast(s, ptr->cmd, padding);
-	}
-	else if (ptr->type == HEREDOC)
-	{
-		padding++;
-		while (p++ < padding)
-			printf("\t");
-		p = 0;
-		printf("type HEREDOC, \n");
-		while (p++ < padding)
-			printf("\t");
-		p = 0;
-		printf("DELIM: %s \n", ptr->delim);
-		print_ast(s, ptr->cmd, padding);
-	}
-}
-*/

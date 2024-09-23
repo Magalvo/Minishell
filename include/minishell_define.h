@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_define.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/18 22:31:18 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/23 15:17:21 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,22 @@
 # define DQUOTE 34
 # define SPACES		"\t\n\v\f\r "
 # define GLUE		"\x01\x02\x03\x04\x05\x06"
-# define SYMBOLS	"|&()<>" // { } $ @ ' " \ / * ;
-# define TOKENS		"|<>" // { } $ @ ' " \ / * ;
-# define UNTOKENS	"\x12\x13\x14" // { } $ @ ' " \ / * ;
+# define SYMBOLS	"|&()<>"
+# define TOKENS		"|<>"
+# define UNTOKENS	"\x12\x13\x14"
 # define QUOTES		"'\""
 # define UNQUOTES	"\x15\x16"
 # define DOLAR		17
 # define EMPTY		16
 # define EMPTY_STR	"\x10\x00"
-// # define EMPTY_ARG 17
 
 //*======================= STRUCTS ====================== *//
 typedef struct s_env		t_env;
 typedef struct s_ms			t_ms;
 typedef struct s_builtin	t_builtin;
-typedef struct s_execution	t_execution;		//TODO not defined, still used?
+typedef struct s_execution	t_execution;
 typedef struct s_cmd		t_cmd;
-typedef struct s_d_cmd		t_d_cmd;			// two t_cmd pointers
+typedef struct s_d_cmd		t_d_cmd;
 typedef struct s_pids		t_pids;
 typedef struct s_cinfo		t_cinfo;
 typedef struct s_sinfo		t_sinfo;
@@ -57,7 +56,6 @@ struct	s_env
 	char	*value;
 	t_env	*prev;
 	t_env	*next;
-
 };
 
 struct s_ms
@@ -88,7 +86,6 @@ struct s_ms
 	t_pids	pids_exec;
 };
 
-// ? not used atm
 struct s_builtin
 {
 	char	*name;
@@ -123,7 +120,7 @@ struct	s_cmd
 	char	*error_msg;
 	int		mode;
 	int		fd;
-	int		inv_file;		//flag para n criar file
+	int		inv_file;
 	char	**temp;
 };
 
@@ -154,31 +151,3 @@ enum e_quote_type
 };
 
 #endif
-
-// !struct siginfo_DontUse
-//* MAIN / CHILD / HERE_DOC / IGNORE
-//* Redirect Infile
-//* Redirect Outfile
-//* Exit Status
-/*temp for waitpid*/
-//* Temp env;
-//* NUM of heredocs
-//*For here doc signal
-//* Command List
-//*	ENV Linked List
-//* EXPORT List (Sorted)
-//* Wiat the cmds
-//	int	si_signo; /* signal number */
-//	int si_errno; /* if nonzero, errno value from errno.h */
-//	int si_code; /* additional info (depends on signal) */
-//	pid_t si_pid; /* sending process ID */
-//	uid_t si_uid; /* sending process real user ID */
-//	void *si_addr; /* address that caused the fault */
-//	int si_status; /* exit value or signal number */
-//	union sigval si_value; /* application-specific value */
-	/* possibly other fields also */
-	//*Eg.: PATH=
-//*Eg.: /usr/bin (...)
-//token
-//* 1 -> ENV Originals  2 ->No Value  3 ->Exported with Export
-// !======================================

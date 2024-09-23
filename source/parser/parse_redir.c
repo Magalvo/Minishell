@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/18 18:55:03 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/23 15:25:59 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // > outfile, open O_WRONLY|O_CREAT|O_TRUNC
 // H heredoc, open O_WRONLY|O_CREAT, no truncate
 // + >>, open O_WRONLY|O_CREAT|O_APPEND
+
 t_cmd	*parse_redir(t_cmd *cmd, char **ps, char *es, t_ms *s)
 {
 	int		tok;
