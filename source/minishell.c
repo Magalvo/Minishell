@@ -20,6 +20,7 @@ void	minishell(char **envp)
 	init_t_ms(&s);
 	if (!init_minishell(&s, envp))
 		exit_minishell(&s, NULL);
+	exit_pack(&s, NULL);
 	while (true)
 	{
 		check_signal(MAIN);

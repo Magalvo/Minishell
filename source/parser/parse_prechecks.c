@@ -65,8 +65,8 @@ char	*expand_sw_vars(char *input, t_ms *s)
 
 char	*tilde_sw(char *xp_input, char *pos, t_ms *s)
 {
-	if (ft_strnstr(xp_input, "=~", ft_strlen(xp_input)))
-		xp_input = expand_tilde_equal(xp_input, pos, s);
+/* 	if (ft_strnstr(xp_input, "=~", ft_strlen(xp_input)))		//!Not working as t should atm
+		xp_input = expand_tilde_equal(xp_input, pos, s); */     //!
 	if (ft_strnstr(xp_input, "~+", ft_strlen(xp_input)))
 		xp_input = expand_tilde_pwd(xp_input, pos, false, s);
 	else if (ft_strnstr(xp_input, "~-", ft_strlen(xp_input)))

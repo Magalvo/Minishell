@@ -17,8 +17,12 @@ void	handler(int signo, siginfo_t *info, void *context)
 {
 	(void)info;
 	(void)context;
+	t_sinfo	sinfo;
+
+	sinfo = exit_pack(NULL, NULL);
 	if (signo == SIGINT)
 	{
+		sinfo.s->exit_stat = 130;
 		write(1, "\n", 1);
 		rl_on_new_line();
 		rl_replace_line("", 0);
