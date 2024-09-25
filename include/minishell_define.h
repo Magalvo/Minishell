@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_define.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/23 15:17:21 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/25 12:14:48 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,27 @@
 # define DOLAR		17
 # define EMPTY		16
 # define EMPTY_STR	"\x10\x00"
+
+# define BLACK		"\e[30m"
+# define RED    	"\e[31m"
+# define GREEN		"\e[32m"
+# define YELLOW		"\e[33m"
+# define BLUE		"\e[34m"
+# define MAGENTA	"\e[35m"
+# define CYAN		"\e[36m"
+# define GRAY		"\e[90m"
+# define WHITE		"\e[97m"
+# define RST		"\e[0m"
+
+# define BLACK_B	"\e[1;30m"
+# define RED_B		"\e[1;31m"
+# define GREEN_B	"\e[1;32m"
+# define YELLOW_B	"\e[1;33m"
+# define BLUE_B		"\e[1;34m"
+# define MAGENTA_B	"\e[1;35m"
+# define CYAN_B 	"\e[1;36m"
+# define GRAY_B 	"\e[1;90m"
+# define WHITE_B	"\e[1;97m"
 
 //*======================= STRUCTS ====================== *//
 typedef struct s_env		t_env;

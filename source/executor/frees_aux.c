@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/20 10:21:06 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/25 11:51:16 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	exit_doc(t_ms *s, int heredoc, t_cmd *cmd)
 	if (s->exit_stat != 130)
 	{
 		close(heredoc);
+		ft_dprintf(2, "%s ", DD);
+		ft_dprintf(2, "(wanted `%s')\n", cmd->delim);
 		free_ast(cmd);
 		if (s->cmd_temp != NULL)
 			free(s->cmd_temp);

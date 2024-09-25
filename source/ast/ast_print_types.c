@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_print_types.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:12:30 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/08/05 15:56:32 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/25 12:15:36 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,18 @@ void	print_ast_pipe(t_ms *s, t_cmd *ptr, int padding)
 		while (p++ < padding)
 			printf("\t");
 		p = 0;
-		printf("type PIPE, \n");
+		printf("%stype PIPE, \n", RED_B);
 		while (p++ < padding)
 			printf("\t");
 		p = 0;
-		printf("LEFT leaf, \n");
+		printf("%sLEFT leaf, \n", GREEN_B);
 		print_ast(s, ptr->left, padding);
 		while (p++ < padding)
 			printf("\t");
-		printf("RIGHT leaf, \n");
+		printf("%sRIGHT leaf, \n", YELLOW_B);
 		print_ast(s, ptr->right, padding);
 	}
+	printf("%s", RST);
 }
 
 void	print_ast_redir(t_ms *s, t_cmd *ptr, int padding)
@@ -64,11 +65,11 @@ void	print_ast_redir(t_ms *s, t_cmd *ptr, int padding)
 			printf("\t");
 		p = 0;
 		if (ptr->mode == 577)
-			printf("type REDIR > TRUNC, \n");
+			printf("%stype REDIR > TRUNC, \n", CYAN);
 		else if (ptr->mode == 1089)
-			printf("type REDIR > APPEND, \n");
+			printf("%stype REDIR > APPEND, \n", CYAN);
 		else if (ptr->mode == 0)
-			printf("type REDIR < RDONLY, \n");
+			printf("%stype REDIR < RDONLY, \n", CYAN);
 		while (p++ < padding)
 			printf("\t");
 		p = 0;
@@ -88,7 +89,7 @@ void	print_ast_heredoc(t_ms *s, t_cmd *ptr, int padding)
 		while (p++ < padding)
 			printf("\t");
 		p = 0;
-		printf("type HEREDOC, \n");
+		printf("%stype HEREDOC, \n", CYAN);
 		while (p++ < padding)
 			printf("\t");
 		printf("DELIM: %s \n", ptr->delim);

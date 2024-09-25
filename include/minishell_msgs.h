@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_msgs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 12:07:20 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/23 15:16:25 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/25 11:47:01 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@
 # define INCOMPLETE_PARSE	"not parsed, double check parser"
 # define PIPE_SYNTAX		"syntax error, check pipes"
 # define REDIR_SYNTAX		"ambiguous redirect"
+# define DD 				"minishell: warning: here-document \
+delimited by end-of-file"
 
 #endif
