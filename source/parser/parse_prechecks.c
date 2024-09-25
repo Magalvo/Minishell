@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:00 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/20 10:25:23 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/25 11:02:31 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,11 @@ char	*expand_sw_vars(char *input, t_ms *s)
 	return (xp_input);
 }
 
+//!Not working as t should atm
+/* 	if (ft_strnstr(xp_input, "=~", ft_strlen(xp_input)))	
+		xp_input = expand_tilde_equal(xp_input, pos, s); */
 char	*tilde_sw(char *xp_input, char *pos, t_ms *s)
 {
-/* 	if (ft_strnstr(xp_input, "=~", ft_strlen(xp_input)))		//!Not working as t should atm
-		xp_input = expand_tilde_equal(xp_input, pos, s); */     //!
 	if (ft_strnstr(xp_input, "~+", ft_strlen(xp_input)))
 		xp_input = expand_tilde_pwd(xp_input, pos, false, s);
 	else if (ft_strnstr(xp_input, "~-", ft_strlen(xp_input)))

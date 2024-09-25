@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:28 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/20 10:18:33 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/25 11:01:20 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 // check siginfo_DontUse
 void	handler(int signo, siginfo_t *info, void *context)
 {
-	(void)info;
-	(void)context;
 	t_sinfo	sinfo;
 
+	(void)info;
+	(void)context;
 	sinfo = exit_pack(NULL, NULL);
 	if (signo == SIGINT)
 	{

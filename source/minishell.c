@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/23 15:18:15 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/25 11:04:30 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	minishell(char **envp)
 	init_t_ms(&s);
 	if (!init_minishell(&s, envp))
 		exit_minishell(&s, NULL);
-	exit_pack(&s, NULL);
 	while (true)
 	{
 		check_signal(MAIN);

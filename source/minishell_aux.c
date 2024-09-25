@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:25:03 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/19 18:21:48 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/25 11:04:50 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	init_minishell(t_ms *s, char **ep)
 		update_key(s->env, "SHELL", "./minishell");
 		free(shell);
 	}
+	exit_pack(s, NULL);
 	return (true);
 }
 
