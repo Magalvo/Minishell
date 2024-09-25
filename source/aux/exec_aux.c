@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/18 17:30:56 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/25 11:11:36 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	exec_command_path(t_ms *s, char **argv)
 	char	**argv_new;
 
 	argv_new = NULL;
-	if (ft_strchr(argv[0], ' ') != NULL && ft_strchr(s->input, '$') != NULL)
+	if (ft_strchr(argv[0], ' ') != NULL && ft_strchr(s->input, '$') != NULL \
+		&& ft_strchr(s->input, '"') == NULL)
 	{
 		argv_new = ft_split(argv[0], ' ');
 		ft_free_dptr(&argv);
@@ -60,7 +61,6 @@ void	exec_command_path(t_ms *s, char **argv)
 	execve(path, argv, s->env_tmp);
 	free(path);
 	not_found(argv[0], 127, s);
-	s->exit_stat = 127;
 }
 
 char	*check_if_dir(char *cmd, t_ms *s)

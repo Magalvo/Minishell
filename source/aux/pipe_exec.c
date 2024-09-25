@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:42:53 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/20 10:01:08 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/25 11:10:37 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	exec_one(t_ms *s, char **argv)
 	else if (argv && argv[0] != NULL)
 	{
 		exec_command_path(s, argv);
+		s->exit_stat = 127;
 	}
 }
 
