@@ -27,13 +27,15 @@ void	exec_from_ast_recursive(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 		if (fd_in != STDIN_FILENO && ((cmd->fd == 0) | (cmd->fd >= 1)) \
 			&& s->ast->type == PIPE)
 		{
-			if ((cmd->file && cmd->fd == 0 && cmd->cmd->type != 2) \
-			|| (cmd->cmd->type == 4 && cmd->cmd->file && cmd->cmd->fd == 0) \
-			|| (cmd->cmd->type == 2 && cmd->cmd->file && cmd->cmd->fd > 1) \
-			|| (cmd->file && cmd->fd > 1 && cmd->cmd->type != 2))
-			{
+			if (cmd->file && cmd->fd == 0 && cmd->cmd->type != REDIR)
 				fd_in = STDIN_FILENO;
-			}
+			else if (cmd->cmd->type == 2 && cmd->cmd->file \
+				&& cmd->cmd->fd == 0)
+				fd_in = STDIN_FILENO;
+			else if (cmd->cmd->type == 4 && cmd->cmd->file && cmd->cmd->fd > 1)
+				fd_in = STDIN_FILENO;
+			else if (cmd->file && cmd->fd > 1 && cmd->cmd->type != REDIR)
+				fd_in = STDIN_FILENO;
 		}
 		exec_redir(s, cmd, fd_in, fd_out);
 	}
