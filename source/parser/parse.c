@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/19 15:51:12 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/29 17:30:39 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ t_cmd	*parse_cmd(char *input, t_ms *s)
 			break ;
 		end = ft_strchr(quote + 1, *quote);
 		untokenizer(quote, end);
-		end = ft_strchr(end + 1, *quote);
+		// end = ft_strchr(end + 1, *quote);
+		end++;
 	}
 	end = input + ft_strlen(input);
 	cmd = parse_pipe(&input, end, s);

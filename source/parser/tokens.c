@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:17:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/07/08 19:41:43 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/29 17:12:39 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	get_token(char **ps, char *es, char **q, char **eq)
 	if (q)
 		*q = str;
 	ret = *str;
-	if (ft_strchr("|", *str) && *str != 0)
+	if (ft_strchr("|", *str) && *str != 0 && is_quoted(*ps, str) == NONE)
 	{
 		str++;
 		skip = true;
