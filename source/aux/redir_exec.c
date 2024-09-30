@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:22:12 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/25 11:00:24 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/30 16:44:38 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ void	exec_redir(t_ms *s, t_cmd *cmd, int fd_in, int fd_out)
 			ft_dprintf(2, "%s\n", cmd->error_msg);
 			return ;
 		}
-		heredoc_handler(s, cmd, &fd_in, &temp_fd);
-		if (cmd->fd == 0)
+		if (cmd->fd > 1)
+			heredoc_handler(s, cmd, &fd_in, &temp_fd);
+		else if (cmd->fd == 0)
 			unclose0(s, cmd, &fd_in, &temp_fd);
 		else if (cmd->fd == 1)
 			unclose1(s, cmd, &fd_out, &temp_fd);
