@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:46 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/19 15:51:12 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/30 17:05:15 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ t_cmd	*parse_cmd(char *input, t_ms *s)
 			break ;
 		end = ft_strchr(quote + 1, *quote);
 		untokenizer(quote, end);
-		end = ft_strchr(end + 1, *quote);
+		// end = ft_strchr(end + 1, *quote);
+		if (*end != '\0')
+			end++;
 	}
 	end = input + ft_strlen(input);
 	cmd = parse_pipe(&input, end, s);

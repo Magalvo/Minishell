@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_prechecks.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:15:00 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/25 11:02:31 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/29 18:24:29 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ char	*expand_sw_vars(char *input, t_ms *s)
 			if ((pos > xp_input && *(pos - 1) == '"' && *(pos + 1) == '"') \
 				|| (pos != NULL && ft_strchr(SPACES, *(pos + 1))))
 				*(pos) = DOLAR;
-			pos = ft_strchr(xp_input, '$');
+			// pos = ft_strchr(xp_input, '$');
+			pos = ft_strchr(pos, '$');
 			xp_input = vars_sw(xp_input, pos, s);
 			if (s->error == true)
 			{
@@ -63,8 +64,8 @@ char	*expand_sw_vars(char *input, t_ms *s)
 	return (xp_input);
 }
 
-//!Not working as t should atm
-/* 	if (ft_strnstr(xp_input, "=~", ft_strlen(xp_input)))	
+//!Not working as it should atm
+/* 	if (ft_strnstr(xp_input, "=~", ft_strlen(xp_input)))
 		xp_input = expand_tilde_equal(xp_input, pos, s); */
 char	*tilde_sw(char *xp_input, char *pos, t_ms *s)
 {

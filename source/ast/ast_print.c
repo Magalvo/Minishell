@@ -6,7 +6,7 @@
 /*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:12:38 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/23 15:20:41 by cjoao-de         ###   ########.fr       */
+/*   Updated: 2024/09/29 17:46:10 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	print_2d(char **ptr, int padding)
 		while (p++ < padding)
 			printf("\t");
 		p = 0;
-		printf("%s\n", ptr[i++]);
+		printf("%s%s%s\n", MAGENTA_B, ptr[i++], RST);
 	}
 }
 

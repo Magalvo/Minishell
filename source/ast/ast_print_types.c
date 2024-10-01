@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_print_types.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cjoao-de <cjoao-de@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:12:30 by cjoao-de          #+#    #+#             */
-/*   Updated: 2024/09/25 12:15:36 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/09/29 17:52:51 by cjoao-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_ast_exec(t_ms *s, t_cmd *ptr, int padding)
 		padding++;
 		while (p++ < padding)
 			printf("\t");
-		printf("type EXEC, args: \n");
+		printf("type %sEXEC%s, args: \n", GREEN_B, RST);
 		print_2d(ptr->argv, padding);
 	}
 }
@@ -39,15 +39,15 @@ void	print_ast_pipe(t_ms *s, t_cmd *ptr, int padding)
 		while (p++ < padding)
 			printf("\t");
 		p = 0;
-		printf("%stype PIPE, \n", RED_B);
+		printf("type %sPIPE%s: \n", GREEN_B, RST);
 		while (p++ < padding)
 			printf("\t");
 		p = 0;
-		printf("%sLEFT leaf, \n", GREEN_B);
+		printf("%sLEFT leaf%s\n", BLUE_B, RST);
 		print_ast(s, ptr->left, padding);
 		while (p++ < padding)
 			printf("\t");
-		printf("%sRIGHT leaf, \n", YELLOW_B);
+		printf("%sRIGHT leaf%s\n", YELLOW_B, RST);
 		print_ast(s, ptr->right, padding);
 	}
 	printf("%s", RST);
@@ -65,15 +65,15 @@ void	print_ast_redir(t_ms *s, t_cmd *ptr, int padding)
 			printf("\t");
 		p = 0;
 		if (ptr->mode == 577)
-			printf("%stype REDIR > TRUNC, \n", CYAN);
+			printf("type %sREDIR > TRUNC%s:\n", GREEN_B, RST);
 		else if (ptr->mode == 1089)
-			printf("%stype REDIR > APPEND, \n", CYAN);
+			printf("type %sREDIR > APPEND%s:\n", GREEN_B, RST);
 		else if (ptr->mode == 0)
-			printf("%stype REDIR < RDONLY, \n", CYAN);
+			printf("type %sREDIR < RDONLY%s:\n", GREEN_B, RST);
 		while (p++ < padding)
 			printf("\t");
 		p = 0;
-		printf("FILE: %s \n", ptr->file);
+		printf("FILE: %s%s%s\n", MAGENTA_B, ptr->file, RST);
 		print_ast(s, ptr->cmd, padding);
 	}
 }
@@ -89,10 +89,10 @@ void	print_ast_heredoc(t_ms *s, t_cmd *ptr, int padding)
 		while (p++ < padding)
 			printf("\t");
 		p = 0;
-		printf("%stype HEREDOC, \n", CYAN);
+		printf("type %sHEREDOC%s:\n", GREEN_B, RST);
 		while (p++ < padding)
 			printf("\t");
-		printf("DELIM: %s \n", ptr->delim);
+		printf("DELIM: %s%s%s\n", MAGENTA_B, ptr->delim, RST);
 		print_ast(s, ptr->cmd, padding);
 	}
 }
